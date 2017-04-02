@@ -43,6 +43,9 @@ import { TimepickerComponent } from './components/timepicker/timepicker.componen
         TabsComponent,
         TooltipComponent,
         TimepickerComponent
+    ],
+    exports: [
+        
     ]
 })
 export class BsComponentModule { }
