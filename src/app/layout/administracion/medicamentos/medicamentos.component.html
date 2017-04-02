@@ -1,3 +1,92 @@
-<p>
-  medicamentos works!
-</p>
+<div class="container-fluid">
+    
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-xl-12">
+            <h2 class="page-header">
+                Administracion de medicamentoes
+            </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Administracion</a>
+                </li>
+                <li class="breadcrumb-item active"><i class="fa fa-table"></i> medicamentos</li>
+            </ol>
+        </div>
+    </div>
+
+    <!--Boton agregar con modal-->
+    <app-medicamentos-modal-add></app-medicamentos-modal-add>
+
+    <!--Tabla medicamentos-->
+    <div class="card mb-3">
+        <div class="card-header">medicamentos</div>
+        <div class="card-block table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>codigo</th>
+                        <th>Nombre</th>
+                        <th>costo</th>                        
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Medicamento1</td>
+                        <td>100</td>                        
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamentos?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Medicamento 2</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamentos?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Medicamento 3</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamento?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Medicamento 4</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamento?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Medicamento 5</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamento?</p></app-medicamentos-modal-del></td>
+                    <tr>
+                        <td>6</td>
+                        <td>Medicamento 6</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamento?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Medicamento 7</td>
+                        <td>200</td>
+                        <td><app-medicamentos-modal-edit></app-medicamentos-modal-edit></td>
+                        <td><app-medicamentos-modal-del><p>¿Realmente Desea elimniar el medicamento?</p></app-medicamentos-modal-del></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-modal-del',
-  templateUrl: './modal-del.component.html',
-  styleUrls: ['./modal-del.component.scss']
+  selector: 'app-medicamentos-modal-edit',
+  templateUrl: './medicamentos-modal-edit.component.html',
+  styleUrls: ['./medicamentos-modal-edit.component.scss']
 })
-export class ModalDelComponent implements OnInit {
+export class MedicamentosModalEditComponent implements OnInit {
 
-  closeResult: string;
+closeResult: string;
 
   constructor(private modalService: NgbModal) { }
 

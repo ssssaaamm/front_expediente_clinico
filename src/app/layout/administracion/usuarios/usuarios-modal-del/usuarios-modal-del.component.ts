@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-modal-add',
-  templateUrl: './modal-add.component.html',
-  styleUrls: ['./modal-add.component.scss']
+  selector: 'app-usuarios-modal-del',
+  templateUrl: './usuarios-modal-del.component.html',
+  styleUrls: ['./usuarios-modal-del.component.scss']
 })
-export class ModalAddComponent implements OnInit {
+export class UsuariosModalDelComponent implements OnInit {
+
+ 
   closeResult: string;
 
   constructor(private modalService: NgbModal) { }
@@ -30,7 +31,7 @@ export class ModalAddComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
 }
