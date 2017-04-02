@@ -12,6 +12,9 @@ import { ServiciosComponent } from './servicios/servicios.component';
 import { ModalAddComponent } from './usuarios/modal-add/modal-add.component';
 import { ModalEditComponent } from './usuarios/modal-edit/modal-edit.component';
 import { ModalDelComponent } from './usuarios/modal-del/modal-del.component';
+import { RolesModalAddComponent } from './roles/roles-modal-add/roles-modal-add.component';
+import { RolesModalDelComponent } from './roles/roles-modal-del/roles-modal-del.component';
+import { RolesModalEditComponent } from './roles/roles-modal-edit/roles-modal-edit.component';
 
 @NgModule({
   imports: [
@@ -21,6 +24,6 @@ import { ModalDelComponent } from './usuarios/modal-del/modal-del.component';
     NgbModule.forRoot(),
     AdministracionRoutingModule,
   ],
-  declarations: [UsuariosComponent, MedicamentosComponent, MedicosComponent, RolesComponent, ServiciosComponent, ModalAddComponent, ModalEditComponent, ModalDelComponent]
+  declarations: [UsuariosComponent, MedicamentosComponent, MedicosComponent, RolesComponent, ServiciosComponent, ModalAddComponent, ModalEditComponent, ModalDelComponent, RolesModalAddComponent, RolesModalDelComponent, RolesModalEditComponent]
 })
 export class AdministracionModule { }
