@@ -1,5 +1,17 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
+         <a routerLink="/administracion/medicamentos" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-medkit"></i>&nbsp;Medicamentos
+        </a>
+         <a routerLink="/administracion/medicos" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-stethoscope"></i>&nbsp;Medicos
+        </a>
+         <a routerLink="/administracion/roles" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-drivers-license-o"></i>&nbsp;Roles
+        </a>
+         <a routerLink="/administracion/usuarios" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-user-circle-o"></i>&nbsp;Usuarios
+        </a>
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard
         </a>
