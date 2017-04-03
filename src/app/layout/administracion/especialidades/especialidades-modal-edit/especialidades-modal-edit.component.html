@@ -1,3 +1,36 @@
-<p>
-  especialidades-modal-edit works!
-</p>
+<div class="">
+    <button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Editar Especialidad: codigo_especialidad</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+
+        <!--Formulario editar especialidad-->
+          <form>
+
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="codigo">Código</label>
+                <input type="text" class="form-control"  name="codigo" placeholder="Ingrese codigo">
+              </div>
+
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="descripcion" name="nombre" placeholder="Ingrese nombre dela especialidad">
+              </div>             
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+
+    </ng-template>
+</div>
+
