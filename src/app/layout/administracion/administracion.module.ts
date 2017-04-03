@@ -18,6 +18,17 @@ import { UsuariosModalEditComponent } from './usuarios/usuarios-modal-edit/usuar
 import { MedicamentosModalAddComponent } from './medicamentos/medicamentos-modal-add/medicamentos-modal-add.component';
 import { MedicamentosModalDelComponent } from './medicamentos/medicamentos-modal-del/medicamentos-modal-del.component';
 import { MedicamentosModalEditComponent } from './medicamentos/medicamentos-modal-edit/medicamentos-modal-edit.component';
+import { MedicosModalAddComponent } from './medicos/medicos-modal-add/medicos-modal-add.component';
+import { MedicosModalDelComponent } from './medicos/medicos-modal-del/medicos-modal-del.component';
+import { MedicosModalEditComponent } from './medicos/medicos-modal-edit/medicos-modal-edit.component';
+import { ServiciosModalAddComponent } from './servicios/servicios-modal-add/servicios-modal-add.component';
+import { ServiciosModalEditComponent } from './servicios/servicios-modal-edit/servicios-modal-edit.component';
+import { ServiciosModalDelComponent } from './servicios/servicios-modal-del/servicios-modal-del.component';
+import { EspecialidadesComponent } from './especialidades/especialidades.component';
+import { EspecialidadesModalAddComponent } from './especialidades/especialidades-modal-add/especialidades-modal-add.component';
+import { EspecialidadesModalEditComponent } from './especialidades/especialidades-modal-edit/especialidades-modal-edit.component';
+import { EspecialidadesModalDelComponent } from './especialidades/especialidades-modal-del/especialidades-modal-del.component';
+
 
 @NgModule({
   imports: [
@@ -27,6 +38,6 @@ import { MedicamentosModalEditComponent } from './medicamentos/medicamentos-moda
     NgbModule.forRoot(),
     AdministracionRoutingModule,
   ],
-  declarations: [UsuariosComponent, MedicamentosComponent, MedicosComponent, RolesComponent, ServiciosComponent, RolesModalAddComponent, RolesModalDelComponent, RolesModalEditComponent, UsuariosModalAddComponent, UsuariosModalDelComponent, UsuariosModalEditComponent, MedicamentosModalAddComponent, MedicamentosModalDelComponent, MedicamentosModalEditComponent]
+  declarations: [UsuariosComponent, MedicamentosComponent, MedicosComponent, RolesComponent, ServiciosComponent, RolesModalAddComponent, RolesModalDelComponent, RolesModalEditComponent, UsuariosModalAddComponent, UsuariosModalDelComponent, UsuariosModalEditComponent, MedicamentosModalAddComponent, MedicamentosModalDelComponent, MedicamentosModalEditComponent, MedicosModalAddComponent, MedicosModalDelComponent, MedicosModalEditComponent, ServiciosModalAddComponent, ServiciosModalEditComponent, ServiciosModalDelComponent, EspecialidadesComponent, EspecialidadesModalAddComponent, EspecialidadesModalEditComponent, EspecialidadesModalDelComponent ]
 })
 export class AdministracionModule { }
