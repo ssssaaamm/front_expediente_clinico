@@ -1,3 +1,37 @@
-<p>
-  especialidades-modal-add works!
-</p>
+<!-- Large modal -->
+<div class="">
+    <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar especialidad</button>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Agregar nueva especialidad </h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <!--Formulario agregar nuevo rol-->
+          <form>
+
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control"  name="nombre" placeholder="Ingrese codigo">
+              </div>
+
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="rol-add" name="nombre" placeholder="Ingrese nombre de la especialidad">
+              </div>
+              
+             
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+
+    </ng-template>
+</div>

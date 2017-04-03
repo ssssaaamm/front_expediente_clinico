@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: 'app-especialidades',
   templateUrl: './especialidades.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspecialidadesComponent implements OnInit {
 
-  constructor() { }
+   constructor() { }
 
   ngOnInit() {
   }

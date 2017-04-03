@@ -1,3 +1,44 @@
-<p>
-  servicios-modal-edit works!
-</p>
+<!-- Large modal -->
+<div class="">
+    <button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Editar servicio: id_servicio</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <!--Formulario agregar nuevo Sercio-->
+          <form>
+
+            <div class="modal-body">
+                <div class="form-group">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control"  name="codigo" >
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control"  name="nombre" >
+              </div>  
+              <div class="form-group">
+                <label for="nombre">Costo</label>
+                <input type="text" class="form-control"  name="costo" >
+              </div>
+              <div class="form-group">
+                <label for="nombre">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" >
+              </div>
+
+             
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+
+    </ng-template>
+</div>

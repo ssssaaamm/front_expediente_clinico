@@ -1,3 +1,44 @@
-<p>
-  servicios-modal-add works!
-</p>
+<!-- Large modal -->
+<div class="">
+    <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar Servicio</button>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Agregar nuevo Servicio</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <!--Formulario agregar nuevo Sercio-->
+          <form>
+
+            <div class="modal-body">
+                <div class="form-group">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control"  name="codigo" placeholder="Ingrese Codigo">
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre">
+              </div>  
+              <div class="form-group">
+                <label for="nombre">Costo</label>
+                <input type="text" class="form-control"  name="costo" placeholder="Ingrese Costo">
+              </div>
+              <div class="form-group">
+                <label for="nombre">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una breve descripción del servicio">
+              </div>
+
+             
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+
+        </form>
+
+    </ng-template>
+</div>
