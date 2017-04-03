@@ -9,6 +9,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
     constructor(public router: Router) { }
     ngOnInit() {
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     }
 }
