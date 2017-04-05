@@ -3,17 +3,13 @@
         <button class="navbar-toggler navbar-toggler-right" (click)="toggleSidebar()">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">SB Admin BS 4 Angular4</a>
+        <a class="navbar-brand" href="#">Expediente Clinico</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
             </form>
             <ul class="navbar-nav ml-auto mt-2 mt-md-0">
-                <li class="nav-item">
-                    <a href="https://github.com/start-angular/SB-Admin-BS4-Angular-2/archive/master.zip" class="nav-link btn btn-default-outline buy-now-btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Download Now</a>
-                </li>
-                <li class="dropdown nav-item" ngbDropdown>
-                    <!-- <div class="dropdown"> -->
+                <!--<li class="dropdown nav-item" ngbDropdown>
                     <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
                         <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                     </a>
@@ -43,8 +39,8 @@
                             </div>
                         </li>
                     </ul>
-                </li>
-                <li ngbDropdown class="nav-item dropdown">
+                </li>-->
+                <!--<li ngbDropdown class="nav-item dropdown">
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                         <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                     </a>
@@ -55,16 +51,16 @@
                         <li class="dropdown-divider"></li>
                         <a href="javascript:void(0)" class="dropdown-item">View All</a>
                     </ul>
-                </li>
-                <div class="nav-item dropdown" ngbDropdown>
+                </li>-->
+                <div *ngIf="identity" class="nav-item dropdown" ngbDropdown>
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                        <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+                        <i class="fa fa-user"></i> {{identity.name }} <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="jvascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        <a class="dropdown-item" href="jvascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        <a class="dropdown-item" href="jvascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        <a routerLink="/administracion/usuarios" [routerLinkActive]="['router-link-active']" class="dropdown-item" ><i class="fa fa-fw fa-user"></i> Profile</a>
+                        <a [routerLink]="['/inbox']" class="dropdown-item" href="jvascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        <a [routerLink]="['/settings']" class="dropdown-item" href="jvascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        <a [routerLink]="['/logout']" class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </div>
                 </div>
             </ul>

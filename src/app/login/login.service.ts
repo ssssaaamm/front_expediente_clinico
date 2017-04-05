@@ -27,7 +27,7 @@ export class LoginService {
     // return this.http.post(this.url+"/login",parametros,{headers:headers}).map( (response: Response) => {let user=response.json();});
   }
 
-  getIdentity(){
+    getIdentity(){
         let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity != "undefined"){
             this.identity = identity;
@@ -38,7 +38,7 @@ export class LoginService {
     }
 
     getToken(){
-        let token = JSON.parse(localStorage.getItem('token'));
+        let token = localStorage.getItem('token');
         if(token != "undefined"){
             this.token = token;
         }else{

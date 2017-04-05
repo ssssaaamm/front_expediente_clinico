@@ -1,13 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../../../login/login.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
+    providers: [LoginService]
 })
 export class HeaderComponent implements OnInit {
-    constructor() { }
-    ngOnInit() {}
+    public identity;
+    public token;
+
+    constructor(private loginService:LoginService) { }
+    
+    ngOnInit() {
+
+        this.identity = this.loginService.getIdentity();
+        this.token = this.loginService.getToken();
+
+    }
 
     toggleSidebar() {
         const dom: any = document.querySelector('body');

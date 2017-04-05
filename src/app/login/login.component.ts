@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.user={
-            "email":"estoyenoninit@logincomponent.com",
-            "password":"passwordoninit"
+            "email":"fer143monster@gmail.com",
+            "password":"admin123"
         };
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
@@ -63,8 +63,9 @@ export class LoginComponent implements OnInit {
                             }else{
                                 if(!token.status){
                                     localStorage.setItem('token',JSON.stringify(token));
-                                    let iden=localStorage.getItem('identity');
-                                    let tok=localStorage.getItem('token');
+                                    
+                                    console.log(this.loginService.getIdentity());
+                                    console.log(this.loginService.getToken());
                                 }
                             }
 
