@@ -6,6 +6,7 @@ import {MedicamentosComponent} from './medicamentos/medicamentos.component';
 import {MedicosComponent} from './medicos/medicos.component';
 import {ServiciosComponent} from './servicios/servicios.component';
 import {EspecialidadesComponent} from './especialidades/especialidades.component';
+import {ExamenesComponent} from './examenes/examenes.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
        { path: 'medicamentos', component: MedicamentosComponent },
        { path: 'medicos', component: MedicosComponent },
        { path: 'servicios', component: ServiciosComponent },
-      { path: 'especialidades', component: EspecialidadesComponent }
+      { path: 'especialidades', component: EspecialidadesComponent },
+      { path: 'examenes', component: ExamenesComponent }
       
 ];
 

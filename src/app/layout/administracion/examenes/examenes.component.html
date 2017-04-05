@@ -1,3 +1,76 @@
-<p>
-  examenes works!
-</p>
+<div class="container-fluid">
+    
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-xl-12">
+            <h2 class="page-header">
+                Administracion de Examenes
+            </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Administracion</a>
+                </li>
+                <li class="breadcrumb-item active"><i class="fa fa-table"></i> Examenes</li>
+            </ol>
+        </div>
+    </div>
+
+    <!--Boton agregar con modal-->
+    <app-examenes-modal-add></app-examenes-modal-add>
+
+    <!--Tabla medicamentos-->
+    <div class="card mb-3">
+        <div class="card-header">examenes</div>
+        <div class="card-block table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>                                    
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Costo</th>              
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <td>Clinico</td>
+                        <td>1</td>
+                        <td>Hemograma</td>                      
+                        <td><app-examenes-modal-edit></app-examenes-modal-edit></td>
+                        <td><app-examenes-modal-del><p>¿Realmente Desea elimniar el examen?</p></app-examenes-modal-del></td>
+                     <tr>
+                        <td>Clinico</td>
+                        <td>2</td>
+                        <td>Orina</td>                      
+                        <td><app-examenes-modal-edit></app-examenes-modal-edit></td>
+                        <td><app-examenes-modal-del><p>¿Realmente Desea elimniar el examen?</p></app-examenes-modal-del></td>
+                    </tr>
+                     <tr>
+                        <td>Fisico</td>
+                        <td>3</td>
+                        <td>Radiografia</td>                      
+                        <td><app-examenes-modal-edit></app-examenes-modal-edit></td>
+                        <td><app-examenes-modal-del><p>¿Realmente Desea elimniar el examen?</p></app-examenes-modal-del></td>
+                    </tr>
+                      <tr>
+                        <td>Clinico</td>
+                        <td>4</td>
+                        <td>Heces</td>                      
+                        <td><app-examenes-modal-edit></app-examenes-modal-edit></td>
+                        <td><app-examenes-modal-del><p>¿Realmente Desea elimniar el examen?</p></app-examenes-modal-del></td>
+                    </tr>
+                    <tr>
+                        <td>Fisico</td>
+                        <td>5</td>
+                        <td>Ultrasonografia</td>                      
+                        <td><app-examenes-modal-edit></app-examenes-modal-edit></td>
+                        <td><app-examenes-modal-del><p>¿Realmente Desea elimniar el examen?</p></app-examenes-modal-del></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

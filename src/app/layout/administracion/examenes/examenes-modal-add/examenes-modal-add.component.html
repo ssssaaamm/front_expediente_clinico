@@ -1,3 +1,43 @@
-<p>
-  examenes-modal-add works!
-</p>
+<div class="">
+    <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar Examen</button>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Agregar nuevo Examen </h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <!--Formulario agregar nuevo examen-->
+          <form>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="nombre">Tipo</label>
+                <input type="text" class="form-control"  name="nombre" placeholder="Ingrese El tipo de Examen">
+              </div>
+
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control"  name="nombre" placeholder="Ingrese codigo">
+              </div>
+
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre del examen">
+              </div>
+              <div class="form-group">
+                <label for="nombre">Costo</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el Costo del Examen">
+              </div>
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+            </div>
+        </form>
+
+    </ng-template>
+</div>
