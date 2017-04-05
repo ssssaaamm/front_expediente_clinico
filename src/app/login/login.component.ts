@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
             "email":"fer143monster@gmail.com",
             "password":"admin123"
         };
-
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+        //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     }
 
     login(form:NgForm){
@@ -66,6 +65,8 @@ export class LoginComponent implements OnInit {
                                     
                                     console.log(this.loginService.getIdentity());
                                     console.log(this.loginService.getToken());
+
+                                    this.router.navigate(['/dashboard']);
                                 }
                             }
 

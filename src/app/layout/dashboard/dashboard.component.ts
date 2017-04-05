@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../../login/login.service';
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    providers: [LoginService]
 })
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    constructor() {
+    constructor(private loginService:LoginService) {
         this.sliders.push({
             imagePath: 'assets/images/slider1.jpg',
             label: 'First slide label',
@@ -40,7 +42,14 @@ export class DashboardComponent implements OnInit {
                 voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`,
         });
     }
-    ngOnInit() {}
+    ngOnInit() {
+
+        // let iden = this.loginService.getIdentity();
+        // if(iden == null){
+        //     //this.router.navigate(['/dashboard']);
+        //     window.location.href = "/login"
+        // }
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
