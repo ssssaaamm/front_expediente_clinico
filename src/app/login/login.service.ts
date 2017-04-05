@@ -8,6 +8,8 @@ export class LoginService {
 
   //url
   public url="https://bad115.herokuapp.com";
+  public identity;
+  public token;
   
   //injecto la dep http
   constructor(private http:Http) { }
@@ -24,4 +26,24 @@ export class LoginService {
     return this.http.post(this.url+"/login",parametros,{headers:headers}).map(res=>res.json()) ;
     // return this.http.post(this.url+"/login",parametros,{headers:headers}).map( (response: Response) => {let user=response.json();});
   }
+
+    getIdentity(){
+        let identity = JSON.parse(localStorage.getItem('identity'));
+        if(identity != "undefined"){
+            this.identity = identity;
+        }else{
+            this.identity = null;
+        }
+        return this.identity;
+    }
+
+    getToken(){
+        let token = localStorage.getItem('token');
+        if(token != "undefined"){
+            this.token = token;
+        }else{
+            this.token = null;
+        }
+        return this.token;
+    }
 }
