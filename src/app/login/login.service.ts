@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable"
 export class LoginService {
 
   //url
-  public url="https://192.168.1.4/badDemo/web/app_dev.php";
+  public url="https://bad115.herokuapp.com";
   
   //injecto la dep http
   constructor(private http:Http) { }
@@ -15,6 +15,7 @@ export class LoginService {
   signIn(user){
     //convertir el json en String
     let json=JSON.stringify(user);
+    console.log("Enviando: "+json);
     let parametros="json="+json;
     //cabecera que simula formualrio normal
     let headers=new Headers({'Content-type':'application/x-www-form-urlencoded'});
