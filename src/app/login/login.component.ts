@@ -65,8 +65,6 @@ export class LoginComponent implements OnInit {
                                     localStorage.setItem('token',JSON.stringify(token));
                                     let iden=localStorage.getItem('identity');
                                     let tok=localStorage.getItem('token');
-                                    console.log(iden);
-                                    console.log(tok)
                                 }
                             }
 
@@ -93,8 +91,5 @@ export class LoginComponent implements OnInit {
     );
   }
 
-    getIdentity(){
-
-    }
-
+    
 }
