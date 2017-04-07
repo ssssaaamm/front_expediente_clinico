@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 @Component({
-  selector: 'app-especialidades',
-  templateUrl: './especialidades.component.html',
-  styleUrls: ['./especialidades.component.scss']
+  selector: 'app-examenes-modal-add',
+  templateUrl: './examenes-modal-add.component.html',
+  styleUrls: ['./examenes-modal-add.component.scss']
 })
-export class EspecialidadesComponent implements OnInit {
-
-   closeResult: string;
+export class ExamenesModalAddComponent implements OnInit {
 
 constructor(private modalService: NgbModal) { }
+   closeResult: string;
 
     open(content) {
         this.modalService.open(content).result.then((result) => {
@@ -18,7 +17,7 @@ constructor(private modalService: NgbModal) { }
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
     }
-      private getDismissReason(reason: any): string {
+     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -30,5 +29,4 @@ constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
-
 }

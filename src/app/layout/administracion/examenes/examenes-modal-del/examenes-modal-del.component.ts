@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-@Component({
-  selector: 'app-especialidades',
-  templateUrl: './especialidades.component.html',
-  styleUrls: ['./especialidades.component.scss']
-})
-export class EspecialidadesComponent implements OnInit {
 
-   closeResult: string;
+@Component({
+  selector: 'app-examenes-modal-del',
+  templateUrl: './examenes-modal-del.component.html',
+  styleUrls: ['./examenes-modal-del.component.scss']
+})
+export class ExamenesModalDelComponent implements OnInit {
+closeResult: string;
 
 constructor(private modalService: NgbModal) { }
 
@@ -27,7 +27,6 @@ constructor(private modalService: NgbModal) { }
             return  `with: ${reason}`;
         }
     }
-
   ngOnInit() {
   }
 
