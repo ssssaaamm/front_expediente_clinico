@@ -14,7 +14,15 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            {path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
+            {path: 'administracion/usuarios', loadChildren:'./usuarios/usuarios.module#UsuariosModule' },
+            {path: 'administracion/especialidades', loadChildren:'./especialidades/especialidades.module#EspecialidadesModule' },
+            {path: 'administracion/examenes', loadChildren:'./examenes/examenes.module#ExamenesModule' },
+            {path: 'administracion/medicamentos', loadChildren:'./medicamentos/medicamentos.module#MedicamentosModule' },
+            {path: 'administracion/medicos', loadChildren:'./medicos/medicos.module#MedicosModule' },
+            {path: 'administracion/procedimientos', loadChildren:'./procedimientos/procedimientos.module#ProcedimientosModule' },
+            {path: 'administracion/roles', loadChildren:'./roles/roles.module#RolesModule' },
+            {path: 'administracion/servicios', loadChildren:'./servicios/servicios.module#ServiciosModule' },
+            //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
         ]
     }
 ];
