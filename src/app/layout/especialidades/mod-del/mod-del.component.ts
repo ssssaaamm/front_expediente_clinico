@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Especialidad } from '../../../models/especialidad';
 
 @Component({
   selector: 'app-mod-del',
@@ -8,6 +9,8 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 })
 export class ModDelComponent implements OnInit {
   
+  @Input() public especialidad: Especialidad;
+
   closeResult: string;
   constructor(private modalService: NgbModal) { }
 

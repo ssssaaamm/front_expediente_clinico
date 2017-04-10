@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Especialidad } from '../../../models/especialidad';
 
 @Component({
   selector: 'app-mod-edit',
@@ -7,6 +8,9 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-edit.component.scss']
 })
 export class ModEditComponent implements OnInit {
+
+  @Input() public especialidad: Especialidad;
+  esp_name: string;
 
   closeResult: string;
   constructor(private modalService: NgbModal) { }
@@ -28,6 +32,7 @@ export class ModEditComponent implements OnInit {
       }
   }
   ngOnInit() {
+      this.esp_name=this.especialidad.nombre;
   }
 
 }

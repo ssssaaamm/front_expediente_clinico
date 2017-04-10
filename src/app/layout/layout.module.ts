@@ -4,7 +4,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
-import { HeaderComponent, SidebarComponent } from '../shared';
+import { HeaderComponent, SidebarComponent, SpinnerComponent} from '../shared';
 
 
 
@@ -12,12 +12,13 @@ import { HeaderComponent, SidebarComponent } from '../shared';
     imports: [
         CommonModule,
         NgbDropdownModule.forRoot(),
-        LayoutRoutingModule
+        LayoutRoutingModule,
     ],
     declarations: [
         LayoutComponent,
         HeaderComponent,
-        SidebarComponent
+        SidebarComponent,
+        SpinnerComponent
     ]
 })
 export class LayoutModule { }

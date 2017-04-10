@@ -1,64 +1,64 @@
 <!-- Large modal -->
-<div class="">
-    <button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
-    <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title">Editar medico: codigo_medico</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+<button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Editar medico: codigo_medico</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <!--Formulario agregar nuevo rol-->
+      <form>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nombre">Codigo</label>
+            <input type="text" class="form-control"  name="codigo" >
+          </div>
+
+          <div class="form-group">
+            <label for="nombre">Nombres</label>
+            <input type="text" class="form-control" id="rol-add" name="nombres" >
+          </div>
+          <div class="form-group">
+            <label for="nombre">Apellidos</label>
+            <input type="text" class="form-control" id="rol-add" name="apellidos" >
+          </div>
+          <div class="form-group">
+            <label for="nombre">Pais</label>
+            <input type="text" class="form-control" id="rol-add" name="pais" >
+          </div>
+          <div class="form-group">
+            <label for="nombre">Departamento</label>
+            <input type="text" class="form-control" id="rol-add" name="division" >
+          </div>
+            <div class="form-group">
+            <label for="nombre">Municipio</label>
+            <input type="text" class="form-control" id="rol-add" name="subdivision" >
+          </div>
+            <div class="form-group">
+            <label for="nombre">Movil</label>
+            <input type="text" class="form-control" id="rol-add" name="movil" >
+          </div>
+            <div class="form-group">
+            <label for="nombre">Fijo</label>
+            <input type="text" class="form-control" id="rol-add" name="fijo" >
+          </div>
+            <div class="form-group">
+            <label for="nombre">Especialidad</label>
+            <input type="text" class="form-control" id="rol-add" name="especialidad" >
+          </div>
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+            <button type="button" class="btn btn-primary" >Guardar</button>
         </div>
 
+    </form>
 
-        <!--Formulario agregar nuevo rol-->
-          <form>
+</ng-template>
 
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="nombre">Codigo</label>
-                <input type="text" class="form-control"  name="codigo" >
-              </div>
-
-              <div class="form-group">
-                <label for="nombre">Nombres</label>
-                <input type="text" class="form-control" id="rol-add" name="nombres" >
-              </div>
-              <div class="form-group">
-                <label for="nombre">Apellidos</label>
-                <input type="text" class="form-control" id="rol-add" name="apellidos" >
-              </div>
-              <div class="form-group">
-                <label for="nombre">Pais</label>
-                <input type="text" class="form-control" id="rol-add" name="pais" >
-              </div>
-              <div class="form-group">
-                <label for="nombre">Departamento</label>
-                <input type="text" class="form-control" id="rol-add" name="division" >
-              </div>
-               <div class="form-group">
-                <label for="nombre">Municipio</label>
-                <input type="text" class="form-control" id="rol-add" name="subdivision" >
-              </div>
-               <div class="form-group">
-                <label for="nombre">Movil</label>
-                <input type="text" class="form-control" id="rol-add" name="movil" >
-              </div>
-               <div class="form-group">
-                <label for="nombre">Fijo</label>
-                <input type="text" class="form-control" id="rol-add" name="fijo" >
-              </div>
-               <div class="form-group">
-                <label for="nombre">Especialidad</label>
-                <input type="text" class="form-control" id="rol-add" name="especialidad" >
-              </div>
-          </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-                <button type="button" class="btn btn-primary" >Guardar</button>
-            </div>
-
-        </form>
-
-    </ng-template>
-</div>
 

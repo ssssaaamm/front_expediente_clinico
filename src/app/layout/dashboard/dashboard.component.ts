@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
             label: 'Third slide label',
             text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
         });
-
+        
         this.alerts.push({
             id: 1,
             type: 'success',

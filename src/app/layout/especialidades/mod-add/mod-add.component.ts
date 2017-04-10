@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Especialidad } from '../../../models/especialidad';
 
 @Component({
   selector: 'app-mod-add',
@@ -7,9 +8,14 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-add.component.scss']
 })
 export class ModAddComponent implements OnInit {
+  
+  @Output() action: EventEmitter<Especialidad> = new EventEmitter<Especialidad>();
+  public especialidad: Especialidad;
+  closeResult: string;
+  
+  constructor(private modalService: NgbModal) {  }
+   
 
-  constructor(private modalService: NgbModal) { }
-   closeResult: string;
 
     open(content) {
         this.modalService.open(content).result.then((result) => {
@@ -29,6 +35,11 @@ export class ModAddComponent implements OnInit {
     }
 
   ngOnInit() {
+      this.especialidad=new Especialidad("Codigo","Nombre Especialidad");
+  }
+
+  onSubmit(){
+    this.action.emit(this.especialidad);
   }
 
 }

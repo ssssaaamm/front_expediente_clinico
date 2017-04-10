@@ -3,6 +3,7 @@ import {Http,Response,Headers} from '@angular/http';
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable"
 
+
 @Injectable()
 export class LoginService {
 
@@ -46,4 +47,5 @@ export class LoginService {
         }
         return this.token;
     }
+
 }

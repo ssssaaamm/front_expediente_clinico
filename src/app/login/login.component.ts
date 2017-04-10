@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
+import {LoginService} from '../services/login.service';
 import {NgForm} from "@angular/forms";
 
-// import { 
-//     Event as RouterEvent,
-//     NavigationStart,
-//     NavigationEnd,
-//     NavigationCancel,
-//     NavigationError
-//  } from '@angular/router';
+
 
 //para poder hacer redireccion importamos router
 import { Router, ActivatedRoute } from '@angular/router';
@@ -107,22 +101,4 @@ export class LoginComponent implements OnInit {
     );
 }
 
-    // navigationInterceptor(event: RouterEvent): void {
-    //     if (event instanceof NavigationStart) {
-    //         this.loading = true;
-    //     }
-    //     if (event instanceof NavigationEnd) {
-    //         this.loading = false;
-    //     }
-
-    //     // Set loading state to false in both of the below events to hide the spinner in case a request fails
-    //     if (event instanceof NavigationCancel) {
-    //         this.loading = false;
-    //     }
-    //     if (event instanceof NavigationError) {
-    //         this.loading = false;
-    //     }
-    // }
-
-    
 }
