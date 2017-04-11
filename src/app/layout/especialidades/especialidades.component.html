@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add (action)="onAdd($event)" ></app-mod-add>
+    <app-mod-add [especialidades]="especialidades"></app-mod-add>
 
     <!--Tabla medicamentos-->
    
@@ -34,9 +34,9 @@
                 <tr *ngFor="let especialidad of especialidades">
                     <td>{{especialidad.codigo}}</td>
                     <td>{{especialidad.nombre}}</td>                      
-                    <td><app-mod-edit [especialidad]="especialidad"></app-mod-edit></td>
+                    <td><app-mod-edit [especialidad_original]="especialidad" [especialidades]="especialidades"></app-mod-edit></td>
                     <td>
-                        <app-mod-del [especialidad]="especialidad">
+                        <app-mod-del [especialidad]="especialidad" [especialidades]="especialidades">
                             <p>
                                 ¿Realmente Desea elimniar la especialidad?
                             </p>

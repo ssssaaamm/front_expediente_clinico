@@ -14,6 +14,15 @@
         <form>
 
         <div class="modal-body">
+            
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Error!</strong> Operacion no se pudo realizar.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+            </div>
+
             <div class="form-group">
             <label for="nombre">Codigo</label>
             <input type="text" class="form-control" [(ngModel)]="especialidad.codigo" name="codigo" placeholder="Ingrese codigo">
@@ -28,7 +37,8 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" (click)="onSubmit();c('Close click')" class="btn btn-primary" >Guardar</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary" >Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
         </div>
 
     </form>

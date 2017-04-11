@@ -11,7 +11,7 @@ import { EspecialidadesService } from '../../services/especialidades.service';
 })
 export class EspecialidadesComponent implements OnInit {
 
-  private especialidades: Array<Especialidad> = [];
+  public especialidades: Array<Especialidad>;
 
   constructor(private loginService: LoginService, private especialidadesService: EspecialidadesService) { 
 
@@ -30,7 +30,7 @@ export class EspecialidadesComponent implements OnInit {
     //   }
     // );
     this.especialidades=this.especialidadesService.list();
-    console.log(JSON.stringify(this.especialidades));
+    console.log(this.especialidades);
   }
 
 //   ​Object.observe(arr, function(changes) {

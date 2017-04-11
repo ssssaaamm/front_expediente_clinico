@@ -6,4 +6,7 @@ export class Especialidad{
         public id?:number 
     ){}
 
+    public clone():Especialidad{
+        return new Especialidad(this.codigo,this.nombre,this.id);
+    }
 }

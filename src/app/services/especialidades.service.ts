@@ -26,11 +26,11 @@ export class EspecialidadesService {
     this.action = "/list";
     let parametros="token="+this.token;
     
-    let lista: Array<any>=[
-      {"id":"1","codigo":"asdf","nombre":"Cardiologia"},
-      {"id":"2","codigo":"asdg","nombre":"Pediatria"},
-      {"id":"3","codigo":"asdh","nombre":"Ortodoncia"},
-    ];
+    let lista: Array<Especialidad> = new Array<Especialidad>(
+      new Especialidad("001","Cardiologia",1),
+      new Especialidad("002","Pediatria",2),
+      new Especialidad("003","Ortodoncia",3)
+    )
     //peticion
     //return this.http.post(this.url+this.resource+this.action,{headers:this.headers}).map(res=>res.json()) ; 
     return lista; 
