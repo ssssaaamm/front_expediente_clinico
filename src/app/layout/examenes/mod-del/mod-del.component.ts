@@ -38,7 +38,7 @@ export class ModDelComponent implements OnInit {
   }
 
   onSubmit(){
-    /*this.examenesService.del(this.examen.clone()).subscribe(
+    this.examenesService.del(this.examen.clone()).subscribe(
         response=>{
             if(response.status == "exito"){
                 let pos = this.examenes.indexOf(this.examen);
@@ -55,10 +55,10 @@ export class ModDelComponent implements OnInit {
         }
     );
 
-    //borrar las siguientes lineas cuando este lista la api*/
+    /*borrar las siguientes lineas cuando este lista la api
      let pos = this.examenes.indexOf(this.examen);
      this.examenes.splice(pos,1);
-     this.exito=true;
+     this.exito=true;*/
   }
 
 }

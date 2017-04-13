@@ -44,15 +44,15 @@ export class ModEditComponent implements OnInit { @Input() public examenes: Arra
     }
 
     onSubmit(){
-        /*this.examenesService.edit(this.examen_modificado.clone()).subscribe(
+        this.examenesService.edit(this.examen_modificado.clone()).subscribe(
             response=>{
                 console.log("error: "+JSON.stringify(response));
                 if(response.status == "exito"){
-                    this.examen_original = this.examen_modificado;
-                    this.examen_modificado = this.examen_original.clone();
-                    // let pos = this.examenes.indexOf(this.examen_original);
-                    // this.examenes[pos]=this.examen_modificado.clone();
-                    // this.examen_original=this.examenes[pos];
+                    /**this.examen_original = this.examen_modificado;
+                    this.examen_modificado = this.examen_original.clone();**/
+                   let pos = this.examenes.indexOf(this.examen_original);
+                    this.examenes[pos]=this.examen_modificado.clone();
+                     this.examen_original=this.examenes[pos];
                     this.exito=true;
                 }else{
                     this.exito=false;
@@ -65,10 +65,10 @@ export class ModEditComponent implements OnInit { @Input() public examenes: Arra
             }
         );
 
-        //borrar estas lineas cuando este lista la apilet pos = this.examenes.indexOf(this.examen_original);
-       */  let pos = this.examenes.indexOf(this.examen_original);
+        /*borrar estas lineas cuando este lista la apilet pos = this.examenes.indexOf(this.examen_original);
+        let pos = this.examenes.indexOf(this.examen_original);
          this.examenes[pos]=this.examen_modificado.clone();
          this.examen_original=this.examenes[pos];
-         this.exito=true;
+         this.exito=true;*/ 
     }
 }

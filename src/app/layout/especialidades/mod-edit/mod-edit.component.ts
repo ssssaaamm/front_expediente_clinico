@@ -50,11 +50,12 @@ export class ModEditComponent implements OnInit {
             response=>{
                 console.log("error: "+JSON.stringify(response));
                 if(response.status == "exito"){
-                    this.especialidad_original = this.especialidad_modificada;
-                    this.especialidad_modificada = this.especialidad_original.clone();
-                    // let pos = this.especialidades.indexOf(this.especialidad_original);
-                    // this.especialidades[pos]=this.especialidad_modificada.clone();
-                    // this.especialidad_original=this.especialidades[pos];
+                    /*this.especialidad_original = this.especialidad_modificada;
+                    this.especialidad_modificada = this.especialidad_original.clone();*/
+
+                    let pos = this.especialidades.indexOf(this.especialidad_original);
+                    this.especialidades[pos]=this.especialidad_modificada.clone();
+                    this.especialidad_original=this.especialidades[pos];
                     this.exito=true;
                 }else{
                     this.exito=false;

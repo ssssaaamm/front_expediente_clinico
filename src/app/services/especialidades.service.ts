@@ -50,7 +50,7 @@ export class EspecialidadesService {
     this.action = "/edit";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(especialidad);
-
+    
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }

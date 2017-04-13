@@ -51,6 +51,7 @@ export class ModAddComponent implements OnInit {
             response=>{
                 console.log(response);
                 if(response.status == "exito"){
+                    this.especialidad.id=response.id;
                     this.especialidades.push(this.especialidad.clone());
                     this.exito=true;
                 }else{

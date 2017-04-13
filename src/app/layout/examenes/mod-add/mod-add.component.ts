@@ -51,10 +51,11 @@ export class ModAddComponent implements OnInit {
   }
 
       onSubmit(){
-        /*this.examenesService.add(this.examen.clone()).subscribe(
+        this.examenesService.add(this.examen.clone()).subscribe(
             response=>{
                 console.log(response);
                 if(response.status == "exito"){
+                    this.examen.id=response.id;
                     this.examenes.push(this.examen.clone());
                     this.exito=true;
                 }else{
@@ -68,9 +69,10 @@ export class ModAddComponent implements OnInit {
             }
         );
         
-        borrar las siguientes lineas cuando este la api*/
+        /*borrar las siguientes lineas cuando este la api
         this.examenes.push(this.examen.clone());
         this.exito=true;
+        */
     }
       clear(){
         this.examen.tipo="";                    

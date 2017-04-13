@@ -47,15 +47,15 @@ export class ModEditComponent implements OnInit {
     }
 
     onSubmit(){
-        /*this.medicamentosService.edit(this.medicamento_modificado.clone()).subscribe(
+        this.medicamentosService.edit(this.medicamento_modificado.clone()).subscribe(
             response=>{
                 console.log("error: "+JSON.stringify(response));
                 if(response.status == "exito"){
-                    this.medicamento_original = this.medicamento_modificado;
-                    this.medicamento_modificado = this.medicamento_original.clone();
-                    // let pos = this.medicamentos.indexOf(this.medicamento_original);
-                    // this.medicamentos[pos]=this.medicamento_modificado.clone();
-                    // this.medicamento_original=this.medicamentos[pos];
+                    /*this.medicamento_original = this.medicamento_modificado;
+                    this.medicamento_modificado = this.medicamento_original.clone();*/
+                    let pos = this.medicamentos.indexOf(this.medicamento_original);
+                    this.medicamentos[pos]=this.medicamento_modificado.clone();
+                    this.medicamento_original=this.medicamentos[pos];
                     this.exito=true;
                 }else{
                     this.exito=false;
@@ -68,10 +68,10 @@ export class ModEditComponent implements OnInit {
             }
         );
 
-        //borrar estas lineas cuando este lista la apilet pos = this.medicamentos.indexOf(this.medicamento_original);
-       */  let pos = this.medicamentos.indexOf(this.medicamento_original);
+        /*borrar estas lineas cuando este lista la apilet pos = this.medicamentos.indexOf(this.medicamento_original);
+         let pos = this.medicamentos.indexOf(this.medicamento_original);
          this.medicamentos[pos]=this.medicamento_modificado.clone();
          this.medicamento_original=this.medicamentos[pos];
-         this.exito=true;
+         this.exito=true;*/
     }
 }
