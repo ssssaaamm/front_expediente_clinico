@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add></app-mod-add>
+    <app-mod-add [medicamentos]="medicamentos"></app-mod-add>
 
     <!--Tabla medicamentos-->
 
@@ -32,54 +32,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Medicamento1</td>
-                    <td>100</td>                        
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
+                <tr *ngFor="let medicamento of medicamentos">
+                    <td>{{medicamento.codigo}}</td>
+                    <td>{{medicamento.nombre}}</td>
+                    <td>{{medicamento.costo}}</td>                        
+                    <td><app-mod-edit [medicamento_original]="medicamento" [medicamentos]="medicamentos"></app-mod-edit></td>
+                    <td><app-mod-del [medicamento]="medicamento" [medicamentos]="medicamentos"><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Medicamento 2</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Medicamento 3</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Medicamento 4</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Medicamento 5</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                <tr>
-                    <td>6</td>
-                    <td>Medicamento 6</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Medicamento 7</td>
-                    <td>200</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
-                </tr>
+
             </tbody>
         </table>
     </div>

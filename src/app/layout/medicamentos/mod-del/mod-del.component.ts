@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Medicamento } from "app/models/medicamento";
+import { MedicamentosService } from "app/services/medicamentos.service";
 
 @Component({
   selector: 'app-mod-del',
   templateUrl: './mod-del.component.html',
   styleUrls: ['./mod-del.component.scss']
 })
+
 export class ModDelComponent implements OnInit {
+ @Input() public medicamento: Medicamento;
+  @Input() public medicamentos: Array<Medicamento>;
+  public exito:boolean;
 
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) { }
 
   open(content) {
       this.modalService.open(content).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
+          this.exito=null;
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.exito=null;
       });
   }
   private getDismissReason(reason: any): string {
@@ -28,6 +36,30 @@ export class ModDelComponent implements OnInit {
       }
   }
   ngOnInit() {
+  }
+
+  onSubmit(){
+    /*this.medicamentosService.del(this.medicamento.clone()).subscribe(
+        response=>{
+            if(response.status == "exito"){
+                let pos = this.medicamentos.indexOf(this.medicamento);
+                this.medicamentos.splice(pos,1);
+                this.exito=true;
+            }else{
+                this.exito=false;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
+
+    //borrar las siguientes lineas cuando este lista la api*/
+     let pos = this.medicamentos.indexOf(this.medicamento);
+     this.medicamentos.splice(pos,1);
+     this.exito=true;
   }
 
 }
