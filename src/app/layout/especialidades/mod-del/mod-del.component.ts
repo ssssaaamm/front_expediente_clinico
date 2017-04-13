@@ -58,8 +58,8 @@ export class ModDelComponent implements OnInit {
     );
 
     //borrar las siguientes lineas cuando este lista la api
-    let pos = this.especialidades.indexOf(this.especialidad);
-    this.especialidades.splice(pos,1);
-    this.exito=true;
+    // let pos = this.especialidades.indexOf(this.especialidad);
+    // this.especialidades.splice(pos,1);
+    // this.exito=true;
   }
 }

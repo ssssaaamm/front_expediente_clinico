@@ -48,10 +48,13 @@ export class ModEditComponent implements OnInit {
     onSubmit(){
         this.especialidadesService.edit(this.especialidad_modificada.clone()).subscribe(
             response=>{
+                console.log("error: "+JSON.stringify(response));
                 if(response.status == "exito"){
-                    let pos = this.especialidades.indexOf(this.especialidad_original);
-                    this.especialidades[pos]=this.especialidad_modificada.clone();
-                    this.especialidad_original=this.especialidades[pos];
+                    this.especialidad_original = this.especialidad_modificada;
+                    this.especialidad_modificada = this.especialidad_original.clone();
+                    // let pos = this.especialidades.indexOf(this.especialidad_original);
+                    // this.especialidades[pos]=this.especialidad_modificada.clone();
+                    // this.especialidad_original=this.especialidades[pos];
                     this.exito=true;
                 }else{
                     this.exito=false;
@@ -65,9 +68,9 @@ export class ModEditComponent implements OnInit {
         );
 
         //borrar estas lineas cuando este lista la apilet pos = this.especialidades.indexOf(this.especialidad_original);
-        let pos = this.especialidades.indexOf(this.especialidad_original);
-        this.especialidades[pos]=this.especialidad_modificada.clone();
-        this.especialidad_original=this.especialidades[pos];
-        this.exito=true;
+        // let pos = this.especialidades.indexOf(this.especialidad_original);
+        // this.especialidades[pos]=this.especialidad_modificada.clone();
+        // this.especialidad_original=this.especialidades[pos];
+        // this.exito=true;
     }
 }

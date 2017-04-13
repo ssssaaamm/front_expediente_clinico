@@ -49,6 +49,7 @@ export class ModAddComponent implements OnInit {
     onSubmit(){
         this.especialidadesService.add(this.especialidad.clone()).subscribe(
             response=>{
+                console.log(response);
                 if(response.status == "exito"){
                     this.especialidades.push(this.especialidad.clone());
                     this.exito=true;
@@ -64,8 +65,8 @@ export class ModAddComponent implements OnInit {
         );
         
         //borrar las siguientes lineas cuando este la api
-        this.especialidades.push(this.especialidad.clone());
-        this.exito=true;
+        // this.especialidades.push(this.especialidad.clone());
+        // this.exito=true;
     }
 
     clear(){

@@ -18,35 +18,17 @@ export class EspecialidadesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.especialidadesService.list().subscribe(
-    //   response=>{
-    //     //precargamos el array de objetos
-    //     this.especialidades.push(response);
-    //   },
-    //   error=>{
-    //     if(error!=null) {
-    //         console.log("Error al enviar la peticion: "+error);
-    //     }
-    //   }
-    // );
-    this.especialidades=this.especialidadesService.list();
-    console.log(this.especialidades);
-  }
-
-//   ​Object.observe(arr, function(changes) {
-//     console.log("The array changed. Changes:", changes);
-// });
-
-  onAdd(especialidad:Especialidad){
-    this.especialidades.push(especialidad);
-  }
-
-  onEdit(especialidad:Especialidad){
-
-  }
-
-  onDelete(especialidad:Especialidad){
-
+    this.especialidadesService.list()
+    .map((especialidades: Array<any>)=>{
+      let result: Array<Especialidad> = new Array<Especialidad>();
+      if(especialidades){
+        especialidades.forEach((especialidad)=>{
+          result.push(new Especialidad(especialidad.codigo,especialidad.nombre,especialidad.id));
+        });
+      }
+      return result;
+    })
+    .subscribe( res => this.especialidades = res);
   }
 
 }

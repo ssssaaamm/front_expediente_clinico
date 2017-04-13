@@ -13,6 +13,8 @@ export class EspecialidadesService {
   private resource: string ;
   private action: string ;
   private headers: Headers;
+  public lista: Array<Especialidad> = new Array<Especialidad>();
+
 
   private token: string;
 
@@ -25,24 +27,23 @@ export class EspecialidadesService {
   list(){
     this.action = "/list";
     let parametros="token="+this.token;
-    
-    let lista: Array<Especialidad> = new Array<Especialidad>(
-      new Especialidad("001","Cardiologia",1),
-      new Especialidad("002","Pediatria",2),
-      new Especialidad("003","Ortodoncia",3)
-    )
-    //peticion
-    //return this.http.post(this.url+this.resource+this.action,{headers:this.headers}).map(res=>res.json()) ; 
-    return lista; 
+
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers})
+    .map(
+      (res) => { 
+        return res.json(); 
+    });
+
   }
 
   add(especialidad:Especialidad){
     this.action = "/add";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(especialidad);
+    console.log("parametros: "+parametros);
 
     //peticion
-    return this.http.post(this.url+this.resource+this.action,{headers:this.headers}).map(res=>res.json()) ; 
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
   edit(especialidad:Especialidad){
@@ -51,7 +52,7 @@ export class EspecialidadesService {
     parametros = parametros + "&json="+JSON.stringify(especialidad);
 
     //peticion
-    return this.http.post(this.url+this.resource+this.action,{headers:this.headers}).map(res=>res.json()) ; 
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
   del(especialidad:Especialidad){
@@ -60,7 +61,7 @@ export class EspecialidadesService {
     parametros = parametros + "&json="+JSON.stringify(especialidad);
 
     //peticion
-    return this.http.post(this.url+this.resource+this.action,{headers:this.headers}).map(res=>res.json()) ; 
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
 }
