@@ -20,8 +20,8 @@ public medicamentos : Array<Medicamento>;
     .map((medicamentos: Array<any>)=>{
       let result: Array<Medicamento> = new Array<Medicamento>();
       if(medicamentos){
-        medicamentos.forEach((especialidad)=>{
-          result.push(new Medicamento(especialidad.codigo,especialidad.nombre,especialidad.id));
+        medicamentos.forEach((medicamento)=>{
+          result.push(new Medicamento(medicamento.codigo,medicamento.nombre,medicamento.id));
         });
       }
       return result;

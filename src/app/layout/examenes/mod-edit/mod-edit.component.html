@@ -1,43 +1,53 @@
-
-<button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Editar Examen: codigo_examen</h4>
+        <h4 class="modal-title">Editar Examen: <span class="text-info">{{examen_original.nombre}}</span></h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
 
+    
 
-    <!--Formulario editar examen-->
-      <form>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="tipo">Tipo</label>
-            <input type="text" class="form-control"  name="tipo" placeholder="Ingrese el tipo de Examen">
-          </div>
+    <!--Formulario editar especialidad-->
+        <form>
 
         <div class="modal-body">
-          <div class="form-group">
+
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Error!</strong> Operacion no se pudo realizar.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+            </div>
+
+            <div class="form-group">
+            <label for="codigo">Tipo</label>
+            <input type="text" [(ngModel)]="examen_modificado.tipo" class="form-control"  name="tipo" placeholder="Ingrese tipo de examen">
+            </div>
+
+            <div class="form-group">
             <label for="codigo">Código</label>
-            <input type="text" class="form-control"  name="codigo" placeholder="Ingrese el codigo de examen">
-          </div>
+            <input type="text" [(ngModel)]="examen_modificado.codigo" class="form-control"  name="codigo" placeholder="Ingrese codigo">
+            </div>
 
-          <div class="form-group">
+            <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control"  name="nombre" placeholder="Ingrese el nombre del examen">
-          </div>    
-          <div class="form-group">
-            <label for="costo">Costo</label>
-            <input type="text" class="form-control"  name="costo" placeholder="Ingrese el costo del examen">
-          </div>          
-      </div>
+            <input type="text" [(ngModel)]="examen_modificado.nombre" class="form-control" id="descripcion" name="nombre" placeholder="Ingrese nombre de examen">
+            </div> 
+            
+            <div class="form-group">
+            <label for="nombre">Costo</label>
+            <input type="text" [(ngModel)]="examen_modificado.costo" class="form-control" id="costo" name="costo" placeholder="Ingrese costo">
+            </div>             
+        </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" >Guardar</button>
         </div>
-        </div>
+
     </form>
 
 </ng-template>

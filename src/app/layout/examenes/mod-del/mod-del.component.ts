@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Examen } from "app/models/examen";
+import { ExamenesService } from "app/services/examenes.service";
 
 @Component({
   selector: 'app-mod-del',
@@ -7,15 +9,20 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-del.component.scss']
 })
 export class ModDelComponent implements OnInit {
+@Input() public examen: Examen;
+  @Input() public examenes: Array<Examen>;
+  public exito:boolean;
 
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private examenesService: ExamenesService) { }
 
   open(content) {
       this.modalService.open(content).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
+          this.exito=null;
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.exito=null;
       });
   }
   private getDismissReason(reason: any): string {
@@ -29,4 +36,29 @@ export class ModDelComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+  onSubmit(){
+    /*this.examenesService.del(this.examen.clone()).subscribe(
+        response=>{
+            if(response.status == "exito"){
+                let pos = this.examenes.indexOf(this.examen);
+                this.examenes.splice(pos,1);
+                this.exito=true;
+            }else{
+                this.exito=false;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
+
+    //borrar las siguientes lineas cuando este lista la api*/
+     let pos = this.examenes.indexOf(this.examen);
+     this.examenes.splice(pos,1);
+     this.exito=true;
+  }
+
 }
