@@ -1,0 +1,56 @@
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Ubicacion: <span class="text-info">{{ubicacion_original.nombre}}</span></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    
+
+    <!--Formulario editar ubicacion-->
+        <form>
+
+        <div class="modal-body">
+
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Error!</strong> Operacion no se pudo realizar.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+            </div>
+
+            <div class="form-group">
+            <label for="codigo">Código</label>
+            <input type="text" [(ngModel)]="ubicacion_modificada.codigo" class="form-control"  name="codigo" placeholder="Ingrese codigo">
+            </div>
+
+            <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" [(ngModel)]="ubicacion_modificada.nombre" class="form-control" name="nombre" placeholder="Ingrese nombre dela ubicacion">
+            </div>      
+
+            <div class="form-group">
+            <label for="nombre">Nivel</label>
+            <input type="text" class="form-control" [(ngModel)]="ubicacion_modificada.nivel" name="nivel" placeholder="Ingrese nivel de la ubicacion">
+            </div>
+
+            <div class="form-group">
+            <label for="nombre">Numero</label>
+            <input type="text" class="form-control" [(ngModel)]="ubicacion_modificada.numero" name="numero" placeholder="Ingrese numero de la ubicacion">
+            </div>  
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" >Guardar</button>
+        </div>
+
+    </form>
+
+</ng-template>
+
+

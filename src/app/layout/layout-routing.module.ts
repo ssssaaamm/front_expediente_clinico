@@ -21,7 +21,11 @@ const routes: Routes = [
             {path: 'administracion/medicos', loadChildren:'./medicos/medicos.module#MedicosModule' },
             {path: 'administracion/procedimientos', loadChildren:'./procedimientos/procedimientos.module#ProcedimientosModule' },
             {path: 'administracion/roles', loadChildren:'./roles/roles.module#RolesModule' },
-            {path: 'administracion/servicios', loadChildren:'./servicios/servicios.module#ServiciosModule' },
+            //{path: 'administracion/servicios', loadChildren:'./servicios/servicios.module#ServiciosModule' },
+            {path: 'administracion/cirugias', loadChildren:'./cirugias/cirugias.module#CirugiasModule' },
+            {path: 'administracion/consultas', loadChildren:'./consultas/consultas.module#ConsultasModule' },
+            {path: 'administracion/enfermedades', loadChildren:'./enfermedades/enfermedades.module#EnfermedadesModule' },
+            {path: 'administracion/ubicaciones', loadChildren:'./ubicaciones/ubicaciones.module#UbicacionesModule' },
             //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
         ]
     }

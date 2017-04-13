@@ -1,0 +1,29 @@
+<button class="btn btn-danger btn-sm" (click)="open(content)"><i class="fa fa-trash "></i></button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Eliminar cirugia: <span class="text-danger">{{cirugia.nombre}}</span></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+        <div *ngIf="exito == false" class="alert alert-danger">
+            <strong>Error!</strong> Operacion no se pudo realizar.
+        </div>
+        <div *ngIf="exito == true" class="alert alert-success">
+            <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+        </div>
+
+        <!--Las lineas siguiente usa el concepto llamado projection-->
+        <p *ngIf="exito != true" >
+            <ng-content></ng-content>
+        <p> 
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+        <button type="button" *ngIf="exito != true " class="btn btn-danger" (click)="onSubmit()"><i class="fa fa-trash "></i> Eliminar</button>
+    </div>
+</ng-template>
+
