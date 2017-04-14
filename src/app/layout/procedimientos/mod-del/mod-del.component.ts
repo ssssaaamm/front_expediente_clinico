@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Procedimiento } from '../../../models/procedimiento';
+import { ProcedimientosService } from '../../../services/procedimientos.service';
 
 @Component({
   selector: 'app-mod-del',
@@ -7,15 +9,20 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-del.component.scss']
 })
 export class ModDelComponent implements OnInit {
+@Input() public procedimiento: Procedimiento;
+  @Input() public procedimientos: Array<Procedimiento>;
+  public exito:boolean;
 
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private procedimientosService: ProcedimientosService) { }
 
   open(content) {
       this.modalService.open(content).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
+          this.exito=null;
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.exito=null;
       });
   }
   private getDismissReason(reason: any): string {
@@ -30,4 +37,23 @@ export class ModDelComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(){
+    this.procedimientosService.del(this.procedimiento.clone()).subscribe(
+        response=>{
+            if(response.status == "exito"){
+                let pos = this.procedimientos.indexOf(this.procedimiento);
+                this.procedimientos.splice(pos,1);
+                this.exito=true;
+            }else{
+                this.exito=false;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
+
+  }  
 }
