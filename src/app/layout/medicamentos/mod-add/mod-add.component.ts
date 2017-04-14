@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Medicamento } from "app/models/medicamento";
+import { MedicamentosService } from "app/services/medicamentos.service";
 
 @Component({
   selector: 'app-mod-add',
@@ -7,17 +9,30 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-add.component.scss']
 })
 export class ModAddComponent implements OnInit {
+     @Input() public medicamentos: Array<Medicamento>;
+    public medicamento: Medicamento;
+    public exito: boolean;
+    closeResult: string;
+  
+  constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) {  }
 
-  closeResult: string;
-  constructor(private modalService: NgbModal) { }
-
-  open(content) {
-      this.modalService.open(content).result.then((result) => {
-          this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-  }
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+            this.exito = null;
+            this.medicamento.codigo="";
+            this.medicamento.nombre="";
+            this.medicamento.costo=0.0;
+            
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            this.exito = null;
+            this.medicamento.codigo="";
+            this.medicamento.nombre="";
+            this.medicamento.costo=0.0;
+            
+        });
+    }
   private getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
           return 'by pressing ESC';
@@ -28,6 +43,38 @@ export class ModAddComponent implements OnInit {
       }
   }
   ngOnInit() {
+      /**muestra los campos vacios solo con el placeholder :)  */
+      this.medicamento=new Medicamento("","",0.0);
   }
+
+      onSubmit(){
+        this.medicamentosService.add(this.medicamento.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.medicamento.id=response.id;
+                    this.medicamentos.push(this.medicamento.clone());
+                    this.exito=true;
+                }else{
+                    this.exito=false;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
+        
+        //borrar las siguientes lineas cuando este la api
+        this.medicamentos.push(this.medicamento.clone());
+        this.exito=true;
+    }
+      clear(){
+        this.medicamento.codigo="";
+        this.medicamento.nombre="";
+        this.medicamento.costo=0.0;        
+        this.exito=null;
+    }
 
 }

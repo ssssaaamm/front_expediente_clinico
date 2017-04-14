@@ -23,7 +23,7 @@ export class EspecialidadesComponent implements OnInit {
       let result: Array<Especialidad> = new Array<Especialidad>();
       if(especialidades){
         especialidades.forEach((especialidad)=>{
-          result.push(new Especialidad(especialidad.codigo_especialidad,especialidad.nombre_especialidad,especialidad.id_especialidad));
+          result.push(new Especialidad(especialidad.codigoEspecialidad,especialidad.nombreEspecialidad,especialidad.idEspecialidad));
         });
       }
       return result;

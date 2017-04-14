@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         let iden = localStorage.getItem('identity');
         if(iden == null){
-            this.router.navigate(['/login']);
+          //  this.router.navigate(['/login']);
         } else{
             
             if(window.location.pathname == '/login'){

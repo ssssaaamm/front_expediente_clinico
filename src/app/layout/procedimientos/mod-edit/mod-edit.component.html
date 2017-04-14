@@ -1,40 +1,51 @@
 <!-- Large modal -->
 
-<button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Editar procedimiento: id_procedimiento</h4>
+        <h4 class="modal-title">Editar Procedimiento: <span class="text-info">{{procedimiento_original.nombre}}</span></h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
 
-    <!--Formulario agregar nuevo Sercio-->
+    
+
+    <!--Formulario editar especialidad-->
         <form>
 
         <div class="modal-body">
-            <div class="form-group">
-            <label for="nombre">Codigo</label>
-            <input type="text" class="form-control"  name="codigo" >
+
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Error!</strong> Operacion no se pudo realizar.
             </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+            </div>
+
+            <div class="form-group">
+            <label for="codigo">Código</label>
+            <input type="text" [(ngModel)]="procedimiento_modificado.codigo" class="form-control" name="codigo" placeholder="Ingrese codigo">
+            </div>
+
             <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control"  name="nombre" >
+            <input type="text" [(ngModel)]="procedimiento_modificado.nombre" class="form-control" id="descripcion" name="nombre" placeholder="Ingrese nombre del procedimiento">
             </div>  
-            <div class="form-group">
+             <div class="form-group">
             <label for="nombre">Costo</label>
-            <input type="text" class="form-control"  name="costo" >
-            </div>
-        
-
-            
+            <input type="text" [(ngModel)]="procedimiento_modificado.costo" class="form-control" id="costo" name="costo" placeholder="Ingrese costo del procedimiento">
+            </div>             
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" >Guardar</button>
         </div>
 
     </form>
 
 </ng-template>
+
+
