@@ -15,14 +15,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-    private user;
+    public user;
 
     private identity;
     private token;
 
-    private failed_login =  false;
+    public failed_login =  false;
 
-    private loading = false;
+    public loading = false;
 
     
     
