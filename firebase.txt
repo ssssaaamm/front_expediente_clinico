@@ -1,0 +1,30 @@
+FireBase
+
+--tener un projecto A2
+ng new "ProjectName"
+--Testearlo
+ng serve
+--Crear el projecto a produccion
+ng build --prod
+
+--crear cuenta y project en firebase (mismo nombre de Proyecto local)
+-- Te redirigira al overview
+
+--instalar el firebase CLI
+npm install -g firebase-tools
+
+--comando firebase login 
+para ingresar nuestras credenciales del sitio
+
+--firebase init(inicio mi local como proyecto firebase)
+
+preguntas:
+ Hosting
+ Seleccionar el folder que cree en la plataforma
+ No Data Base(Enter)
+ Directorio publico para produccion(dist)
+ SPA
+ Dont overwrite
+
+--hacer el deploy
+ firebase deploy
