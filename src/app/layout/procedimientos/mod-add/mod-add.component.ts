@@ -13,6 +13,7 @@ export class ModAddComponent implements OnInit {
   @Input() public procedimientos: Array<Procedimiento>;
     public procedimiento: Procedimiento;
     public exito: boolean;
+    public mensaje: string;
     closeResult: string;
   
     constructor(private modalService: NgbModal, private procedimientosService: ProcedimientosService) {  }
@@ -54,11 +55,13 @@ export class ModAddComponent implements OnInit {
             response=>{
                 console.log(response);
                 if(response.status == "exito"){
-                     this.procedimiento.id=response.id;
+                    this.procedimiento.id=response.id;
                     this.procedimientos.push(this.procedimiento.clone());
                     this.exito=true;
+                    this.mensaje=response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje=response.mensaje;
                 }
             },
             error=>{
@@ -69,8 +72,8 @@ export class ModAddComponent implements OnInit {
         );
         
         //borrar las siguientes lineas cuando este la api
-        this.procedimientos.push(this.procedimiento.clone());
-        this.exito=true;
+        // this.procedimientos.push(this.procedimiento.clone());
+        // this.exito=true;
     }
 
     clear(){

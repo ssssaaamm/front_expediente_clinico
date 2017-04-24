@@ -40,6 +40,7 @@ export class ModDelComponent implements OnInit {
   onSubmit(){
     this.examenesService.del(this.examen.clone()).subscribe(
         response=>{
+            console.log(response);
             if(response.status == "exito"){
                 let pos = this.examenes.indexOf(this.examen);
                 this.examenes.splice(pos,1);

@@ -24,11 +24,6 @@
             </div>
 
             <div class="form-group">
-            <label for="nombre">Tipo</label>
-            <input type="text" class="form-control" [(ngModel)]="examen.tipo" name="codigo" placeholder="Ingrese tipo de examen">
-            </div>
-
-            <div class="form-group">
             <label for="nombre">Codigo</label>
             <input type="text" class="form-control" [(ngModel)]="examen.codigo" name="codigo" placeholder="Ingrese codigo">
             </div>
@@ -36,6 +31,13 @@
             <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" [(ngModel)]="examen.nombre" name="nombre" placeholder="Ingrese nombre del examen">
+            </div>
+
+            <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" [(ngModel)]="examen.tipo" name="tipo_examen">
+                <option *ngFor="let tipo of tipos_examen" [ngValue]="tipo">{{ tipo.nombre }}</option>
+            </select>
             </div>
             
             <div class="form-group">

@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [medicamentos]="medicamentos"></app-mod-add>
+    <app-mod-add [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-add>
 
     <!--Tabla medicamentos-->
 
@@ -26,6 +26,7 @@
                 <tr>
                     <th>codigo</th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
                     <th>costo</th>                        
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -35,8 +36,11 @@
                 <tr *ngFor="let medicamento of medicamentos">
                     <td>{{medicamento.codigo}}</td>
                     <td>{{medicamento.nombre}}</td>
+                    <td *ngIf="medicamento.tipo.presentacion == 1">Oral</td>
+                    <td *ngIf="medicamento.tipo.presentacion == 2">Inyectable</td>
+                    <td *ngIf="medicamento.tipo.presentacion == 3">Topico</td>
                     <td>{{medicamento.costo}}</td>                        
-                    <td><app-mod-edit [medicamento_original]="medicamento" [medicamentos]="medicamentos"></app-mod-edit></td>
+                    <td><app-mod-edit [medicamento_original]="medicamento" [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-edit></td>
                     <td><app-mod-del [medicamento]="medicamento" [medicamentos]="medicamentos"><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
                 </tr>
 

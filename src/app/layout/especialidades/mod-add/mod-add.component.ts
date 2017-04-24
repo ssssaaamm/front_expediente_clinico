@@ -14,6 +14,7 @@ export class ModAddComponent implements OnInit {
     @Input() public especialidades: Array<Especialidad>;
     public especialidad: Especialidad;
     public exito: boolean;
+    public mensaje:string;
     closeResult: string;
   
     constructor(private modalService: NgbModal, private especialidadesService: EspecialidadesService) {  }
@@ -54,8 +55,10 @@ export class ModAddComponent implements OnInit {
                     this.especialidad.id=response.id;
                     this.especialidades.push(this.especialidad.clone());
                     this.exito=true;
+                    this.mensaje=response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje=response.mensaje;                    
                 }
             },
             error=>{

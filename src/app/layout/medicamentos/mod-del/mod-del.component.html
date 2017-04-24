@@ -12,12 +12,12 @@
     <div class="modal-body">
 
         <div *ngIf="exito == false" class="alert alert-danger">
-            <strong>Error!</strong> Operacion no se pudo realizar.
+            <strong>Ooops!</strong> {{mensaje}}
         </div>
         <div *ngIf="exito == true" class="alert alert-success">
-            <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+            <strong>Exito!</strong> {{mensaje}}
         </div>
-
+        
         <!--Las lineas siguiente usa el concepto llamado projection-->
         <p *ngIf="exito != true" >
             <ng-content></ng-content>
@@ -25,6 +25,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-        <button type="button" *ngIf="exito != true " class="btn btn-danger" (click)="onSubmit()"><i class="fa fa-trash "></i> Eliminar</button>
+        <button type="button" *ngIf="exito != true " class="btn btn-danger" (click)="onSubmit()"><i class="fa fa-trash"></i> Eliminar</button>
     </div>
 </ng-template>

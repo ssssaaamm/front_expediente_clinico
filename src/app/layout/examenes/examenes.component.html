@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [examenes]="examenes"></app-mod-add>
+    <app-mod-add [examenes]="examenes" [tipos_examen]="tipos_examen"></app-mod-add>
 
     <!--Tabla examenes-->
 
@@ -34,11 +34,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let examen of examenes">
-                    <td>{{examen.tipo}}</td>                    
+                    <td>{{examen.tipo.nombre}}</td>                    
                     <td>{{examen.codigo}}</td>
                     <td>{{examen.nombre}}</td>
                     <td>{{examen.costo}}</td>                        
-                    <td><app-mod-edit [examen_original]="examen" [examenes]="examenes"></app-mod-edit></td>
+                    <td><app-mod-edit [examen_original]="examen" [tipos_examen]="tipos_examen" [examenes]="examenes"></app-mod-edit></td>
                     <td><app-mod-del [examen]="examen" [examenes]="examenes"><p>¿Realmente Desea elimniar el examen?</p></app-mod-del></td>
                 </tr>
 

@@ -50,6 +50,7 @@ export class ModAddComponent implements OnInit {
         // this.ubicacionesService.add(this.ubicacion.clone()).subscribe(
         //     response=>{
         //         console.log(response);
+        //         console.log(response);
         //         if(response.status == "exito"){
         //             this.ubicaciones.push(this.ubicacion.clone());
         //             this.exito=true;

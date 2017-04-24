@@ -18,16 +18,12 @@ export class ProcedimientosComponent implements OnInit {
       let result: Array<Procedimiento> = new Array<Procedimiento>();
       if(procedimientos){
         procedimientos.forEach((procedimiento)=>{
-          result.push(new Procedimiento(procedimiento.codigo,procedimiento.nombre,procedimiento.costo,procedimiento.id));
+          result.push(new Procedimiento(procedimiento.codigoProcedimiento,procedimiento.nombreProcedimiento,procedimiento.costoProcedimiento,procedimiento.idProcedimiento));
         });
       }
       return result;
     })
     .subscribe( res => this.procedimientos = res);
-    let vec: Array<Procedimiento> = [
-    new Procedimiento("01","Curacion",20.00)
-    ];
-    this.procedimientos=vec;
   }
   
 

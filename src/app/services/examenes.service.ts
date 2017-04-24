@@ -35,7 +35,7 @@ export class ExamenesService {
         });
 
   }
-    add(medicamento:Examen){
+  add(medicamento:Examen){
     this.action = "/add";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(medicamento);

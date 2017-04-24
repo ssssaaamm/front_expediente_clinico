@@ -12,6 +12,7 @@ export class ModEditComponent implements OnInit {
   @Input() public procedimientos: Array<Procedimiento>; 
     @Input() public procedimiento_original: Procedimiento;
     public exito: boolean;
+    public mensaje: string;
     procedimiento_modificado: Procedimiento;
 
     closeResult: string;
@@ -47,14 +48,16 @@ export class ModEditComponent implements OnInit {
     onSubmit(){
         this.procedimientosService.edit(this.procedimiento_modificado.clone()).subscribe(
             response=>{
-                console.log("error: "+JSON.stringify(response));
+                console.log(response);
                 if(response.status == "exito"){
                    let pos = this.procedimientos.indexOf(this.procedimiento_original);
                     this.procedimientos[pos]=this.procedimiento_modificado.clone();
                     this.procedimiento_original=this.procedimientos[pos];
                     this.exito=true;
+                    this.mensaje=response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje=response.mensaje;
                 }
             },
             error=>{

@@ -13,6 +13,7 @@ export class ModDelComponent implements OnInit {
  @Input() public medicamento: Medicamento;
   @Input() public medicamentos: Array<Medicamento>;
   public exito:boolean;
+  public mensaje:string;
 
   closeResult: string;
   constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) { }
@@ -41,12 +42,15 @@ export class ModDelComponent implements OnInit {
   onSubmit(){
     this.medicamentosService.del(this.medicamento.clone()).subscribe(
         response=>{
+            console.log(response);
             if(response.status == "exito"){
                 let pos = this.medicamentos.indexOf(this.medicamento);
                 this.medicamentos.splice(pos,1);
                 this.exito=true;
+                this.mensaje=response.mensaje;
             }else{
                 this.exito=false;
+                this.mensaje=response.mensaje;                
             }
         },
         error=>{

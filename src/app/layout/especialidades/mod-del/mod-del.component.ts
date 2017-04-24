@@ -13,6 +13,7 @@ export class ModDelComponent implements OnInit {
   
   @Input() public especialidad: Especialidad;
   @Input() public especialidades: Array<Especialidad>;
+  public mensaje:string;
   public exito:boolean;
 
   closeResult: string;
@@ -42,12 +43,15 @@ export class ModDelComponent implements OnInit {
   onSubmit(){
     this.especialidadesService.del(this.especialidad.clone()).subscribe(
         response=>{
+            console.log(response);
             if(response.status == "exito"){
                 let pos = this.especialidades.indexOf(this.especialidad);
                 this.especialidades.splice(pos,1);
                 this.exito=true;
+                this.mensaje=response.mensaje;
             }else{
                 this.exito=false;
+                this.mensaje=response.mensaje;
             }
         },
         error=>{

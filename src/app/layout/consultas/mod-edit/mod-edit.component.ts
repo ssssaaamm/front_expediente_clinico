@@ -48,7 +48,7 @@ export class ModEditComponent implements OnInit {
   onSubmit(){
     //   this.consultasService.edit(this.consulta_modificada.clone()).subscribe(
     //       response=>{
-    //           console.log("error: "+JSON.stringify(response));
+    //           console.log(response);
     //           if(response.status == "exito"){
     //               let pos = this.consultas.indexOf(this.consulta_original);
     //               this.consultas[pos]=this.consulta_modificada.clone();

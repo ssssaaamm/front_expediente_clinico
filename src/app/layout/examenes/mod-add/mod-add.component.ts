@@ -2,26 +2,32 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Examen } from "app/models/examen";
 import { ExamenesService } from "app/services/examenes.service";
+import { TipoExamen } from 'app/models/tipo_examen';
 
 @Component({
   selector: 'app-mod-add',
   templateUrl: './mod-add.component.html',
-  styleUrls: ['./mod-add.component.scss']
+  styleUrls: ['./mod-add.component.scss'],
+  providers: [ExamenesService]
 })
 export class ModAddComponent implements OnInit {
 
-     @Input() public examenes: Array<Examen>;
+    @Input() public examenes: Array<Examen>;
+    @Input() public tipos_examen: Array<TipoExamen>;
     public examen: Examen;
     public exito: boolean;
+    public mensaje:string;
     closeResult: string;
   
-  constructor(private modalService: NgbModal, private examenesService: ExamenesService) {  }
+    constructor(private modalService: NgbModal, private examenesService: ExamenesService) { 
+    
+    }
 
     open(content) {
         this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
             this.exito = null;
-            this.examen.tipo="";            
+            this.examen.tipo=new TipoExamen("",0,0);            
             this.examen.codigo="";
             this.examen.nombre="";
             this.examen.costo=0.0;
@@ -29,7 +35,7 @@ export class ModAddComponent implements OnInit {
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             this.exito = null;
-            this.examen.tipo="";                        
+            this.examen.tipo=new TipoExamen("",0,0);                        
             this.examen.codigo="";
             this.examen.nombre="";
             this.examen.costo=0.0;
@@ -46,11 +52,12 @@ export class ModAddComponent implements OnInit {
       }
   }
   ngOnInit() {
-      /**muestra los campos vacios solo con el placeholder :)  */
-      this.examen=new Examen("","","",0.0);
+    /**muestra los campos vacios solo con el placeholder :)  */
+     this.examen=new Examen("","",new TipoExamen("",0,0),0.0,0);
   }
 
       onSubmit(){
+        //console.log(JSON.stringify(this.examen.tipo));
         this.examenesService.add(this.examen.clone()).subscribe(
             response=>{
                 console.log(response);
@@ -58,8 +65,10 @@ export class ModAddComponent implements OnInit {
                     this.examen.id=response.id;
                     this.examenes.push(this.examen.clone());
                     this.exito=true;
+                    this.mensaje=response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje=response.mensaje;
                 }
             },
             error=>{
@@ -75,7 +84,7 @@ export class ModAddComponent implements OnInit {
         */
     }
       clear(){
-        this.examen.tipo="";                    
+        this.examen.tipo=new TipoExamen("",0,0);                    
         this.examen.codigo="";
         this.examen.nombre="";
         this.examen.costo=0.0;        

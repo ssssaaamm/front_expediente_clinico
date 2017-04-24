@@ -16,11 +16,11 @@
    <div class="modal-body">
             
             <div *ngIf="exito == false" class="alert alert-danger">
-                <strong>Error!</strong> Operacion no se pudo realizar.
+                <strong>Ooops!</strong> {{mensaje}}
             </div>
 
             <div *ngIf="exito == true" class="alert alert-success">
-                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+                <strong>Exito!</strong> {{mensaje}}
             </div>
 
             <div class="form-group">
@@ -32,9 +32,16 @@
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" [(ngModel)]="medicamento.nombre" name="nombre" placeholder="Ingrese nombre del medicamento">
             </div>
+
+            <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" [(ngModel)]="medicamento.tipo" name="tipo_medicamento">
+                <option *ngFor="let tipo of tipos_medicamento" [ngValue]="tipo">{{ tipo.getStringValue() }}</option>
+            </select>
+            </div>
             
             <div class="form-group">
-            <label for="nombre">Costo</label>
+            <label for="costo">Costo</label>
             <input type="text" class="form-control" [(ngModel)]="medicamento.costo" name="costo" placeholder="Ingrese nombre del medicamento
             ">
             </div>

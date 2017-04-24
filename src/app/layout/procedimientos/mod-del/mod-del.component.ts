@@ -11,6 +11,7 @@ import { ProcedimientosService } from '../../../services/procedimientos.service'
 export class ModDelComponent implements OnInit {
 @Input() public procedimiento: Procedimiento;
   @Input() public procedimientos: Array<Procedimiento>;
+  public mensaje: string;
   public exito:boolean;
 
   closeResult: string;
@@ -40,12 +41,15 @@ export class ModDelComponent implements OnInit {
   onSubmit(){
     this.procedimientosService.del(this.procedimiento.clone()).subscribe(
         response=>{
+            console.log(response);
             if(response.status == "exito"){
                 let pos = this.procedimientos.indexOf(this.procedimiento);
                 this.procedimientos.splice(pos,1);
                 this.exito=true;
+                this.mensaje=response.mensaje;
             }else{
                 this.exito=false;
+                this.mensaje=response.mensaje;
             }
         },
         error=>{

@@ -46,24 +46,24 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit(){
-      this.ubicacionesService.edit(this.ubicacion_modificada.clone()).subscribe(
-          response=>{
-              console.log("error: "+JSON.stringify(response));
-              if(response.status == "exito"){
-                  let pos = this.ubicaciones.indexOf(this.ubicacion_original);
-                  this.ubicaciones[pos]=this.ubicacion_modificada.clone();
-                  this.ubicacion_original=this.ubicaciones[pos];
-                  this.exito=true;
-              }else{
-                  this.exito=false;
-              }
-          },
-          error=>{
-              if(error!=null) {
-                  console.log("Error al enviar la peticion: "+error);
-              }
-          }
-      );
+    //   this.ubicacionesService.edit(this.ubicacion_modificada.clone()).subscribe(
+    //       response=>{
+    //           console.log(response);
+    //           if(response.status == "exito"){
+    //               let pos = this.ubicaciones.indexOf(this.ubicacion_original);
+    //               this.ubicaciones[pos]=this.ubicacion_modificada.clone();
+    //               this.ubicacion_original=this.ubicaciones[pos];
+    //               this.exito=true;
+    //           }else{
+    //               this.exito=false;
+    //           }
+    //       },
+    //       error=>{
+    //           if(error!=null) {
+    //               console.log("Error al enviar la peticion: "+error);
+    //           }
+    //       }
+    //   );
 
       //borrar estas lineas cuando este lista la apilet pos = this.ubicaciones.indexOf(this.ubicacion_original);
       let pos = this.ubicaciones.indexOf(this.ubicacion_original);
