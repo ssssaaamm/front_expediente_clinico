@@ -46,30 +46,27 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit(){
-    //   this.enfermedadesService.edit(this.enfermedad_modificada.clone()).subscribe(
-    //       response=>{
-    //           console.log(response);
-    //           if(response.status == "exito"){
-    //               let pos = this.enfermedades.indexOf(this.enfermedad_original);
-    //               this.enfermedades[pos]=this.enfermedad_modificada.clone();
-    //               this.enfermedad_original=this.enfermedades[pos];
-    //               this.exito=true;
-    //           }else{
-    //               this.exito=false;
-    //           }
-    //       },
-    //       error=>{
-    //           if(error!=null) {
-    //               console.log("Error al enviar la peticion: "+error);
-    //           }
-    //       }
-    //   );
+    this.enfermedadesService.edit(this.enfermedad_modificada.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    /*this.especialidad_original = this.especialidad_modificada;
+                    this.especialidad_modificada = this.especialidad_original.clone();*/
 
-      //borrar estas lineas cuando este lista la apilet pos = this.enfermedades.indexOf(this.enfermedad_original);
-      let pos = this.enfermedades.indexOf(this.enfermedad_original);
-      this.enfermedades[pos]=this.enfermedad_modificada.clone();
-      this.enfermedad_original=this.enfermedades[pos];
-      this.exito=true;
+                    let pos = this.enfermedades.indexOf(this.enfermedad_original);
+                    this.enfermedades[pos]=this.enfermedad_modificada.clone();
+                    this.enfermedad_original=this.enfermedades[pos];
+                    this.exito=true;
+                }else{
+                    this.exito=false;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
   }
 
 }

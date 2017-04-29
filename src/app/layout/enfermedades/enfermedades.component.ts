@@ -23,7 +23,7 @@ export class EnfermedadesComponent implements OnInit {
       let result: Array<Enfermedad> = new Array<Enfermedad>();
       if(enfermedades){
         enfermedades.forEach((enfermedad)=>{
-          result.push(new Enfermedad(enfermedad.codigo_enfermedad,enfermedad.nombre_enfermedad,enfermedad.id_enfermedad));
+          result.push(new Enfermedad(enfermedad.codigoEnfermedad,enfermedad.nombreEnfermedad,enfermedad.idEnfermedad));
         });
       }
       return result;

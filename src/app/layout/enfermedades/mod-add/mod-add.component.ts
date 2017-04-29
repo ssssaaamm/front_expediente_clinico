@@ -3,7 +3,6 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Enfermedad } from '../../../models/enfermedad';
 import { EnfermedadesService } from '../../../services/enfermedades.service';
 
-
 @Component({
   selector: 'app-mod-add',
   templateUrl: './mod-add.component.html',
@@ -15,6 +14,7 @@ export class ModAddComponent implements OnInit {
   @Input() public enfermedades: Array<Enfermedad>;
     public enfermedad: Enfermedad;
     public exito: boolean;
+    public mensaje: string;
     closeResult: string;
   
     constructor(private modalService: NgbModal, private enfermedadesService: EnfermedadesService) {  }
@@ -48,26 +48,26 @@ export class ModAddComponent implements OnInit {
     }
 
     onSubmit(){
-        // this.enfermedadesService.add(this.enfermedad.clone()).subscribe(
-        //     response=>{
-        //         console.log(response);
-        //         if(response.status == "exito"){
-        //             this.enfermedades.push(this.enfermedad.clone());
-        //             this.exito=true;
-        //         }else{
-        //             this.exito=false;
-        //         }
-        //     },
-        //     error=>{
-        //         if(error!=null) {
-        //             console.log("Error al enviar la peticion: "+error);
-        //         }
-        //     }
-        // );
+this.enfermedadesService.add(this.enfermedad.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.enfermedad.id=response.id;
+                    this.enfermedades.push(this.enfermedad.clone());
+                    this.exito=true;
+                    this.mensaje=response.mensaje;
+                }else{
+                    this.exito=false;
+                    this.mensaje=response.mensaje;                    
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
         
-        //borrar las siguientes lineas cuando este la api
-        this.enfermedades.push(this.enfermedad.clone());
-        this.exito=true;
     }
 
     clear(){

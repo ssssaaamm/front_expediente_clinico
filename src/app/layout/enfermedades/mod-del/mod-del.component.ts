@@ -13,6 +13,7 @@ export class ModDelComponent implements OnInit {
 
   @Input() public enfermedad: Enfermedad;
   @Input() public enfermedades: Array<Enfermedad>;
+  public mensaje:string;
   public exito:boolean;
 
   closeResult: string;
@@ -40,28 +41,25 @@ export class ModDelComponent implements OnInit {
   }
 
   onSubmit(){
-    // this.enfermedadesService.del(this.enfermedad.clone()).subscribe(
-    //     response=>{
-    //         console.log(response);
-    //         if(response.status == "exito"){
-    //             let pos = this.enfermedades.indexOf(this.enfermedad);
-    //             this.enfermedades.splice(pos,1);
-    //             this.exito=true;
-    //         }else{
-    //             this.exito=false;
-    //         }
-    //     },
-    //     error=>{
-    //         if(error!=null) {
-    //             console.log("Error al enviar la peticion: "+error);
-    //         }
-    //     }
-    // );
-
-    //borrar las siguientes lineas cuando este lista la api
-    let pos = this.enfermedades.indexOf(this.enfermedad);
-    this.enfermedades.splice(pos,1);
-    this.exito=true;
+    this.enfermedadesService.del(this.enfermedad.clone()).subscribe(
+        response=>{
+            console.log(response);
+            if(response.status == "exito"){
+                let pos = this.enfermedades.indexOf(this.enfermedad);
+                this.enfermedades.splice(pos,1);
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            }else{
+                this.exito=false;
+                this.mensaje=response.mensaje;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
   }
 
 }
