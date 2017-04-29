@@ -16,7 +16,8 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [ubicaciones]="ubicaciones"></app-mod-add>
+    <app-mod-add [ubicaciones]="ubicaciones" [tipos_ubicacion]="tipos_ubicacion"></app-mod-add>
+    
 
     <!--Tabla medicamentos-->
    
@@ -27,7 +28,8 @@
                     <th>Codigo</th>
                     <th>Nombre</th> 
                     <th>Nivel</th>
-                    <th>Numero</th>             
+                    <th>Numero</th>
+                    <th>Tipo</th>             
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -37,8 +39,9 @@
                     <td>{{ubicacion.codigo}}</td>
                     <td>{{ubicacion.nombre}}</td>
                     <td>{{ubicacion.nivel}}</td> 
-                    <td>{{ubicacion.numero}}</td>                     
-                    <td><app-mod-edit [ubicacion_original]="ubicacion" [ubicaciones]="ubicaciones"></app-mod-edit></td>
+                    <td>{{ubicacion.numero}}</td> 
+                    <td>{{ubicacion.tipo.nombre}}</td>                    
+                    <td><app-mod-edit [ubicacion_original]="ubicacion" [ubicaciones]="ubicaciones" [tipos_ubicacion]="tipos_ubicacion"></app-mod-edit></td>
                     <td>
                         <app-mod-del [ubicacion]="ubicacion" [ubicaciones]="ubicaciones">
                             <p>

@@ -42,6 +42,12 @@
             <label for="nombre">Numero</label>
             <input type="text" class="form-control" [(ngModel)]="ubicacion_modificada.numero" name="numero" placeholder="Ingrese numero de la ubicacion">
             </div>  
+            <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" [(ngModel)]="ubicacion_modificada.tipo" name="tipo_ubicacion">
+                <option *ngFor="let tipo of tipos_ubicacion" [ngValue]="tipo" >{{ tipo.nombre }}</option>
+            </select>
+            </div>  
 
         </div>
         <div class="modal-footer">
