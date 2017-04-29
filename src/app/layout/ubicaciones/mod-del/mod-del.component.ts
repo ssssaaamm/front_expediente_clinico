@@ -40,28 +40,28 @@ export class ModDelComponent implements OnInit {
   }
 
   onSubmit(){
-    // this.ubicacionesService.del(this.ubicacion.clone()).subscribe(
-    //     response=>{
-    //         console.log(response);
-    //         if(response.status == "exito"){
-    //             let pos = this.ubicaciones.indexOf(this.ubicacion);
-    //             this.ubicaciones.splice(pos,1);
-    //             this.exito=true;
-    //         }else{
-    //             this.exito=false;
-    //         }
-    //     },
-    //     error=>{
-    //         if(error!=null) {
-    //             console.log("Error al enviar la peticion: "+error);
-    //         }
-    //     }
-    // );
+    this.ubicacionesService.del(this.ubicacion.clone()).subscribe(
+         response=>{
+             console.log(response);
+             if(response.status == "exito"){
+                 let pos = this.ubicaciones.indexOf(this.ubicacion);
+                 this.ubicaciones.splice(pos,1);
+                 this.exito=true;
+             }else{
+                 this.exito=false;
+             }
+         },
+         error=>{
+             if(error!=null) {
+                 console.log("Error al enviar la peticion: "+error);
+             }
+         }
+     );
 
     //borrar las siguientes lineas cuando este lista la api
-    let pos = this.ubicaciones.indexOf(this.ubicacion);
+    /*let pos = this.ubicaciones.indexOf(this.ubicacion);
     this.ubicaciones.splice(pos,1);
-    this.exito=true;
+    this.exito=true;*/
   }
 
 }

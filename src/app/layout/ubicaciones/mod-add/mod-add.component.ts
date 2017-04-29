@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Ubicacion } from '../../../models/ubicacion';
 import { UbicacionesService } from '../../../services/ubicaciones.service';
+import { TipoUbicacion } from "app/models/tipo_ubicacion";
 
 @Component({
   selector: 'app-mod-add',
@@ -12,8 +13,11 @@ import { UbicacionesService } from '../../../services/ubicaciones.service';
 export class ModAddComponent implements OnInit {
 
   @Input() public ubicaciones: Array<Ubicacion>;
+  @Input() public tipos_ubicacion: Array<TipoUbicacion>;
+  
     public ubicacion: Ubicacion;
     public exito: boolean;
+    public mensaje:string;
     closeResult: string;
   
     constructor(private modalService: NgbModal, private ubicacionesService: UbicacionesService) {  }
@@ -24,11 +28,17 @@ export class ModAddComponent implements OnInit {
             this.exito = null;
             this.ubicacion.codigo="";
             this.ubicacion.nombre="";
+            this.ubicacion.nivel=0;
+            this.ubicacion.numero=0;
+            this.ubicacion.tipo= new TipoUbicacion("",0);
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             this.exito = null;
             this.ubicacion.codigo="";
             this.ubicacion.nombre="";
+            this.ubicacion.nivel=0;
+            this.ubicacion.numero=0;
+            this.ubicacion.tipo= new TipoUbicacion("",0);
         });
     }
 
@@ -43,31 +53,35 @@ export class ModAddComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.ubicacion=new Ubicacion("","",0,0);
+        this.ubicacion=new Ubicacion("","",0,0,new TipoUbicacion("",0),0);
     }
 
-    onSubmit(){
-        // this.ubicacionesService.add(this.ubicacion.clone()).subscribe(
-        //     response=>{
-        //         console.log(response);
-        //         console.log(response);
-        //         if(response.status == "exito"){
-        //             this.ubicaciones.push(this.ubicacion.clone());
-        //             this.exito=true;
-        //         }else{
-        //             this.exito=false;
-        //         }
-        //     },
-        //     error=>{
-        //         if(error!=null) {
-        //             console.log("Error al enviar la peticion: "+error);
-        //         }
-        //     }
-        // );
+     onSubmit(){
+        //console.log(JSON.stringify(this.ubicacion.tipo));
+        this.ubicacionesService.add(this.ubicacion.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.ubicacion.id=response.id;
+                    this.ubicaciones.push(this.ubicacion.clone());
+                    this.exito=true;
+                    this.mensaje=response.mensaje;
+                }else{
+                    this.exito=false;
+                    this.mensaje=response.mensaje;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
         
-        //borrar las siguientes lineas cuando este la api
+        /*borrar las siguientes lineas cuando este la api
         this.ubicaciones.push(this.ubicacion.clone());
         this.exito=true;
+        */
     }
 
     clear(){
@@ -75,6 +89,7 @@ export class ModAddComponent implements OnInit {
         this.ubicacion.nombre="";
         this.ubicacion.numero=0;
         this.ubicacion.nivel=0;
+        this.ubicacion.tipo=new TipoUbicacion("",0);
         this.exito=null;
     }
 
