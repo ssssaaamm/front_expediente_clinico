@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [cirugias]="cirugias"></app-mod-add>
+    <app-mod-add [cirugias]="cirugias" [especialidades]="especialidades"></app-mod-add>
 
     <!--Tabla medicamentos-->
    
@@ -26,6 +26,7 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nombre</th>
+                    <th>Especialidad</th>
                     <th>Costo</th>              
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -34,9 +35,10 @@
             <tbody>
                 <tr *ngFor="let cirugia of cirugias">
                     <td>{{cirugia.codigo}}</td>
-                    <td>{{cirugia.nombre}}</td>  
+                    <td>{{cirugia.nombre}}</td>
+                    <td>{{cirugia.especialidad.nombre}}</td>  
                     <td>{{cirugia.costo}}</td>                    
-                    <td><app-mod-edit [cirugia_original]="cirugia" [cirugias]="cirugias"></app-mod-edit></td>
+                    <td><app-mod-edit [cirugia_original]="cirugia" [cirugias]="cirugias" [especialidades]="especialidades"></app-mod-edit></td>
                     <td>
                         <app-mod-del [cirugia]="cirugia" [cirugias]="cirugias">
                             <p>

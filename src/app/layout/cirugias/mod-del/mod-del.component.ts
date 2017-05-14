@@ -14,6 +14,7 @@ export class ModDelComponent implements OnInit {
   @Input() public cirugia: Cirugia;
   @Input() public cirugias: Array<Cirugia>;
   public exito:boolean;
+  public mensaje:string;
 
   closeResult: string;
   constructor(private modalService: NgbModal, private cirugiasService: CirugiasService) { }
@@ -40,28 +41,30 @@ export class ModDelComponent implements OnInit {
   }
 
   onSubmit(){
-    // this.cirugiasService.del(this.cirugia.clone()).subscribe(
-    //     response=>{
-    //         console.log(response);
-    //         if(response.status == "exito"){
-    //             let pos = this.cirugias.indexOf(this.cirugia);
-    //             this.cirugias.splice(pos,1);
-    //             this.exito=true;
-    //         }else{
-    //             this.exito=false;
-    //         }
-    //     },
-    //     error=>{
-    //         if(error!=null) {
-    //             console.log("Error al enviar la peticion: "+error);
-    //         }
-    //     }
-    // );
+    this.cirugiasService.del(this.cirugia.clone()).subscribe(
+        response=>{
+            console.log(response);
+            if(response.status == "exito"){
+                let pos = this.cirugias.indexOf(this.cirugia);
+                this.cirugias.splice(pos,1);
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            }else{
+                this.exito=false;
+                this.mensaje=response.mensaje;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
 
     //borrar las siguientes lineas cuando este lista la api
-    let pos = this.cirugias.indexOf(this.cirugia);
-    this.cirugias.splice(pos,1);
-    this.exito=true;
+    // let pos = this.cirugias.indexOf(this.cirugia);
+    // this.cirugias.splice(pos,1);
+    // this.exito=true;
   }
 
 }

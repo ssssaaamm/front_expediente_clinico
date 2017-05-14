@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Cirugia } from '../../../models/cirugia';
+import { Especialidad } from '../../../models/especialidad';
 import { CirugiasService } from '../../../services/cirugias.service';
 
 @Component({
@@ -12,8 +13,10 @@ import { CirugiasService } from '../../../services/cirugias.service';
 export class ModAddComponent implements OnInit {
 
    @Input() public cirugias: Array<Cirugia>;
+   @Input() public especialidades: Array<Especialidad>;
     public cirugia: Cirugia;
     public exito: boolean;
+    public mensaje: string;
     closeResult: string;
   
     constructor(private modalService: NgbModal, private cirugiasService: CirugiasService) {  }
@@ -21,14 +24,10 @@ export class ModAddComponent implements OnInit {
     open(content) {
         this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
-            this.exito = null;
-            this.cirugia.codigo="";
-            this.cirugia.nombre="";
+            this.clear();
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            this.exito = null;
-            this.cirugia.codigo="";
-            this.cirugia.nombre="";
+            this.clear();
         });
     }
 
@@ -43,30 +42,34 @@ export class ModAddComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.cirugia=new Cirugia("","",0.0);
+         /**muestra los campos vacios solo con el placeholder :)  */
+        this.cirugia=new Cirugia("","",0.0,new Especialidad("","",0),0);
     }
 
     onSubmit(){
-        // this.cirugiasService.add(this.cirugia.clone()).subscribe(
-        //     response=>{
-        //         console.log(response);
-        //         if(response.status == "exito"){
-        //             this.cirugias.push(this.cirugia.clone());
-        //             this.exito=true;
-        //         }else{
-        //             this.exito=false;
-        //         }
-        //     },
-        //     error=>{
-        //         if(error!=null) {
-        //             console.log("Error al enviar la peticion: "+error);
-        //         }
-        //     }
-        // );
+        this.cirugiasService.add(this.cirugia.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.cirugia.id=response.id;
+                    this.cirugias.push(this.cirugia.clone());
+                    this.exito=true;
+                    this.mensaje=response.mensaje;
+                }else{
+                    this.exito=false;
+                    this.mensaje=response.mensaje;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
         
         //borrar las siguientes lineas cuando este la api
-        this.cirugias.push(this.cirugia.clone());
-        this.exito=true;
+        // this.cirugias.push(this.cirugia.clone());
+        // this.exito=true;
     }
 
     clear(){

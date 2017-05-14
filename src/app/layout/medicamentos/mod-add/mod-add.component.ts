@@ -77,7 +77,8 @@ export class ModAddComponent implements OnInit {
         // this.medicamentos.push(this.medicamento.clone());
         // this.exito=true;
     }
-      clear(){
+    
+    clear(){
         this.medicamento.codigo="";
         this.medicamento.nombre="";
         this.medicamento.costo=0.0;        

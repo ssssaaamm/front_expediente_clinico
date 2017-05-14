@@ -10,6 +10,10 @@ export class Medicamento{
 
 // Esnecesario. algo de refencias!!!
     public clone():Medicamento{
+        return new Medicamento(this.codigo,this.nombre,this.tipo,this.costo,this.id);
+    }
+
+    public full_clone():Medicamento{
         return new Medicamento(this.codigo,this.nombre,this.tipo.clone(),this.costo,this.id);
     }
 }

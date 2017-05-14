@@ -10,6 +10,10 @@ export class Examen{
 
 // Esnecesario. algo de refencias!!!
     public clone():Examen{
+        return new Examen(this.codigo,this.nombre,this.tipo,this.costo,this.id);
+    }
+
+    public full_clone():Examen{
         return new Examen(this.codigo,this.nombre,this.tipo.clone(),this.costo,this.id);
     }
 }                    
