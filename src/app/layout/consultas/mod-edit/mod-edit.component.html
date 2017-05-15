@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+﻿<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Editar Consulta: <span class="text-info">{{consulta_original.nombre}}</span></h4>
@@ -7,35 +7,39 @@
         </button>
     </div>
 
-
-    
-
     <!--Formulario editar consulta-->
         <form>
 
         <div class="modal-body">
 
             <div *ngIf="exito == false" class="alert alert-danger">
-                <strong>Error!</strong> Operacion no se pudo realizar.
+                <strong>Error!</strong> {{mensaje}}.
             </div>
 
             <div *ngIf="exito == true" class="alert alert-success">
-                <strong>Exito!</strong> La operacion se ha realizada exitosamente.
+                <strong>Exito!</strong> {{mensaje}}.
             </div>
 
             <div class="form-group">
-            <label for="nombre">Codigo</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta_modificada.codigo" name="codigo" placeholder="Ingrese codigo">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.codigo" name="codigo" placeholder="Ingrese codigo">
             </div>
 
             <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta_modificada.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
             </div>
 
             <div class="form-group">
-            <label for="costo">Costo</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta_modificada.costo" name="costo" placeholder="Ingrese costo de la consulta">
+                <label for="tipo">Especialidad</label>
+                <select class="form-control" [(ngModel)]="cirugia_modificada.especialidad" name="especialidad">
+                    <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="costo">Costo</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.costo" name="costo" placeholder="Ingrese costo de la consulta">
             </div>
 
         </div>

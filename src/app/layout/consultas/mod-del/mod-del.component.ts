@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+﻿import { Component, OnInit, Input} from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Consulta } from '../../../models/consulta';
 import { ConsultasService } from '../../../services/consultas.service';
@@ -14,6 +14,7 @@ export class ModDelComponent implements OnInit {
   @Input() public consulta: Consulta;
   @Input() public consultas: Array<Consulta>;
   public exito:boolean;
+  public mensaje:string;
 
   closeResult: string;
   constructor(private modalService: NgbModal, private consultasService: ConsultasService) { }
@@ -39,29 +40,30 @@ export class ModDelComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    // this.consultasService.del(this.consulta.clone()).subscribe(
-    //     response=>{
-    //         console.log(response);
-    //         if(response.status == "exito"){
-    //             let pos = this.consultas.indexOf(this.consulta);
-    //             this.consultas.splice(pos,1);
-    //             this.exito=true;
-    //         }else{
-    //             this.exito=false;
-    //         }
-    //     },
-    //     error=>{
-    //         if(error!=null) {
-    //             console.log("Error al enviar la peticion: "+error);
-    //         }
-    //     }
-    // );
+  onSubmit() {
+    this.consultasService.del(this.consulta.clone()).subscribe(
+        response=> {
+            console.log(response);
+            if(response.status == "exito") {
+                let pos = this.consultas.indexOf(this.consulta);
+                this.consultas.splice(pos,1);
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            } else {
+                this.exito=false;
+                this.mensaje=response.mensaje;
+            }
+        },
+        error=> {
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
 
     //borrar las siguientes lineas cuando este lista la api
-    let pos = this.consultas.indexOf(this.consulta);
-    this.consultas.splice(pos,1);
-    this.exito=true;
+    //let pos = this.consultas.indexOf(this.consulta);
+    //this.consultas.splice(pos,1);
+    //this.exito=true;
   }
-
 }

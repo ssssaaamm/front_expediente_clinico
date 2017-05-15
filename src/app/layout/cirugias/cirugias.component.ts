@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Cirugia } from '../../models/cirugia';
 import { Especialidad } from '../../models/especialidad';
 import { LoginService } from '../../services/login.service';
@@ -22,7 +22,6 @@ export class CirugiasComponent implements OnInit {
   }
 
   ngOnInit() {
-
     //obtenemos las especialidades
     this.especialidadesService.list()
     .map((especialidades: Array<any>)=>{

@@ -1,18 +1,23 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+﻿import { Component, OnInit, Input, Output } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Consulta } from '../../../models/consulta';
+import { Especialidad } from '../../../models/especialidad';
 import { ConsultasService } from '../../../services/consultas.service';
 
 @Component({
   selector: 'app-mod-edit',
   templateUrl: './mod-edit.component.html',
-  styleUrls: ['./mod-edit.component.scss']
+  styleUrls: ['./mod-edit.component.scss'],
+  providers: [ConsultasService]
 })
 export class ModEditComponent implements OnInit {
 
   @Input() public consultas: Array<Consulta>; 
   @Input() public consulta_original: Consulta;
+  @Input() public especialidades: Array<Especialidad>;
+
   public exito: boolean;
+  public mensaje: string;
   consulta_modificada: Consulta;
 
   closeResult: string;
@@ -46,30 +51,32 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit(){
-    //   this.consultasService.edit(this.consulta_modificada.clone()).subscribe(
-    //       response=>{
-    //           console.log(response);
-    //           if(response.status == "exito"){
-    //               let pos = this.consultas.indexOf(this.consulta_original);
-    //               this.consultas[pos]=this.consulta_modificada.clone();
-    //               this.consulta_original=this.consultas[pos];
-    //               this.exito=true;
-    //           }else{
-    //               this.exito=false;
-    //           }
-    //       },
-    //       error=>{
-    //           if(error!=null) {
-    //               console.log("Error al enviar la peticion: "+error);
-    //           }
-    //       }
-    //   );
+    this.consultasService.edit(this.consulta_modificada.clone()).subscribe(
+        response=> {
+            console.log(response);
+            if(response.status == "exito") {
+                let pos = this.consultas.indexOf(this.consulta_original);
+                this.consultas[pos]=this.consulta_modificada.clone();
+                this.consulta_original=this.consultas[pos];
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            } else {
+                this.exito=false;
+                this.mensaje=response.mensaje;
+            }
+        },
+        error=> {
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
 
-      //borrar estas lineas cuando este lista la apilet pos = this.consultas.indexOf(this.consulta_original);
-      let pos = this.consultas.indexOf(this.consulta_original);
-      this.consultas[pos]=this.consulta_modificada.clone();
-      this.consulta_original=this.consultas[pos];
-      this.exito=true;
+    //borrar estas lineas cuando este lista la apilet pos = this.consultas.indexOf(this.consulta_original);
+    // let pos = this.consultas.indexOf(this.consulta_original);
+    // this.consultas[pos]=this.consulta_modificada.clone();
+    // this.consulta_original=this.consultas[pos];
+    // this.exito=true;
   }
 
 }
