@@ -1,4 +1,4 @@
-<!-- Large modal -->
+﻿<!-- Large modal -->
 
 <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar cirugia</button>
 <ng-template #content let-c="close" let-d="dismiss">
@@ -16,36 +16,37 @@
         <div class="modal-body">
             
             <div *ngIf="exito == false" class="alert alert-danger">
-            <strong>Ooops!</strong> {{mensaje}}
+                <strong>Ooops!</strong> {{mensaje}}
             </div>
+
             <div *ngIf="exito == true" class="alert alert-success">
                 <strong>Exito!</strong> {{mensaje}}
             </div>
 
             <div class="form-group">
-            <label for="nombre">Codigo</label>
-            <input type="text" class="form-control" [(ngModel)]="cirugia.codigo" name="codigo" placeholder="Ingrese codigo">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control" [(ngModel)]="cirugia.codigo" name="codigo" placeholder="Ingrese codigo">
             </div>
 
             <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="cirugia.nombre" name="nombre" placeholder="Ingrese nombre de la cirugia">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" [(ngModel)]="cirugia.nombre" name="nombre" placeholder="Ingrese nombre de la cirugia">
             </div>
 
             <div class="form-group">
-            <label for="tipo">Especialidad</label>
-            <select class="form-control" [(ngModel)]="cirugia.especialidad" name="especialidad">
-                <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
-            </select>
+                <label for="tipo">Especialidad</label>
+                <select class="form-control" [(ngModel)]="cirugia.especialidad" name="especialidad">
+                    <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                </select>
             </div>
 
             <div class="form-group">
-            <label for="costo">Costo</label>
-            <input type="text" class="form-control" [(ngModel)]="cirugia.costo" name="costo" placeholder="Ingrese costo de la cirugia">
+                <label for="costo">Costo</label>
+                <input type="text" class="form-control" [(ngModel)]="cirugia.costo" name="costo" placeholder="Ingrese costo de la cirugia">
             </div>
-            
             
         </div>
+
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
             <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary" >Guardar</button>

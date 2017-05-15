@@ -1,4 +1,4 @@
-<!-- Large modal -->
+﻿<!-- Large modal -->
 
 <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar consulta</button>
 <ng-template #content let-c="close" let-d="dismiss">
@@ -24,18 +24,25 @@
             </div>
 
             <div class="form-group">
-            <label for="nombre">Codigo</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta.codigo" name="codigo" placeholder="Ingrese codigo">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta.codigo" name="codigo" placeholder="Ingrese codigo">
             </div>
 
             <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
             </div>
 
             <div class="form-group">
-            <label for="costo">Costo</label>
-            <input type="text" class="form-control" [(ngModel)]="consulta.costo" name="costo" placeholder="Ingrese costo de la consulta">
+                <label for="tipo">Especialidad</label>
+                <select class="form-control" [(ngModel)]="cirugia.especialidad" name="especialidad">
+                    <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="costo">Costo</label>
+                <input type="text" class="form-control" [(ngModel)]="consulta.costo" name="costo" placeholder="Ingrese costo de la consulta">
             </div>
             
         </div>

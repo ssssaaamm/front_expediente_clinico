@@ -1,4 +1,4 @@
-<div class="container-fluid">
+﻿<div class="container-fluid">
     
     <!-- Page Heading -->
     <div class="row">
@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [consultas]="consultas"></app-mod-add>
+    <app-mod-add [consultas]="consultas" [especialidades]="especialidades"></app-mod-add>
 
     <!--Tabla medicamentos-->
    
@@ -25,7 +25,8 @@
             <thead>
                 <tr>
                     <th>Codigo</th>
-                    <th>Nombre</th> 
+                    <th>Nombre</th>
+                    <th>Especialidad</th>
                     <th>Costo</th>             
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -35,8 +36,9 @@
                 <tr *ngFor="let consulta of consultas">
                     <td>{{consulta.codigo}}</td>
                     <td>{{consulta.nombre}}</td>
+                    <td>{{consulta.especialidad.nombre}}</td>
                     <td>{{consulta.costo}}</td>                      
-                    <td><app-mod-edit [consulta_original]="consulta" [consultas]="consultas"></app-mod-edit></td>
+                    <td><app-mod-edit [consulta_original]="consulta" [consultas]="consultas" [especialidades]="especialidades"></app-mod-edit></td>
                     <td>
                         <app-mod-del [consulta]="consulta" [consultas]="consultas">
                             <p>
@@ -48,6 +50,4 @@
             </tbody>
         </table>
     </div>
- 
-
 </div>
