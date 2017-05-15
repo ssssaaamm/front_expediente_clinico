@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #archvivos raros
-/.vs
+.vs/
