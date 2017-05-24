@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add></app-mod-add>
+    <app-mod-add [roles]="roles"></app-mod-add>
 
     <!--Tabla roles-->
 
@@ -26,52 +26,23 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Permisos</th>                    
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Administrador</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
+
+                <tr *ngFor="let rol of roles">
+                    <td>{{rol.id}}</td>
+                    <td>{{rol.nombre}}</td>
+                    <td>{{rol.descripcion}}</td>
+                    <td><app-permisos [rol]="rol"></app-permisos></td>                    
+                    <td><app-mod-edit [rol_original]="rol" [roles]="roles"></app-mod-edit></td>
+                    <td><app-mod-del [rol]="rol" [roles]="roles"><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Laboratorista</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Secretaria</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Medico</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Paciente Registrado</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                <tr>
-                    <td>6</td>
-                    <td>rol</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>otro</td>
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el rol?</p></app-mod-del></td>
-                </tr>
+                
             </tbody>
         </table>
     </div>

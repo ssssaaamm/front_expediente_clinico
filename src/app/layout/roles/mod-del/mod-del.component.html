@@ -1,6 +1,6 @@
 <!-- Large modal -->
 
-<button class="btn btn-danger" (click)="open(content)"><i class="fa fa-trash "></i></button>
+<button class="btn btn-danger btn-sm" (click)="open(content)"><i class="fa fa-trash "></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Eliminar rol: rol_id</h4>
@@ -13,6 +13,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="c('Close click')"><i class="fa fa-trash "></i> Eliminar</button>
+        <button type="button" class="btn btn-danger" (click)="onSubmit()"><i class="fa fa-trash "></i> Eliminar</button>
     </div>
 </ng-template>

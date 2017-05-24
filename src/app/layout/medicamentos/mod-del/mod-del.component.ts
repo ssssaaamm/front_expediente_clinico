@@ -10,7 +10,7 @@ import { MedicamentosService } from "app/services/medicamentos.service";
 })
 
 export class ModDelComponent implements OnInit {
- @Input() public medicamento: Medicamento;
+@Input() public medicamento: Medicamento;
   @Input() public medicamentos: Array<Medicamento>;
   public exito:boolean;
   public mensaje:string;

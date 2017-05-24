@@ -10,8 +10,8 @@ import { MedicamentosService } from "app/services/medicamentos.service";
   styleUrls: ['./mod-add.component.scss']
 })
 export class ModAddComponent implements OnInit {
-     @Input() public medicamentos: Array<Medicamento>;
-     @Input() public tipos_medicamento: Array<TipoMedicamento>;
+    @Input() public medicamentos: Array<Medicamento>;
+    @Input() public tipos_medicamento: Array<TipoMedicamento>;
     public medicamento: Medicamento;
     public exito: boolean;
     public mensaje: string;

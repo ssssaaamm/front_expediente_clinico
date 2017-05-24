@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label for="tipo">Especialidad</label>
-                <select class="form-control" [(ngModel)]="cirugia_modificada.especialidad" name="especialidad">
+                <select class="form-control" [(ngModel)]="consulta_modificada.especialidad" name="especialidad">
                     <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
                 </select>
             </div>

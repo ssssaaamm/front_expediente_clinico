@@ -1,5 +1,4 @@
 <!-- Large modal -->
-
 <button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar rol</button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -14,21 +13,21 @@
         <form>
 
         <div class="modal-body">
+            
             <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre">
+                <label for="nombre">Nombre</label>
+                <input type="text" [(ngModel)]="rol.nombre" class="form-control"  name="nombre" placeholder="Ingrese nombre">
             </div>
 
             <div class="form-group">
-            <label for="nombre">Descripción</label>
-            <input type="text" class="form-control" id="rol-add" name="nombre" placeholder="Ingrese una breve descripción del rol">
+                <label for="nombre">Descripción</label>
+                <input type="text" [(ngModel)]="rol.descripcion" class="form-control" id="rol-add" name="descripcion" placeholder="Ingrese una breve descripción del rol">
             </div>
-
             
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit(ver)">Guardar</button>
         </div>
 
     </form>

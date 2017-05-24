@@ -22,14 +22,15 @@ export class ConsultasComponent implements OnInit {
     private especialidadesService: EspecialidadesService) { }
 
   ngOnInit() {
+
     //Obtenemos las especialidades que puedan atender una consulta
     this.especialidadesService.list()
-    .map((tipos: Array<any>)=>{
+    .map((especialidades: Array<any>)=>{
         let result: Array<Especialidad> = new Array<Especialidad>();
         // No estamos limitandonos a que solo una o algunas especialidades puedan atender una consulta
         // Si encuentra especialidades
-        if(tipos){
-            tipos.forEach((especialidad)=>{
+        if(especialidades){
+            especialidades.forEach((especialidad)=>{
                 // Concatenamos al arreglo una entidad Especialidad contenidad dentro de la BD
                 result.push(
                     new Especialidad(
@@ -64,7 +65,7 @@ export class ConsultasComponent implements OnInit {
              * |_____________||__________________________||_______________________|
              *
              */
-            let tipindx:number = this.indexOfTipo(
+            let tipindx:number = this.indexOfEspecialidad(
                 new Especialidad(
                     consulta.idEspecialidad.codigoEspecialidad, consulta.idEspecialidad.nombreEspecialidad, consulta.idEspecialidad.idEspecialidad
                 ), this.especialidades);
@@ -82,7 +83,7 @@ export class ConsultasComponent implements OnInit {
     .subscribe( res => this.consultas = res);
   }
 
-  private indexOfTipo(especialidad:Especialidad,especialidades):number{
+  private indexOfEspecialidad(especialidad:Especialidad,especialidades):number{
     let index = -1, i = 0, tam = especialidades.length;
     for(i; i<tam; i++){
         if( especialidad.id == especialidades[i].id

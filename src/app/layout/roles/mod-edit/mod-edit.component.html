@@ -1,6 +1,6 @@
 <!-- Large modal -->
 
-<button type="button" class="btn btn-success" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Editar rol: id_rol</h4>
@@ -14,22 +14,30 @@
     <!--Formulario agregar nuevo rol-->
         <form>
 
+        <div *ngIf="exito == false" class="alert alert-danger">
+            <strong>Ooops!</strong> {{mensaje}}
+        </div>
+
+        <div *ngIf="exito == true" class="alert alert-success">
+            <strong>Exito!</strong> {{mensaje}}
+        </div>
+
         <div class="modal-body">
             <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre">
+            <input type="text" class="form-control" [(ngModel)]="rol_modificado.nombre" name="nombre" placeholder="Ingrese nombre">
             </div>
 
             <div class="form-group">
             <label for="nombre">Descripción</label>
-            <input type="text" class="form-control" id="descripcion" name="nombre" placeholder="Ingrese una breve descripción del rol">
+            <input type="text" class="form-control" [(ngModel)]="rol_modificado.descripcion" id="descripcion" name="descripcion" placeholder="Ingrese una breve descripción del rol">
             </div>
 
             
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" >Guardar</button>
         </div>
 
     </form>

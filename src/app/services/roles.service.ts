@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import {Http,Response,Headers} from '@angular/http';
 import "rxjs/add/operator/map";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Observable"
+
 
 import { LoginService } from './login.service';
-import { Consulta } from '../models/consulta';
+import { Rol } from '../models/rol';
 
 @Injectable()
-export class ConsultasService {
+export class RolesService {
 
   private url="https://bad115.herokuapp.com";
   private resource: string ;
   private action: string ;
   private headers: Headers;
-  public lista: Array<Consulta> = new Array<Consulta>();
 
 
   private token: string;
 
   constructor(private loginService: LoginService, private http: Http) {
-    this.resource = "/consultas";
+    this.resource = "/roles";
     this.headers = new Headers({'Content-type':'application/x-www-form-urlencoded'});
     this.token = this.loginService.getToken();
   }
@@ -27,7 +27,6 @@ export class ConsultasService {
   list(){
     this.action = "/list";
     let parametros="token="+this.token;
-    console.log(parametros);
 
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers})
     .map(
@@ -37,29 +36,29 @@ export class ConsultasService {
 
   }
 
-  add(consulta:Consulta){
+  add(rol:Rol){
     this.action = "/add";
     let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(consulta);
+    parametros = parametros + "&json="+JSON.stringify(rol);
     console.log("parametros: "+parametros);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  edit(consulta:Consulta){
+  edit(rol:Rol){
     this.action = "/edit";
     let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(consulta);
+    parametros = parametros + "&json="+JSON.stringify(rol);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  del(consulta:Consulta){
+  del(rol:Rol){
     this.action = "/del";
     let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(consulta);
+    parametros = parametros + "&json="+JSON.stringify(rol);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 

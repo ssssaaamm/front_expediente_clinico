@@ -13,6 +13,10 @@ export class Consulta{
 
 // Esnecesario. algo de refeencias!!!
     public clone():Consulta{
+        return new Consulta(this.codigo,this.nombre,this.costo,this.especialidad,this.id);
+    }
+
+    public full_clone():Consulta{
         return new Consulta(this.codigo,this.nombre,this.costo,this.especialidad.clone(),this.id);
     }
 }

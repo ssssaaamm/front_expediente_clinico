@@ -1,0 +1,56 @@
+<button class="btn btn-primary btn-sm" (click)="open(content)"><i class="fa fa-id-card-o "></i></button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Permisos de rol: {{rol.nombre}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div *ngIf="exito == false" class="alert alert-danger">
+            <strong>Ooops!</strong> {{mensaje}}
+        </div>
+
+        <div *ngIf="exito == true" class="alert alert-success">
+            <strong>Exito!</strong> {{mensaje}}
+        </div>
+
+        <div class="row">
+            <div *ngFor="let menu_rol of menus_rol" class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-header card-default">
+                        {{menu_rol.menu.titulo}} <i [ngClass]="menu_rol.menu.icono" class="pull-right"></i> 
+                    </div>
+                    <div class="card-block">
+
+                        <label class="form-control">
+                                <input #ver type="checkbox" class="pull-right" name="list" [(ngModel)]="menu_rol.list" (change)="onChange(ver,menu_rol)">  Ver
+                        </label>
+                    
+                        <label class="form-control">
+                            <input #add type="checkbox" class="pull-right" name="add" [disabled]="!ver.checked" [(ngModel)]="menu_rol.add"> &nbsp; Agregar
+                        </label>
+
+                        <label class="form-control">
+                            <input #edit type="checkbox" class="pull-right" name="edit" [disabled]="!ver.checked" [(ngModel)]="menu_rol.edit"> &nbsp; Modificar
+                        </label>
+
+                        <label class="form-control">
+                            <input #del type="checkbox" class="pull-right" name="del"  [disabled]="!ver.checked" [(ngModel)]="menu_rol.del"> &nbsp; Eliminar
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit();">Guardar</button>
+    </div>
+</ng-template>
+
+

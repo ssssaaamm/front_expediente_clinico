@@ -8,6 +8,7 @@ import { RolesComponent } from './roles.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
+import { PermisosComponent } from './permisos/permisos.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ModEditComponent } from './mod-edit/mod-edit.component';
     ReactiveFormsModule,
     NgbModule.forRoot(),
   ],
-  declarations: [RolesComponent, ModAddComponent, ModDelComponent, ModEditComponent]
+  declarations: [RolesComponent, ModAddComponent, ModDelComponent, ModEditComponent, PermisosComponent]
 })
 export class RolesModule { }
