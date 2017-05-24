@@ -21,10 +21,10 @@ export class Usuario{
 
 // Esnecesario. algo de refencias!!!
     public clone():Usuario{
-        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.fijo,this.movil,this.email,this.username,this.password);
+        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password);
     }
 
     public full_clone():Usuario{
-        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.fijo,this.movil,this.email,this.username,this.password);
+        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password);
     }
 }
