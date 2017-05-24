@@ -1,7 +1,7 @@
 
 export class Usuario{
     constructor(
-        public id:number, 
+        public id:number    , 
         public nombre1: string,
         public nombre2: string,
         public apellido1: string,
@@ -10,8 +10,8 @@ export class Usuario{
         public pais: string,
         public division: string,
         public subdivision:string,
-        public fijo: string,
-        public movil: string,
+        public tel_fijo: string,
+        public tel_movil: string,
         public email: string,
         public username: string,
         public password: string,
