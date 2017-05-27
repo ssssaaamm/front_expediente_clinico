@@ -13,7 +13,7 @@ import { TipoMedicamento } from 'app/models/tipo_medicamento';
 })
 export class MedicamentosComponent implements OnInit {
 
-public medicamentos : Array<Medicamento>;
+public medicamentos : Array<Medicamento>=new Array<Medicamento>();
 public tipos_medicamento : Array<TipoMedicamento>=new Array<TipoMedicamento>();
 
   constructor(private loginService: LoginService, private medicamentosService: MedicamentosService, private tiposMedicamentoService: TiposMedicamentoService) { }
