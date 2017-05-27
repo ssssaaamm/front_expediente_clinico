@@ -1,6 +1,6 @@
 <!-- Large modal -->
 
-<button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar medicamento</button>
+<button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Agregar Medico</button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Agregar nuevo medico</h4>
@@ -14,47 +14,65 @@
       <form>
 
         <div class="modal-body">
-          <div class="form-group">
-            <label for="nombre">Codigo</label>
-            <input type="text" class="form-control"  name="codigo" placeholder="Ingrese codigo">
+          <div *ngIf="exito == false" class="alert alert-danger">
+              <strong>Ooops!</strong> {{mensaje}}
           </div>
+
+          <div *ngIf="exito == true" class="alert alert-success">
+              <strong>Exito!</strong> {{mensaje}}
+          </div>
+          
 
           <div class="form-group">
             <label for="nombre">Nombres</label>
-            <input type="text" class="form-control" name="nombres" placeholder="Juan Antonio">
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.nombre1" name="medico.usuario.nombre1" placeholder="Juan Antonio">
           </div>
           <div class="form-group">
             <label for="nombre">Apellidos</label>
-            <input type="text" class="form-control" name="apellidos" placeholder="Perez Garcia">
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.apellido1"name="medico.usuario.apellido1" placeholder="Perez Garcia">
           </div>
           <div class="form-group">
-            <label for="nombre">Pais</label>
-            <input type="text" class="form-control" name="pais" placeholder="El Salvador">
+            <label>Usuario</label>
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.username" name="medico.usuario.username" placeholder="Juan Antonio">
           </div>
           <div class="form-group">
-            <label for="nombre">Departamento</label>
-            <input type="text" class="form-control" name="division" placeholder="San Salvador">
+            <label>Contraseña</label>
+            <input type="password" class="form-control" [(ngModel)]="medico.usuario.password" name="medico.usuario.password" >
+          </div>
+          <div class="form-group">
+            <label>Pais</label>
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.pais" name="medico.usuario.pais" placeholder="El Salvador">
+          </div>
+          <div class="form-group">
+            <label>Departamento</label>
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.division" name="medico.usuario.division" placeholder="San Salvador">
           </div>
             <div class="form-group">
-            <label for="nombre">Municipio</label>
-            <input type="text" class="form-control" name="subdivision" placeholder="San Martin">
+            <label>Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.subdivision" name="medico.usuario.subdivision" placeholder="San Martin">
           </div>
             <div class="form-group">
-            <label for="nombre">Movil</label>
-            <input type="text" class="form-control" name="movil" placeholder="7215-7687">
+            <label>Movil</label>
+            <input type="text" class= "form-control" [(ngModel)]="medico.usuario.tel_movil" name="medico.usuario.tel_movil" placeholder="7215-7687">
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="nombre">Fijo</label>
-            <input type="text" class="form-control" name="fijo" placeholder="2234-7654">
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.tel_fijo" name="medico.usuario.tel_fijo" placeholder="2234-7654">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" [(ngModel)]="medico.usuario.email" name="medico.usuario.email" placeholder="ejemplo@ejemplo.com">
           </div>
             <div class="form-group">
-            <label for="nombre">Especialidad</label>
-            <input type="text" class="form-control" name="especialidad" placeholder="Cardiologia">
-          </div>
+            <label>Especialidad</label>
+            <select type="text" class="form-control" [(ngModel)]="medico.especialidad" name="especialidad" placeholder="Cardiologia">
+               <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad" >{{ especialidad.nombre }}</option>
+            </select>
+          </div>  
       </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-            <button type="button" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit();"  >Guardar</button>
         </div>
 
     </form>

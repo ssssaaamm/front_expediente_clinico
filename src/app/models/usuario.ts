@@ -1,4 +1,4 @@
-
+import {Rol} from "app/models/rol";
 export class Usuario{
     constructor(
         public id:number    , 
@@ -15,16 +15,17 @@ export class Usuario{
         public email: string,
         public username: string,
         public password: string,
+        public rol: Rol
 
         
     ){}
 
 // Esnecesario. algo de refencias!!!
     public clone():Usuario{
-        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password);
+        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password,this.rol);
     }
 
     public full_clone():Usuario{
-        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password);
+        return new Usuario(this.id,this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.username,this.password,this.rol);
     }
 }

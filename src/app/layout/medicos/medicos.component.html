@@ -4,19 +4,19 @@
     <div class="row">
         <div class="col-xl-12">
             <h2 class="page-header">
-                Administracion de medicamentoes
+                Administracion de medicos
             </h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Administracion</a>
                 </li>
-                <li class="breadcrumb-item active"><i class="fa fa-table"></i> medicamentos</li>
+                <li class="breadcrumb-item active"><i class="fa fa-table"></i> medicos</li>
             </ol>
         </div>
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add></app-mod-add>
+    <app-mod-add [medicos]="medicos" [especialidades]="especialidades" [paises]="paises"></app-mod-add>
 
     <!--Tabla medicamentos-->
     
@@ -28,63 +28,28 @@
                     <th>Nombres</th>
                     <th>apellidos</th>
                     <th>Especialidad</th>
+                    <th>Pais</th>
                     <th>Fijo</th>
                     <th>Móvil</th>                        
+                    <th>Email</th>                        
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Antonio</td>
-                    <td>Perez Garcia</td>
-                    <td>Cardiologo</td>
-                    <td>2345-5421</td>
-                    <td>7894-0833</td>                       
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el Medico?</p></app-mod-del></td>
+                <tr *ngFor="let medico of medicos"> 
+                    <td>{{medico.id}}</td>
+                    <td>{{medico.usuario.nombre1}}</td>
+                    <td>{{medico.usuario.apellido1}}</td>
+                    <td>{{medico.especialidad.nombre}}</td>                   
+                    <td>{{medico.usuario.pais}}</td>
+                    <td>{{medico.usuario.tel_fijo}}</td>
+                    <td>{{medico.usuario.tel_movil}}</td>
+                    <td>{{medico.usuario.email}}</td>
+                    <td><app-mod-edit [medico_original]="medico" [medicos]="medicos" [especialidades]="especialidades" ></app-mod-edit></td>
+                    <td><app-mod-del [medico]="medico" [medicos]="medicos"><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
+                                  
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Juan Antonio</td>
-                    <td>Perez Garcia</td>
-                    <td>Ginecologo</td>
-                    <td>2345-5421</td>
-                    <td>7894-0833</td>                       
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el Medico?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Antonio</td>
-                    <td>Perez Garcia</td>
-                    <td>Cirujano</td>
-                    <td>2345-5421</td>
-                    <td>7894-0833</td>                       
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el Medico?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Antonio</td>
-                    <td>Perez Garcia</td>
-                    <td>Fisioterapeuta</td>
-                    <td>2345-5421</td>
-                    <td>7894-0833</td>                       
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el Medico?</p></app-mod-del></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Juan Antonio</td>
-                    <td>Perez Garcia</td>
-                    <td>Terapeuta</td>
-                    <td>2345-5421</td>
-                    <td>7894-0833</td>                       
-                    <td><app-mod-edit></app-mod-edit></td>
-                    <td><app-mod-del><p>¿Realmente Desea elimniar el Medico?</p></app-mod-del></td>
-                
             </tbody>
         </table>
     </div>

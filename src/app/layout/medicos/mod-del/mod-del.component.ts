@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Medico } from "app/models/medico";
+import { MedicosService } from "app/services/medicos.service";
+
 
 @Component({
   selector: 'app-mod-del',
@@ -7,9 +10,13 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./mod-del.component.scss']
 })
 export class ModDelComponent implements OnInit {
+    @Input() public medico: Medico;
+    @Input() public medicos: Array<Medico>;
+    public exito:boolean;
+    public mensaje:string;
 
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,private medicosService: MedicosService) { }
 
   open(content) {
       this.modalService.open(content).result.then((result) => {
@@ -29,5 +36,32 @@ export class ModDelComponent implements OnInit {
   }
   ngOnInit() {
   }
+  onSubmit(){
+    /*this.medicosService.del(this.medico.clone()).subscribe(
+        response=>{
+            console.log(response);
+            if(response.status == "exito"){
+                let pos = this.medicos.indexOf(this.medico);
+                this.medicos.splice(pos,1);
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            }else{
+                this.exito=false;
+                this.mensaje=response.mensaje;                
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );*/
+
+    /*borrar las siguientes lineas cuando este lista la api*/
+     let pos = this.medicos.indexOf(this.medico);
+     this.medicos.splice(pos,1);
+     this.exito=true;
+  }
+
 
 }
