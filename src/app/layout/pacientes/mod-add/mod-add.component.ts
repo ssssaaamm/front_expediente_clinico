@@ -40,9 +40,16 @@ export class ModAddComponent implements OnInit {
   public regiones:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
   //todas las ciudades de las regiones
   public ciudades:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
-  public selectedCountry:any;
-  public selectedRegion:any;
-  public selectedCity:any;
+  public selectedCountryPadre:any;
+  public selectedRegionPadre:any;
+  public selectedCityPadre:any;
+  public selectedCountryMadre:any;
+  public selectedRegionMadre:any;
+  public selectedCityMadre:any;
+  public selectedCountryPaciente:any;
+  public selectedRegionPaciente:any;
+  public selectedCityPaciente:any;
+  public estaCasada:boolean=false;
   
   public paciente: Paciente ;//<--el nuevo paciente a registrar
   
@@ -61,9 +68,7 @@ export class ModAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.paciente=new Paciente('','','','','','',0,0,0,'M','','','','','','',null,new Responsable('','','','','','','','','',0)/*,new Padre('','','','','M','','','',new Array<Enfermedad>()),new Padre('','','','','F','','','',new Array<Enfermedad>())*/,new Array<Enfermedad>(),null,0);
-    this.paciente.madre=new Padre('','','','','','M','','','',new Array<Enfermedad>());
-    this.paciente.padre=new Padre('','','','','','F','','','',new Array<Enfermedad>());
+    this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','','','',null,new Responsable('','','','','','','','','','',null),new Padre('','','','','','M','','','',new Array<Enfermedad>()),new Padre('','','','','','F','','','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
   }
 
   open(content) {
@@ -86,9 +91,9 @@ export class ModAddComponent implements OnInit {
         }
     }
 
-    onChangePais(){
+    onChangePaisPadre(){
       //obtenemos todos las regiones
-      this.paisesService.listRegions(this.selectedCountry.code)
+      this.paisesService.listRegions(this.selectedCountryPadre.code)
       .map((regions: Array<any>)=>{
         return regions;
       })
@@ -96,29 +101,100 @@ export class ModAddComponent implements OnInit {
 
       this.ciudades= new Array<any>();
 
-      console.log(this.selectedCountry.name);
-      this.paciente.pais=this.selectedCountry.name;
+      console.log(this.selectedCountryPadre.name);
+      this.paciente.pais=this.selectedCountryPadre.name;
     }
 
-    onChangeRegion(){
+    onChangeRegionPadre(){
       //obtenemos todos las ciudades
-      this.paisesService.listCities(this.selectedCountry.code,this.selectedRegion.region)
+      this.paisesService.listCities(this.selectedCountryPadre.code,this.selectedRegionPadre.region)
       .map((cities: Array<any>)=>{
         return cities;
       })
       .subscribe( res => this.ciudades=res);
 
-      console.log(this.selectedRegion.region);
-      this.paciente.division=this.selectedRegion.region;
+      console.log(this.selectedRegionPadre.region);
+      this.paciente.division=this.selectedRegionPadre.region;
     }
 
-    onChangeCiudad(){
-      console.log(this.selectedCity.city);
-      this.paciente.subdivision=this.selectedCity.city;
+    onChangeCiudadPadre(){
+      console.log(this.selectedCityPadre.city);
+      this.paciente.subdivision=this.selectedCityPadre.city;
     }
 
-    onSubmit(){
+    onChangePaisMadre(){
+      //obtenemos todos las regiones
+      this.paisesService.listRegions(this.selectedCountryMadre.code)
+      .map((regions: Array<any>)=>{
+        return regions;
+      })
+      .subscribe( res => this.regiones=res);
 
+      this.ciudades= new Array<any>();
+
+      console.log(this.selectedCountryMadre.name);
+      this.paciente.pais=this.selectedCountryMadre.name;
+    }
+
+    onChangeRegionMadre(){
+      //obtenemos todos las ciudades
+      this.paisesService.listCities(this.selectedCountryMadre.code,this.selectedRegionMadre.region)
+      .map((cities: Array<any>)=>{
+        return cities;
+      })
+      .subscribe( res => this.ciudades=res);
+
+      console.log(this.selectedRegionMadre.region);
+      this.paciente.division=this.selectedRegionMadre.region;
+    }
+
+    onChangeCiudadMadre(){
+      console.log(this.selectedCityMadre.city);
+      this.paciente.subdivision=this.selectedCityMadre.city;
+    }
+
+    onChangePaisPaciente(){
+      //obtenemos todos las regiones
+      this.paisesService.listRegions(this.selectedCountryPaciente.code)
+      .map((regions: Array<any>)=>{
+        return regions;
+      })
+      .subscribe( res => this.regiones=res);
+
+      this.ciudades= new Array<any>();
+
+      console.log(this.selectedCountryPaciente.name);
+      this.paciente.pais=this.selectedCountryPaciente.name;
+    }
+
+    onChangeRegionPaciente(){
+      //obtenemos todos las ciudades
+      this.paisesService.listCities(this.selectedCountryPaciente.code,this.selectedRegionPaciente.region)
+      .map((cities: Array<any>)=>{
+        return cities;
+      })
+      .subscribe( res => this.ciudades=res);
+
+      console.log(this.selectedRegionPaciente.region);
+      this.paciente.division=this.selectedRegionPaciente.region;
+    }
+
+    onChangeCiudadPaciente(){
+      console.log(this.selectedCityPaciente.city);
+      this.paciente.subdivision=this.selectedCityPaciente.city;
+    }
+
+    onChangeCasada(){
+      if(!this.estaCasada){
+        this.paciente.apellido_casada="";
+      }
+    }
+
+    onChangeGenero(){
+      if(this.paciente.genero=="M"){
+        this.estaCasada=false;
+        this.paciente.apellido_casada="";
+      }
     }
 
     switchPaso(paso:number){
@@ -139,5 +215,9 @@ export class ModAddComponent implements OnInit {
           this.paso3=true;
         break;
       }
+    }
+
+    onSubmit(){
+
     }
 }

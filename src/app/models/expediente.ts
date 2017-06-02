@@ -1,12 +1,8 @@
 import { Paciente } from './paciente';
+import { SignosVitales } from './signos_vitales';
 export class Expediente{
     
     constructor(
-        public ultimo_peso:number, 
-        public ultima_temperatura:number,
-        public ultima_estatura:number,
-        public ultima_presion_arterial:number,
-        public ultimo_ritmo_cardiaco:number,
         public dia_apertura_expediente:number,
         public mes_apertura_expediente:number,
         public anio_apertura_expediente:number,
@@ -15,6 +11,7 @@ export class Expediente{
         public anio_expiracion_expediente:number,
         public numero_expediente:number,
         public paciente:Paciente,
+        public signos_vitales:Array<SignosVitales>,
         //?=opcional
         public id?:number 
     ){}
@@ -22,11 +19,6 @@ export class Expediente{
 // Esnecesario. algo de refeencias!!!
     public clone():Expediente{
         return new Expediente(
-            this.ultimo_peso,
-            this.ultima_temperatura, 
-            this.ultima_estatura, 
-            this.ultima_presion_arterial,
-            this.ultimo_ritmo_cardiaco,
             this.dia_apertura_expediente,
             this.mes_apertura_expediente,
             this.anio_apertura_expediente,
@@ -35,6 +27,7 @@ export class Expediente{
             this.anio_expiracion_expediente,
             this.numero_expediente,
             this.paciente,
+            this.signos_vitales,
             this.id,
         );
     }

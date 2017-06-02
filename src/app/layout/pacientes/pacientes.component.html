@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [paises]="paises"></app-mod-add>
+    <app-mod-add [paises]="paises" [enfermedades]="enfermedades"></app-mod-add>
 
     <!--Tabla medicamentos-->
    
@@ -41,7 +41,7 @@
                     <td>{{paciente.nombre1}} {{paciente.nombre2}}</td>
                     <td>{{paciente.apellido1}} {{paciente.apellido2}}</td>                      
                     <td>{{paciente.dia_nacimiento}}/{{paciente.mes_nacimiento}}/{{paciente.anio_nacimiento}}</td>                      
-                    <td>{{paciente.getGeneroString()}}</td>                      
+                    <td>{{paciente.genero}}</td>                      
                     <td>{{paciente.pais}}</td>                      
                     <td>{{paciente.division}}</td>                      
                     <td>{{paciente.subdivision}}</td>                      
