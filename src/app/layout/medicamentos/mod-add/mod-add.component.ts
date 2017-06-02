@@ -49,7 +49,7 @@ export class ModAddComponent implements OnInit {
   }
   ngOnInit() {
       /**muestra los campos vacios solo con el placeholder :)  */
-      this.medicamento=new Medicamento("","",new TipoMedicamento(0,0),0.0);
+      this.medicamento=new Medicamento("","",new TipoMedicamento('',0),0.0);
   }
 
       onSubmit(){

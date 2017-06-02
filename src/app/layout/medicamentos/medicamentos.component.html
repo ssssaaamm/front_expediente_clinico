@@ -36,9 +36,7 @@
                 <tr *ngFor="let medicamento of mf.data">
                     <td>{{medicamento.codigo}}</td>
                     <td>{{medicamento.nombre}}</td>
-                    <td *ngIf="medicamento.tipo.presentacion == 1">Oral</td>
-                    <td *ngIf="medicamento.tipo.presentacion == 2">Inyectable</td>
-                    <td *ngIf="medicamento.tipo.presentacion == 3">Topico</td>
+                    <td>{{medicamento.tipo.presentacion}}</td>
                     <td>{{medicamento.costo}}</td>                        
                     <td><app-mod-edit [medicamento_original]="medicamento" [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-edit></td>
                     <td><app-mod-del [medicamento]="medicamento" [medicamentos]="medicamentos"><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>

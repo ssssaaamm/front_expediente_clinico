@@ -36,7 +36,7 @@
             <div class="form-group">
             <label for="tipo">Tipo</label>
             <select class="form-control" [(ngModel)]="medicamento.tipo" name="tipo_medicamento">
-                <option *ngFor="let tipo of tipos_medicamento" [ngValue]="tipo">{{ tipo.getStringValue() }}</option>
+                <option *ngFor="let tipo of tipos_medicamento" [ngValue]="tipo">{{ tipo.presentacion }}</option>
             </select>
             </div>
             

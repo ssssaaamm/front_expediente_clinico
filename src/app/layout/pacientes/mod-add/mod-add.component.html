@@ -1,0 +1,420 @@
+<!-- Large modal -->
+
+<button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Registrar paciente</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Registro de paciente </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <!--Formulario agregar nuevo paciente-->
+
+        <div class="modal-body">
+            
+            <!--<div *ngIf="exito == false" class="alert alert-danger">
+               <strong>Ooops!</strong> {{mensaje}}.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>-->
+
+
+            <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
+                
+                <div class="panel-body">
+                    <!--DATOS DEL PADRE-->
+                    <strong><p class="text-center">Datos personales</p></strong>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" [(ngModel)]="paciente.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido1">Primer Apellido</label>
+                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                            </div>
+
+                            <p>Genero</p>
+                            <label class="checkbox-inline">
+                                <input type="radio" name="genero" id="M" value="M" checked> &nbsp; Masculino
+                            </label>    
+                            <label class="checkbox-inline">
+                                <input type="radio" name="genero" #isFemenine id="F" value="F" checked> &nbsp; Femenenino &nbsp;
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" name="isCasada"> &nbsp; Casada
+                            </label>
+                            
+                            <p></p>
+                            <div class="form-group">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label >Pais</label>
+                                <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Region</label>
+                                <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                    <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ciudad</label>
+                                <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                    <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo apellido</label>
+                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Apellido casada</label>
+                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" placeholder="Ingrese apellido casada">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Fecha nacimiento</label>
+                                <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="dia_nacimiento" placeholder="Dia">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="mes_nacimiento" placeholder="Mes">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="anio_nacimiento" placeholder="Año">
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Telefono fijo</label>
+                                <input type="text" class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Telefono movil</label>
+                                <input type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Email</label>
+                                <input type="text" class="form-control" name="email" placeholder="Ingrese email">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="name">Padecimientos</label>
+                                <select multiple class="form-control">
+                                <option>Cancer</option>
+                                <option>Sida</option>
+                                <option>Pulmonia</option>
+                                <option>Anemia</option>
+                                <option>Evola</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
+            
+                <div class="panel-body">
+                    
+                    <!--DATOS DEL PADRE-->
+                    <strong><p class="text-center">Datos de Padre</p></strong>
+                    <hr>
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido1">Primer Apellido</label>
+                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo apellido</label>
+                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+
+                        </div>
+
+                    </div><!--fin row 1-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                            </div>
+                        </div>
+                    </div><!--fin row 2-->
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label >Pais</label>
+                            <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Region</label>
+                            <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Ciudad</label>
+                            <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                            </select>
+                        </div>
+                    </div><!--fin row 3-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Padecimientos</label>
+                                <select multiple class="form-control">
+                                <option>Cancer</option>
+                                <option>Sida</option>
+                                <option>Pulmonia</option>
+                                <option>Anemia</option>
+                                <option>Evola</option>
+                            </select>
+                        </div>
+                    </div><!--fin row 4-->
+
+                    
+
+                    <!--DATOS DE LA MADRE-->
+                    <br>
+                    <strong><p class="text-center">Datos de Madre</p></strong>
+                    <hr>
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido1">Primer Apellido</label>
+                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                            </div>
+                            
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo apellido</label>
+                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+
+                        </div>
+
+                    </div><!--fin row 1-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                            </div>
+                        </div>
+                    </div><!--fin row 2-->
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label >Pais</label>
+                            <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Region</label>
+                            <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Ciudad</label>
+                            <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                            </select>
+                        </div>
+                    </div><!--fin row 3-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Padecimientos</label>
+                                <select multiple class="form-control">
+                                <option>Cancer</option>
+                                <option>Sida</option>
+                                <option>Pulmonia</option>
+                                <option>Anemia</option>
+                                <option>Evola</option>
+                            </select>
+                        </div>
+                    </div><!--fin row 4-->
+
+                </div>
+            </div>
+
+
+            <div *ngIf="paso3" [@enterAnimation]="paso3" class="panel panel-info">
+            
+                <div class="panel-body">
+                    
+                    <!--DATOS DEL RESPONSABLE-->
+                    <strong><p class="text-center">Datos de Responsable</p></strong>
+                    <hr>
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido1">Primer Apellido</label>
+                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nombre">Telefono fijo</label>
+                                <input type="text" class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Segundo apellido</label>
+                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">Telefono movil</label>
+                                <input type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
+                            </div>
+
+                        </div>
+
+                    </div><!--fin row 1-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                            </div>
+                        </div>
+                    </div><!--fin row 2-->
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label >Pais</label>
+                            <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Region</label>
+                            <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label>Ciudad</label>
+                            <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                            </select>
+                        </div>
+                    </div><!--fin row 3-->
+
+                </div>
+            </div>
+            
+            
+            
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
+            <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }" >Paso 1</button>
+            <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Paso 2</button>
+            <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Paso 3</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-success" [hidden]="!paso3">Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
+        </div>
+
+</ng-template>
+
