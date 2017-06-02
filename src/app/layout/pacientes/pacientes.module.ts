@@ -11,6 +11,8 @@ import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
 
+
+
 @NgModule({
   imports: [
     CommonModule,

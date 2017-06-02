@@ -7,7 +7,6 @@ export class Usuario{
         public estado: boolean,
         public rol: Rol,
         public id?:number, 
-
         
     ){}
 
@@ -19,4 +18,5 @@ export class Usuario{
     // public full_clone():Usuario{
     //     return new Usuario(this.username,this.password,this.estado,this.last_login,this.rol).clone();
     // }
+
 }
