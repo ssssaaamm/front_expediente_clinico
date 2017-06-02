@@ -1,3 +1,125 @@
-<p>
-  mod-add works!
-</p>
+<button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Registrar</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title tex-center"  >Registro de empleado </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+<div class="modal-body">
+            
+            <!--<div *ngIf="exito == false" class="alert alert-danger">
+               <strong>Ooops!</strong> {{mensaje}}.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>-->
+
+
+            <div  class="panel panel-info">
+                
+                <div class="panel-body">
+                    <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Primer Apellido</label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Segundo Apellido </label>
+                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+                            <div class="col-md-6">
+                              <p>Genero</p>
+                                  <label class="checkbox-inline">
+                                      <input type="radio" name="genero" id="M" value="M" checked> &nbsp; Masculino
+                                  </label>
+                                  <label class="checkbox-inline">
+                                      <input type="radio" name="genero" #isFemenine id="F" value="F" checked> &nbsp; Femenenino &nbsp;
+                                  </label>
+                                  <label class="checkbox-inline">
+                                      <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" name="isCasada"> &nbsp; Casada
+                                  </label>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Apellido casada</label>
+                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" placeholder="Ingrese apellido casada">
+                            </div>                          
+                                                     
+                            <div class="form-group col-md-6">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Email</label>
+                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+                        
+                            <div class="form-group col-md-4">
+                                <label >Pais</label>
+                                <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Region</label>
+                                <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                    <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Ciudad</label>
+                                <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                    <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Telefono fijo</label>
+                                <input type="text" class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Telefono movil</label>
+                                <input type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
+                            </div>  
+                            <div class="form-group col-md-6">
+                                <label>Rol</label>
+                                <select class="form-control" name="roles">
+                                    <option>Medico </option>
+                                    <option>Administrador </option>
+                                    <option>Enfermer@ </option>
+                                </select>
+                            </div> 
+    
+                        <div class="form-group col-md-6">
+                            <label for="name">Especialidad</label>
+                                <select multiple class="form-control">
+                                <option>Cardiologo</option>
+                                <option>Pediatra</option>
+                                <option>General</option>
+                                <option>Neumologo</option>
+                                <option>Ginecologo</option>
+                            </select>
+                        </div>                    
+                    </div>
+                </div>
+            </div>    
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-success" [hidden]="!paso3">Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
+        </div>                    
+</div>

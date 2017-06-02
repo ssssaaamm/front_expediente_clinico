@@ -24,9 +24,11 @@ export class Empleado {
 
 // Esnecesario. algo de refencias!!!
     public clone():Empleado{
-        return new Empleado(this.dui,this.nombre1,this.nombre2,this.apellido1,
-        this.apellido2,this.apellido_casada,this.pais,this.division,this.subdivision,
-        this.tel_fijo,this.tel_movil,this.email,this.usuario,this.medico,this.id);
+        return new Empleado(this.dui,this.nombre1,this.nombre2,
+        this.apellido1,this.apellido2,this.apellido_casada,
+        this.pais,this.division,this.subdivision,
+        this.tel_fijo,this.tel_movil,this.email,this.usuario,
+        this.medico,this.id);
     }
 
 /*    public full_clone(): Empleado {
