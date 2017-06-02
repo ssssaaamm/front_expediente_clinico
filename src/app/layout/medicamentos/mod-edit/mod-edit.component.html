@@ -42,7 +42,7 @@
             <label for="tipo">Tipo</label>
             <select class="form-control" [(ngModel)]="medicamento_modificado.tipo" name="tipo_medicamento">
                 <!--[attr.selected]="tipo.id == medicamento_modificado.tipo.id  ? true : null"-->
-                <option *ngFor="let tipo of tipos_medicamento" [ngValue]="tipo" >{{ tipo.getStringValue() }}</option>
+                <option *ngFor="let tipo of tipos_medicamento" [ngValue]="tipo" >{{ tipo.presentacion }}</option>
             </select>
             </div>
 
