@@ -27,6 +27,8 @@ const routes: Routes = [
             {path: 'administracion/enfermedades', loadChildren:'./enfermedades/enfermedades.module#EnfermedadesModule' },
             {path: 'administracion/ubicaciones', loadChildren:'./ubicaciones/ubicaciones.module#UbicacionesModule' },
             //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
+            {path: 'administracion/empleados', loadChildren:'./empleados/empleados.module#EmpleadosModule' },
+            
         ]
     }
 ];
