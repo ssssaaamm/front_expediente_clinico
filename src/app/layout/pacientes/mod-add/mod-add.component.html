@@ -39,43 +39,43 @@
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" class="form-control" [(ngModel)]="paciente.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
                             </div>
 
                             <p>Genero</p>
                             <label class="checkbox-inline">
-                                <input type="radio" name="genero" id="M" value="M" checked> &nbsp; Masculino
+                                <input type="radio" name="genero" id="M" [(ngModel)]="paciente.genero" value="M" (change)="onChangeGenero()"> &nbsp; Masculino
                             </label>    
                             <label class="checkbox-inline">
-                                <input type="radio" name="genero" #isFemenine id="F" value="F" checked> &nbsp; Femenenino &nbsp;
+                                <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente.genero" value="F"> &nbsp; Femenenino &nbsp;
                             </label>
                             <label class="checkbox-inline">
-                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" name="isCasada"> &nbsp; Casada
+                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
                             </label>
                             
                             <p></p>
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" name="dui" [(ngModel)]="paciente.dui" placeholder="Ingrese doc. identidad">
                             </div>
                         
                             <div class="form-group">
                                 <label >Pais</label>
-                                <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                <select class="form-control" [(ngModel)]="selectedCountryPaciente" name="pais" (change)="onChangePaisPaciente()">
                                     <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Region</label>
-                                <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                <select class="form-control"  [(ngModel)]="selectedRegionPaciente" name="region" (change)="onChangeRegionPaciente()">
                                     <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Ciudad</label>
-                                <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                <select class="form-control" [(ngModel)]="selectedCityPaciente" name="ciudad" (change)="onChangeCiudadPaciente()">
                                     <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
                                 </select>
                             </div>
@@ -85,62 +85,59 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>
 
                             <div class="form-group">
                                 <label>Fecha nacimiento</label>
                                 <div class="row">
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" name="dia_nacimiento" placeholder="Dia">
+                                    <input type="text" class="form-control" name="dia_nacimiento" [(ngModel)]="paciente.dia_nacimiento" placeholder="Dia">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" name="mes_nacimiento" placeholder="Mes">
+                                    <input type="text" class="form-control" name="mes_nacimiento" [(ngModel)]="paciente.mes_nacimiento" placeholder="Mes">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="anio_nacimiento" placeholder="Año">
+                                    <input type="text" class="form-control" name="anio_nacimiento" [(ngModel)]="paciente.anio_nacimiento" placeholder="Año">
                                 </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Telefono fijo</label>
-                                <input type="text" class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
+                                <input type="text" class="form-control" name="tel_fijo" [(ngModel)]="paciente.tel_fijo" placeholder="Ingrese tel fijo">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Telefono movil</label>
-                                <input type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
+                                <input type="text" class="form-control" name="tel_movil" [(ngModel)]="paciente.tel_movil" placeholder="Ingrese tel movil">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Email</label>
-                                <input type="text" class="form-control" name="email" placeholder="Ingrese email">
+                                <input type="text" class="form-control" name="email" [(ngModel)]="paciente.email" placeholder="Ingrese email">
                             </div>
 
                         </div>
 
                     </div>
 
+
                     <div class="row">
                         <div class="col-md-12">
                             <label for="name">Padecimientos</label>
-                                <select multiple class="form-control">
-                                <option>Cancer</option>
-                                <option>Sida</option>
-                                <option>Pulmonia</option>
-                                <option>Anemia</option>
-                                <option>Evola</option>
+                            <select multiple="true" [(ngModel)]="paciente.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
                         </div>
                     </div>
@@ -162,12 +159,12 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="paciente.padre.nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="paciente.padre.apellido1" placeholder="Ingrese primer apellido">
                             </div>
                             
 
@@ -176,12 +173,12 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.padre.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.padre.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
 
                         </div>
@@ -192,7 +189,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" name="dui" [(ngModel)]="paciente.padre.dui" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                     </div><!--fin row 2-->
@@ -200,21 +197,21 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label >Pais</label>
-                            <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                            <select class="form-control" [(ngModel)]="selectedCountryPadre" name="pais" (change)="onChangePaisPadre()">
                                 <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Region</label>
-                            <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                            <select class="form-control"  [(ngModel)]="selectedRegionPadre" name="region" (change)="onChangeRegionPadre()">
                                 <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Ciudad</label>
-                            <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                            <select class="form-control" [(ngModel)]="selectedCityPadre" name="ciudad" (change)="onChangeCiudadPadre()">
                                 <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
                             </select>
                         </div>
@@ -222,13 +219,9 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Padecimientos</label>
-                                <select multiple class="form-control">
-                                <option>Cancer</option>
-                                <option>Sida</option>
-                                <option>Pulmonia</option>
-                                <option>Anemia</option>
-                                <option>Evola</option>
+                            <label for="name">Padecimientos</label>
+                            <select multiple="true" [(ngModel)]="paciente.padre.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
                         </div>
                     </div><!--fin row 4-->
@@ -245,12 +238,12 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="paciente.madre.nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="paciente.madre.apellido1" placeholder="Ingrese primer apellido">
                             </div>
                             
 
@@ -259,12 +252,12 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.madre.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.madre.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
 
                         </div>
@@ -275,7 +268,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" name="dui" [(ngModel)]="paciente.madre.dui" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                     </div><!--fin row 2-->
@@ -283,21 +276,21 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label >Pais</label>
-                            <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                            <select class="form-control" [(ngModel)]="selectedCountryMadre" name="pais" (change)="onChangePaisMadre()">
                                 <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Region</label>
-                            <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                            <select class="form-control"  [(ngModel)]="selectedRegionMadre" name="region" (change)="onChangeRegionMadre()">
                                 <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Ciudad</label>
-                            <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                            <select class="form-control" [(ngModel)]="selectedCityMadre" name="ciudad" (change)="onChangeCiudadMadre()">
                                 <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
                             </select>
                         </div>
@@ -305,13 +298,9 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Padecimientos</label>
-                                <select multiple class="form-control">
-                                <option>Cancer</option>
-                                <option>Sida</option>
-                                <option>Pulmonia</option>
-                                <option>Anemia</option>
-                                <option>Evola</option>
+                            <label for="name">Padecimientos</label>
+                            <select multiple="true" [(ngModel)]="paciente.madre.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
                         </div>
                     </div><!--fin row 4-->

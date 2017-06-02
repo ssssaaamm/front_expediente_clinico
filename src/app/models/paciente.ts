@@ -4,9 +4,6 @@ import { Responsable } from './responsable';
 import { Usuario } from './usuario';
 import {Enfermedad} from './enfermedad';
 export class Paciente{
-
-    public padre:Padre;
-    public madre:Padre;
     
     constructor(
         public nombre1:string, 
@@ -28,6 +25,8 @@ export class Paciente{
         //atributos compuestos
         public expediente:Expediente,
         public responsable:Responsable, 
+        public padre:Padre, 
+        public madre:Padre, 
         public enfermedades:Array<Enfermedad>,
         public usuario:Usuario,
         //?=opcional
@@ -36,10 +35,7 @@ export class Paciente{
 
 // Esnecesario. algo de refeencias!!!
     public clone():Paciente{
-        let paci:Paciente = new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.dui,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente,this.responsable,this.enfermedades,this.usuario,this.id);
-        paci.padre=this.padre;
-        paci.madre=this.madre;
-        return paci;
+        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.dui,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente,this.responsable,this.padre,this.madre,this.enfermedades,this.usuario,this.id);
     }
 
     // public full_clone():Paciente{
