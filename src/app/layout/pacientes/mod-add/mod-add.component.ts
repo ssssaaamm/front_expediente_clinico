@@ -37,9 +37,16 @@ export class ModAddComponent implements OnInit {
   //todos los paises
   @Input() public paises: Array<any>;
   //todas las regiones de los paises
-  public regiones:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public regionesPadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public regionesMadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public regionesResponsable:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public regionesPaciente:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
   //todas las ciudades de las regiones
-  public ciudades:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public ciudadesPadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public ciudadesMadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public ciudadesResponsable:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public ciudadesPaciente:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+
   public selectedCountryPadre:any;
   public selectedRegionPadre:any;
   public selectedCityPadre:any;
@@ -49,6 +56,9 @@ export class ModAddComponent implements OnInit {
   public selectedCountryPaciente:any;
   public selectedRegionPaciente:any;
   public selectedCityPaciente:any;
+  public selectedCountryResponsable:any;
+  public selectedRegionResponsable:any;
+  public selectedCityResponsable:any;
   public estaCasada:boolean=false;
   
   public paciente: Paciente ;//<--el nuevo paciente a registrar
@@ -68,16 +78,16 @@ export class ModAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','','','',null,new Responsable('','','','','','','','','','',null),new Padre('','','','','','M','','','',new Array<Enfermedad>()),new Padre('','','','','','F','','','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+    this.clearFields();
   }
 
   open(content) {
         this.modalService.open(content,{size:'lg'}).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
-      
+            this.clearFields();
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      
+            this.clearFields();
         });
     }
 
@@ -97,12 +107,12 @@ export class ModAddComponent implements OnInit {
       .map((regions: Array<any>)=>{
         return regions;
       })
-      .subscribe( res => this.regiones=res);
+      .subscribe( res => this.regionesPadre=res);
 
-      this.ciudades= new Array<any>();
+      this.ciudadesPadre= new Array<any>();
 
       console.log(this.selectedCountryPadre.name);
-      this.paciente.pais=this.selectedCountryPadre.name;
+      this.paciente.padre.pais=this.selectedCountryPadre.name;
     }
 
     onChangeRegionPadre(){
@@ -111,15 +121,15 @@ export class ModAddComponent implements OnInit {
       .map((cities: Array<any>)=>{
         return cities;
       })
-      .subscribe( res => this.ciudades=res);
+      .subscribe( res => this.ciudadesPadre=res);
 
       console.log(this.selectedRegionPadre.region);
-      this.paciente.division=this.selectedRegionPadre.region;
+      this.paciente.padre.division=this.selectedRegionPadre.region;
     }
 
     onChangeCiudadPadre(){
       console.log(this.selectedCityPadre.city);
-      this.paciente.subdivision=this.selectedCityPadre.city;
+      this.paciente.padre.subdivision=this.selectedCityPadre.city;
     }
 
     onChangePaisMadre(){
@@ -128,12 +138,12 @@ export class ModAddComponent implements OnInit {
       .map((regions: Array<any>)=>{
         return regions;
       })
-      .subscribe( res => this.regiones=res);
+      .subscribe( res => this.regionesMadre=res);
 
-      this.ciudades= new Array<any>();
+      this.ciudadesMadre= new Array<any>();
 
       console.log(this.selectedCountryMadre.name);
-      this.paciente.pais=this.selectedCountryMadre.name;
+      this.paciente.madre.pais=this.selectedCountryMadre.name;
     }
 
     onChangeRegionMadre(){
@@ -142,15 +152,15 @@ export class ModAddComponent implements OnInit {
       .map((cities: Array<any>)=>{
         return cities;
       })
-      .subscribe( res => this.ciudades=res);
+      .subscribe( res => this.ciudadesMadre=res);
 
       console.log(this.selectedRegionMadre.region);
-      this.paciente.division=this.selectedRegionMadre.region;
+      this.paciente.madre.division=this.selectedRegionMadre.region;
     }
 
     onChangeCiudadMadre(){
       console.log(this.selectedCityMadre.city);
-      this.paciente.subdivision=this.selectedCityMadre.city;
+      this.paciente.madre.subdivision=this.selectedCityMadre.city;
     }
 
     onChangePaisPaciente(){
@@ -159,9 +169,9 @@ export class ModAddComponent implements OnInit {
       .map((regions: Array<any>)=>{
         return regions;
       })
-      .subscribe( res => this.regiones=res);
+      .subscribe( res => this.regionesPaciente=res);
 
-      this.ciudades= new Array<any>();
+      this.ciudadesPaciente= new Array<any>();
 
       console.log(this.selectedCountryPaciente.name);
       this.paciente.pais=this.selectedCountryPaciente.name;
@@ -173,7 +183,7 @@ export class ModAddComponent implements OnInit {
       .map((cities: Array<any>)=>{
         return cities;
       })
-      .subscribe( res => this.ciudades=res);
+      .subscribe( res => this.ciudadesPaciente=res);
 
       console.log(this.selectedRegionPaciente.region);
       this.paciente.division=this.selectedRegionPaciente.region;
@@ -182,6 +192,37 @@ export class ModAddComponent implements OnInit {
     onChangeCiudadPaciente(){
       console.log(this.selectedCityPaciente.city);
       this.paciente.subdivision=this.selectedCityPaciente.city;
+    }
+
+    onChangePaisResponsable(){
+      //obtenemos todos las regiones
+      this.paisesService.listRegions(this.selectedCountryResponsable.code)
+      .map((regions: Array<any>)=>{
+        return regions;
+      })
+      .subscribe( res => this.regionesResponsable=res);
+
+      this.ciudadesResponsable= new Array<any>();
+
+      console.log(this.selectedCountryResponsable.name);
+      this.paciente.responsable.pais=this.selectedCountryResponsable.name;
+    }
+
+    onChangeRegionResponsable(){
+      //obtenemos todos las ciudades
+      this.paisesService.listCities(this.selectedCountryResponsable.code,this.selectedRegionResponsable.region)
+      .map((cities: Array<any>)=>{
+        return cities;
+      })
+      .subscribe( res => this.ciudadesResponsable=res);
+
+      console.log(this.selectedRegionResponsable.region);
+      this.paciente.responsable.division=this.selectedRegionResponsable.region;
+    }
+
+    onChangeCiudadResponsable(){
+      console.log(this.selectedCityResponsable.city);
+      this.paciente.responsable.subdivision=this.selectedCityResponsable.city;
     }
 
     onChangeCasada(){
@@ -215,6 +256,32 @@ export class ModAddComponent implements OnInit {
           this.paso3=true;
         break;
       }
+    }
+
+    private clearFields(){
+      this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','','','',null,new Responsable('','','','','','','','','','',null),new Padre('','','','','','M','','','',new Array<Enfermedad>()),new Padre('','','','','','F','','','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+      this.selectedCountryPadre=null;
+      this.selectedRegionPadre=null;
+      this.selectedCityPadre=null;
+      this.selectedCountryMadre=null;
+      this.selectedRegionMadre=null;
+      this.selectedCityMadre=null;
+      this.selectedCountryPaciente=null;
+      this.selectedRegionPaciente=null;
+      this.selectedCityPaciente=null;
+      this.selectedCountryResponsable=null;
+      this.selectedRegionResponsable=null;
+      this.selectedCityResponsable=null;
+      //todas las regiones de los paises
+      this.regionesPadre =new Array<any>();//<--sera pasado al componente add y edit
+      this.regionesMadre =new Array<any>();//<--sera pasado al componente add y edit
+      this.regionesResponsable =new Array<any>();//<--sera pasado al componente add y edit
+      this.regionesPaciente =new Array<any>();//<--sera pasado al componente add y edit
+      //todas las ciudades de las regiones
+      this.ciudadesPadre =new Array<any>();//<--sera pasado al componente add y edit
+      this.ciudadesMadre =new Array<any>();//<--sera pasado al componente add y edit
+      this.ciudadesResponsable =new Array<any>();//<--sera pasado al componente add y edit
+      this.ciudadesPaciente =new Array<any>();//<--sera pasado al componente add y edit
     }
 
     onSubmit(){
