@@ -96,24 +96,17 @@
                                 <input type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
                             </div>  
                             <div class="form-group col-md-6">
-                                <label>Rol</label>
-                                <select class="form-control" name="roles">
-                                    <option>Medico </option>
-                                    <option>Administrador </option>
-                                    <option>Enfermer@ </option>
-                                </select>
-                            </div> 
-    
-                        <div class="form-group col-md-6">
-                            <label for="name">Especialidad</label>
-                                <select multiple class="form-control">
-                                <option>Cardiologo</option>
-                                <option>Pediatra</option>
-                                <option>General</option>
-                                <option>Neumologo</option>
-                                <option>Ginecologo</option>
+                            <label>Rol</label>
+                            <select class="form-control" [(ngModel)]="empleado.rol" name="rol">
+                                <option *ngFor="let rol of roles" [ngValue]="rol">{{ rol.nombre }}</option>
                             </select>
-                        </div>                    
+                        </div>
+                         <div class="form-group col-md-6">
+                            <label for="name">Especialidades</label>
+                            <select multiple="true" [(ngModel)]="empleado.medico.especialidad" class="form-control">
+                                <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                            </select>
+                        </div>                   
                     </div>
                 </div>
             </div>    

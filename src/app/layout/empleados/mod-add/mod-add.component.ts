@@ -32,6 +32,8 @@ import { Especialidad } from "app/models/especialidad";
 export class ModAddComponent implements OnInit {
 
  @Input() public medicos: Array<Medico>;//<--- todas las enfermedades
+ @Input() public especialidades: Array<Especialidad>;
+ @Input() public roles: Array<Rol>;
 
   //todos los paises
   @Input() public paises: Array<any>;

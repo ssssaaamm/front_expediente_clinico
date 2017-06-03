@@ -9,28 +9,44 @@ import {Medico} from "app/models/medico";
 import {Especialidad} from "app/models/especialidad";
 import { PaisesService } from "app/services/paises.service";
 import { EspecialidadesService } from "app/services/especialidades.service";
-
+import { RolesService } from "app/services/roles.service";
 
 
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
   styleUrls: ['./empleados.component.scss'],
-  providers: [EmpleadosService, UsuariosService,PaisesService]
+  providers: [EspecialidadesService,EmpleadosService, UsuariosService,PaisesService,RolesService]
 })
 export class EmpleadosComponent implements OnInit {
 
   public empleados: Array<Empleado> = new Array<Empleado>();
   public usuarios: Array<Usuario> = new Array<Usuario>();
   public paises:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
-
-  constructor(private empleadosService: EmpleadosService, private usuariosService: UsuariosService, private paisesService: PaisesService, private especialidadesService: PaisesService) { }
+  public especialidades:Array<any>= Array<any>();
+  public roles:Array<any>= Array<any>();
+  constructor(private empleadosService: EmpleadosService, private usuariosService: UsuariosService, private paisesService: PaisesService, private especialidadesService: EspecialidadesService, private rolesService: RolesService) { }
 
   ngOnInit() {
     /**
      * Obtener los usuarios
      */
-
+//obteniendo las especialidades y roles momentaneamente
+ this.especialidades.push(
+      new Especialidad('01', 'Urologo', 1),
+      new Especialidad('02', 'Cardiologo', 2),
+      new Especialidad('03', 'Pediatra', 3),
+      new Especialidad('04', 'Ginecologo', 4),
+      new Especialidad('05', 'Obstetra', 5),
+    );
+     this.roles.push(
+      new Rol('Medico', 'Medico', 1),
+      new Rol('Administrador', 'Administrador', 2),
+      new Rol('Recepcionista', 'Recepcionista', 2),
+      new Rol('Enfermer@', 'Enfermer@', 3),
+      new Rol('Laboratorista', 'Laboratorista', 4),
+      new Rol('Fisioterapeuta', 'Fisioterapeuta', 5),
+    );
     this.empleadosService.list()
       .map((empleados: Array<any>) => {
         let result: Array<Empleado> = new Array<Empleado>();
