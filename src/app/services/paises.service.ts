@@ -13,7 +13,7 @@ export class PaisesService {
   }
 
   listCountries(){
-    let url="http://battuta.medunes.net/api/country/all/?key=6e787ac21ac5ee2ce744e7f395e4dcd2";
+    let url="http://battuta.medunes.net/api/country/all/?key=2b5f87034c0e6c0c76b8ab6be187ca8f";
     let call_back="&callback=JSONP_CALLBACK";
     return this.jsonp.request(url+call_back,this.headers)
     .map(
@@ -23,7 +23,7 @@ export class PaisesService {
   }
 
   listRegions(country:string){
-    let url="http://battuta.medunes.net/api/region/"+country+"/all/?key=6e787ac21ac5ee2ce744e7f395e4dcd2";
+    let url="http://battuta.medunes.net/api/region/"+country+"/all/?key=2b5f87034c0e6c0c76b8ab6be187ca8f";
     let call_back="&callback=JSONP_CALLBACK";
     return this.jsonp.request(url+call_back,this.headers)
     .map(
@@ -33,7 +33,7 @@ export class PaisesService {
   }
 
   listCities(country:string,region:string){
-    let url="http://battuta.medunes.net/api/city/"+country+"/search/?region="+region+"&key=6e787ac21ac5ee2ce744e7f395e4dcd2";
+    let url="http://battuta.medunes.net/api/city/"+country+"/search/?region="+region+"&key=2b5f87034c0e6c0c76b8ab6be187ca8f";
     let call_back="&callback=JSONP_CALLBACK";
     return this.jsonp.request(url+call_back,this.headers)
     .map(

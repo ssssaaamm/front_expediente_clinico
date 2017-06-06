@@ -16,7 +16,7 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [paises]="paises" [enfermedades]="enfermedades"></app-mod-add>
+    <app-mod-add [paises]="paises" [enfermedades]="enfermedades" [pacientes]="pacientes"></app-mod-add>
 
     <!--Tabla medicamentos-->
    
@@ -46,7 +46,7 @@
                     <td>{{paciente.division}}</td>                      
                     <td>{{paciente.subdivision}}</td>                      
                     <td>{{paciente.expediente.numero_expediente}}</td>                      
-                    <!--<td><app-mod-edit [paciente_original]="paciente" [paises]="paises"></app-mod-edit></td>-->
+                    <td><app-mod-edit [paciente_original]="paciente" [paises]="paises" [enfermedades]="enfermedades"></app-mod-edit></td>
                     <td>
                         <!--<app-mod-del [enfermedad]="enfermedad" [paises]="paises">
                             <p>

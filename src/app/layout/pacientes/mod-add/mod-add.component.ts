@@ -33,9 +33,9 @@ export class ModAddComponent implements OnInit {
 
   
   @Input() public enfermedades: Array<Enfermedad>;//<--- todas las enfermedades
+  @Input() public paises: Array<any>;//<--- todos los paises
+  @Input() public pacientes: Array<Paciente>;//<--- todos los paises
 
-  //todos los paises
-  @Input() public paises: Array<any>;
   //todas las regiones de los paises
   public regionesPadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
   public regionesMadre:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
@@ -285,6 +285,31 @@ export class ModAddComponent implements OnInit {
     }
 
     onSubmit(){
-
+      this.pacientesService.add(this.paciente).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.paciente.id=response.idPaciente;
+                    this.paciente.padre.id=response.idPadre;
+                    this.paciente.madre.id=response.idMadre;
+                    this.paciente.responsable.id=response.idResponsable;
+                    this.paciente.expediente.id=response.idExpediente;
+                    this.paciente.expediente.numero_expediente=response.numeroExpediente,
+                    this.paciente.usuario.id=response.idUsuario;
+                    this.paciente.usuario.username=response.username
+                    this.pacientes.push(this.paciente.clone());
+                    this.exito=true;
+                    this.mensaje=response.mensaje;
+                }else{
+                    this.exito=false;
+                    this.mensaje=response.mensaje;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
     }
 }

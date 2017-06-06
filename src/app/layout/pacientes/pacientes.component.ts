@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { PacientesService } from 'app/services/pacientes.service';
 import { EnfermedadesService } from 'app/services/enfermedades.service';
 import { PaisesService } from 'app/services/paises.service';
@@ -38,6 +38,7 @@ export class PacientesComponent implements OnInit {
       new Enfermedad('04', 'Varicela', 4),
       new Enfermedad('05', 'Ramon', 5),
     );
+
 
     //agregar
     let p = new Paciente(
@@ -208,17 +209,17 @@ export class PacientesComponent implements OnInit {
 
 
     //obtenemos todas las enfermedades
-    this.enfermedadesService.list()
-      .map((enfermedades: Array<any>) => {
-        let result: Array<Enfermedad> = new Array<Enfermedad>();
-        if (enfermedades) {
-          enfermedades.forEach((enfermedad) => {
-            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
-          });
-        }
-        return result;
-      })
-      .subscribe(res => this.enfermedades = res);
+    // this.enfermedadesService.list()
+    //   .map((enfermedades: Array<any>) => {
+    //     let result: Array<Enfermedad> = new Array<Enfermedad>();
+    //     if (enfermedades) {
+    //       enfermedades.forEach((enfermedad) => {
+    //         result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+    //       });
+    //     }
+    //     return result;
+    //   })
+    //   .subscribe(res => this.enfermedades = res);
 
 
     //obtenemos los pacientes
