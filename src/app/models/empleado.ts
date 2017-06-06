@@ -4,6 +4,7 @@ import { Medico } from "app/models/medico";
 export class Empleado {
     constructor( 
         public dui: string,
+        public genero: string,
         public nombre1: string,
         public nombre2: string,
         public apellido1: string,
@@ -24,16 +25,16 @@ export class Empleado {
 
 // Esnecesario. algo de refencias!!!
     public clone():Empleado{
-        return new Empleado(this.dui,this.nombre1,this.nombre2,
+        return new Empleado(this.dui,this.genero,this.nombre1,this.nombre2,
         this.apellido1,this.apellido2,this.apellido_casada,
         this.pais,this.division,this.subdivision,
         this.tel_fijo,this.tel_movil,this.email,this.usuario,
         this.medico,this.id);
     }
 
-/*    public full_clone(): Empleado {
-        return new Empleado(this.dui, this.nombre1, this.nombre2, this.apellido1,
+ public full_clone(): Empleado {
+        return new Empleado(this.dui, this.genero,this.nombre1, this.nombre2, this.apellido1,
             this.apellido2, this.apellido_casada, this.pais, this.division, this.subdivision,
-            this.tel_fijo, this.tel_movil, this.email, this.usuario, this.id);
-    }*/
+            this.tel_fijo, this.tel_movil, this.email, this.usuario.clone(), this.medico.clone());
+    }
 }

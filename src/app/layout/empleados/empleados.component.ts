@@ -10,6 +10,9 @@ import {Especialidad} from "app/models/especialidad";
 import { PaisesService } from "app/services/paises.service";
 import { EspecialidadesService } from "app/services/especialidades.service";
 import { RolesService } from "app/services/roles.service";
+import { Jornada } from "app/models/jornada";
+import { Turno } from "app/models/turno";
+import { Dia } from "app/models/dia";
 
 
 @Component({
@@ -54,27 +57,29 @@ export class EmpleadosComponent implements OnInit {
           empleados.forEach((empleado) => {
             //let userindx:number = this.indexOfUsuario
 
-            result.push(new Empleado(
+             result.push(new Empleado(
+              
               empleado.dui,
+              empleado.genero,
               empleado.nombre1,
               empleado.nombre2,
               empleado.apellido1,
               empleado.apellido2,
-              empleado.apellido_casada,
+              empleado.apellidoCasada,
               empleado.pais,
               empleado.division,
               empleado.subdivision,
-              empleado.tel_fijo,
-              empleado.tel_movil,
+              empleado.telFijo,
+              empleado.telMovil,
               empleado.email,
               new Usuario(
                 empleado.idUsuario.username,
                 empleado.idUsuario.password,
                 empleado.idUsuario.estado,
-                new Rol(empleado.idRol.nombreRol, empleado.idRol.descripcionRol, empleado.idRol.idRol),
-                empleado.idUsuario.id, ), /*Habra q consultar los roles*/
+                new Rol(empleado.idUsuario.idRol.nombre, empleado.idUsuario.idRol.descripcion, empleado.idUsuario.idRol.idRol),
+                empleado.idUsuario.idUsuario), /*Habra q consultar los roles*/
               null, /*No sabemos si es un medico, hasta q nos manden confirmación de la API*/
-              empleado.id
+              empleado.idEmpleado
 
             ));
           });
@@ -82,13 +87,14 @@ export class EmpleadosComponent implements OnInit {
         return result;
       }).subscribe(res => this.empleados = res);
    
-    console.log(JSON.stringify(new Empleado("", "", "", "", "", "", "", "", "", "", "", "",
+   /* console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
-      new Medico(new Especialidad("", "", 0), "", 0), 0)));
+      new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
+      
 
-    console.log(JSON.stringify(new Empleado("", "", "", "", "", "", "", "", "", "", "", "",
+    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
-      null, 0))); 
+      null,0))); */
   
      //obtenemos todos los paises
     this.paisesService.listCountries()
@@ -98,13 +104,33 @@ export class EmpleadosComponent implements OnInit {
     .subscribe( res => this.paises=res);
 
     // vamos obtenemos todos las especialidades
-    /*this.especialidadesService.listEs()
-    .map((paises: Array<any>)=>{
-      return paises;
+       this.especialidadesService.list()
+    .map((especialidades: Array<any>)=>{
+      let result: Array<Especialidad> = new Array<Especialidad>();
+      if(especialidades){
+        especialidades.forEach((especialidad)=>{
+          result.push(new Especialidad(especialidad.codigoEspecialidad,especialidad.nombreEspecialidad,especialidad.idEspecialidad));
+        });
+      }
+      return result;
     })
-    .subscribe( res => this.paises=res);
-*/
+    .subscribe( res => this.especialidades = res);
 
+    this.rolesService.list()
+    .map((roles: Array<any>)=>{
+        let result: Array<Rol> = new Array<Rol>();
+         if(roles){
+             roles.forEach((rol)=>{
+                 result.push(new Rol(
+                     rol.nombre,
+                     rol.descripcion,
+                     rol.idEspecialidad
+                 ));
+             });
+         }
+         return result;
+     })
+     .subscribe( res => this.roles = res);
   }
 
 }

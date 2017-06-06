@@ -54,8 +54,10 @@ export class EmpleadosService {private url="https://bad115.herokuapp.com";
   }
 
   del(empleado:Empleado){
+    console.log(JSON.stringify(empleado));
     this.action = "/del";
     let parametros="token="+this.token;
+    console.log(this.token);
     parametros = parametros + "&json="+JSON.stringify(empleado);
 
     //peticion

@@ -32,7 +32,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let empleado of empleados">
-                    <td>{{empleado.id}}</td>
                     <td>{{empleado.dui}}</td>
                     <td>{{empleado.nombre1}},{{empleado.nombre2}}</td>
                     <td>{{empleado.apellido1}},{{empleado.apellido2}}</td>
@@ -41,8 +40,8 @@
                     <td>{{empleado.tel_movil}}</td>
                     <td>{{empleado.email}}</td>
                     <td>{{empleado.username}}</td>
-                   <!-- <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados" [usuarios]="usuarios" ></app-mod-edit></td>
-                    <td><app-mod-del [empleado]="empleado" [empleados]="empleados"><p>¿Realmente Desea elimniar el empleado?</p></app-mod-del></td>-->
+                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados"  ></app-mod-edit> </td>
+                  <td><app-mod-del [empleado]="empleado" [empleados]="empleados"><p>¿Realmente Desea elimniar el empleado?</p></app-mod-del></td>
 
                 </tr>
             </tbody>

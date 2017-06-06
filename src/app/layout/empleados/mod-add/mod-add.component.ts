@@ -8,6 +8,9 @@ import {Usuario} from 'app/models/usuario';
 import {PaisesService} from 'app/services/paises.service';
 import { Rol } from "app/models/rol";
 import { Especialidad } from "app/models/especialidad";
+import { Jornada } from "app/models/jornada";
+import { Turno } from "app/models/turno";
+import { Dia } from "app/models/dia";
 
 @Component({
   selector: 'app-mod-add',
@@ -34,6 +37,11 @@ export class ModAddComponent implements OnInit {
  @Input() public medicos: Array<Medico>;//<--- todas las enfermedades
  @Input() public especialidades: Array<Especialidad>;
  @Input() public roles: Array<Rol>;
+ @Input() public usuarios: Array<Usuario>;
+ @Input() public empleados: Array<Empleado>;
+ @Input() public jornada: Array<Jornada>;
+ @Input() public turno:Array<Turno>;
+ @Input() public dia:Array<Dia>;
 
   //todos los paises
   @Input() public paises: Array<any>;
@@ -44,28 +52,33 @@ export class ModAddComponent implements OnInit {
   public selectedCountry:any;
   public selectedRegion:any;
   public selectedCity:any;
-  
-  public empleado: Empleado ;//<--el nuevo empleado a registrar
+  public estaCasada:boolean;
 
+  public empleado: Empleado ;//<--el nuevo empleado a registrar
+  public esMedico: boolean=false;
   public exito: boolean;
   public mensaje: string;
-
+  public paso1:boolean=true;
+  public paso2:boolean=false;
 
   closeResult: string;
   constructor(private modalService: NgbModal, private paisesService:PaisesService, private empleadosService: EmpleadosService) {}
- 
+
   ngOnInit() {
-    this.empleado= new Empleado ("", "", "", "", "", "", "", "", "", "", "", "",
+    this.empleado= new Empleado ("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
-      new Medico(new Especialidad("", "", 0), "", 0), 0);
+      new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0);
+
   }
    open(content) {
         this.modalService.open(content,{size:'lg'}).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
-      
+            this.clear();
+            
+
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      
+            this.clear();
         });
     }
 
@@ -106,5 +119,77 @@ onChangeCiudad(){
       console.log(this.selectedCity.city);
       this.empleado.subdivision=this.selectedCity.city;
     }
+onChangeMedico(){
+  if (this.empleado.usuario.rol.nombre=='Medico'){
+    this.esMedico=true;
+  }
+  else{
+    this.esMedico=false;
+  }
+}
+onChangeGenero(){
+  if(this.empleado.genero=="M")
+  this.estaCasada=false;
+  this.empleado.apellido_casada="";
+}
+onSubmit(){
+  this.empleadosService.add(this.empleado.clone()).subscribe(
+    response=>{
+      console.log(response);
+      if(response.status == "exito"){
+        this.empleado.id=response.id;
+        this.empleados.push(this.empleado.clone());
+        this.exito=true;
+        this.mensaje=response.mensaje;
+      }else{
+        this.exito=false;
+        this.mensaje=response.mensaje;
+      }
+      },
+error=>{
+  if(error!=null){
+    console.log("Error al enviar la peticion: "+error);
+  }
+}
+  );
+}
+
+    switchPaso(paso:number){
+      switch(paso){
+        case 1:
+          this.paso1=true;
+          this.paso2=false;
+        break;
+        case 2:
+          this.paso1=false;
+          this.paso2=true;
+        break;
+        
+      }
+    }
+
+clear(){
+              this.empleado.dui="";
+              this.empleado.nombre1="";
+              this.empleado.nombre2="";
+              this.empleado.apellido1="";
+              this.empleado.apellido2="";
+              this.empleado.apellido_casada="";
+              this.empleado.pais="";
+              this.empleado.division="";
+              this.empleado.subdivision="";
+              this.empleado.tel_fijo="";
+              this.empleado.tel_movil="";
+              this.empleado.email="";
+              this.empleado.usuario=new Usuario("","",true,new Rol("","",null));
+               /*Habra q consultar los roles*/
+              this.empleado.id=null;
+              this.exito=null;
+              this.selectedCountry=null;
+              this.selectedRegion=null;
+              this.selectedCity=null;
+
+}
+
 
 }
