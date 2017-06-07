@@ -23,9 +23,11 @@ export class ModDelComponent implements OnInit {
       this.modalService.open(content).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
           this.exito=null;
+          this.mensaje=null;
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
           this.exito=null;
+          this.mensaje=null;
       });
   }
   private getDismissReason(reason: any): string {

@@ -12,6 +12,14 @@
     <!--Formulario agregar nuevo rol-->
         <form>
 
+        <div *ngIf="exito == false" class="alert alert-danger">
+            <strong>Ooops!</strong> {{mensaje}}
+        </div>
+
+        <div *ngIf="exito == true" class="alert alert-success">
+            <strong>Exito!</strong> {{mensaje}}
+        </div>
+
         <div class="modal-body">
             
             <div class="form-group">

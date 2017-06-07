@@ -49,32 +49,32 @@ export class ModEditComponent implements OnInit {
   
 
   onSubmit(){
-    //   this.rolesService.edit(this.rol_modificado.clone()).subscribe(
-    //       response=>{
-    //           console.log(response);
-    //           if(response.status == "exito"){
-    //               let pos = this.roles.indexOf(this.rol_original);
-    //               this.roles[pos]=this.rol_modificado.clone();
-    //               this.rol_original=this.roles[pos];
-    //               this.exito=true;
-    //               this.mensaje=response.mensaje;
-    //           }else{
-    //               this.exito=false;
-    //               this.mensaje=response.mensaje;
-    //           }
-    //       },
-    //       error=>{
-    //           if(error!=null) {
-    //               console.log("Error al enviar la peticion: "+error);
-    //           }
-    //       }
-    //   );
+      this.rolesService.edit(this.rol_modificado.clone()).subscribe(
+          response=>{
+              console.log(response);
+              if(response.status == "exito"){
+                  let pos = this.roles.indexOf(this.rol_original);
+                  this.roles[pos]=this.rol_modificado.clone();
+                  this.rol_original=this.roles[pos];
+                  this.exito=true;
+                  this.mensaje=response.mensaje;
+              }else{
+                  this.exito=false;
+                  this.mensaje=response.mensaje;
+              }
+          },
+          error=>{
+              if(error!=null) {
+                  console.log("Error al enviar la peticion: "+error);
+              }
+          }
+      );
 
       //borrar estas lineas cuando este lista la apilet pos = this.cirugias.indexOf(this.cirugia_original);
-      let pos = this.roles.indexOf(this.rol_original);
-      this.roles[pos]=this.rol_modificado.clone();
-      this.rol_original=this.roles[pos];
-      this.exito=true;
+    //   let pos = this.roles.indexOf(this.rol_original);
+    //   this.roles[pos]=this.rol_modificado.clone();
+    //   this.rol_original=this.roles[pos];
+    //   this.exito=true;
   }
 
 }

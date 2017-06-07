@@ -41,31 +41,31 @@ export class ModDelComponent implements OnInit {
   }
 
   onSubmit(){
-    // this.rolesService.del(this.rol.clone()).subscribe(
-    //     response=>{
-    //         console.log(response);
-    //         if(response.status == "exito"){
-    //             let pos = this.roles.indexOf(this.rol);
-    //             this.roles.splice(pos,1);
-    //             this.exito=true;
-    //             this.mensaje=response.mensaje;
-    //         }else{
-    //             this.exito=false;
-    //             this.mensaje=response.mensaje;
-    //         }
-    //     },
-    //     error=>{
-    //         if(error!=null) {
-    //             console.log("Error al enviar la peticion: "+error);
-    //         }
-    //     }
-    // );
+    this.rolesService.del(this.rol.clone()).subscribe(
+        response=>{
+            console.log(response);
+            if(response.status == "exito"){
+                let pos = this.roles.indexOf(this.rol);
+                this.roles.splice(pos,1);
+                this.exito=true;
+                this.mensaje=response.mensaje;
+            }else{
+                this.exito=false;
+                this.mensaje=response.mensaje;
+            }
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
 
 
     //borrar las siguientes lineas cuando este lista la api
-    let pos = this.roles.indexOf(this.rol);
-    this.roles.splice(pos,1);
-    this.exito=true;
+    // let pos = this.roles.indexOf(this.rol);
+    // this.roles.splice(pos,1);
+    // this.exito=true;
   }
 
 }

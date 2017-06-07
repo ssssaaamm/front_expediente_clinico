@@ -48,29 +48,29 @@ export class ModAddComponent implements OnInit {
 
     onSubmit(){
         //aqui simplemente se crearan los roles sin permisos
-        // this.rolesService.add(this.rol.clone()).subscribe(
-        //     response=>{
-        //         console.log(response);
-        //         if(response.status == "exito"){
-        //             this.rol.id=response.id;
-        //             this.roles.push(this.rol.clone());
-        //             this.exito=true;
-        //             this.mensaje=response.mensaje;
-        //         }else{
-        //             this.exito=false;
-        //             this.mensaje=response.mensaje;
-        //         }
-        //     },
-        //     error=>{
-        //         if(error!=null) {
-        //             console.log("Error al enviar la peticion: "+error);
-        //         }
-        //     }
-        // );
+        this.rolesService.add(this.rol.clone()).subscribe(
+            response=>{
+                console.log(response);
+                if(response.status == "exito"){
+                    this.rol.id=response.id;
+                    this.roles.push(this.rol.clone());
+                    this.exito=true;
+                    this.mensaje=response.mensaje;
+                }else{
+                    this.exito=false;
+                    this.mensaje=response.mensaje;
+                }
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
 
         //borrar las siguientes lineas cuando este la api
-        this.roles.push(this.rol.clone());
-        this.exito=true;
+        // this.roles.push(this.rol.clone());
+        // this.exito=true;
         
     }
 

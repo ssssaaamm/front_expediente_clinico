@@ -19,28 +19,28 @@ export class RolesComponent implements OnInit {
   ngOnInit() {
 
     //obtenemos los roles
-    // this.rolesService.list()
-    // .map((roles: Array<any>)=>{
-    //     let result: Array<Rol> = new Array<Rol>();
-    //     if(roles){
-    //         roles.forEach((rol)=>{
-    //             result.push(new Rol(
-    //                 rol.codigoEspecialidad,
-    //                 rol.nombreEspecialidad,
-    //                 rol.idEspecialidad
-    //             ));
-    //         });
-    //     }
-    //     return result;
-    // })
-    // .subscribe( res => this.roles = res);
+    this.rolesService.list()
+    .map((roles: Array<any>)=>{
+        let result: Array<Rol> = new Array<Rol>();
+        if(roles){
+            roles.forEach((rol)=>{
+                result.push(new Rol(
+                    rol.nombre,
+                    rol.descripcion,
+                    rol.idRol
+                ));
+            });
+        }
+        return result;
+    })
+    .subscribe( res => this.roles = res);
 
     //borrar las siguientes lineas cuando este la api
-    this.roles.push(
-      new Rol('Administrador','Administra el sistema',1),
-      new Rol('Laboratorista','Gestiona examenes',2),
-      new Rol('Fisioterapista','Brinda consulta y fisioterapias',3),
-    );
+    // this.roles.push(
+    //   new Rol('Administrador','Administra el sistema',1),
+    //   new Rol('Laboratorista','Gestiona examenes',2),
+    //   new Rol('Fisioterapista','Brinda consulta y fisioterapias',3),
+    // );
 
   }
 

@@ -29,6 +29,7 @@ export class ModEditComponent implements OnInit {
 
   @Input() public enfermedades: Array<Enfermedad>;//<--- todas las enfermedade
   @Input() public paises: Array<any>;//<--- todos los paises
+  @Input() public pacientes: Array<any>;//<--- todos los paises
   @Input() public paciente_original: Paciente; //<--- paciente original.
   @Input() public paciente_modificado: Paciente; //<--- paciente original.
 
@@ -70,7 +71,7 @@ export class ModEditComponent implements OnInit {
 
   ngOnInit() {
     //obtenemos las enfermedades el paciente a editar en este modal y su padre y madre pero esto se haria al abrir el modal
-    this.paciente_modificado = this.paciente_original.clone();
+    this.paciente_modificado = this.paciente_original.full_clone();
 
   }
 
@@ -78,10 +79,10 @@ export class ModEditComponent implements OnInit {
 
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-
+      this.paciente_modificado = this.paciente_original.full_clone();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-
+      this.paciente_modificado = this.paciente_original.full_clone();
     });
 
     this.rellenarPaises();
@@ -257,7 +258,26 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.pacientesService.edit(this.paciente_modificado.clone()).subscribe(
+          response=>{
+              console.log(response);
+              if(response.status == "exito"){
+                  let pos = this.pacientes.indexOf(this.paciente_original);
+                  this.pacientes[pos]=this.paciente_modificado.full_clone();
+                  this.paciente_original=this.pacientes[pos];
+                  this.exito=true;
+                  this.mensaje=response.mensaje;
+              }else{
+                  this.exito=false;
+                  this.mensaje=response.mensaje;
+              }
+          },
+          error=>{
+              if(error!=null) {
+                  console.log("Error al enviar la peticion: "+error);
+              }
+          }
+      );
   }
 
   private rellenarEnfermedades() {
