@@ -28,6 +28,8 @@ const routes: Routes = [
             {path: 'administracion/ubicaciones', loadChildren:'./ubicaciones/ubicaciones.module#UbicacionesModule' },
             {path: 'administracion/pacientes', loadChildren:'./pacientes/pacientes.module#PacientesModule' },
             //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
+            {path: 'administracion/empleados', loadChildren:'./empleados/empleados.module#EmpleadosModule' },
+            
         ]
     }
 ];

@@ -1,0 +1,279 @@
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-pencil-square-o"></i></button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title tex-center"  >Edición de empleado </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<div class="modal-body">
+            
+            <div *ngIf="exito == false" class="alert alert-danger">
+               <strong>Ooops!</strong> {{mensaje}}.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>
+
+
+            <div class="panel panel-info">
+                
+                <div class="panel-body">
+                    <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="nombre1">Primer nombre</label>
+                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="empleado_modificado.nombre1" placeholder="Ingrese primer nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Segundo nombre</label>
+                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="empleado_modificado.nombre2" placeholder="Ingrese segundo nombre">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Primer Apellido</label>
+                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="empleado_modificado.apellido1" placeholder="Ingrese primer apellido">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Segundo Apellido </label>
+                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="empleado_modificado.apellido2" placeholder="Ingrese segundo apellido">
+                            </div>
+                            <div class="col-md-6">
+                              <p>Genero</p>
+                                  <label class="checkbox-inline">
+                                      <input type="radio" name="genero" id="M" value="M" [(ngModel)]="empleado_modificado.genero" (change)="onChangeGenero()"> &nbsp; Masculino
+                                  </label>
+                                  <label class="checkbox-inline">
+                                      <input type="radio" name="genero" #isFemenine id="F" value="F" [(ngModel)]="empleado_modificado.genero"> &nbsp; Femenenino &nbsp;
+                                  </label>
+                                  <label class="checkbox-inline">
+                                      <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeGenero()" name="isCasada"> &nbsp; Casada
+                                  </label>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Apellido casada</label>
+                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" [(ngModel)]="empleado_modificado.apellido_casada" placeholder="Ingrese apellido casada">
+                            </div>                          
+                                                     
+                            <div class="form-group col-md-6">
+                                <label for="dui">Documento identidad</label>
+                                <input type="text" class="form-control" name="dui" [(ngModel)]="empleado_modificado.dui" placeholder="Ingrese doc. identidad">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Email</label>
+                                <input type="email" class="form-control" name="email" [(ngModel)]="empleado_modificado.email" placeholder="Ingrese segundo apellido">
+                            </div>
+                        
+                            <div class="form-group col-md-4">
+                                <label >Pais</label>
+                                <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Region</label>
+                                <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                    <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Ciudad</label>
+                                <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                    <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Telefono fijo</label>
+                                <input type="text" class="form-control" name="tel_fijo" [(ngModel)]="empleado_modificado.tel_fijo" placeholder="Ingrese tel fijo">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Telefono movil</label>
+                                <input type="text" class="form-control" name="tel_movil" [(ngModel)]="empleado_modificado.tel_movil" placeholder="Ingrese tel movil">
+                            </div>  
+                            <div class="form-group col-md-6">
+                            <label>Rol</label>
+                            <select class="form-control" [(ngModel)]="empleado_modificado.usuario.rol" (change)="onChangeMedico()" name="rol">
+                                <option *ngFor="let rol of roles" [ngValue]="rol"  id="rol">{{ rol.nombre }}</option>
+                            </select>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
+            
+            <div class="panel-body">
+                <div class="row">                        
+                    <div *ngIf="esMedico"  class="form-group col-md-12" >
+                        <label for="name" class="text-center">Especialidades</label>
+                        <select multiple="true"  class="form-control" [(ngModel)]="empleado_modificado.medico.especialidad">
+                            <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                        </select>
+                     </div>                   
+                </div>
+                  <div class="row">
+                      <hr>
+                      <h5 class="col-md-12 text-center modal-title ">Horario de atención</h5>
+                      <hr>
+                      <br>                        
+                    <div  class="form-group col-md-4" >
+                        <label  for="name" class="col-md-12 text-center">Dia</label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Lunes &nbsp;
+                        </label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Martes &nbsp;
+                        </label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Miércoles &nbsp;
+                        </label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Jueves &nbsp;
+                        </label>
+                         <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Viernes &nbsp;
+                        </label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Sabádo &nbsp;
+                        </label>
+                        <label class="checkbox-inline col-md-12">
+                            <input type="checkbox"> &nbsp; Domingo &nbsp;
+                        </label>                                
+                    </div> 
+
+                    <div  class="form-group col-md-4" >
+                        <label  for="name" class="col-md-12 text-center">Desde</label>
+                         <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                                                           
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                    </div> 
+
+                    <div   class="form-group col-md-4" >
+                        <label  for="name" class="col-md-12 text-center">Hasta</label>
+                        <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                          <select class="col-md-12">
+                                <option>--</option>                             
+                                <option>8:00 am</option>
+                                <option>8:30 am</option>
+                                <option>9:00 am</option>
+                                <option>9:30 am</option>                               
+                        </select>
+                    </div>      
+                               
+                </div>
+            </div>
+
+            </div>     
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
+            <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }" >Paso 1</button>
+            <button *ngIf="esMedico" type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Paso 2</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
+        </div>                    
+</div>

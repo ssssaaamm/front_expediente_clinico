@@ -1,0 +1,50 @@
+<div claass="container fluid ">
+  <div class="row">
+        <div class="col-xl-12">
+            <h2 class="page-header">
+                Administracion de Empleados
+            </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Administracion</a>
+                </li>
+                <li class="breadcrumb-item active"><i class="fa fa-table"></i> Empleados</li>
+            </ol>
+        </div>
+    </div>
+
+    <app-mod-add [paises]="paises" [especialidades]="especialidades" [roles]="roles" ></app-mod-add> 
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Dui</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Direccion</th>
+                    <th>Tel.Fijo</th>
+                    <th>Tel. Móvil</th>
+                    <th>Email</th>
+                    <th>Usuario</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let empleado of empleados">
+                    <td>{{empleado.dui}}</td>
+                    <td>{{empleado.nombre1}},{{empleado.nombre2}}</td>
+                    <td>{{empleado.apellido1}},{{empleado.apellido2}}</td>
+                    <td>{{empleado.pais}},{{empleado.division}},{{empleado.subdivision}}</td>
+                    <td>{{empleado.tel_fijo}}</td>
+                    <td>{{empleado.tel_movil}}</td>
+                    <td>{{empleado.email}}</td>
+                    <td>{{empleado.username}}</td>
+                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados"  ></app-mod-edit> </td>
+                  <td><app-mod-del [empleado]="empleado" [empleados]="empleados"><p>¿Realmente Desea elimniar el empleado?</p></app-mod-del></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

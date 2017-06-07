@@ -1,13 +1,15 @@
 import {Rol} from "app/models/rol";
 export class Usuario{
     constructor(
-        
+
         public username: string,
         public password: string,
         public estado: boolean,
         public rol: Rol,
-        public id?:number, 
-        
+        public id?:number
+
+
+
     ){}
 
 // Esnecesario. algo de refencias!!!
