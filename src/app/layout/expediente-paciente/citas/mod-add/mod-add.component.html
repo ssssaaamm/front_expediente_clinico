@@ -1,0 +1,66 @@
+<!-- Large modal -->
+
+<button class="btn btn-default" (click)="open(content)"><i class="fa fa-plus"></i> Programar nueva cita.</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title"> Programación de citas </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <!--Formulario agregar nuevo rol-->
+        <form>
+
+        <div class="modal-body">
+            
+            <!--<div *ngIf="exito == false" class="alert alert-danger">
+               <strong>Ooops!</strong> {{mensaje}}.
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>-->
+
+            <div class="row">
+              <div class="form-group col-sm-8">
+                  <label>Fecha y hora de cita</label>
+                  <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                          name="dp" [(ngModel)]="fecha_cita" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-addon" (click)="d.toggle()">
+                          <span class="fa fa-calendar"></span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group col-sm-4">
+                <ngb-timepicker [(ngModel)]="hora_cita" name="hora_cita"></ngb-timepicker>
+                <div class="alert alert-info">
+                    <b>Selected time: </b>{{hora_cita | json}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nombre">Especialidad</label>
+              <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre de la enfermedad">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Medico</label>
+              <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre de la enfermedad">
+            </div>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary" >Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
+        </div>
+
+    </form>
+
+</ng-template>
+

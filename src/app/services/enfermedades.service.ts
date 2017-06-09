@@ -64,5 +64,14 @@ export class EnfermedadesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+  enfermedades(enfermedad:Enfermedad){
+    this.action = "/del";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(enfermedad);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
 
 }

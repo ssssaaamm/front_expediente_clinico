@@ -64,4 +64,23 @@ export class RolesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+  privilegiosList(rol:Rol){
+    this.action = "/privilegios";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(rol);
+    console.log(parametros);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
+  privilegiosEdit(rol:Rol){
+    this.action = "/privilegios/edit";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(rol);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
 }

@@ -1,16 +1,17 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import {RolesService} from 'app/services/roles.service';
+
 
 import {MenuRol} from 'app/models/menu_rol';
 import {Rol} from 'app/models/rol';
 import {Menu} from 'app/models/menu';
-import {MenusRolService} from 'app/services/menus-rol.service';
 
 @Component({
   selector: 'app-permisos',
   templateUrl: './permisos.component.html',
   styleUrls: ['./permisos.component.scss'],
-  providers: [MenusRolService]
+  providers: [RolesService]
 })
 export class PermisosComponent implements OnInit {
 
@@ -22,7 +23,7 @@ export class PermisosComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal,private menusRolService: MenusRolService) { }
+  constructor(private modalService: NgbModal,private rolesService: RolesService) { }
 
   open(content) {
       this.modalService.open(content,{size:'lg'}).result.then((result) => {
@@ -51,7 +52,7 @@ export class PermisosComponent implements OnInit {
   }
 
   onSubmit(){
-    //   this.menusRolService.edit(this.menus_rol).subscribe(
+    //   this.menusRolService.privilegiosEdit(this.menus_rol).subscribe(
     //       response=>{
     //           console.log(response);
     //           if(response.status == "exito"){
@@ -75,46 +76,46 @@ export class PermisosComponent implements OnInit {
   }
 
   private cargarPermisos(){
-    // this.menus_rol=new Array<MenuRol>();
-    // //solicitar los menus_rol para el rol indicado este bloque debe agregarse al momento en que se abre el modal
-    // this.menusRolService.list(this.rol)
-    // .map((menus_role: Array<any>)=>{
-    //     let result: Array<MenuRol> = new Array<MenuRol>();
-    //     if(menus_role){
-    //         menus_role.forEach((menu_rol)=>{
-    //             result.push(
-    //               new MenuRol(
-    //                 menu_rol.orden, 
-    //                 menu_rol.list, 
-    //                 menu_rol.add, 
-    //                 menu_rol.edit, 
-    //                 menu_rol.del, 
-    //                 new Menu(menu_rol.idMenu.icono,
-    //                 menu_rol.idMenu.titulo,
-    //                 menu_rol.idMenu.url, 
-    //                 menu_rol.idMenu.recurso, 
-    //                 menu_rol.idMenu.id), 
-    //                 this.rol, //este tambien puede dejarse a null 
-    //                 menu_rol.id //importante que este no se deje a null       
-    //               )
-    //             );
-    //         });
-    //     }
-    //     return result;
-    // })
-    // .subscribe( res => this.menus_rol = res);
+    this.menus_rol=new Array<MenuRol>();
+    //solicitar los menus_rol para el rol indicado este bloque debe agregarse al momento en que se abre el modal
+    this.rolesService.privilegiosList(this.rol)
+    .map((menus_role: Array<any>)=>{
+        let result: Array<MenuRol> = new Array<MenuRol>();
+        if(menus_role){
+            menus_role.forEach((menu_rol)=>{
+                result.push(
+                  new MenuRol(
+                    menu_rol.orden, 
+                    menu_rol.list, 
+                    menu_rol.add, 
+                    menu_rol.edit, 
+                    menu_rol.del, 
+                    new Menu(menu_rol.idMenu.icono,
+                    menu_rol.idMenu.titulo,
+                    menu_rol.idMenu.url, 
+                    menu_rol.idMenu.recurso, 
+                    menu_rol.idMenu.idMenu), 
+                    this.rol, //este tambien puede dejarse a null 
+                    menu_rol.id //importante que este no se deje a null       
+                  )
+                );
+            });
+        }
+        return result;
+    })
+    .subscribe( res => this.menus_rol = res);
 
     //Borrar estas lineas cuando ya este la api
     //Aqui estamos simulando que se estan jalando los menus_rol
-    console.log("jalare los menu_rol");
-    this.menus_rol=[
-        new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu1','','',1),this.rol,1),
-        new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu2','','',1),this.rol,2),
-        new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu3','','',1),this.rol,3),
-        new MenuRol(1,true,false,false,true,new Menu('fa fa-vcard','Menu4','','',1),this.rol,4),
-        new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu5','','',1),this.rol,5),
-        new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu6','','',1),this.rol,6)
-    ];
+    // console.log("jalare los menu_rol");
+    // this.menus_rol=[
+    //     new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu1','','',1),this.rol,1),
+    //     new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu2','','',1),this.rol,2),
+    //     new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu3','','',1),this.rol,3),
+    //     new MenuRol(1,true,false,false,true,new Menu('fa fa-vcard','Menu4','','',1),this.rol,4),
+    //     new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu5','','',1),this.rol,5),
+    //     new MenuRol(1,true,false,true,true,new Menu('fa fa-vcard','Menu6','','',1),this.rol,6)
+    // ];
   }
 
   onChange(ver:any,menu_rol:MenuRol){

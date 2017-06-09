@@ -29,6 +29,7 @@ const routes: Routes = [
             {path: 'administracion/pacientes', loadChildren:'./pacientes/pacientes.module#PacientesModule' },
             //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
             {path: 'administracion/empleados', loadChildren:'./empleados/empleados.module#EmpleadosModule' },
+            {path: 'paciente/expediente', loadChildren:'./expediente-paciente/expediente-paciente.module#ExpedientePacienteModule' },
             
         ]
     }

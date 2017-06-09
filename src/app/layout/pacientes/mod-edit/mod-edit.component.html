@@ -14,13 +14,16 @@
 
   <div class="modal-body">
 
-    <!--<div *ngIf="exito == false" class="alert alert-danger">
+            <div *ngIf="exito == false" class="alert alert-danger">
                <strong>Ooops!</strong> {{mensaje}}.
             </div>
 
             <div *ngIf="exito == true" class="alert alert-success">
                 <strong>Exito!</strong> {{mensaje}}
-            </div>-->
+                <p>Numero del expediente: {{paciente_modificado.expediente.numero_expediente}}</p>
+                <p>Numero del expediente: {{paciente_modificado.usuario.username}}</p>
+                <p>Numero del expediente: {{paciente_modificado.usuario.password}}</p>
+            </div>
 
 
     <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
@@ -56,7 +59,7 @@
             <p></p>
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" [(ngModel)]="paciente_modificado.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.dui" placeholder="Ingrese doc. identidad">
             </div>
 
             <div class="form-group">
@@ -100,7 +103,7 @@
                 placeholder="Ingrese apellido casada">
             </div>
 
-            <div class="form-group">
+            <!--<div class="form-group">
               <label>Fecha nacimiento</label>
               <div class="row">
                 <div class="col-md-3">
@@ -113,6 +116,17 @@
                   <input type="text" class="form-control" name="anio_nacimiento" [(ngModel)]="paciente_modificado.anio_nacimiento" placeholder="Año">
                 </div>
               </div>
+            </div>-->
+
+            <div class="form-group">
+                <label>Fecha nacimiento</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" [(ngModel)]="fecha_nacimiento" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-addon" (click)="d.toggle()">
+                        <span class="fa fa-calendar"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -192,7 +206,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" [(ngModel)]="paciente_modificado.padre.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.padre.dui" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>
@@ -275,7 +289,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" [(ngModel)]="paciente_modificado.madre.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.madre.dui" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>
@@ -372,7 +386,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" [(ngModel)]="paciente_modificado.responsable.dui" name="dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" maxlength="10" disabled [(ngModel)]="paciente_modificado.responsable.dui" name="dui" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>

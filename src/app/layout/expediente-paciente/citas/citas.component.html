@@ -1,0 +1,50 @@
+
+    
+    <!--Boton agregar con modal-->
+    <br>
+    <app-mod-add ></app-mod-add>
+
+    <!--Tabla citas-->
+   
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha de Cita</th>              
+                    <th>Hora</th>              
+                    <th>Sala</th>              
+                    <th>Especialidad</th>
+                    <th>Medico</th>
+                    <th>Detalle</th>
+                    <th>Cancelar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>05/07/2017</td>
+                    <td>14:30</td>
+                    <td>Sala 5</td>
+                    <td>Pediatria</td>
+                    <td>Ruben Samayoa</td>
+                    <td><app-mod-inf></app-mod-inf></td>
+                    <td><app-mod-del></app-mod-del></td>
+                </tr>
+
+                <!--<tr *ngFor="let enfermedad of enfermedades">
+                    <td>{{enfermedad.codigo}}</td>
+                    <td>{{enfermedad.nombre}}</td>                      
+                    <td><app-mod-edit [enfermedad_original]="enfermedad" [enfermedades]="enfermedades"></app-mod-edit></td>
+                    <td>
+                        <app-mod-del [enfermedad]="enfermedad" [enfermedades]="enfermedades">
+                            <p>
+                                ¿Realmente Desea elimniar la enfermedad?
+                            </p>
+                        </app-mod-del>
+                    </td>
+                </tr>-->
+            </tbody>
+        </table>
+    </div>
+ 
