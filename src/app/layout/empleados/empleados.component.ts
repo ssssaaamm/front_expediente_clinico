@@ -35,21 +35,14 @@ export class EmpleadosComponent implements OnInit {
      * Obtener los usuarios
      */
 //obteniendo las especialidades y roles momentaneamente
- this.especialidades.push(
-      new Especialidad('01', 'Urologo', 1),
-      new Especialidad('02', 'Cardiologo', 2),
-      new Especialidad('03', 'Pediatra', 3),
-      new Especialidad('04', 'Ginecologo', 4),
-      new Especialidad('05', 'Obstetra', 5),
-    );
-     this.roles.push(
-      new Rol('Medico', 'Medico', 1),
-      new Rol('Administrador', 'Administrador', 2),
-      new Rol('Recepcionista', 'Recepcionista', 2),
-      new Rol('Enfermer@', 'Enfermer@', 3),
-      new Rol('Laboratorista', 'Laboratorista', 4),
-      new Rol('Fisioterapeuta', 'Fisioterapeuta', 5),
-    );
+//  this.especialidades.push(
+//       new Especialidad('01', 'Urologo', 1),
+//       new Especialidad('02', 'Cardiologo', 2),
+//       new Especialidad('03', 'Pediatra', 3),
+//       new Especialidad('04', 'Ginecologo', 4),
+//       new Especialidad('05', 'Obstetra', 5),
+//     );
+
     this.empleadosService.list()
       .map((empleados: Array<any>) => {
         let result: Array<Empleado> = new Array<Empleado>();
@@ -87,14 +80,14 @@ export class EmpleadosComponent implements OnInit {
         return result;
       }).subscribe(res => this.empleados = res);
    
-   /* console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
+    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
       new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
       
 
     console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
-      null,0))); */
+      null,0))); 
   
      //obtenemos todos los paises
     this.paisesService.listCountries()
@@ -116,6 +109,8 @@ export class EmpleadosComponent implements OnInit {
     })
     .subscribe( res => this.especialidades = res);
 
+
+    // obtenemos los roles
     this.rolesService.list()
     .map((roles: Array<any>)=>{
         let result: Array<Rol> = new Array<Rol>();
@@ -124,7 +119,7 @@ export class EmpleadosComponent implements OnInit {
                  result.push(new Rol(
                      rol.nombre,
                      rol.descripcion,
-                     rol.idEspecialidad
+                     rol.idRol,
                  ));
              });
          }

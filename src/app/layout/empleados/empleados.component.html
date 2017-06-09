@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <app-mod-add [paises]="paises" [especialidades]="especialidades" [roles]="roles" ></app-mod-add> 
+    <app-mod-add [paises]="paises" [especialidades]="especialidades" [empleados]="empleados" [roles]="roles" ></app-mod-add> 
     <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
@@ -40,7 +40,7 @@
                     <td>{{empleado.tel_movil}}</td>
                     <td>{{empleado.email}}</td>
                     <td>{{empleado.username}}</td>
-                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados"  ></app-mod-edit> </td>
+                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados" [paises]="paises"  ></app-mod-edit> </td>
                   <td><app-mod-del [empleado]="empleado" [empleados]="empleados"><p>¿Realmente Desea elimniar el empleado?</p></app-mod-del></td>
 
                 </tr>
