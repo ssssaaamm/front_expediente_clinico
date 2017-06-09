@@ -60,6 +60,7 @@ export class ModAddComponent implements OnInit {
   public selectedRegionResponsable:any;
   public selectedCityResponsable:any;
   public estaCasada:boolean=false;
+  public fecha_nacimiento:any;
   
   public paciente: Paciente ;//<--el nuevo paciente a registrar
   
@@ -285,6 +286,10 @@ export class ModAddComponent implements OnInit {
     }
 
     onSubmit(){
+      //antes de enviar
+      this.paciente.anio_nacimiento=this.fecha_nacimiento.year;
+      this.paciente.mes_nacimiento=this.fecha_nacimiento.month;
+      this.paciente.dia_nacimiento=this.fecha_nacimiento.day;
       this.pacientesService.add(this.paciente).subscribe(
             response=>{
                 console.log(response);

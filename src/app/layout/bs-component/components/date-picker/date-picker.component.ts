@@ -12,4 +12,8 @@ export class DatePickerComponent implements OnInit {
     ngOnInit() {
     }
 
+    saludar(){
+        console.log("Hola   ");
+    }
+
 }

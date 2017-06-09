@@ -57,6 +57,8 @@ export class ModEditComponent implements OnInit {
   public selectedRegionResponsable: any;
   public selectedCityResponsable: any;
   public estaCasada: boolean = false;
+  public fecha_nacimiento:any;
+
 
   public paso1: boolean = true;
   public paso2: boolean = false;
@@ -87,6 +89,7 @@ export class ModEditComponent implements OnInit {
 
     this.rellenarPaises();
     this.rellenarEnfermedades();
+    this.rellenarFechaNacimiento();
 
   }
 
@@ -263,10 +266,30 @@ export class ModEditComponent implements OnInit {
               console.log(response);
               if(response.status == "exito"){
                   let pos = this.pacientes.indexOf(this.paciente_original);
+                  
+                  // 1) Id del padre creado
+                  // 2) Id de la madre creada
+                  // 3) Id del responsable creado
+                  // 4) id del expediente creado
+                  // 5) numero del expediente creado
+                  // 6) Id del usuario creado
+                  // 7) Username del usuario 
+                  // 8) Password
+
+                  this.paciente_modificado.padre.id=response.idpadre;
+                  this.paciente_modificado.madre.id=response.idmadre;
+                  this.paciente_modificado.responsable.id=response.idresponsable;
+                  this.paciente_modificado.expediente.id=response.idexpediente;
+                  this.paciente_modificado.expediente.numero_expediente=response.nexpediente;
+                  this.paciente_modificado.usuario.id=response.idusuario;
+                  this.paciente_modificado.usuario.id=response.username;
+                  this.paciente_modificado.usuario.password=response.password;
+
                   this.pacientes[pos]=this.paciente_modificado.full_clone();
                   this.paciente_original=this.pacientes[pos];
                   this.exito=true;
                   this.mensaje=response.mensaje;
+                  
               }else{
                   this.exito=false;
                   this.mensaje=response.mensaje;
@@ -444,9 +467,12 @@ export class ModEditComponent implements OnInit {
         });
       }, 1500);
     }, 1500);
+  }
 
-
-
+  rellenarFechaNacimiento(){
+    this.fecha_nacimiento.year=this.paciente_modificado.anio_nacimiento;
+    this.fecha_nacimiento.month=this.paciente_modificado.mes_nacimiento;
+    this.fecha_nacimiento.day=this.paciente_modificado.dia_nacimiento;
   }
 
 
