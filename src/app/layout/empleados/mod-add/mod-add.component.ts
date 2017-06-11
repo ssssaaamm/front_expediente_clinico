@@ -67,7 +67,7 @@ export class ModAddComponent implements OnInit {
   ngOnInit() {
     this.empleado= new Empleado ("","", "", "", "", "", "", "", "", "", "", "", "",
       new Usuario("", "", true, new Rol("", "", 0), 0),
-      new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0);
+      null,0);
 
   }
    open(content) {
@@ -120,11 +120,13 @@ onChangeCiudad(){
       this.empleado.subdivision=this.selectedCity.city;
     }
 onChangeMedico(){
-  if (this.empleado.usuario.rol.nombre=='Medico'){
+  if (this.empleado.usuario.rol.nombre.toLocaleLowerCase()=='Medico'.toLocaleLowerCase()){
+    this.empleado.medico=new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0)
     this.esMedico=true;
   }
   else{
     this.esMedico=false;
+    this.empleado.medico=null;
   }
 }
 onChangeGenero(){
@@ -137,7 +139,10 @@ onSubmit(){
     response=>{
       console.log(response);
       if(response.status == "exito"){
-        this.empleado.id=response.id;
+        this.empleado.id=response.idemp;
+        this.empleado.usuario.id=response.iduser;
+        this.empleado.usuario.password=response.password;
+        this.empleado.usuario.username=response.user;
         this.empleados.push(this.empleado.clone());
         this.exito=true;
         this.mensaje=response.mensaje;

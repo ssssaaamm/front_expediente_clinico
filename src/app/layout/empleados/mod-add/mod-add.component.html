@@ -13,7 +13,9 @@
             </div>
 
             <div *ngIf="exito == true" class="alert alert-success">
-                <strong>Exito!</strong> {{mensaje}}
+                <strong>Exito!</strong> {{mensaje}}.
+                <p>Username: {{empleado.usuario.username}}</p>
+                <p>Password: {{empleado.usuario.password}}</p>
             </div>
 
 

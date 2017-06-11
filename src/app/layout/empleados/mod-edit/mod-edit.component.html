@@ -17,7 +17,7 @@
             </div>
 
 
-            <div class="panel panel-info">
+            <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
                 
                 <div class="panel-body">
                     <div class="row">
@@ -46,13 +46,13 @@
                                       <input type="radio" name="genero" #isFemenine id="F" value="F" [(ngModel)]="empleado_modificado.genero"> &nbsp; Femenenino &nbsp;
                                   </label>
                                   <label class="checkbox-inline">
-                                      <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeGenero()" name="isCasada"> &nbsp; Casada
+                                      <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
                                   </label>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" [(ngModel)]="empleado_modificado.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="empleado_modificado.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>                          
                                                      
                             <div class="form-group col-md-6">
@@ -67,21 +67,21 @@
                         
                             <div class="form-group col-md-4">
                                 <label >Pais</label>
-                                <select class="form-control" [(ngModel)]="selectedCountry" name="pais" (change)="onChangePais()">
+                                <select class="form-control" [(ngModel)]="selectedCountryEmpleado" name="pais" (change)="onChangePaisEmpleado()">
                                     <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Region</label>
-                                <select class="form-control"  [(ngModel)]="selectedRegion" name="region" (change)="onChangeRegion()">
+                                <select class="form-control"  [(ngModel)]="selectedRegionEmpleado" name="region" (change)="onChangeRegionEmpleado()">
                                     <option *ngFor="let region of regiones" [ngValue]="region" >{{ region.region }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Ciudad</label>
-                                <select class="form-control" [(ngModel)]="selectedCity" name="ciudad" (change)="onChangeCiudad()">
+                                <select class="form-control" [(ngModel)]="selectedCityEmpleado" name="ciudad" (change)="onChangeCiudadEmpleado()">
                                     <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">{{ ciudad.city }}</option>
                                 </select>
                             </div>
