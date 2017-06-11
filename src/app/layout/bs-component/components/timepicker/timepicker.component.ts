@@ -7,6 +7,9 @@ import {NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./timepicker.component.scss']
 })
 export class TimepickerComponent {
+
+    public isReservada=false;
+    
     defaultTime = {hour: 13, minute: 30};
     meridianTime = {hour: 13, minute: 30};
     meridian = true;
@@ -25,5 +28,14 @@ export class TimepickerComponent {
 
     toggleMeridian() {
         this.meridian = !this.meridian;
+    }
+
+    validarHora(event){
+        if(event.hour==14 && event.minute==0){
+            console.log("la hora: "+event.hour+":"+event.minute+" esta reservada");
+            this.isReservada=true;
+        }else{
+            this.isReservada=false;
+        }
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, trigger, transition, st
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { PacientesService } from "app/services/pacientes.service";
 import { PaisesService } from "app/services/paises.service";
+import { EnfermedadesService } from "app/services/enfermedades.service";
 import { Enfermedad } from "app/models/enfermedad";
 import { Paciente } from "app/models/paciente";
 
@@ -23,7 +24,7 @@ import { Paciente } from "app/models/paciente";
   ],
   templateUrl: './mod-edit.component.html',
   styleUrls: ['./mod-edit.component.scss'],
-  providers: [PacientesService, PaisesService, NgbModal]
+  providers: [PacientesService, PaisesService, EnfermedadesService, NgbModal]
 })
 export class ModEditComponent implements OnInit {
 
@@ -57,7 +58,7 @@ export class ModEditComponent implements OnInit {
   public selectedRegionResponsable: any;
   public selectedCityResponsable: any;
   public estaCasada: boolean = false;
-  public fecha_nacimiento:any;
+  public fecha_nacimiento: any;
 
 
   public paso1: boolean = true;
@@ -69,7 +70,7 @@ export class ModEditComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal, private paisesService: PaisesService, private pacientesService: PacientesService) { }
+  constructor(private modalService: NgbModal, private paisesService: PaisesService, private pacientesService: PacientesService, private enfermedadesService: EnfermedadesService) { }
 
   ngOnInit() {
     //obtenemos las enfermedades el paciente a editar en este modal y su padre y madre pero esto se haria al abrir el modal
@@ -262,50 +263,65 @@ export class ModEditComponent implements OnInit {
 
   onSubmit() {
     this.pacientesService.edit(this.paciente_modificado.clone()).subscribe(
-          response=>{
-              console.log(response);
-              if(response.status == "exito"){
-                  let pos = this.pacientes.indexOf(this.paciente_original);
-                  
-                  // 1) Id del padre creado
-                  // 2) Id de la madre creada
-                  // 3) Id del responsable creado
-                  // 4) id del expediente creado
-                  // 5) numero del expediente creado
-                  // 6) Id del usuario creado
-                  // 7) Username del usuario 
-                  // 8) Password
+      response => {
+        console.log(response);
+        if (response.status == "exito") {
+          let pos = this.pacientes.indexOf(this.paciente_original);
 
-                  this.paciente_modificado.padre.id=response.idpadre;
-                  this.paciente_modificado.madre.id=response.idmadre;
-                  this.paciente_modificado.responsable.id=response.idresponsable;
-                  this.paciente_modificado.expediente.id=response.idexpediente;
-                  this.paciente_modificado.expediente.numero_expediente=response.nexpediente;
-                  this.paciente_modificado.usuario.id=response.idusuario;
-                  this.paciente_modificado.usuario.id=response.username;
-                  this.paciente_modificado.usuario.password=response.password;
+          // 1) Id del padre creado
+          // 2) Id de la madre creada
+          // 3) Id del responsable creado
+          // 4) id del expediente creado
+          // 5) numero del expediente creado
+          // 6) Id del usuario creado
+          // 7) Username del usuario 
+          // 8) Password
 
-                  this.pacientes[pos]=this.paciente_modificado.full_clone();
-                  this.paciente_original=this.pacientes[pos];
-                  this.exito=true;
-                  this.mensaje=response.mensaje;
-                  
-              }else{
-                  this.exito=false;
-                  this.mensaje=response.mensaje;
-              }
-          },
-          error=>{
-              if(error!=null) {
-                  console.log("Error al enviar la peticion: "+error);
-              }
-          }
-      );
+          this.paciente_modificado.padre.id = response.idpadre;
+          this.paciente_modificado.madre.id = response.idmadre;
+          this.paciente_modificado.responsable.id = response.idresponsable;
+          this.paciente_modificado.expediente.id = response.idexpediente;
+          this.paciente_modificado.expediente.numero_expediente = response.nexpediente;
+          this.paciente_modificado.usuario.id = response.idusuario;
+          this.paciente_modificado.usuario.id = response.username;
+          this.paciente_modificado.usuario.password = response.password;
+
+          this.pacientes[pos] = this.paciente_modificado.full_clone();
+          this.paciente_original = this.pacientes[pos];
+          this.exito = true;
+          this.mensaje = response.mensaje;
+
+        } else {
+          this.exito = false;
+          this.mensaje = response.mensaje;
+        }
+      },
+      error => {
+        if (error != null) {
+          console.log("Error al enviar la peticion: " + error);
+        }
+      }
+    );
   }
 
   private rellenarEnfermedades() {
+
     //consultar padecimientos de paciente
-    let obtenidas = [
+    let epaciente = [];
+    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+      .map((enfermedades: Array<any>) => {
+        let result: Array<Enfermedad> = new Array<Enfermedad>();
+        if (enfermedades) {
+          enfermedades.forEach((enfermedad) => {
+            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+          });
+        }
+        return result;
+      })
+      .subscribe(res => epaciente = res);
+
+    //llenado de prueba
+    epaciente = [
       new Enfermedad('01', 'Evola', 1),
       new Enfermedad('02', 'Rubiola', 2),
       new Enfermedad('04', 'Varicela', 4),
@@ -314,7 +330,7 @@ export class ModEditComponent implements OnInit {
 
     //seleccionamos los padecimientos del paciente
     this.paciente_modificado.enfermedades = new Array<Enfermedad>();
-    obtenidas.forEach((e) => {
+    epaciente.forEach((e) => {
       let matched = this.matchEnfermedad(e.id);
       if (matched != null) {
         this.paciente_modificado.enfermedades.push(matched);
@@ -324,10 +340,28 @@ export class ModEditComponent implements OnInit {
 
 
     //consultar padecimientos de padre
+    let epadre = [];
+    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+      .map((enfermedades: Array<any>) => {
+        let result: Array<Enfermedad> = new Array<Enfermedad>();
+        if (enfermedades) {
+          enfermedades.forEach((enfermedad) => {
+            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+          });
+        }
+        return result;
+      })
+      .subscribe(res => epadre = res);
+
+    //llenado de prueba
+    epadre = [
+      new Enfermedad('01', 'Evola', 1),
+      new Enfermedad('02', 'Rubiola', 2),
+    ];
 
     //seleccionamos los padecimientos del padre
     this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
-    obtenidas.forEach((e) => {
+    epadre.forEach((e) => {
       let matched = this.matchEnfermedad(e.id);
       if (matched != null) {
         this.paciente_modificado.padre.enfermedades.push(matched);
@@ -337,10 +371,37 @@ export class ModEditComponent implements OnInit {
 
 
     //consultar padecimientos de madre
+    let emadre = [];
+    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+      .map((enfermedades: Array<any>) => {
+        let result: Array<Enfermedad> = new Array<Enfermedad>();
+        if (enfermedades) {
+          enfermedades.forEach((enfermedad) => {
+            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+          });
+        }
+        return result;
+      })
+      .subscribe(res => emadre = res);
+
+    //llenado de prueba
+    emadre = [
+      new Enfermedad('01', 'Evola', 1),
+      new Enfermedad('02', 'Rubiola', 2),
+    ];
+
+    //seleccionamos los padecimientos del madre
+    this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
+    epadre.forEach((e) => {
+      let matched = this.matchEnfermedad(e.id);
+      if (matched != null) {
+        this.paciente_modificado.padre.enfermedades.push(matched);
+      }
+    });
 
     //seleccionamos los padecimientos del madre
     this.paciente_modificado.madre.enfermedades = new Array<Enfermedad>();
-    obtenidas.forEach((e) => {
+    emadre.forEach((e) => {
       let matched = this.matchEnfermedad(e.id);
       if (matched != null) {
         this.paciente_modificado.madre.enfermedades.push(matched);
@@ -469,10 +530,10 @@ export class ModEditComponent implements OnInit {
     }, 1500);
   }
 
-  rellenarFechaNacimiento(){
-    this.fecha_nacimiento.year=this.paciente_modificado.anio_nacimiento;
-    this.fecha_nacimiento.month=this.paciente_modificado.mes_nacimiento;
-    this.fecha_nacimiento.day=this.paciente_modificado.dia_nacimiento;
+  rellenarFechaNacimiento() {
+    this.fecha_nacimiento.year = this.paciente_modificado.anio_nacimiento;
+    this.fecha_nacimiento.month = this.paciente_modificado.mes_nacimiento;
+    this.fecha_nacimiento.day = this.paciente_modificado.dia_nacimiento;
   }
 
 

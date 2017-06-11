@@ -52,24 +52,24 @@ export class PermisosComponent implements OnInit {
   }
 
   onSubmit(){
-    //   this.menusRolService.privilegiosEdit(this.menus_rol).subscribe(
-    //       response=>{
-    //           console.log(response);
-    //           if(response.status == "exito"){
-    //               this.exito = true;
-    //               this.mensaje=response.mensaje;
-    //           }else{
-    //               this.cargarPermisos(); //volvemos a cargar los permisos originales
-    //               this.exito=false;
-    //               this.mensaje=response.mensaje;
-    //           }
-    //       },
-    //       error=>{
-    //           if(error!=null) {
-    //               console.log("Error al enviar la peticion: "+error);
-    //           }
-    //       }
-    //   );
+      this.rolesService.privilegiosEdit(this.menus_rol).subscribe(
+          response=>{
+              console.log(response);
+              if(response.status == "exito"){
+                  this.exito = true;
+                  this.mensaje=response.mensaje;
+              }else{
+                  this.cargarPermisos(); //volvemos a cargar los permisos originales
+                  this.exito=false;
+                  this.mensaje=response.mensaje;
+              }
+          },
+          error=>{
+              if(error!=null) {
+                  console.log("Error al enviar la peticion: "+error);
+              }
+          }
+      );
 
     //Simulando error
     this.cargarPermisos();

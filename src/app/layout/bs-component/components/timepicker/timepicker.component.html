@@ -42,7 +42,8 @@
         <div class="card">
             <div class="card-header">Timepicker (<b>Custom Step</b>)</div>
             <div class="card-block">
-                <ngb-timepicker [(ngModel)]="customTime" [seconds]="true"
+                <div class="alert alert-danger" *ngIf="isReservada">La hora seleccionada esta reservada</div>
+                <ngb-timepicker [(ngModel)]="customTime" [seconds]="true" (ngModelChange)="validarHora($event)"
                 [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep"></ngb-timepicker>
 
                 <div class="row">
