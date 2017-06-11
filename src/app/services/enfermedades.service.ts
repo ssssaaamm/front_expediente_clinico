@@ -5,6 +5,8 @@ import {Observable} from "rxjs/Observable";
 
 import { LoginService } from './login.service';
 import { Enfermedad } from '../models/enfermedad';
+import { Paciente } from '../models/paciente';
+import { Padre } from '../models/padre';
 
 @Injectable()
 export class EnfermedadesService {
@@ -64,14 +66,24 @@ export class EnfermedadesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  enfermedades(enfermedad:Enfermedad){
-    this.action = "/del";
+  enfermedadesPaciente(paciente:Paciente){
+    this.action = "/paciente";
     let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(enfermedad);
+    parametros = parametros + "&json="+JSON.stringify(paciente);
+    console.log(parametros);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+  enfermedadesPadre(padre:Padre){
+    this.action = "/padre";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(padre);
+    console.log(parametros);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
 
 }

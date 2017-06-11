@@ -6,6 +6,8 @@ import {Observable} from "rxjs/Observable"
 
 import { LoginService } from './login.service';
 import { Rol } from '../models/rol';
+import { MenuRol } from '../models/menu_rol';
+
 
 @Injectable()
 export class RolesService {
@@ -68,16 +70,16 @@ export class RolesService {
     this.action = "/privilegios";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(rol);
-    console.log(parametros);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  privilegiosEdit(rol:Rol){
+  privilegiosEdit(menus_rol:Array<MenuRol>){
     this.action = "/privilegios/edit";
     let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(rol);
+    parametros = parametros + "&json="+JSON.stringify(menus_rol);
+    console.log(parametros);
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
