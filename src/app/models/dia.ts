@@ -1,7 +1,7 @@
 export class Dia{
     constructor(
 
-        public number: number,
+        public numero: number,
         public nombre: string,
         public id?:number
 
@@ -11,7 +11,7 @@ export class Dia{
 
 // Esnecesario. algo de refencias!!!
     public clone():Dia{
-        return new Dia(this.number,this.nombre,this.id);
+        return new Dia(this.numero,this.nombre,this.id);
     }
 
     // public full_clone():Usuario{

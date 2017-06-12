@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable"
 import { LoginService } from './login.service';
 import { Rol } from '../models/rol';
 import { MenuRol } from '../models/menu_rol';
+import { Usuario } from "app/models/usuario";
 
 
 @Injectable()
@@ -83,6 +84,20 @@ export class RolesService {
 
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+  getUsuarioRol(usuario:Usuario){
+    this.action = "/rolUsuario";
+    let parametros = "token=" + this.token;
+    let temp:any  = new Object();
+    temp.usuario=usuario;
+    parametros = parametros + "&json="+JSON.stringify(temp);
+    console.log(parametros);
+
+    return this.http.post(this.url + this.resource + this.action, parametros, { headers: this.headers })
+      .map(
+      (res) => {
+        return res.json();
+      });
   }
 
 }

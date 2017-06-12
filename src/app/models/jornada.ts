@@ -7,7 +7,7 @@ export class Jornada{
 
         //public medico: Medico,
         public dia: Dia,
-        public turno: Array<Turno>,
+        public turnos: Array<Turno>,
         public id?:number,
 
 
@@ -16,7 +16,7 @@ export class Jornada{
 
 // Esnecesario. algo de refencias!!!
     public clone():Jornada{
-        return new Jornada(this.dia,this.turno,this.id);
+        return new Jornada(this.dia,this.turnos,this.id);
     }
 
     // public full_clone():Usuario{

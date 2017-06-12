@@ -32,15 +32,15 @@
             </thead>
             <tbody>
                 <tr *ngFor="let empleado of empleados">
-                    <td>{{empleado.dui}}</td>
-                    <td>{{empleado.nombre1}},{{empleado.nombre2}}</td>
-                    <td>{{empleado.apellido1}},{{empleado.apellido2}}</td>
-                    <td>{{empleado.pais}},{{empleado.division}},{{empleado.subdivision}}</td>
+                    <td>{{empleado.documento_unico}}</td>
+                    <td>{{empleado.nombre1}} {{empleado.nombre2}}</td>
+                    <td>{{empleado.apellido1}} {{empleado.apellido2}}</td>
+                    <td>{{empleado.subdivision.idDivision.idPais.nombrePais}},{{empleado.subdivision.idDivision.nombreDivision}},{{empleado.subdivision.nombreSubdivision}}</td>
                     <td>{{empleado.tel_fijo}}</td>
                     <td>{{empleado.tel_movil}}</td>
                     <td>{{empleado.email}}</td>
-                    <td>{{empleado.username}}</td>
-                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados" [paises]="paises"  ></app-mod-edit> </td>
+                    <td>{{empleado.usuario.username}}</td>
+                  <td><app-mod-edit [empleado_original]="empleado" [empleados]="empleados" [paises]="paises" [roles]="roles" [especialidades]="especialidades" ></app-mod-edit> </td>
                   <td><app-mod-del [empleado]="empleado" [empleados]="empleados"><p>¿Realmente Desea elimniar el empleado?</p></app-mod-del></td>
 
                 </tr>

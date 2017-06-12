@@ -25,8 +25,8 @@ export class RolesComponent implements OnInit {
         if(roles){
             roles.forEach((rol)=>{
                 result.push(new Rol(
-                    rol.nombre,
-                    rol.descripcion,
+                    rol.nombreRol,
+                    rol.descripcionRol,
                     rol.idRol
                 ));
             });

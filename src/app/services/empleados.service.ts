@@ -64,4 +64,15 @@ export class EmpleadosService {private url="https://bad115.herokuapp.com";
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+  getEspecialidadesEmpleado(empleado:Empleado){
+    console.log(JSON.stringify(empleado));
+    this.action = "/especialidadMedico";
+    let parametros="token="+this.token;
+    console.log(this.token);
+    parametros = parametros + "&json="+JSON.stringify(empleado);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
 }
