@@ -82,14 +82,14 @@ export class EmpleadosComponent implements OnInit {
         return result;
       }).subscribe(res => this.empleados = res);
    
-    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
-      new Usuario("", "", true, new Rol("", "", 0), 0),
-      new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
+    // console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
+    //   new Usuario("", "", true, new Rol("", "", 0), 0),
+    //   new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
       
 
-    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
-      new Usuario("", "", true, new Rol("", "", 0), 0),
-      null,0))); 
+    // console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
+    //   new Usuario("", "", true, new Rol("", "", 0), 0),
+    //   null,0))); 
   
      //obtenemos todos los paises
     this.paisesService.listCountries2()

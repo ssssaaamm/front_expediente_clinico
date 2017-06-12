@@ -117,7 +117,8 @@
                                 <label>Fecha nacimiento</label>
                                 <div class="input-group">
                                     <input class="form-control" placeholder="yyyy-mm-dd"
-                                        name="dp" [(ngModel)]="fecha_nacimiento" ngbDatepicker #d="ngbDatepicker">
+                                        name="dp" [(ngModel)]="fecha_nacimiento"  [minDate]="{year: 1900, month: 1, day: 1}"
+                                        [maxDate]="{year: 2017, month: 6, day: 19}" ngbDatepicker #d="ngbDatepicker">
                                     <div class="input-group-addon" (click)="d.toggle()">
                                         <span class="fa fa-calendar"></span>
                                     </div>
