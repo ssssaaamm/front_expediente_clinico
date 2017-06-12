@@ -201,7 +201,7 @@ export class PacientesComponent implements OnInit {
 
 
     //obtenemos todos los paises
-    this.paisesService.listCountries()
+    this.paisesService.listCountries2()
       .map((paises: Array<any>) => {
         return paises;
       })
@@ -303,6 +303,7 @@ export class PacientesComponent implements OnInit {
       })
       .subscribe(res => this.pacientes = res);
 
+      
   }
 
 }

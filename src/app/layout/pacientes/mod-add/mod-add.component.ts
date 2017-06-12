@@ -148,7 +148,7 @@ export class ModAddComponent implements OnInit {
     console.log(this.selectedCountryPadre.nombrePais);
   }
 
-  onChangeRegion() {
+  onChangeRegionPadre() {
     //obtenemos todos las ciudades
     this.paisesService.listCities2(this.selectedRegionPadre)
       .map((cities: Array<any>) => {
@@ -159,12 +159,12 @@ export class ModAddComponent implements OnInit {
     console.log(this.selectedRegionPadre.nombreDivision);
   }
 
-  onChangeCiudad() {
+  onChangeCiudadPadre() {
     this.paciente.padre.subdivision=this.selectedCityPadre;
     console.log(this.paciente.padre.subdivision.nombreSubdivision);
   }
 
- //obtenemos todos las regiones
+ //obtenemos todos las regiones de la madre
   onChangePaisMadre() {
     //obtenemos todos las regiones
     this.paisesService.listRegions2(this.selectedCountryPadre)
