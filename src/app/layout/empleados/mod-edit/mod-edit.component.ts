@@ -307,13 +307,13 @@ export class ModEditComponent implements OnInit {
         let result: Array<Rol> = new Array<Rol>();
          if(jornadas){
            console.log(JSON.stringify(jornadas));
-            //  roles.forEach((rol)=>{
-            //      result.push(new Rol(
-            //          rol.nombreRol,
-            //          rol.descripcionRol,
-            //          rol.idRol,
-            //      ));
-            //  });
+             jornadas.forEach((jornada)=>{
+                //  result.push(new Rol(
+                //      rol.nombreRol,
+                //      rol.descripcionRol,
+                //      rol.idRol,
+                //  ));
+             });
          }
          return result;
      })

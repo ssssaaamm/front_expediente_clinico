@@ -98,9 +98,10 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Rol</label>
-                        <select class="form-control" [(ngModel)]="empleado_modificado.usuario.rol" [disabled]="esMedico" (change)="onChangeMedico()" name="rol">
+                        <input *ngIf="esMedico" class="form-control" [(ngModel)]="empleado_modificado.usuario.rol.nombre" [disabled]="true">
+                        <select *ngIf="!esMedico" class="form-control" [(ngModel)]="empleado_modificado.usuario.rol" [disabled]="esMedico" (change)="onChangeMedico()" name="rol">
                                 <option *ngFor="let rol of roles" [disabled]=" rol.nombre=='Paciente' || rol.nombre=='Medico' ? true : false" [ngValue]="rol"  id="rol">{{ rol.nombre }}</option>
-                            </select>
+                        </select>
                     </div>
                 </div>
             </div>
