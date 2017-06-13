@@ -173,6 +173,7 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(JSON.stringify(this.empleado_modificado));
     this.empleadosService.edit(this.empleado_modificado.clone()).subscribe(
       response => {
         console.log(response);
@@ -237,7 +238,8 @@ export class ModEditComponent implements OnInit {
 
     this.rolesService.getUsuarioRol(this.empleado_modificado.usuario).subscribe(
       response => {
-        let result: Rol = new Rol(response.nombreRol, response.descripcionRol, response.idRol);
+        console.log(JSON.stringify(response));
+        let result: Rol = new Rol(response.idRol.nombreRol, response.idRol.descripcionRol, response.idRol.idRol);
         this.roles.forEach((rol) => {
           if (this.rolesIguales(result, rol)) {
             this.empleado_modificado.usuario.rol = rol;
