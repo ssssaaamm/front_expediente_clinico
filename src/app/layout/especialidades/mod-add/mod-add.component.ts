@@ -44,7 +44,7 @@ export class ModAddComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.especialidad=new Especialidad("","");
+        this.especialidad=new Especialidad("","",null,null);
     }
 
     onSubmit(){
