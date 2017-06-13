@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {JsonpModule} from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import { CustomFormsModule } from 'ng2-validation';
 import { EmpleadosRoutingModule } from './empleados-routing.module';
 import { EmpleadosComponent } from './empleados.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
@@ -19,6 +19,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ReactiveFormsModule,
     JsonpModule,
     NgbModule.forRoot(),
+    CustomFormsModule
 
   ],
   declarations: [EmpleadosComponent, ModAddComponent, ModDelComponent, ModEditComponent]
