@@ -88,7 +88,7 @@ export class ModEditComponent implements OnInit {
       this.paciente_modificado = this.paciente_original.full_clone();
     });
 
-    this.rellenarPaises();
+    //this.rellenarPaises();
     this.rellenarEnfermedades();
     this.rellenarFechaNacimiento();
 
@@ -115,7 +115,7 @@ export class ModEditComponent implements OnInit {
     this.ciudadesPadre = new Array<any>();
 
     console.log(this.selectedCountryPadre.name);
-    this.paciente_modificado.padre.pais = this.selectedCountryPadre.name;
+    //this.paciente_modificado.padre.pais = this.selectedCountryPadre.name;
   }
 
   onChangeRegionPadre() {
@@ -127,7 +127,7 @@ export class ModEditComponent implements OnInit {
       .subscribe(res => this.ciudadesPadre = res);
 
     console.log(this.selectedRegionPadre.region);
-    this.paciente_modificado.padre.division = this.selectedRegionPadre.region;
+    //this.paciente_modificado.padre.division = this.selectedRegionPadre.region;
   }
 
   onChangeCiudadPadre() {
@@ -146,7 +146,7 @@ export class ModEditComponent implements OnInit {
     this.ciudadesMadre = new Array<any>();
 
     console.log(this.selectedCountryMadre.name);
-    this.paciente_modificado.madre.pais = this.selectedCountryMadre.name;
+    //this.paciente_modificado.madre.pais = this.selectedCountryMadre.name;
   }
 
   onChangeRegionMadre() {
@@ -158,7 +158,7 @@ export class ModEditComponent implements OnInit {
       .subscribe(res => this.ciudadesMadre = res);
 
     console.log(this.selectedRegionMadre.region);
-    this.paciente_modificado.madre.division = this.selectedRegionMadre.region;
+    //this.paciente_modificado.madre.division = this.selectedRegionMadre.region;
   }
 
   onChangeCiudadMadre() {
@@ -177,7 +177,7 @@ export class ModEditComponent implements OnInit {
     this.ciudadesPaciente = new Array<any>();
 
     console.log(this.selectedCountryPaciente.name);
-    this.paciente_modificado.pais = this.selectedCountryPaciente.name;
+    //this.paciente_modificado.pais = this.selectedCountryPaciente.name;
   }
 
   onChangeRegionPaciente() {
@@ -189,7 +189,7 @@ export class ModEditComponent implements OnInit {
       .subscribe(res => this.ciudadesPaciente = res);
 
     console.log(this.selectedRegionPaciente.region);
-    this.paciente_modificado.division = this.selectedRegionPaciente.region;
+    //this.paciente_modificado.division = this.selectedRegionPaciente.region;
   }
 
   onChangeCiudadPaciente() {
@@ -208,7 +208,7 @@ export class ModEditComponent implements OnInit {
     this.ciudadesResponsable = new Array<any>();
 
     console.log(this.selectedCountryResponsable.name);
-    this.paciente_modificado.responsable.pais = this.selectedCountryResponsable.name;
+    //this.paciente_modificado.responsable.pais = this.selectedCountryResponsable.name;
   }
 
   onChangeRegionResponsable() {
@@ -220,7 +220,7 @@ export class ModEditComponent implements OnInit {
       .subscribe(res => this.ciudadesResponsable = res);
 
     console.log(this.selectedRegionResponsable.region);
-    this.paciente_modificado.responsable.division = this.selectedRegionResponsable.region;
+    //this.paciente_modificado.responsable.division = this.selectedRegionResponsable.region;
   }
 
   onChangeCiudadResponsable() {
@@ -422,113 +422,113 @@ export class ModEditComponent implements OnInit {
     //
   }
 
-  private rellenarPaises() {
+  // private rellenarPaises() {
 
-    // pacientes
-    this.paises.forEach((pais) => {
-      if (this.paciente_modificado.pais == pais.name) {
-        this.selectedCountryPaciente = pais;
-        this.onChangePaisPaciente();
-      }
-    });
+  //   // pacientes
+  //   this.paises.forEach((pais) => {
+  //     if (this.paciente_modificado.pais == pais.name) {
+  //       this.selectedCountryPaciente = pais;
+  //       this.onChangePaisPaciente();
+  //     }
+  //   });
 
-    setTimeout(() => {
-      this.regionesPaciente.forEach((region) => {
-        if (this.paciente_modificado.division == region.region) {
-          this.selectedRegionPaciente = region;
-          this.onChangeRegionPaciente();
-        }
-      });
+  //   setTimeout(() => {
+  //     this.regionesPaciente.forEach((region) => {
+  //       if (this.paciente_modificado.division == region.region) {
+  //         this.selectedRegionPaciente = region;
+  //         this.onChangeRegionPaciente();
+  //       }
+  //     });
 
-      setTimeout(() => {
-        this.ciudadesPaciente.forEach((ciudad) => {
-          if (this.paciente_modificado.subdivision == ciudad.city) {
-            this.selectedCityPaciente = ciudad;
-            this.onChangeCiudadPaciente();
-          }
-        });
-      }, 1500);
-    }, 1500);
+  //     setTimeout(() => {
+  //       this.ciudadesPaciente.forEach((ciudad) => {
+  //         if (this.paciente_modificado.subdivision == ciudad.city) {
+  //           this.selectedCityPaciente = ciudad;
+  //           this.onChangeCiudadPaciente();
+  //         }
+  //       });
+  //     }, 1500);
+  //   }, 1500);
 
-    // padre
-    this.paises.forEach((pais) => {
-      if (this.paciente_modificado.padre.pais == pais.name) {
-        this.selectedCountryPadre = pais;
-        this.onChangePaisPadre();
-      }
-    });
+  //   // padre
+  //   this.paises.forEach((pais) => {
+  //     if (this.paciente_modificado.padre.pais == pais.name) {
+  //       this.selectedCountryPadre = pais;
+  //       this.onChangePaisPadre();
+  //     }
+  //   });
 
-    setTimeout(() => {
-      this.regionesPadre.forEach((region) => {
-        if (this.paciente_modificado.padre.division == region.region) {
-          this.selectedRegionPadre = region;
-          this.onChangeRegionPadre();
-        }
-      });
+  //   setTimeout(() => {
+  //     this.regionesPadre.forEach((region) => {
+  //       if (this.paciente_modificado.padre.division == region.region) {
+  //         this.selectedRegionPadre = region;
+  //         this.onChangeRegionPadre();
+  //       }
+  //     });
 
-      setTimeout(() => {
-        this.ciudadesPadre.forEach((ciudad) => {
-          if (this.paciente_modificado.padre.subdivision == ciudad.city) {
-            this.selectedCityPadre = ciudad;
-            this.onChangeCiudadPadre();
-          }
-        });
-      }, 1500);
-    }, 1500);
+  //     setTimeout(() => {
+  //       this.ciudadesPadre.forEach((ciudad) => {
+  //         if (this.paciente_modificado.padre.subdivision == ciudad.city) {
+  //           this.selectedCityPadre = ciudad;
+  //           this.onChangeCiudadPadre();
+  //         }
+  //       });
+  //     }, 1500);
+  //   }, 1500);
 
-    // madre
-    this.paises.forEach((pais) => {
-      if (this.paciente_modificado.madre.pais == pais.name) {
-        this.selectedCountryMadre = pais;
-        this.onChangePaisMadre();
-      }
-    });
+  //   // madre
+  //   this.paises.forEach((pais) => {
+  //     if (this.paciente_modificado.madre.pais == pais.name) {
+  //       this.selectedCountryMadre = pais;
+  //       this.onChangePaisMadre();
+  //     }
+  //   });
 
-    setTimeout(() => {
-      this.regionesMadre.forEach((region) => {
-        if (this.paciente_modificado.madre.division == region.region) {
-          this.selectedRegionMadre = region;
-          this.onChangeRegionMadre();
-        }
-      });
+  //   setTimeout(() => {
+  //     this.regionesMadre.forEach((region) => {
+  //       if (this.paciente_modificado.madre.division == region.region) {
+  //         this.selectedRegionMadre = region;
+  //         this.onChangeRegionMadre();
+  //       }
+  //     });
 
-      setTimeout(() => {
-        this.ciudadesMadre.forEach((ciudad) => {
-          if (this.paciente_modificado.madre.subdivision == ciudad.city) {
-            this.selectedCityMadre = ciudad;
-            this.onChangeCiudadMadre();
-          }
-        });
-      }, 1500);
-    }, 1500);
+  //     setTimeout(() => {
+  //       this.ciudadesMadre.forEach((ciudad) => {
+  //         if (this.paciente_modificado.madre.subdivision == ciudad.city) {
+  //           this.selectedCityMadre = ciudad;
+  //           this.onChangeCiudadMadre();
+  //         }
+  //       });
+  //     }, 1500);
+  //   }, 1500);
 
 
-    // responsable
-    this.paises.forEach((pais) => {
-      if (this.paciente_modificado.responsable.pais == pais.name) {
-        this.selectedCountryResponsable = pais;
-        this.onChangePaisResponsable();
-      }
-    });
+  //   // responsable
+  //   this.paises.forEach((pais) => {
+  //     if (this.paciente_modificado.responsable.pais == pais.name) {
+  //       this.selectedCountryResponsable = pais;
+  //       this.onChangePaisResponsable();
+  //     }
+  //   });
 
-    setTimeout(() => {
-      this.regionesResponsable.forEach((region) => {
-        if (this.paciente_modificado.responsable.division == region.region) {
-          this.selectedRegionResponsable = region;
-          this.onChangeRegionResponsable();
-        }
-      });
+  //   setTimeout(() => {
+  //     this.regionesResponsable.forEach((region) => {
+  //       if (this.paciente_modificado.responsable.division == region.region) {
+  //         this.selectedRegionResponsable = region;
+  //         this.onChangeRegionResponsable();
+  //       }
+  //     });
 
-      setTimeout(() => {
-        this.ciudadesResponsable.forEach((ciudad) => {
-          if (this.paciente_modificado.responsable.subdivision == ciudad.city) {
-            this.selectedCityResponsable = ciudad;
-            this.onChangeCiudadResponsable();
-          }
-        });
-      }, 1500);
-    }, 1500);
-  }
+  //     setTimeout(() => {
+  //       this.ciudadesResponsable.forEach((ciudad) => {
+  //         if (this.paciente_modificado.responsable.subdivision == ciudad.city) {
+  //           this.selectedCityResponsable = ciudad;
+  //           this.onChangeCiudadResponsable();
+  //         }
+  //       });
+  //     }, 1500);
+  //   }, 1500);
+  // }
 
   rellenarFechaNacimiento() {
     this.fecha_nacimiento.year = this.paciente_modificado.anio_nacimiento;
