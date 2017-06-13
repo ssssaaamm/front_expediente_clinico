@@ -86,11 +86,11 @@ export class RolesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
   getUsuarioRol(usuario:Usuario){
-    this.action = "/rolUsuario";
+    this.action = "/usuarioRoles";
     let parametros = "token=" + this.token;
-    let temp:any  = new Object();
-    temp.usuario=usuario;
-    parametros = parametros + "&json="+JSON.stringify(temp);
+    //let temp:any  = new Object();
+    //temp.usuario=usuario;
+    parametros = parametros + "&json="+JSON.stringify(usuario);
     console.log(parametros);
 
     return this.http.post(this.url + this.resource + this.action, parametros, { headers: this.headers })
