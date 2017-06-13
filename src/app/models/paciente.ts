@@ -11,14 +11,12 @@ export class Paciente{
         public apellido1:string, 
         public apellido2:string,
         public apellido_casada:string,
-        public dui:string,
+        public documento_unico:string,
         public dia_nacimiento:number,
         public mes_nacimiento:number,
         public anio_nacimiento:number,
         public genero:string,
-        public pais:string,
-        public division:string,
-        public subdivision:string,
+        public subdivision:any,
         public tel_fijo:string,
         public tel_movil:string,
         public email:string,
@@ -35,11 +33,11 @@ export class Paciente{
 
 // Esnecesario. algo de refeencias!!!
     public clone():Paciente{
-        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.dui,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente,this.responsable,this.padre,this.madre,this.enfermedades,this.usuario,this.id);
+        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.documento_unico,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente,this.responsable,this.padre,this.madre,this.enfermedades,this.usuario,this.id);
     }
 
     public full_clone():Paciente{
-        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.dui,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.pais,this.division,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente.clone(),this.responsable.clone(),this.padre.clone(),this.madre.clone(),this.enfermedades,this.usuario.clone(),this.id);
+        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.documento_unico,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente.clone(),this.responsable.clone(),this.padre.clone(),this.madre.clone(),this.enfermedades,this.usuario.clone(),this.id);
     }
 
 }

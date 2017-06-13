@@ -56,27 +56,27 @@
                             <p></p>
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" maxlength="10" name="dui" [(ngModel)]="paciente.dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" maxlength="10" name="dui" [(ngModel)]="paciente.documento_unico" placeholder="Ingrese doc. identidad">
                             </div>
                         
                             <div class="form-group">
                                 <label >Pais</label>
                                 <select class="form-control" [(ngModel)]="selectedCountryPaciente" name="pais" (change)="onChangePaisPaciente()">
-                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Region</label>
                                 <select class="form-control"  [(ngModel)]="selectedRegionPaciente" name="region" (change)="onChangeRegionPaciente()">
-                                    <option *ngFor="let region of regionesPaciente" [ngValue]="region" >{{ region.region }}</option>
+                                    <option *ngFor="let region of regionesPaciente" [ngValue]="region" >{{ region.nombreDivision }}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Ciudad</label>
                                 <select class="form-control" [(ngModel)]="selectedCityPaciente" name="ciudad" (change)="onChangeCiudadPaciente()">
-                                    <option *ngFor="let ciudad of ciudadesPaciente" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                    <option *ngFor="let ciudad of ciudadesPaciente" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                                 </select>
                             </div>
 
@@ -117,7 +117,8 @@
                                 <label>Fecha nacimiento</label>
                                 <div class="input-group">
                                     <input class="form-control" placeholder="yyyy-mm-dd"
-                                        name="dp" [(ngModel)]="fecha_nacimiento" ngbDatepicker #d="ngbDatepicker">
+                                        name="dp" [(ngModel)]="fecha_nacimiento"  [minDate]="{year: 1900, month: 1, day: 1}"
+                                        [maxDate]="{year: 2017, month: 6, day: 19}" ngbDatepicker #d="ngbDatepicker">
                                     <div class="input-group-addon" (click)="d.toggle()">
                                         <span class="fa fa-calendar"></span>
                                     </div>
@@ -200,7 +201,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.padre.dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.padre.documento_unico" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                     </div><!--fin row 2-->
@@ -209,21 +210,21 @@
                         <div class="form-group col-md-4">
                             <label >Pais</label>
                             <select class="form-control" [(ngModel)]="selectedCountryPadre" name="pais" (change)="onChangePaisPadre()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Region</label>
                             <select class="form-control"  [(ngModel)]="selectedRegionPadre" name="region" (change)="onChangeRegionPadre()">
-                                <option *ngFor="let region of regionesPadre" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesPadre" [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Ciudad</label>
                             <select class="form-control" [(ngModel)]="selectedCityPadre" name="ciudad" (change)="onChangeCiudadPadre()">
-                                <option *ngFor="let ciudad of ciudadesPadre" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesPadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
                         </div>
                     </div><!--fin row 3-->
@@ -279,7 +280,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.madre.dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.madre.documento_unico" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                     </div><!--fin row 2-->
@@ -288,21 +289,21 @@
                         <div class="form-group col-md-4">
                             <label >Pais</label>
                             <select class="form-control" [(ngModel)]="selectedCountryMadre" name="pais" (change)="onChangePaisMadre()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Region</label>
                             <select class="form-control"  [(ngModel)]="selectedRegionMadre" name="region" (change)="onChangeRegionMadre()">
-                                <option *ngFor="let region of regionesMadre" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesMadre" [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Ciudad</label>
                             <select class="form-control" [(ngModel)]="selectedCityMadre" name="ciudad" (change)="onChangeCiudadMadre()">
-                                <option *ngFor="let ciudad of ciudadesMadre" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesMadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
                         </div>
                     </div><!--fin row 3-->
@@ -372,7 +373,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" maxlength="10" [(ngModel)]="paciente.responsable.dui" name="dui" placeholder="Ingrese doc. identidad">
+                                <input type="text" class="form-control" maxlength="10" [(ngModel)]="paciente.responsable.documento_unico" name="dui" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                     </div><!--fin row 2-->
@@ -381,21 +382,21 @@
                         <div class="form-group col-md-4">
                             <label >Pais</label>
                             <select class="form-control" [(ngModel)]="selectedCountryResponsable" name="pais" (change)="onChangePaisResponsable()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Region</label>
                             <select class="form-control"  [(ngModel)]="selectedRegionResponsable" name="region" (change)="onChangeRegionResponsable()">
-                                <option *ngFor="let region of regionesResponsable" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesResponsable" [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label>Ciudad</label>
                             <select class="form-control" [(ngModel)]="selectedCityResponsable" name="ciudad" (change)="onChangeCiudadResponsable()">
-                                <option *ngFor="let ciudad of ciudadesResponsable" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesResponsable" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
                         </div>
                     </div><!--fin row 3-->

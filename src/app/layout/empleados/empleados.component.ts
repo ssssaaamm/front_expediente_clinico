@@ -9,6 +9,7 @@ import {Medico} from "app/models/medico";
 import {Especialidad} from "app/models/especialidad";
 import { PaisesService } from "app/services/paises.service";
 import { EspecialidadesService } from "app/services/especialidades.service";
+import { DiasService } from "app/services/dias.service";
 import { RolesService } from "app/services/roles.service";
 import { Jornada } from "app/models/jornada";
 import { Turno } from "app/models/turno";
@@ -19,16 +20,17 @@ import { Dia } from "app/models/dia";
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
   styleUrls: ['./empleados.component.scss'],
-  providers: [EspecialidadesService,EmpleadosService, UsuariosService,PaisesService,RolesService]
+  providers: [EspecialidadesService,EmpleadosService, UsuariosService,PaisesService,RolesService,DiasService]
 })
 export class EmpleadosComponent implements OnInit {
 
   public empleados: Array<Empleado> = new Array<Empleado>();
   public usuarios: Array<Usuario> = new Array<Usuario>();
   public paises:Array<any>=new Array<any>();//<--sera pasado al componente add y edit
+  public dias:Array<Dia>=new Array<Dia>();//<--sera pasado al componente add y edit
   public especialidades:Array<any>= Array<any>();
   public roles:Array<any>= Array<any>();
-  constructor(private empleadosService: EmpleadosService, private usuariosService: UsuariosService, private paisesService: PaisesService, private especialidadesService: EspecialidadesService, private rolesService: RolesService) { }
+  constructor(private empleadosService: EmpleadosService, private usuariosService: UsuariosService, private paisesService: PaisesService, private especialidadesService: EspecialidadesService, private rolesService: RolesService,private diasService:DiasService) { }
 
   ngOnInit() {
     /**
@@ -43,6 +45,8 @@ export class EmpleadosComponent implements OnInit {
 //       new Especialidad('05', 'Obstetra', 5),
 //     );
 
+    //obtener los dias
+
     this.empleadosService.list()
       .map((empleados: Array<any>) => {
         let result: Array<Empleado> = new Array<Empleado>();
@@ -52,16 +56,14 @@ export class EmpleadosComponent implements OnInit {
 
              result.push(new Empleado(
               
-              empleado.dui,
+              empleado.documentoUnico,
               empleado.genero,
               empleado.nombre1,
               empleado.nombre2,
               empleado.apellido1,
               empleado.apellido2,
-              empleado.apellidoCasada,
-              empleado.pais,
-              empleado.division,
-              empleado.subdivision,
+              empleado.apellidoCasada, 
+              empleado.idSubdivision,
               empleado.telFijo,
               empleado.telMovil,
               empleado.email,
@@ -69,7 +71,7 @@ export class EmpleadosComponent implements OnInit {
                 empleado.idUsuario.username,
                 empleado.idUsuario.password,
                 empleado.idUsuario.estado,
-                new Rol(empleado.idUsuario.idRol.nombre, empleado.idUsuario.idRol.descripcion, empleado.idUsuario.idRol.idRol),
+                null,
                 empleado.idUsuario.idUsuario), /*Habra q consultar los roles*/
               null, /*No sabemos si es un medico, hasta q nos manden confirmación de la API*/
               empleado.idEmpleado
@@ -80,17 +82,17 @@ export class EmpleadosComponent implements OnInit {
         return result;
       }).subscribe(res => this.empleados = res);
    
-    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
-      new Usuario("", "", true, new Rol("", "", 0), 0),
-      new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
+    // console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
+    //   new Usuario("", "", true, new Rol("", "", 0), 0),
+    //   new Medico(new Array<Especialidad>(),new Array <Jornada>(),"",0),0)));
       
 
-    console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "", "", "",
-      new Usuario("", "", true, new Rol("", "", 0), 0),
-      null,0))); 
+    // console.log(JSON.stringify(new Empleado("","", "", "", "", "", "", "", "", "", "",
+    //   new Usuario("", "", true, new Rol("", "", 0), 0),
+    //   null,0))); 
   
      //obtenemos todos los paises
-    this.paisesService.listCountries()
+    this.paisesService.listCountries2()
     .map((paises: Array<any>)=>{
       return paises;
     })
@@ -117,8 +119,8 @@ export class EmpleadosComponent implements OnInit {
          if(roles){
              roles.forEach((rol)=>{
                  result.push(new Rol(
-                     rol.nombre,
-                     rol.descripcion,
+                     rol.nombreRol,
+                     rol.descripcionRol,
                      rol.idRol,
                  ));
              });
@@ -126,6 +128,7 @@ export class EmpleadosComponent implements OnInit {
          return result;
      })
      .subscribe( res => this.roles = res);
+
   }
 
 }

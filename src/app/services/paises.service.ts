@@ -45,23 +45,33 @@ export class PaisesService {
   }
 
   listCountries2(){
-    let url="https://bad115.herokuapp.com/paises/list";
-    // let call_back="&callback=JSONP_CALLBACK";
-    // return this.jsonp.request(url+call_back,this.headers)
-    // .map(
-    //   (res) => { 
-    //     return res.json(); 
-    // });
-
-
-    let parametros="token="+this.loginService.getToken();
-    return this.http.post(url+parametros,{headers:this.headers})
+    let token=this.loginService.getToken();
+    let url="https://bad115.herokuapp.com/paises/list?token="+token;
+    return this.http.get(url)
     .map(
       (res) => { 
         return res.json(); 
     });
-
-        
   }
+   listRegions2(pais:any){
+    let token=this.loginService.getToken();
+    let url="https://bad115.herokuapp.com/paises/estadosPais?token="+token+"&json="+JSON.stringify(pais);
+    return this.http.get(url)
+    .map(
+      (res) => { 
+        return res.json(); 
+    });
+  }
+
+  listCities2(region:any){
+    let token=this.loginService.getToken();
+    let url="https://bad115.herokuapp.com/paises/ciudadesEstado?token="+token+"&json="+JSON.stringify(region);
+    return this.http.get(url)
+    .map(
+      (res) => { 
+        return res.json(); 
+    });
+  }
+
 
 }

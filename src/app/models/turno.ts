@@ -2,8 +2,8 @@ import {Jornada} from "app/models/jornada";
 export class Turno{
     constructor(
 
-        public desde: string,
-        public hasta: string,
+        public hora_inicio: any,
+        public hora_fin: any,
         public id?:number
 
 
@@ -12,7 +12,7 @@ export class Turno{
 
 // Esnecesario. algo de refencias!!!
     public clone():Turno{
-        return new Turno(this.desde,this.hasta,this.id);
+        return new Turno(this.hora_inicio,this.hora_fin,this.id);
     }
 
     // public full_clone():Usuario{
