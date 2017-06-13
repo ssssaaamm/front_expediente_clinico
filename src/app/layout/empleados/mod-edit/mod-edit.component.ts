@@ -279,6 +279,7 @@ export class ModEditComponent implements OnInit {
     this.empleado_modificado.medico = new Medico(new Array<Especialidad>(), new Array<Jornada>(), "", 0);
     this.esMedico = true;
 
+    // cargamos las especialidades del medico
     this.empleadosService.getEspecialidadesEmpleado(this.empleado_modificado).subscribe(
       (erecibidas) => {
         console.log(JSON.stringify(erecibidas));
@@ -299,17 +300,18 @@ export class ModEditComponent implements OnInit {
 
 
     // obtenemos las jornadas NO PODEMOS OBTENER LOS TURNOS PORQ EL SUSODICHO LLAMADO FER; YA SE FUE A DORMIR Y NOS DEJÖ VALIENDO CON EL ENVIO DE ESOS DATOS ;(
-    this.rolesService.list()
-    .map((roles: Array<any>)=>{
+    this.empleadosService.getJornadasEmpleado(this.empleado_modificado)
+    .map((jornadas: Array<any>)=>{
         let result: Array<Rol> = new Array<Rol>();
-         if(roles){
-             roles.forEach((rol)=>{
-                 result.push(new Rol(
-                     rol.nombreRol,
-                     rol.descripcionRol,
-                     rol.idRol,
-                 ));
-             });
+         if(jornadas){
+           console.log(JSON.stringify(jornadas));
+            //  roles.forEach((rol)=>{
+            //      result.push(new Rol(
+            //          rol.nombreRol,
+            //          rol.descripcionRol,
+            //          rol.idRol,
+            //      ));
+            //  });
          }
          return result;
      })
