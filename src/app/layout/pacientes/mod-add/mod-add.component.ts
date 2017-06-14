@@ -316,7 +316,7 @@ export class ModAddComponent implements OnInit {
     console.log(this.selectedRegionResponsable.nombreDivision);
   }
 
-  onChangeCiudadResponsables() {
+  onChangeCiudadResponsable() {
     this.paciente.responsable.subdivision=this.selectedCityResponsable;
     console.log(this.paciente.responsable.subdivision.nombreSubdivision);
   }
@@ -360,10 +360,29 @@ export class ModAddComponent implements OnInit {
       }
     }
 
+   onChangeCasadaMadre(){
+      if(!this.estaCasada){
+        this.paciente.madre.apellido_casada="";
+      }
+    }
+  
+  onChangeCasadaResponsable(){
+      if(!this.estaCasada){
+        this.paciente.responsable.apellido_casada="";
+      }
+    }
+
     onChangeGenero(){
       if(this.paciente.genero=="M"){
         this.estaCasada=false;
         this.paciente.apellido_casada="";
+      }
+    }
+
+   onChangeGeneroResponsable(){
+      if(this.paciente.responsable.genero=="M"){
+        this.estaCasada=false;
+        this.paciente.responsable.apellido_casada="";
       }
     }
 

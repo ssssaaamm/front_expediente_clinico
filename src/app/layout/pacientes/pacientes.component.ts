@@ -261,6 +261,8 @@ export class PacientesComponent implements OnInit {
                 paciente.idResponsable.nombre2,
                 paciente.idResponsable.apellido1,
                 paciente.idResponsable.apellido2,
+                paciente.idResponsable.genero,
+                paciente.idResponsable.apellido_casada,
                 paciente.idResponsable.documento_unico,
                 paciente.idResponsable.subdivision,
                 paciente.idResponsable.telFijo,
