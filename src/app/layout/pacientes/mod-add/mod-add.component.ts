@@ -7,6 +7,7 @@ import {Padre} from 'app/models/padre';
 import {Responsable} from 'app/models/responsable';
 import {Enfermedad} from 'app/models/enfermedad';
 import {Expediente} from 'app/models/expediente';
+import emailMask from 'text-mask-addons/dist/emailMask';
 
 @Component({
   selector: 'app-mod-add',
@@ -70,7 +71,9 @@ export class ModAddComponent implements OnInit {
   
   public exito: boolean;
   public mensaje: string;
-
+  public maskCell = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskPhone = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskNames = [/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,];
 
   closeResult: string;
   

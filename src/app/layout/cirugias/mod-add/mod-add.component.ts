@@ -5,7 +5,7 @@ import { Especialidad } from '../../../models/especialidad';
 import { CirugiasService } from '../../../services/cirugias.service';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { NG_VALIDATORS, Validator } from '@angular/forms';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
 @Component({
   selector: 'app-mod-add',
   templateUrl: './mod-add.component.html',
