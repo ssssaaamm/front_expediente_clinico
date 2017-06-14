@@ -49,7 +49,7 @@
                                 <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente.genero" value="F"> &nbsp; Femenenino &nbsp;
                             </label>
                             <label class="checkbox-inline">
-                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
+                                <input type="checkbox" #isCasadaP [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
                             </label>
                             
                             <p></p>
@@ -94,7 +94,7 @@
 
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" class="form-control" [disabled]="!isCasadaP.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>
 
                             <!--<div class="form-group">
@@ -258,10 +258,11 @@
                             </div>
                         
                             <label class="checkbox-inline" >
-                                <input type="checkbox" #isCasada [(ngModel)]="estaCasada" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada 
+                                <input type="checkbox" #isCasadaM [(ngModel)]="estaCasadaMadre" (change)="onChangeCasadaMadre()" name="estaCasadaMadre
+                                "> &nbsp; Casada 
                             </label>
                             <div class="form-group">
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>
                             
 
@@ -279,8 +280,8 @@
                             </div>
                             <div class="col-md-12">
                             <div class="form-group">
-                                <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.madre.documento_unico" placeholder="Ingrese doc. identidad">
+                                <label for="duim">Documento identidad</label>
+                                <input type="text" class="form-control" name="duim" maxlength="10" [(ngModel)]="paciente.madre.documento_unico" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                          
@@ -356,7 +357,7 @@
                                 <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente.responsable.genero" value="F"> &nbsp; Femenenino &nbsp;
                             </label>
                             <label class="checkbox-inline">
-                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
+                                <input type="checkbox" #isCasadaR [disabled]="!isFemenine.checked" [(ngModel)]="estaCasadaResponsable" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
                             </label>
                             
                             <div class="form-group">
@@ -378,7 +379,7 @@
                                 <input type="text" class="form-control" [(ngModel)]="paciente.responsable.apellido2" name="apellido2" placeholder="Ingrese segundo apellido">
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" class="form-control" [disabled]="!isCasadaR.checked" name="apellido_casada_responsable" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>
                             </div>
 
