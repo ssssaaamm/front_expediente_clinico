@@ -78,9 +78,7 @@ export class ModAddComponent implements OnInit {
       new Usuario("", "", true, new Rol("", "", 0), 0),
       null, 0);
 
-
       //los dias deben consultados siempre en el componente principal
-
       this.dias = [
         new Dia(1, 'Lunes', null),
         new Dia(2, 'Martes', null),
@@ -90,15 +88,8 @@ export class ModAddComponent implements OnInit {
         new Dia(6, 'Sabado', null),
         new Dia(7, 'Domingo', null),
       ];
-
-      //estas deben ser consultadas en el edit
-      this.dias.forEach((dia)=>{
-        this.jornadas.push(
-          new Jornada(dia,[],null)
-        );
-      });
-
   }
+
   open(content) {
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -150,18 +141,29 @@ export class ModAddComponent implements OnInit {
   }
   onChangeMedico() {
     if (this.empleado.usuario.rol.nombre.toLocaleLowerCase() == 'Medico'.toLocaleLowerCase()) {
+      //INICIALIZAMOS AL MEDICO
       this.empleado.medico = new Medico(new Array<Especialidad>(), this.jornadas, "", 0)
+
+      //CARGAMOS LAS JORNADAS
+      //estas deben ser consultadas en el edit
+      this.dias.forEach((dia)=>{
+        this.jornadas.push(
+          new Jornada(dia,[],null)
+        );
+      });
+
       this.esMedico = true;
     }
     else {
       this.esMedico = false;
       this.empleado.medico = null;
+      this.jornadas=new Array<Jornada>();
     }
   }
   onChangeGenero() {
     if (this.empleado.genero == "M")
       this.estaCasada = false;
-    this.empleado.apellido_casada = "";
+      this.empleado.apellido_casada = "";
   }
 
   addTurno(jornada:Jornada,c:any){
@@ -218,23 +220,45 @@ export class ModAddComponent implements OnInit {
   }
 
   clear() {
-    this.empleado.documento_unico = "";
-    this.empleado.nombre1 = "";
-    this.empleado.nombre2 = "";
-    this.empleado.apellido1 = "";
-    this.empleado.apellido2 = "";
-    this.empleado.apellido_casada = "";
-    this.empleado.subdivision = "";
-    this.empleado.tel_fijo = "";
-    this.empleado.tel_movil = "";
-    this.empleado.email = "";
-    this.empleado.usuario = new Usuario("", "", true, new Rol("", "", null));
-    /*Habra q consultar los roles*/
-    this.empleado.id = null;
+
+
+    this.empleado = new Empleado("", "", "", "", "", "", "", "", "", "", "", 
+      new Usuario("", "", true, new Rol("", "", 0), 0),
+      null, 0);
     this.exito = null;
     this.selectedCountry = null;
     this.selectedRegion = null;
     this.selectedCity = null;
+    this.esMedico=false;
+    this.paso1=true;
+    this.paso2=false;
+    this.exito = null;
+    this.selectedCountry = null;
+    this.selectedRegion = null;
+    this.selectedCity = null;
+    this.esMedico=false;
+    this.jornadas=new Array<Jornada>();
+    
+
+    // this.empleado.documento_unico = "";
+    // this.empleado.nombre1 = "";
+    // this.empleado.nombre2 = "";
+    // this.empleado.apellido1 = "";
+    // this.empleado.apellido2 = "";
+    // this.empleado.apellido_casada = "";
+    // this.empleado.subdivision = "";
+    // this.empleado.tel_fijo = "";
+    // this.empleado.tel_movil = "";
+    // this.empleado.email = "";
+    // this.empleado.usuario = new Usuario("", "", true, new Rol("", "", null));
+    // /*Habra q consultar los roles*/
+    // this.empleado.id = null;
+    // this.exito = null;
+    // this.selectedCountry = null;
+    // this.selectedRegion = null;
+    // this.selectedCity = null;
+    // this.esMedico=false;
+    // this.empleado.medico=null;
 
   }
 

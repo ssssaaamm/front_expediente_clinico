@@ -100,7 +100,7 @@
                             <div class="form-group col-md-6">
                             <label>Rol</label>
                             <select class="form-control" [(ngModel)]="empleado.usuario.rol" (change)="onChangeMedico()" name="rol">
-                                <option *ngFor="let rol of roles" [ngValue]="rol"  id="rol">{{ rol.nombre }}</option>
+                                <option *ngFor="let rol of roles" [disabled]=" rol.nombre=='Paciente' ? true : false" [ngValue]="rol"  id="rol">{{ rol.nombre }}</option>
                             </select>
                         </div>                   
                     </div>
@@ -129,7 +129,9 @@
                             <div *ngFor="let jornada of jornadas" class="col-sm-6">
                                 <div class="card mb-3">
                                     <div class="card-header card-default">
-                                        <label>{{jornada.dia.nombre}}   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" #c (change)="addTurno(jornada,c);"></label>
+                                        <label class="form-control">
+                                            <input type="checkbox" #c (change)="addTurno(jornada,c);"> &nbsp; {{jornada.dia.nombre}} 
+                                        </label>
                                     </div>
                                     <div class="card-block">
 

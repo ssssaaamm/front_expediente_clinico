@@ -304,20 +304,55 @@ export class ModEditComponent implements OnInit {
     // obtenemos las jornadas NO PODEMOS OBTENER LOS TURNOS PORQ EL SUSODICHO LLAMADO FER; YA SE FUE A DORMIR Y NOS DEJÖ VALIENDO CON EL ENVIO DE ESOS DATOS ;(
     this.empleadosService.getJornadasEmpleado(this.empleado_modificado)
     .map((jornadas: Array<any>)=>{
-        let result: Array<Rol> = new Array<Rol>();
+        let result: Array<Jornada> = new Array<Jornada>();
          if(jornadas){
            console.log(JSON.stringify(jornadas));
              jornadas.forEach((jornada)=>{
-                //  result.push(new Rol(
-                //      rol.nombreRol,
-                //      rol.descripcionRol,
-                //      rol.idRol,
-                //  ));
+                
+                let j=new Jornada(new Dia(jornada.numeroDia,jornada.nombreDia,jornada.idDia),new Array<Turno>(),jornada.idJornada);
+                //let j=new Jornada(new Dia(jornada.idDia.numeroDia,jornada.idDia.nombreDia,jornada.idDia.idDia),new Array<Turno>(),jornada.idJornada);
+                //let j=new Jornada(null,new Array<Turno>(),jornada.idJornada);
+                
+                if(jornada.turnos==null){
+                  jornada.turnos=[];
+                }
+
+                jornada.turnos.forEach((turno)=>{
+                  j.turnos.push(
+                    new Turno({"hour":turno.horaInicio,"minute":turno.minutoIncio,"second":0},{"hour":turno.horaFin,"minute":turno.minutoFin,"second":0},turno.idTurno)
+                  )
+                });
+
+                result.push(j);
+
              });
          }
          return result;
      })
-     .subscribe( res => this.roles = res);
+     .subscribe( res => this.empleado_modificado.medico.jornadas = res);
+
+
+     let dias = [
+        new Dia(1, 'Lunes', null),
+        new Dia(2, 'Martes', null),
+        new Dia(3, 'Miercoles', null),
+        new Dia(4, 'Jueves', null),
+        new Dia(5, 'Viernes', null),
+        new Dia(6, 'Sabado', null),
+        new Dia(7, 'Domingo', null),
+      ];
+
+      //estas deben ser consultadas en el edit borrar esto 
+      // dias.forEach((dia)=>{
+      //   this.empleado_modificado.medico.jornadas.push(
+      //     new Jornada(dia,[],null)
+      //   );
+      // });
+
+      // this.empleado_modificado.medico.jornadas[0].turnos.push(new Turno({"hour":5,"minute":5,"second":5},{"hour":7,"minute":7,"second":7},1));
+      // this.empleado_modificado.medico.jornadas[2].turnos.push(new Turno({"hour":1,"minute":1,"second":1},{"hour":7,"minute":7,"second":7},1));
+      // this.empleado_modificado.medico.jornadas[4].turnos.push(new Turno({"hour":2,"minute":2,"second":2},{"hour":7,"minute":7,"second":7},1));
+      // this.empleado_modificado.medico.jornadas[6].turnos.push(new Turno({"hour":3,"minute":3,"second":3},{"hour":7,"minute":7,"second":7},1));
 
   }
 

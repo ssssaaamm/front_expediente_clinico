@@ -104,7 +104,7 @@ export class EmpleadosComponent implements OnInit {
       let result: Array<Especialidad> = new Array<Especialidad>();
       if(especialidades){
         especialidades.forEach((especialidad)=>{
-          result.push(new Especialidad(especialidad.codigoEspecialidad,especialidad.nombreEspecialidad,especialidad.idEspecialidad));
+          result.push(new Especialidad(especialidad.codigoEspecialidad,especialidad.nombreEspecialidad,especialidad.honorarios,especialidad.idEspecialidad));
         });
       }
       return result;
