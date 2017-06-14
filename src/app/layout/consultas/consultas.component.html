@@ -21,19 +21,19 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
+        <table class="table table-hover table-striped table-condensed" [mfData]="consultas" #mf="mfDataTable" [mfRowsOnPage]="1">
             <thead>
                 <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Especialidad</th>
-                    <th>Costo</th>             
+                    <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="especialidad">Especialidad</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="costo">Costo</mfDefaultSorter></th>             
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let consulta of consultas">
+                <tr *ngFor="let consulta of mf.data">
                     <td>{{consulta.codigo}}</td>
                     <td>{{consulta.nombre}}</td>
                     <td>{{consulta.especialidad.nombre}}</td>
@@ -48,6 +48,13 @@
                     </td>
                 </tr>
             </tbody>
+             <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

@@ -15,23 +15,23 @@
 
     <app-mod-add [paises]="paises" [especialidades]="especialidades" [empleados]="empleados" [roles]="roles" ></app-mod-add> 
     <div class="table-responsive">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" [mfData]="empleados" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
-                    <th>Dui</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Direccion</th>
-                    <th>Tel.Fijo</th>
-                    <th>Tel. Móvil</th>
-                    <th>Email</th>
-                    <th>Usuario</th>
+                    <th><mfDefaultSorter by="dui">Dui</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="direccion">Direccion</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="tel.Fijo">Tel.Fijo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="tel.Movil">Tel.Móvil</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="email">Email</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="usuario">Usuario</mfDefaultSorter></th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let empleado of empleados">
+                <tr *ngFor="let empleado of mf.data">
                     <td>{{empleado.documento_unico}}</td>
                     <td>{{empleado.nombre1}} {{empleado.nombre2}}</td>
                     <td>{{empleado.apellido1}} {{empleado.apellido2}}</td>
@@ -45,6 +45,13 @@
 
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

@@ -1,6 +1,4 @@
 <div class="container-fluid">
-    
-    <!-- Page Heading -->
     <div class="row">
         <div class="col-xl-12">
             <h2 class="page-header">
@@ -21,17 +19,17 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
+        <table class="table table-hover table-striped table-condensed" [mfData]="especialidades" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>              
+                    <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>              
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let especialidad of especialidades">
+                <tr *ngFor="let especialidad of mf.data">
                     <td>{{especialidad.codigo}}</td>
                     <td>{{especialidad.nombre}}</td>                      
                     <td><app-mod-edit [especialidad_original]="especialidad" [especialidades]="especialidades"></app-mod-edit></td>
@@ -44,6 +42,13 @@
                     </td>
                 </tr>
             </tbody>
+             <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
  
