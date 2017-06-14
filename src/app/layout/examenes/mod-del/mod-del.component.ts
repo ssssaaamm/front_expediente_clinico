@@ -12,6 +12,7 @@ export class ModDelComponent implements OnInit {
 @Input() public examen: Examen;
   @Input() public examenes: Array<Examen>;
   public exito:boolean;
+  public mensaje: string;
 
   closeResult: string;
   constructor(private modalService: NgbModal, private examenesService: ExamenesService) { }
@@ -45,8 +46,11 @@ export class ModDelComponent implements OnInit {
                 let pos = this.examenes.indexOf(this.examen);
                 this.examenes.splice(pos,1);
                 this.exito=true;
+                this.mensaje = response.mensaje;
             }else{
                 this.exito=false;
+                this.mensaje = response.mensaje;
+                
             }
         },
         error=>{

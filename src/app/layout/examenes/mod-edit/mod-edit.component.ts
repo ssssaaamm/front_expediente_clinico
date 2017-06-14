@@ -15,7 +15,9 @@ export class ModEditComponent implements OnInit {
     @Input() public examen_original: Examen;
     @Input() public tipos_examen: Array<TipoExamen>;
     public exito: boolean;
+    public mensaje : string;
     examen_modificado: Examen;
+
     
 
     closeResult: string;
@@ -69,8 +71,10 @@ export class ModEditComponent implements OnInit {
                     this.examenes[pos].tipo=this.examen_modificado.tipo;
                     this.examen_original=this.examenes[pos];
                     this.exito=true;
+                    this.mensaje = response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje = response.mensaje;
                 }
             },
             error=>{

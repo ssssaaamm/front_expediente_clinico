@@ -7,6 +7,7 @@ import {Padre} from 'app/models/padre';
 import {Responsable} from 'app/models/responsable';
 import {Enfermedad} from 'app/models/enfermedad';
 import {Expediente} from 'app/models/expediente';
+import emailMask from 'text-mask-addons/dist/emailMask';
 
 @Component({
   selector: 'app-mod-add',
@@ -60,6 +61,10 @@ export class ModAddComponent implements OnInit {
   public selectedRegionResponsable:any;
   public selectedCityResponsable:any;
   public estaCasada:boolean=false;
+  public estaCasadaMadre:boolean=false;
+  public estaCasadaResponsable:boolean=false;
+  
+  
   public fecha_nacimiento:any;
   
   public paciente: Paciente ;//<--el nuevo paciente a registrar
@@ -70,7 +75,9 @@ export class ModAddComponent implements OnInit {
   
   public exito: boolean;
   public mensaje: string;
-
+  public maskCell = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskPhone = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskNames = [/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,];
 
   closeResult: string;
   
@@ -361,13 +368,13 @@ export class ModAddComponent implements OnInit {
     }
 
    onChangeCasadaMadre(){
-      if(!this.estaCasada){
+      if(!this.estaCasadaMadre){
         this.paciente.madre.apellido_casada="";
       }
     }
   
   onChangeCasadaResponsable(){
-      if(!this.estaCasada){
+      if(!this.estaCasadaResponsable){
         this.paciente.responsable.apellido_casada="";
       }
     }
@@ -407,7 +414,7 @@ export class ModAddComponent implements OnInit {
     }
 
     private clearFields(){
-      this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','F','','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+      this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
       this.selectedCountryPadre=null;
       this.selectedRegionPadre=null;
       this.selectedCityPadre=null;

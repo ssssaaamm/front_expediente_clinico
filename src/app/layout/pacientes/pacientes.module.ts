@@ -10,7 +10,7 @@ import { PacientesComponent } from './pacientes.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { ModDelComponent } from './mod-del/mod-del.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    PacientesRoutingModule
+    PacientesRoutingModule,
+    TextMaskModule
   ],
   declarations: [PacientesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })

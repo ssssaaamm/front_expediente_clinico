@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="costo">Costo</label>
-                <input type="text" class="form-control" [(ngModel)]="cirugia.costo" name="costo" placeholder="Ingrese costo de la cirugia">
+                <input type="text" class="form-control" [textMask]="{mask:costoMask}" [(ngModel)]="cirugia.costo" name="costo"   placeholder="Ingrese costo de la cirugia">
             </div>
             
         </div>

@@ -11,7 +11,6 @@ import { Especialidad } from "app/models/especialidad";
 import { Jornada } from "app/models/jornada";
 import { Turno } from "app/models/turno";
 import { Dia } from "app/models/dia";
-
 @Component({
   selector: 'app-mod-add',
   animations: [

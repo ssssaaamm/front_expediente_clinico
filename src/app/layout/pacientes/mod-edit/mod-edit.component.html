@@ -265,7 +265,14 @@
               <label for="apellido1">Primer Apellido</label>
               <input type="text" class="form-control" name="apellido1" [(ngModel)]="paciente_modificado.madre.apellido1" placeholder="Ingrese primer apellido">
             </div>
-
+            <label class="checkbox-inline">
+                 <input type="checkbox" #isCasada  [(ngModel)]="estaCasada" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada
+            </label>
+            <div class="form-group">
+              <label for="nombre">Apellido casada</label>
+              <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.madre.apellido_casada"
+                placeholder="Ingrese apellido casada">
+            </div>
 
           </div>
           <div class="col-md-6">
@@ -353,6 +360,16 @@
               <label for="apellido1">Primer Apellido</label>
               <input type="text" class="form-control" [(ngModel)]="paciente_modificado.responsable.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
             </div>
+            <p>Genero</p>
+            <label class="checkbox-inline">
+                  <input type="radio" name="genero" id="M" [(ngModel)]="paciente_modificado.responsable.genero" value="M" (change)="onChangeGeneroResponsable()"> &nbsp; Masculino
+            </label>
+            <label class="checkbox-inline">
+                  <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.responsable.genero" value="F"> &nbsp; Femenenino &nbsp;
+            </label>
+            <label class="checkbox-inline">
+                  <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
+            </label>
 
             <div class="form-group">
               <label for="nombre">Telefono fijo</label>
@@ -370,6 +387,11 @@
             <div class="form-group">
               <label for="nombre">Segundo apellido</label>
               <input type="text" class="form-control" [(ngModel)]="paciente_modificado.responsable.apellido2" name="apellido2" placeholder="Ingrese segundo apellido">
+            </div>
+            <div class="form-group">
+              <label for="nombre">Apellido casada</label>
+              <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.responsable.apellido_casada"
+                placeholder="Ingrese apellido casada">
             </div>
 
             <div class="form-group">

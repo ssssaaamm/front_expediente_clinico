@@ -3,13 +3,18 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Cirugia } from '../../../models/cirugia';
 import { Especialidad } from '../../../models/especialidad';
 import { CirugiasService } from '../../../services/cirugias.service';
-
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { NG_VALIDATORS, Validator } from '@angular/forms';
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
 @Component({
   selector: 'app-mod-add',
   templateUrl: './mod-add.component.html',
   styleUrls: ['./mod-add.component.scss'],
   providers: [ CirugiasService ]
 })
+
+
+
 export class ModAddComponent implements OnInit {
 
    @Input() public cirugias: Array<Cirugia>;
@@ -18,6 +23,10 @@ export class ModAddComponent implements OnInit {
     public exito: boolean;
     public mensaje: string;
     closeResult: string;
+     public costoMask = createNumberMask({
+        prefix: '$', // This will put the dollar sign at the end, with a space.
+        allowDecimal: true
+    })
   
     constructor(private modalService: NgbModal, private cirugiasService: CirugiasService) {  }
 
@@ -43,7 +52,7 @@ export class ModAddComponent implements OnInit {
 
     ngOnInit() {
          /**muestra los campos vacios solo con el placeholder :)  */
-        this.cirugia=new Cirugia("","",0.0,new Especialidad("","",0),0);
+        this.cirugia=new Cirugia("","",null,new Especialidad("","",0),0);
     }
 
     onSubmit(){
@@ -75,8 +84,9 @@ export class ModAddComponent implements OnInit {
     clear(){
         this.cirugia.codigo="";
         this.cirugia.nombre="";
-        this.cirugia.costo=0.0;
+        this.cirugia.costo=null;
         this.exito=null;
     }
 
-}
+ }
+

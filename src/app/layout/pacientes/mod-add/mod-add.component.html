@@ -34,12 +34,12 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}"  class="form-control" [(ngModel)]="paciente.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
                             </div>
                             <p>Genero</p>
                             <label class="checkbox-inline">
@@ -49,7 +49,7 @@
                                 <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente.genero" value="F"> &nbsp; Femenenino &nbsp;
                             </label>
                             <label class="checkbox-inline">
-                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
+                                <input type="checkbox" #isCasadaP [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
                             </label>
                             
                             <p></p>
@@ -84,17 +84,18 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
+
                             </div>
 
                             <!--<div class="form-group">
@@ -126,17 +127,17 @@
 
                             <div class="form-group">
                                 <label for="nombre">Telefono fijo</label>
-                                <input type="text" class="form-control" name="tel_fijo" [(ngModel)]="paciente.tel_fijo" placeholder="Ingrese tel fijo">
+                                <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_fijo"  [(ngModel)]="paciente.tel_fijo" placeholder="Ingrese tel fijo">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Telefono movil</label>
-                                <input type="text" class="form-control" name="tel_movil" [(ngModel)]="paciente.tel_movil" placeholder="Ingrese tel movil">
+                                <input type="text" [textMask]="{mask:maskCell,guide:false}" class="form-control" name="tel_movil" [(ngModel)]="paciente.tel_movil" placeholder="Ingrese tel movil">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Email</label>
-                                <input type="text" class="form-control" name="email" [(ngModel)]="paciente.email" placeholder="Ingrese email">
+                                <input type="mail"   class="form-control" name="email" [(ngModel)]="paciente.email" placeholder="Ingrese email: example@email.com">
                             </div>
 
                         </div>
@@ -170,12 +171,12 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="paciente.padre.nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="paciente.padre.nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="paciente.padre.apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="paciente.padre.apellido1" placeholder="Ingrese primer apellido">
                             </div>
                             
 
@@ -184,12 +185,12 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.padre.nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente.padre.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.padre.apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente.padre.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
 
                         </div>
@@ -249,19 +250,24 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="paciente.madre.nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="paciente.madre.nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="paciente.madre.apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="paciente.madre.apellido1" placeholder="Ingrese primer apellido">
                             </div>
                         
                             <label class="checkbox-inline" >
-                                <input type="checkbox" #isCasada [(ngModel)]="estaCasada" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada 
+                                <input type="checkbox" #isCasadaM [(ngModel)]="estaCasadaMadre" (change)="onChangeCasadaMadre()" name="estaCasadaMadre
+                                "> &nbsp; Casada 
                             </label>
                             <div class="form-group">
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+<<<<<<< HEAD
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+=======
+                                <input type="text" class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+>>>>>>> 9eca3f174c63062bdbfbe3d0622cf4140a4205ca
                             </div>
                             
 
@@ -270,17 +276,17 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="paciente.madre.nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente.madre.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="paciente.madre.apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente.madre.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
                             <div class="col-md-12">
                             <div class="form-group">
-                                <label for="dui">Documento identidad</label>
-                                <input type="text" class="form-control" name="dui" maxlength="10" [(ngModel)]="paciente.madre.documento_unico" placeholder="Ingrese doc. identidad">
+                                <label for="duim">Documento identidad</label>
+                                <input type="text" class="form-control" name="duim" maxlength="10" [(ngModel)]="paciente.madre.documento_unico" placeholder="Ingrese doc. identidad">
                             </div>
                         </div>
                          
@@ -341,12 +347,12 @@
 
                             <div class="form-group">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="apellido1">Primer Apellido</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
                             </div>
                               <p>Genero</p>
                             <label class="checkbox-inline">
@@ -356,12 +362,12 @@
                                 <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente.responsable.genero" value="F"> &nbsp; Femenenino &nbsp;
                             </label>
                             <label class="checkbox-inline">
-                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
+                                <input type="checkbox" #isCasadaR [disabled]="!isFemenine.checked" [(ngModel)]="estaCasadaResponsable" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
                             </label>
                             
                             <div class="form-group">
                                 <label for="nombre">Telefono fijo</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.tel_fijo" name="tel_fijo" placeholder="Ingrese tel fijo">
+                                <input type="text" [textMask]="{mask:maskCell,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.tel_fijo" name="tel_fijo" placeholder="Ingrese tel fijo">
                             </div>
                           
 
@@ -370,21 +376,25 @@
 
                             <div class="form-group">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.nombre2" name="nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.nombre2" name="nombre2" placeholder="Ingrese segundo nombre">
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Segundo apellido</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.apellido2" name="apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.apellido2" name="apellido2" placeholder="Ingrese segundo apellido">
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
+<<<<<<< HEAD
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
+=======
+                                <input type="text" class="form-control" [disabled]="!isCasadaR.checked" name="apellido_casada_responsable" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
+>>>>>>> 9eca3f174c63062bdbfbe3d0622cf4140a4205ca
                             </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="nombre">Telefono movil</label>
-                                <input type="text" class="form-control" [(ngModel)]="paciente.responsable.tel_movil" name="tel_movil" placeholder="Ingrese tel movil">
+                                <input type="text" [textMask]="{mask:maskCell,guide:false}" class="form-control" [(ngModel)]="paciente.responsable.tel_movil" name="tel_movil" placeholder="Ingrese tel movil">
                             </div>
 
                         </div>

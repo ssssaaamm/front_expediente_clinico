@@ -13,6 +13,7 @@ export class ModEditComponent implements OnInit {
     @Input() public especialidades: Array<Especialidad>; 
     @Input() public especialidad_original: Especialidad;
     public exito: boolean;
+    public mensaje: string;
     especialidad_modificada: Especialidad;
 
     closeResult: string;
@@ -57,8 +58,11 @@ export class ModEditComponent implements OnInit {
                     this.especialidades[pos]=this.especialidad_modificada.clone();
                     this.especialidad_original=this.especialidades[pos];
                     this.exito=true;
+                    this.mensaje = response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje = response.mensaje;
+                    
                 }
             },
             error=>{

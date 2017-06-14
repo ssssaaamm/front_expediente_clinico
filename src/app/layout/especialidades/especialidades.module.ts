@@ -10,6 +10,8 @@ import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
 
+import {DataTableModule} from "angular2-datatable";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,7 @@ import { ModDelComponent } from './mod-del/mod-del.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
+    DataTableModule
   ],
   declarations: [EspecialidadesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })
