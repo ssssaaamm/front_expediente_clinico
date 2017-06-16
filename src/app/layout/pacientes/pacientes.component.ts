@@ -239,8 +239,8 @@ export class PacientesComponent implements OnInit {
                 p.nombre2,
                 p.apellido1,
                 p.apellido2,
-                p.apellido_casada,
-                p.documento_unico,
+                p.apellidoCasada,
+                p.documentoUnico,
                 p.genero,
                 p.subdivision,
                 null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues

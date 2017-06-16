@@ -324,7 +324,8 @@ onChangePaisResponsable() {
     let epaciente = [];
     //console.log("EL ID DEL PACIENTE ES: "+this.paciente_modificado.id)
     this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {
@@ -357,7 +358,8 @@ onChangePaisResponsable() {
     //consultar padecimientos de padre
     let epadre = [];
     this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {
@@ -388,7 +390,8 @@ onChangePaisResponsable() {
     //consultar padecimientos de madre
     let emadre = [];
     this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {

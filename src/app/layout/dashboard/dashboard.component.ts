@@ -72,6 +72,9 @@ export class DashboardComponent implements OnInit {
         //obtenemos todos los paises
         this.paisesService.listCountries().subscribe(
             paises=>{
+                let i2=0;
+                let j2=0;
+                let k2=0;
                 paises.forEach((pais,i)=>{
                     if(pais.code=='sv'||pais.code=='gt'||pais.code=='hn'||pais.code=='bz'||pais.code=='cr'||pais.code=='pa'){
                     let sentencia="INSERT INTO pais VALUES("+(i+1)+",'"+pais.code+"','"+pais.name+"');"
@@ -84,7 +87,7 @@ export class DashboardComponent implements OnInit {
                                 this.paisesService.listCities(pais.code,estado.region).subscribe(
                                     ciudades=>{
                                         ciudades.forEach((ciudad,k)=>{
-                                            let sentencia3="INSERT INTO subdivision VALUES("+(k+1)+","+j+",'"+ciudad.city+"');"
+                                            let sentencia3="INSERT INTO subdivision VALUES("+(k+1)+","+(j+1)+",'"+ciudad.city+"');"
                                             this.ciudades.push(sentencia3);
                                         });
                                     },

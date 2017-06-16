@@ -8,6 +8,7 @@ import {Responsable} from 'app/models/responsable';
 import {Enfermedad} from 'app/models/enfermedad';
 import {Expediente} from 'app/models/expediente';
 import emailMask from 'text-mask-addons/dist/emailMask';
+import { Usuario } from "app/models/usuario";
 
 @Component({
   selector: 'app-mod-add',
@@ -414,7 +415,7 @@ export class ModAddComponent implements OnInit {
     }
 
     private clearFields(){
-      this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+      this.paciente=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),new Usuario('','',true,null),null);
       this.selectedCountryPadre=null;
       this.selectedRegionPadre=null;
       this.selectedCityPadre=null;
