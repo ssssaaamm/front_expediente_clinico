@@ -436,9 +436,9 @@
   </div>
   <div class="modal-footer">
     <button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
-    <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Paso 1</button>
-    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Paso 2</button>
-    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Paso 3</button>
+    <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Personales</button>
+    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Madre</button>
+    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Padre</button>
     <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-success" [hidden]="!paso3">Guardar</button>
     <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary"><i class="fa fa-repeat"></i></button>
   </div>

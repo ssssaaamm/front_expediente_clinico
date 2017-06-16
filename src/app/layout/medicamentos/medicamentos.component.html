@@ -14,8 +14,16 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-add>
+ 
+     <div class="row">
+        <div class="col-md-4">
+           <app-mod-add [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-add>
+        </div>
+        <div class="col-md-4">
+             <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </div>
 
+     </div>
     <!--Tabla medicamentos-->
 
     <div class="table-responsive">
@@ -39,13 +47,12 @@
                     <td><app-mod-edit [medicamento_original]="medicamento" [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-edit></td>
                     <td><app-mod-del [medicamento]="medicamento" [medicamentos]="medicamentos"><p>¿Realmente Desea elimniar el medicamento?</p></app-mod-del></td>
                 </tr>
+       
             </tbody>
+
             <tfoot>
-                <tr>
-                    <td colspan="4">
-                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                    </td>
-                </tr>
+            
+                
             </tfoot>
         </table>
     </div>
