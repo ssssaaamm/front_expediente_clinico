@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Examen } from "app/models/examen";
 import { ExamenesService } from "app/services/examenes.service";
-
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
 @Component({
   selector: 'app-mod-del',
   templateUrl: './mod-del.component.html',
@@ -13,6 +13,11 @@ export class ModDelComponent implements OnInit {
   @Input() public examenes: Array<Examen>;
   public exito:boolean;
   public mensaje: string;
+  public costoMask = createNumberMask({
+        allowDecimal: true,
+        prefix:false
+    })
+
 
   closeResult: string;
   constructor(private modalService: NgbModal, private examenesService: ExamenesService) { }

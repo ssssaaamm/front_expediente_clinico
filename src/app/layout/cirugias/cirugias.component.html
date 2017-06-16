@@ -21,13 +21,13 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
+        <table class="table table-hover table-striped table-condensed" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Especialidad</th>
-                    <th>Costo</th>              
+                    <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="especialidades">Especialidad</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="costo">Costo</mfDefaultSorter></th>              
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -48,6 +48,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
  

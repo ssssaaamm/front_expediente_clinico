@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output  } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Procedimiento } from '../../../models/procedimiento';
 import { ProcedimientosService } from '../../../services/procedimientos.service';
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
 @Component({
   selector: 'app-mod-edit',
   templateUrl: './mod-edit.component.html',
@@ -14,6 +15,10 @@ export class ModEditComponent implements OnInit {
     public exito: boolean;
     public mensaje: string;
     procedimiento_modificado: Procedimiento;
+    public costoMask = createNumberMask({
+        allowDecimal: true,
+        prefix:false
+    })
 
     closeResult: string;
 

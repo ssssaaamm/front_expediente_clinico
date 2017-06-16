@@ -3,6 +3,8 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Examen } from "app/models/examen";
 import { ExamenesService } from "app/services/examenes.service";
 import { TipoExamen } from 'app/models/tipo_examen';
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 
 @Component({
   selector: 'app-mod-edit',
@@ -16,6 +18,10 @@ export class ModEditComponent implements OnInit {
     @Input() public tipos_examen: Array<TipoExamen>;
     public exito: boolean;
     public mensaje : string;
+    public costoMask = createNumberMask({
+        allowDecimal: true,
+        prefix:false
+    })
     examen_modificado: Examen;
 
     

@@ -30,12 +30,12 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" [(ngModel)]="especialidad.nombre" name="nombre" placeholder="Ingrese nombre de la especialidad">
+                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="especialidad.nombre" name="nombre" placeholder="Ingrese nombre de la especialidad">
             </div>
 
             <div class="form-group">
-                <label for="nombre">Honorarios por Consulta</label>
-                <input type="text" class="form-control" [(ngModel)]="especialidad.honorarios" name="honorarios" placeholder="Ingrese honorarios por consulta">
+                <label for="nombre">Honorarios por Consulta ($)</label>
+                <input type="text" [textMask]="{mask:costoMask}" class="form-control" [(ngModel)]="especialidad.honorarios" name="honorarios" placeholder="Ingrese honorarios por consulta">
             </div>
             
             

@@ -11,6 +11,7 @@ import { ModDelComponent } from './mod-del/mod-del.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import {DataTableModule} from "angular2-datatable";
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {DataTableModule} from "angular2-datatable";
     JsonpModule,
     NgbModule.forRoot(),
     CustomFormsModule,
-    DataTableModule
+    DataTableModule,
+    TextMaskModule
 
   ],
   declarations: [EmpleadosComponent, ModAddComponent, ModDelComponent, ModEditComponent]

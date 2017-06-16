@@ -8,7 +8,7 @@ import { MedicamentosComponent } from './medicamentos.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
-
+import { TextMaskModule } from 'angular2-text-mask';
 import {DataTableModule} from "angular2-datatable";
 
 @NgModule({
@@ -18,7 +18,8 @@ import {DataTableModule} from "angular2-datatable";
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    DataTableModule
+    DataTableModule,
+    TextMaskModule
   ],
   declarations: [MedicamentosComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })
