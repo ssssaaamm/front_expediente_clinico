@@ -66,24 +66,33 @@ export class EnfermedadesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  enfermedadesPaciente(paciente:Paciente){
-    this.action = "/paciente";
+  // enfermedadesPaciente(paciente:any){
+  //   this.action = "/paciente";
+  //   let parametros="token="+this.token;
+  //   parametros = parametros + "&json="+JSON.stringify(paciente);
+  //   console.log(parametros);
+
+  //   //peticion
+  //   return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  // }
+
+  getPadecimientosPaciente(paciente:any){
+    this.action = "/enfemedades";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(paciente);
     console.log(parametros);
-
     //peticion
-    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+    return this.http.post(this.url+"/pacientes"+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  enfermedadesPadre(padre:Padre){
-    this.action = "/padre";
+  getPadecimientosPadre(padre:any){
+    this.action = "/enfemedadesPadre";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(padre);
     console.log(parametros);
 
     //peticion
-    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+    return this.http.post(this.url+"/pacientes"+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
 }

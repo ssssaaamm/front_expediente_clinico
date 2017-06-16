@@ -124,7 +124,9 @@
                     <div *ngFor="let jornada of empleado_modificado.medico.jornadas" class="col-sm-6">
                         <div class="card mb-3">
                             <div class="card-header card-default">
-                                <label>{{jornada.dia.nombre}}   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="checkbox" [checked]="jornada.turnos.lengt != 0 ? true : false" #c (change)="addTurno(jornada,c);"></label>
+                                <label class="form-control">
+                                    <input type="checkbox" [checked]="jornada.turnos.length != 0 ? true : false" #c (change)="addTurno(jornada,c);"> &nbsp; {{jornada.dia.nombre}} 
+                                </label>
                             </div>
                             <div class="card-block">
 
@@ -146,7 +148,6 @@
                     </div>
 
 
-
                 </div>
             </div>
 
@@ -155,7 +156,6 @@
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
             <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Paso 1</button>
             <button *ngIf="esMedico" type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Paso 2</button>
-            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
-            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary"><i class="fa fa-repeat"></i></button>
+            <button type="button" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
         </div>
     </div>

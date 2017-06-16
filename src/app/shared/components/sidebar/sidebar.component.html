@@ -1,6 +1,19 @@
 ﻿<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
-         <a routerLink="/administracion/medicamentos" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        
+        <!--<div *ngFor="let menu_rol of menus_rol">
+            <a [routerLink]="[menu_rol.menu.url]" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i [ngClass]="[menu_rol.menu.icono]"></i>&nbsp;&nbsp;&nbsp;{{menu_rol.menu.titulo}}
+            </a>
+        </div>-->
+
+        <a routerLink="/administracion/pacientes" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-group"></i>&nbsp;Pacientes
+        </a>
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard
+        </a>
+         <!--<a routerLink="/administracion/medicamentos" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-medkit"></i>&nbsp;Medicamentos
         </a>
          <a routerLink="/administracion/empleados" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -17,14 +30,14 @@
         </a>
          <a routerLink="/administracion/roles" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-drivers-license-o"></i>&nbsp;Roles
-        </a>
+        </a>-->
          <!--<a routerLink="/administracion/usuarios" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-user-circle-o"></i>&nbsp;Usuarios
         </a>-->
         <!--<a routerLink="/administracion/servicios" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-eyedropper"></i>&nbsp;Servicios
         </a>-->
-        <a routerLink="/administracion/examenes" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!--<a routerLink="/administracion/examenes" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file-text-o"></i>&nbsp;Examenes
         </a>
         <a routerLink="/administracion/procedimientos" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -32,13 +45,16 @@
         </a>
         <a routerLink="/administracion/enfermedades" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-thermometer"></i>&nbsp;Enfermedades
-        </a>
-        <a routerLink="/administracion/cirugias" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        </a>-->
+        <!--<a routerLink="/administracion/cirugias" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-hotel"></i>&nbsp;Cirugias
         </a>
         <a routerLink="/administracion/consultas" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-stethoscope"></i>&nbsp;Consultas
         </a>
+        <a routerLink="/administracion/especialidades" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-heartbeat"></i>&nbsp;Especialidades
+        </a>-->
         <!--
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard

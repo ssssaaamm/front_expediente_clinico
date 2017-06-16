@@ -31,6 +31,7 @@ export class CirugiasComponent implements OnInit {
                 result.push(new Especialidad(
                     especialidad.codigoEspecialidad,
                     especialidad.nombreEspecialidad,
+                    especialidad.honorarios,
                     especialidad.idEspecialidad
                 ));
             });
@@ -46,7 +47,7 @@ export class CirugiasComponent implements OnInit {
       let result: Array<Cirugia> = new Array<Cirugia>();
       if(cirugias){
         cirugias.forEach((cirugia)=>{
-          let tipindx:number = this.indexOfEspecialidad(new Especialidad(cirugia.idEspecialidad.codigoEspecialidad,cirugia.idEspecialidad.nombreEspecialidad,cirugia.idEspecialidad.idEspecialidad),this.especialidades);
+          let tipindx:number = this.indexOfEspecialidad(new Especialidad(cirugia.idEspecialidad.codigoEspecialidad,cirugia.idEspecialidad.nombreEspecialidad,cirugia.idEspecialidad.honorarios,cirugia.idEspecialidad.idEspecialidad),this.especialidades);
           result.push(new Cirugia(
             cirugia.codigoCirugia,
             cirugia.nombreCirugia,

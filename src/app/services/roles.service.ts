@@ -76,8 +76,20 @@ export class RolesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+  getPrivilegiosUsuario(){
+    this.action = "/privilegiosUser"; //<<----cambiara segun la url de los chicos
+    this.token=this.token.slice(0,-1);
+    this.token=this.token.substring(1);
+    
+    let parametros="token="+this.token;
+    //parametros = parametros + "&json="+JSON.stringify(rol);
+    console.log(parametros);
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
   privilegiosEdit(menus_rol:Array<MenuRol>){
-    this.action = "/privilegios/edit";
+    this.action = "/setPrivilegios";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(menus_rol);
     console.log(parametros);

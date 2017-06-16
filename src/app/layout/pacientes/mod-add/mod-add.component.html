@@ -94,7 +94,11 @@
 
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
+<<<<<<< HEAD
                                 <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
+=======
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasadaP.checked" name="apellido_casada" [(ngModel)]="paciente.apellido_casada" placeholder="Ingrese apellido casada">
+>>>>>>> 9463c1ab512ca9b4af4486574877b40c81054260
 
                             </div>
 
@@ -263,7 +267,10 @@
                             </label>
                             <div class="form-group">
 
-                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+
+
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente.madre.apellido_casada" placeholder="Ingrese apellido casada">
+
                             </div>
                             
 
@@ -381,6 +388,7 @@
                             <div class="form-group">
                                 <label for="nombre">Apellido casada</label>
                                 <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente.responsable.apellido_casada" placeholder="Ingrese apellido casada">
+
                             </div>
                             </div>
 

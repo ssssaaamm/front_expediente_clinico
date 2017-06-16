@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
 
     public loading = false;
 
+
     
-    
-    constructor(private loginService:LoginService, private route: ActivatedRoute, private router: Router,) { }
+    constructor(private loginService:LoginService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
         this.user={
-            "email":"fer143monster@gmail.com",
-            "password":"admin123"
+            "username":null,
+            "password":null
         };
     }
 

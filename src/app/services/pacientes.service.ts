@@ -62,31 +62,4 @@ export class PacientesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
-  getPadecimientos(paciente:Paciente){
-    this.action = "/loquesea";
-    let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(paciente);
-
-    //peticion
-    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
-  }
-
-  getPadecimientosPadre(padre:Padre){
-    this.action = "/loquesea";
-    let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(padre);
-
-    //peticion
-    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
-  }
-
-  getPadecimientosMadre(madre:Padre){
-    this.action = "/loquesea";
-    let parametros="token="+this.token;
-    parametros = parametros + "&json="+JSON.stringify(madre);
-
-    //peticion
-    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
-  }
-
 }

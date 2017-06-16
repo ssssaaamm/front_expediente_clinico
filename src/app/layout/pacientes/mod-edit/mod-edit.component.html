@@ -1,6 +1,6 @@
 <!-- Large modal -->
 
-<button class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-edit"></i></button>
+<button class="btn btn-success btn-sm" (click)="open(content)"><i class="fa fa-eye"></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Modificar datos paciente </h4>
@@ -65,7 +65,7 @@
             <div class="form-group">
               <label>Pais</label>
               <select class="form-control" [(ngModel)]="selectedCountryPaciente" name="selectedCountryPaciente" (change)="onChangePaisPaciente()">
-                                    <option *ngFor="let pais of paises" [attr.selected]="pais.name==paciente_modificado.pais ? true : null" [ngValue]="pais">{{ pais.name }}</option>
+                                    <option *ngFor="let pais of paises" [attr.selected]="pais.name==paciente_modificado.pais ? true : null" [ngValue]="pais">{{ paciente_modificado.subdivision.idDivision.idPais.nombrePais }}</option>
                                     <!--[attr.selected]="pais.name==paciente_modificado.pais ? true : false"-->
                                 </select>
             </div>

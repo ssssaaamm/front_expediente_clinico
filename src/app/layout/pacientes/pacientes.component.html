@@ -31,8 +31,7 @@
                     <th><mfDefaultSorter by="pais">Pais</mfDefaultSorter></th>              
                     <th><mfDefaultSorter by="division">División</mfDefaultSorter></th>              
                     <th><mfDefaultSorter by="subdivision">Subdivisión</mfDefaultSorter></th>              
-                    <th><mfDefaultSorter by="expediente">Expediente</mfDefaultSorter></th>              
-                    <th>Editar</th>
+                    <th>Detalle</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
@@ -42,17 +41,17 @@
                     <td>{{paciente.apellido1}} {{paciente.apellido2}}</td>                      
                     <td>{{paciente.dia_nacimiento}}/{{paciente.mes_nacimiento}}/{{paciente.anio_nacimiento}}</td>                      
                     <td>{{paciente.genero}}</td>                      
-                    <td>{{paciente.pais}}</td>                      
-                    <td>{{paciente.division}}</td>                      
-                    <td>{{paciente.subdivision}}</td>                      
-                    <td>{{paciente.expediente.numero_expediente}}</td>                      
+                    <td>{{paciente.subdivision.idDivision.idPais.nombrePais}}</td>                      
+                    <td>{{paciente.subdivision.idDivision.nombreDivision}}</td>                      
+                    <td>{{paciente.subdivision.nombreSubdivision}}</td>                      
+                    <!--<td>{{paciente.expediente.numero_expediente}}</td>                      -->
                     <td><app-mod-edit [paciente_original]="paciente" [paises]="paises" [enfermedades]="enfermedades" [pacientes]="pacientes"></app-mod-edit></td>
                     <td>
-                        <!--<app-mod-del [enfermedad]="enfermedad" [paises]="paises">
+                        <app-mod-del [paciente]="paciente" [pacientes]="pacientes">
                             <p>
                                 ¿Realmente Desea eliminar el Paciente?
                             </p>
-                        </app-mod-del>-->
+                        </app-mod-del>
                     </td>
                 </tr>
             </tbody>

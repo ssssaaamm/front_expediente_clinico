@@ -448,14 +448,16 @@ export class ModAddComponent implements OnInit {
             response=>{
                 console.log(response);
                 if(response.status == "exito"){
-                    this.paciente.id=response.idPaciente;
-                    this.paciente.padre.id=response.idPadre;
-                    this.paciente.madre.id=response.idMadre;
-                    this.paciente.responsable.id=response.idResponsable;
-                    this.paciente.expediente.id=response.idExpediente;
-                    this.paciente.expediente.numero_expediente=response.numeroExpediente,
-                    this.paciente.usuario.id=response.idUsuario;
+                    this.paciente.id=response.idpaciente;
+                    this.paciente.padre.id=response.idpadre;
+                    this.paciente.madre.id=response.idmadre;
+                    this.paciente.responsable.id=response.idresponsable;
+                    this.paciente.expediente=new Expediente(null,null,null,null,null,null,response.nexpediente,this.paciente,null,response.idexpediente);
+                    this.paciente.expediente.id=response.idexpediente;
+                    this.paciente.expediente.numero_expediente=response.nexpediente,
+                    this.paciente.usuario.id=response.idusuario;
                     this.paciente.usuario.username=response.username
+                    this.paciente.usuario.password=response.password
                     this.pacientes.push(this.paciente.clone());
                     this.exito=true;
                     this.mensaje=response.mensaje;

@@ -37,7 +37,7 @@ export class Paciente{
     }
 
     public full_clone():Paciente{
-        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.documento_unico,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente.clone(),this.responsable.clone(),this.padre.clone(),this.madre.clone(),this.enfermedades,this.usuario.clone(),this.id);
+        return new Paciente(this.nombre1,this.nombre2,this.apellido1,this.apellido2,this.apellido_casada,this.documento_unico,this.dia_nacimiento,this.mes_nacimiento,this.anio_nacimiento,this.genero,this.subdivision,this.tel_fijo,this.tel_movil,this.email,this.expediente,this.responsable.clone(),this.padre.clone(),this.madre.clone(),this.enfermedades,this.usuario.clone(),this.id);
     }
 
 }
