@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {JsonpModule} from '@angular/http';
+
 
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -18,6 +20,7 @@ import { StatModule } from '../../shared';
         NgbModule.forRoot(),
         DashboardRoutingModule,
         StatModule,
+        JsonpModule
     ],
     declarations: [
         DashboardComponent,

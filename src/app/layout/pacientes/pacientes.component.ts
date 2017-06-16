@@ -228,19 +228,44 @@ export class PacientesComponent implements OnInit {
         let result: Array<Paciente> = new Array<Paciente>();
         if (pacientes) {
           pacientes.forEach((paciente) => {
+            console.log("INICIO PACIENTE");
+            console.log(JSON.stringify(paciente));
+            console.log("FIN PACIENTE");
+            let father:Padre;
+            let mother:Padre;
+            paciente.idPadre.forEach((p)=>{
+              let f =new Padre(
+                p.nombre1,
+                p.nombre2,
+                p.apellido1,
+                p.apellido2,
+                p.apellido_casada,
+                p.documento_unico,
+                p.genero,
+                p.subdivision,
+                null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
+                p.idPadre
+              );
+
+              if(f.genero=='M'){
+                mother=f;
+              }else{
+                father=f;
+              }
+            });
             //let tipindx:number = this.indexOfEspecialidad(new Especialidad(cirugia.idEspecialidad.codigoEspecialidad,cirugia.idEspecialidad.nombreEspecialidad,cirugia.idEspecialidad.idEspecialidad),this.especialidades);
             result.push(new Paciente(
               paciente.nombre1,
               paciente.nombre2,
               paciente.apellido1,
               paciente.apellido2,
-              paciente.apellidoCasadoPaciente,
-              paciente.documento_unico,
+              paciente.apellidoCasada,
+              paciente.documentoUnico,
               paciente.diaNacimientoPaciente,
               paciente.mesNacimientoPaciente,
               paciente.anioNacimientoPaciente,
               paciente.genero,
-              paciente.subdivision,
+              paciente.idSubdivision,
               paciente.telFijo,
               paciente.telMovil,
               paciente.email,
@@ -256,46 +281,25 @@ export class PacientesComponent implements OnInit {
                 null,//<--rompo la referencia circular (aqui va el paciente actual).
                 paciente.idExpediente.idExpediente
               ),
+              //null,//<------expediente en null en un principio
               new Responsable(
                 paciente.idResponsable.nombre1,
                 paciente.idResponsable.nombre2,
                 paciente.idResponsable.apellido1,
                 paciente.idResponsable.apellido2,
                 paciente.idResponsable.genero,
-                paciente.idResponsable.apellido_casada,
-                paciente.idResponsable.documento_unico,
+                paciente.idResponsable.apellidoCasada,
+                paciente.idResponsable.documentoUnico,
                 paciente.idResponsable.subdivision,
                 paciente.idResponsable.telFijo,
                 paciente.idResponsable.telCel,
                 paciente.idResponsable.idResponsable
               ),
-              new Padre(
-                paciente.idPadre.nombre1,
-                paciente.idPadre.nombre2,
-                paciente.idPadre.apellido1,
-                paciente.idPadre.apellido2,
-                paciente.idPadre.apellido_casada,
-                paciente.idPadre.documento_unico,
-                paciente.idPadre.genero,
-                paciente.idPadre.subdivision,
-                null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
-                paciente.idPadre.idPadre
-              ),
-              new Padre(
-                paciente.idMadre.nombre1,
-                paciente.idMadre.nombre2,
-                paciente.idMadre.apellido1,
-                paciente.idMadre.apellido2,
-                paciente.idMadre.apellido_casada,
-                paciente.idMadre.documento_unico,
-                paciente.idMadre.genero,
-                paciente.idMadre.subdivision,
-                null,//<----- lista de enfermedades. no se si vendran incluidas
-                paciente.idMadre.idPadre
-              ),
+              father,
+              mother,
               null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del paciente despues :(
               new Usuario(
-                paciente.idUsuario.username, paciente.idUsuario.password, paciente.idUsuario.estado, null, paciente.idUsuario.idUsuario //<--no me interesa su rol
+                paciente.idUsuario.username, paciente.idUsuario.password, paciente.idUsuario.estado,null, paciente.idUsuario.idUsuario //<--no me interesa su rol
               ),
               paciente.idPaciente
             ));

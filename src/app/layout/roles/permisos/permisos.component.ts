@@ -28,8 +28,10 @@ export class PermisosComponent implements OnInit {
   open(content) {
       this.modalService.open(content,{size:'lg'}).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
+          this.clear();
       }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.clear();
       });
 
       this.cargarPermisos();
@@ -55,13 +57,20 @@ export class PermisosComponent implements OnInit {
       this.rolesService.privilegiosEdit(this.menus_rol).subscribe(
           response=>{
               console.log(response);
-              if(response.status == "exito"){
-                  this.exito = true;
-                  this.mensaje=response.mensaje;
+              let errores:number=0;
+              response.forEach((m)=>{
+                if(m.status == "error"){
+                    errores++;
+                }
+              });
+
+              if(errores > 0){
+                this.cargarPermisos(); //volvemos a cargar los permisos originales
+                this.exito=false;
+                this.mensaje="Hubo error al guardar uno o mas permisos";
               }else{
-                  this.cargarPermisos(); //volvemos a cargar los permisos originales
-                  this.exito=false;
-                  this.mensaje=response.mensaje;
+                this.exito = true;
+                this.mensaje="Todos los permisos se guardaron exitosamente.";
               }
           },
           error=>{
@@ -82,6 +91,7 @@ export class PermisosComponent implements OnInit {
     .map((menus_role: Array<any>)=>{
         let result: Array<MenuRol> = new Array<MenuRol>();
         if(menus_role){
+        console.log(JSON.stringify(menus_role));
             menus_role.forEach((menu_rol)=>{
                 result.push(
                   new MenuRol(
@@ -90,13 +100,13 @@ export class PermisosComponent implements OnInit {
                     menu_rol.add, 
                     menu_rol.edit, 
                     menu_rol.del, 
-                    new Menu(menu_rol.idMenu.icono,
-                    menu_rol.idMenu.titulo,
+                    new Menu(menu_rol.idMenu.iconoMenu,
+                    menu_rol.idMenu.accionMenu,
                     menu_rol.idMenu.url, 
                     menu_rol.idMenu.recurso, 
                     menu_rol.idMenu.idMenu), 
                     this.rol, //este tambien puede dejarse a null 
-                    menu_rol.id //importante que este no se deje a null       
+                    menu_rol.idPrivilegios //importante que este no se deje a null       
                   )
                 );
             });
@@ -124,6 +134,11 @@ export class PermisosComponent implements OnInit {
           menu_rol.edit=false;
           menu_rol.del=false;
       }
+  }
+
+  private clear(){
+      this.exito=null;
+      this.mensaje=null;
   }
 
 }

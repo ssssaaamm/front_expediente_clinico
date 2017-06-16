@@ -24,7 +24,7 @@ export class ModAddComponent implements OnInit {
     public mensaje: string;
     closeResult: string;
      public costoMask = createNumberMask({
-        prefix: '$', // This will put the dollar sign at the end, with a space.
+        prefix: '', // This will put the dollar sign at the end, with a space.
         allowDecimal: true
     })
   

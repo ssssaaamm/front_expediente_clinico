@@ -75,6 +75,7 @@ export class ModEditComponent implements OnInit {
   ngOnInit() {
     //obtenemos las enfermedades el paciente a editar en este modal y su padre y madre pero esto se haria al abrir el modal
     this.paciente_modificado = this.paciente_original.full_clone();
+    //console.log(">>>>>>>>>>>>>>>>"+JSON.stringify(this.paciente_modificado.id));
 
   }
 
@@ -321,7 +322,8 @@ onChangePaisResponsable() {
 
     //consultar padecimientos de paciente
     let epaciente = [];
-    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+    //console.log("EL ID DEL PACIENTE ES: "+this.paciente_modificado.id)
+    this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id})
       .map((enfermedades: Array<any>) => {
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
@@ -334,12 +336,12 @@ onChangePaisResponsable() {
       .subscribe(res => epaciente = res);
 
     //llenado de prueba
-    epaciente = [
-      new Enfermedad('01', 'Evola', 1),
-      new Enfermedad('02', 'Rubiola', 2),
-      new Enfermedad('04', 'Varicela', 4),
-      new Enfermedad('05', 'Ramon', 5),
-    ];
+    // epaciente = [
+    //   new Enfermedad('01', 'Evola', 1),
+    //   new Enfermedad('02', 'Rubiola', 2),
+    //   new Enfermedad('04', 'Varicela', 4),
+    //   new Enfermedad('05', 'Ramon', 5),
+    // ];
 
     //seleccionamos los padecimientos del paciente
     this.paciente_modificado.enfermedades = new Array<Enfermedad>();
@@ -354,7 +356,7 @@ onChangePaisResponsable() {
 
     //consultar padecimientos de padre
     let epadre = [];
-    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id})
       .map((enfermedades: Array<any>) => {
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
@@ -367,10 +369,10 @@ onChangePaisResponsable() {
       .subscribe(res => epadre = res);
 
     //llenado de prueba
-    epadre = [
-      new Enfermedad('01', 'Evola', 1),
-      new Enfermedad('02', 'Rubiola', 2),
-    ];
+    // epadre = [
+    //   new Enfermedad('01', 'Evola', 1),
+    //   new Enfermedad('02', 'Rubiola', 2),
+    // ];
 
     //seleccionamos los padecimientos del padre
     this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
@@ -385,7 +387,7 @@ onChangePaisResponsable() {
 
     //consultar padecimientos de madre
     let emadre = [];
-    this.enfermedadesService.enfermedadesPaciente(this.paciente_modificado)
+    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id})
       .map((enfermedades: Array<any>) => {
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
@@ -398,10 +400,10 @@ onChangePaisResponsable() {
       .subscribe(res => emadre = res);
 
     //llenado de prueba
-    emadre = [
-      new Enfermedad('01', 'Evola', 1),
-      new Enfermedad('02', 'Rubiola', 2),
-    ];
+    // emadre = [
+    //   new Enfermedad('01', 'Evola', 1),
+    //   new Enfermedad('02', 'Rubiola', 2),
+    // ];
 
     //seleccionamos los padecimientos del Padre
     this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
@@ -552,6 +554,7 @@ onChangePaisResponsable() {
   }
 
   rellenarFechaNacimiento() {
+    this.fecha_nacimiento={};
     this.fecha_nacimiento.year = this.paciente_modificado.anio_nacimiento;
     this.fecha_nacimiento.month = this.paciente_modificado.mes_nacimiento;
     this.fecha_nacimiento.day = this.paciente_modificado.dia_nacimiento;
