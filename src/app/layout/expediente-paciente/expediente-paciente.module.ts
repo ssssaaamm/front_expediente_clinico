@@ -13,6 +13,7 @@ import { PadecimientosComponent } from './padecimientos/padecimientos.component'
 import { ModAddComponent } from './citas/mod-add/mod-add.component';
 import { ModDelComponent } from './citas/mod-del/mod-del.component';
 import { ModInfComponent } from './citas/mod-inf/mod-inf.component';
+import { ModDetalleComponent } from './consultas/mod-detalle/mod-detalle.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { ModInfComponent } from './citas/mod-inf/mod-inf.component';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  declarations: [ExpedientePacienteComponent, CitasComponent, ConsultasComponent, ExamenesComponent, CirugiasComponent, PadecimientosComponent, ModAddComponent, ModDelComponent, ModInfComponent]
+  declarations: [ExpedientePacienteComponent, CitasComponent, ConsultasComponent, ExamenesComponent, CirugiasComponent, PadecimientosComponent, ModAddComponent, ModDelComponent, ModInfComponent, ModDetalleComponent]
 })
 export class ExpedientePacienteModule { }
