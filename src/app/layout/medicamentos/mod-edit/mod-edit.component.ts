@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Medicamento } from "app/models/medicamento";
 import { TipoMedicamento } from "app/models/tipo_medicamento";
 import { MedicamentosService } from "app/services/medicamentos.service";
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'app-mod-edit',
@@ -20,6 +21,10 @@ export class ModEditComponent implements OnInit {
     medicamento_modificado: Medicamento;
 
     closeResult: string;
+     public costoMask = createNumberMask({
+        allowDecimal: true,
+        prefix:false
+    })
 
     constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) {
         

@@ -21,17 +21,17 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
+        <table class="table table-hover table-striped table-condensed" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>              
-                    <th>Fecha Nacimiento</th>              
-                    <th>Genero</th>              
-                    <th>Pais</th>              
-                    <th>División</th>              
-                    <th>Subdivisión</th>              
-                    <th>Expediente</th>              
+                    <th><mfDefaultSorter by="nombres">Nombres</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="apellidos">Apellidos</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="fecha.nacimiento">Fecha Nacimiento</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="genero">Genero</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="pais">Pais</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="division">División</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="subdivision">Subdivisión</mfDefaultSorter></th>              
+                    <th><mfDefaultSorter by="expediente">Expediente</mfDefaultSorter></th>              
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -56,6 +56,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
  
