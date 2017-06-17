@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
-  selector: 'app-examenes',
-  templateUrl: './examenes.component.html',
-  styleUrls: ['./examenes.component.scss']
+  selector: 'app-citas',
+  templateUrl: './citas.component.html',
+  styleUrls: ['./citas.component.scss']
 })
-export class ExamenesComponent implements OnInit {
- public exito: boolean;
+export class CitasComponent implements OnInit {
+ 
+  public exito: boolean;
   public mensaje: string;
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
   
+  constructor(private modalService: NgbModal) { }
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -33,7 +35,9 @@ export class ExamenesComponent implements OnInit {
   }
   ngOnInit() {
   }
-   private clearFields() {
+
+  private clearFields() {
 
   }
+
 }
