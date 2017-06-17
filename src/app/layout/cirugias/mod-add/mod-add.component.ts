@@ -25,8 +25,9 @@ export class ModAddComponent implements OnInit {
     closeResult: string;
      public costoMask = createNumberMask({
 
-        prefix: '', // This will put the dollar sign at the end, with a space.
-        allowDecimal: true
+
+        allowDecimal: true,
+        prefix:false
     })
   
     constructor(private modalService: NgbModal, private cirugiasService: CirugiasService) {  }
