@@ -41,8 +41,8 @@
             </div>
             
             <div class="form-group">
-            <label for="costo">Costo</label>
-            <input type="text" class="form-control" [(ngModel)]="medicamento.costo" name="costo" placeholder="Ingrese nombre del medicamento
+            <label for="costo">Costo ($)</label>
+            <input type="text" class="form-control" [textMask]="{mask:costoMask}" [(ngModel)]="medicamento.costo" name="costo" placeholder="Ingrese nombre del medicamento
             ">
             </div>
             

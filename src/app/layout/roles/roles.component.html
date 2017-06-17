@@ -21,13 +21,13 @@
     <!--Tabla roles-->
 
     <div class=" table-responsive">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Permisos</th>                    
+                    <th><mfDefaultSorter by="">Id</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="">Nombre</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="">Descripcion</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="">Permisos</mfDefaultSorter></th>                    
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -44,6 +44,13 @@
                 </tr>
                 
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 

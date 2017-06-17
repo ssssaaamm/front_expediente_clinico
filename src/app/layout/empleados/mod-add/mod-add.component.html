@@ -25,19 +25,19 @@
                     <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="nombre1">Primer nombre</label>
-                                <input type="text" class="form-control" name="nombre1" [(ngModel)]="empleado.nombre1" placeholder="Ingrese primer nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="empleado.nombre1" placeholder="Ingrese primer nombre">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="nombre">Segundo nombre</label>
-                                <input type="text" class="form-control" name="nombre2" [(ngModel)]="empleado.nombre2" placeholder="Ingrese segundo nombre">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="empleado.nombre2" placeholder="Ingrese segundo nombre">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="nombre">Primer Apellido</label>
-                                <input type="text" class="form-control" name="apellido1" [(ngModel)]="empleado.apellido1" placeholder="Ingrese primer apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="empleado.apellido1" placeholder="Ingrese primer apellido">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="nombre">Segundo Apellido </label>
-                                <input type="text" class="form-control" name="apellido2" [(ngModel)]="empleado.apellido2" placeholder="Ingrese segundo apellido">
+                                <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="empleado.apellido2" placeholder="Ingrese segundo apellido">
                             </div>
                             <div class="col-md-6">
                               <p>Genero</p>
@@ -54,7 +54,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="nombre">Apellido casada</label>
-                                <input type="text" class="form-control" [disabled]="!isCasada.checked" name="ape_casada" [(ngModel)]="empleado.apellido_casada" placeholder="Ingrese apellido casada">
+                                <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="ape_casada" [(ngModel)]="empleado.apellido_casada" placeholder="Ingrese apellido casada">
                             </div>                          
                                                      
                             <div class="form-group col-md-6">
@@ -90,13 +90,15 @@
 
                             <div class="form-group col-md-6">
                                 <label for="nombre">Telefono fijo</label>
-                                <input type="text" class="form-control" name="tel_fijo" [(ngModel)]="empleado.tel_fijo" placeholder="Ingrese tel fijo">
+                                <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_fijo" [(ngModel)]="empleado.tel_fijo" placeholder="Ingrese tel fijo">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="nombre">Telefono movil</label>
-                                <input type="text"  class="form-control" name="tel_movil" phone="CN" [(ngModel)]="empleado.tel_movil" placeholder="Ingrese tel movil">
+
+                                <input type="text" [textMask]="{mask:maskPhone,guide:false}"  class="form-control" name="tel_movil" phone="CN" [(ngModel)]="empleado.tel_movil" placeholder="Ingrese tel movil">
                                 <!--<p *ngIf="field.errors?.phone">error message</p>-->
+
                             </div>  
                             <div class="form-group col-md-6">
                             <label>Rol</label>

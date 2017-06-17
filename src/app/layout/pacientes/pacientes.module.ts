@@ -4,7 +4,7 @@ import {JsonpModule} from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import {DataTableModule} from "angular2-datatable"
 import { PacientesRoutingModule } from './pacientes-routing.module';
 import { PacientesComponent } from './pacientes.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
@@ -21,7 +21,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     PacientesRoutingModule,
-    TextMaskModule
+    TextMaskModule,
+    DataTableModule,
   ],
   declarations: [PacientesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })

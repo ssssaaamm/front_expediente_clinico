@@ -5,6 +5,7 @@ import { LoginService } from "app/services/login.service";
 import { TipoExamen } from "app/models/tipo_examen";
 import { Examen } from "app/models/examen";
 
+
 @Component({
   selector: 'app-examenes',
   templateUrl: './examenes.component.html',
@@ -16,6 +17,8 @@ import { Examen } from "app/models/examen";
 export class ExamenesComponent implements OnInit {
   public examenes : Array<Examen>;
   public tipos_examen : Array<TipoExamen>;
+
+
 
   constructor(private LoginService: LoginService, private examenesService: ExamenesService, private tiposExamenService: TiposExamenService) { }
 

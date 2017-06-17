@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TextMaskModule } from 'angular2-text-mask';
 import { ExamenesRoutingModule } from './examenes-routing.module';
 import { ExamenesComponent } from './examenes.component';
 import { ModAddComponent } from './mod-add/mod-add.component';
@@ -18,6 +18,7 @@ import {DataTableModule} from "angular2-datatable";
     ReactiveFormsModule,
     NgbModule.forRoot(),
     DataTableModule,
+    TextMaskModule,
   ],
   declarations: [ExamenesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })

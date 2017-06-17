@@ -1,0 +1,56 @@
+<button type="button" class="btn btn-success btn-sm" (click)="open(content)" ><i class="fa fa-eye center" aria-hidden="true"></i></button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle de consulta: <span class="text-info">Nombre Consulta</span></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    
+
+    <!--Formulario editar cirugia-->
+        <form>
+
+        <div class="modal-body">
+<!--
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Ooops!</strong> {{mensaje}}
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>-->
+
+            <div class="form-group">
+                <label for="nombre">Fecha de Realizacion</label>
+                <input type="text" class="form-control" name="fecha">
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Hora de Realización</label>
+                <input type="text" class="form-control" name="hora">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre del Médico</label>
+                <input type="text" class="form-control" name="medico">
+            </div>
+            <div class="form-group">
+                <label>Diagnosotico</label>
+                <textarea type="text" class="form-control" name="detalle"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Tratamiento</label>
+                <textarea type="text" class="form-control" name="tratamiento"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+        
+        </div>
+
+    </form>
+
+</ng-template>
