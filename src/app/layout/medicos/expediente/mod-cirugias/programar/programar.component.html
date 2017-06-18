@@ -1,0 +1,60 @@
+<button class="btn btn-primary" (click)="open(content)"><i class="fa fa-plus " aria-hidden="true"></i>Programar Cirugia</button>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar nueva cirugia </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <!--Formulario agregar nuevo rol-->
+        <form>
+
+        <div class="modal-body">
+            
+            <div *ngIf="exito == false" class="alert alert-danger">
+                <strong>Ooops!</strong> {{mensaje}}
+            </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Codigo</label>
+                <input type="text" class="form-control"  name="codigo" placeholder="Ingrese codigo">
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control"  name="nombre" placeholder="Ingrese nombre de la cirugia">
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Especialidad</label>
+                <select class="form-control"  name="especialidad">
+                    <option > </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="costo">Costo ($)</label>
+                <input type="text" class="form-control" [textMask]="{mask:costoMask}"  name="costo"   placeholder="Ingrese costo de la cirugia">
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="text" class="form-control" [textMask]="{mask:costoMask}"  name="costo"   placeholder="Ingrese costo de la cirugia">
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+            <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-primary" >Guardar</button>
+            <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary" ><i class="fa fa-repeat"></i></button>
+        </div>
+
+    </form>
+
+</ng-template>
+
+

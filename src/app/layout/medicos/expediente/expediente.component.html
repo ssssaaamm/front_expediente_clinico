@@ -1,0 +1,98 @@
+<div class="container-fluid">
+
+
+  <div *ngIf="paso1" [@enterAnimation]="paso2" class="panel panel-info">
+    <strong><p class="text-center">Datos personales</p></strong>
+    <hr>
+    <div class="row">
+
+
+      <div class="form-group col-md-6">
+        <label for="nombre1">Nombres</label>
+        <input type="text" disabled class="form-control" [(ngModel)]="paciente_modificado.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="apellido1">Apellidos</label>
+        <input type="text" disabled class="form-control" [(ngModel)]="paciente_modificado.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+      </div>
+      <div class="col-md-6">
+        <p>Genero</p>
+        <label class="checkbox-inline">
+               <input type="radio" name="genero" id="M" [(ngModel)]="paciente_modificado.genero" value="M" (change)="onChangeGenero()"> &nbsp; Masculino
+        </label>
+        <label class="checkbox-inline">
+             <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.genero" value="F"> &nbsp; Femenenino &nbsp;
+        </label>
+      </div>
+
+
+      <p></p>
+      <div class="form-group col-md-6 ">
+        <label for="dui">Numero Expedinete</label>
+        <input disabled type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.numero_expediente"
+          placeholder="Ingrese doc. identidad">
+      </div>
+    </div>
+    <!--Fin row-->
+    <div class="row">
+      <h4 class="text-center">Sintomatología</h4>
+    </div>
+
+
+    <div class="form-group col-md-12">
+      <textarea type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre"></textarea>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-success btn-md" (click)="onChangePaso(2)">Proseguir</button>
+    </div>
+  </div>
+  <!--fin paso 2-->
+
+  <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
+    <div class="card-block">
+      <a routerLink="/medico/gestiones" [routerLinkActive]="['router-link-active']" class="btn btn-danger pull-right">
+        <i class="fa fa-hourglass-end" aria-hidden="true"></i>&nbsp;Finalizar Consulta
+    </a>
+      <ngb-tabset type="pills">
+        <ngb-tab title="Datos Generales">
+          <ng-template ngbTabContent>
+            <app-mod-datos></app-mod-datos>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Signos Vitales">
+          <ng-template ngbTabContent>
+            <app-mod-signos></app-mod-signos>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Consultas">
+          <ng-template ngbTabContent>
+            <app-mod-consultas></app-mod-consultas>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Examenes">
+          <ng-template ngbTabContent>
+            <app-mod-examenes></app-mod-examenes>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Cirugias">
+          <ng-template ngbTabContent>
+            <app-mod-cirugias></app-mod-cirugias>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="Diagnosticos">
+          <ng-template ngbTabContent>
+            <app-mod-diagnosticos></app-mod-diagnosticos>
+          </ng-template>
+        </ngb-tab>
+
+      </ngb-tabset>
+
+    </div>
+  </div>
+
+</div>

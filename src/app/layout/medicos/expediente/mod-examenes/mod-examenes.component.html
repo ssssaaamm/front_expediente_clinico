@@ -1,0 +1,39 @@
+
+<div class="container-fluid">
+    <!--Tabla examenes-->
+
+    <div class="table-responsive">
+        <app-asignar></app-asignar>
+        <table class="table table-hover table-striped" [mfData]="examenes" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th><mfDefaultSorter by="tipo">Tipo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="codigo">Código</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="costo">Costo</mfDefaultSorter></th> 
+                    <th><mfDefaultSorter by="detall">Detalle</mfDefaultSorter></th>                      
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let examen of mf.data">
+                    <td>{{examen.tipo.nombre}}</td>                    
+                    <td>{{examen.codigo}}</td>
+                    <td>{{examen.nombre}}</td>
+                    <td>{{examen.costo}}</td>
+                    <td><button type="button" class="btn btn-success btn-sm" (click)="open(content)" ><i class="fa fa-eye center" aria-hidden="true"></i></button></td>                        
+<!--                    <td><app-mod-edit [examen_original]="examen" [tipos_examen]="tipos_examen" [examenes]="examenes"></app-mod-edit></td>
+                    <td><app-mod-del [examen]="examen" [examenes]="examenes"><p>¿Realmente Desea elimniar el examen?</p></app-mod-del></td>-->
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
