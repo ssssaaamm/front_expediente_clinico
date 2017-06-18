@@ -7,7 +7,7 @@ import { Enfermedad } from "app/models/enfermedad";
 import { Paciente } from "app/models/paciente";
 import { Padre } from "app/models/padre";
 import { Responsable } from "app/models/responsable";
-
+import {LoginService} from "app/services/login.service";
 
 @Component({
   selector: 'app-datos',
@@ -23,7 +23,7 @@ import { Responsable } from "app/models/responsable";
   ],
   templateUrl: './datos.component.html',
   styleUrls: ['./datos.component.scss'],
-  providers: [PacientesService, PaisesService, EnfermedadesService, NgbModal]
+  providers: [PacientesService, PaisesService, EnfermedadesService, NgbModal,LoginService]
 })
 export class DatosComponent implements OnInit {
     paciente: Paciente;
@@ -31,8 +31,9 @@ export class DatosComponent implements OnInit {
   @Input() public enfermedades: Array<Enfermedad>;//<--- todas las enfermedade
   @Input() public paises: Array<any>;//<--- todos los paises
   @Input() public pacientes: Array<any>;//<--- todos los paises
-  @Input() public paciente_original: Paciente; //<--- paciente original.
-  @Input() public paciente_modificado: Paciente; //<--- paciente original.
+  public paciente_original:  Paciente; //<--- paciente original.
+  public paciente_modificado: Paciente=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+
 
   //todas las regiones de los paises
   public regionesPadre: Array<any> = new Array<any>();//<--sera pasado al componente add y edit
@@ -71,23 +72,100 @@ export class DatosComponent implements OnInit {
   public maskNames = [/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,];
   closeResult: string;
 
-  constructor(private modalService: NgbModal, private paisesService: PaisesService, private pacientesService: PacientesService, private enfermedadesService: EnfermedadesService) { }
+  constructor(private modalService: NgbModal,private loginService: LoginService, private paisesService: PaisesService, private pacientesService: PacientesService, private enfermedadesService: EnfermedadesService) { }
 
   ngOnInit() {
-     //this.paciente_modificado = this.paciente_original.full_clone();
-     this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+    let identidad = JSON.parse(localStorage.getItem("identity"));
+
+    console.log("ENVIANDO IDENTIDAD: "+JSON.stringify(identidad));
+    this.pacientesService.datos(identidad).subscribe(
+           
+        response=>{
+            console.log("RECIBIENDO PACIENTE: "+JSON.stringify(response));
+            let father:Padre;
+            let mother:Padre;
+             response.idPadre.forEach((p)=>{
+              let f =new Padre(
+                p.nombre1,
+                p.nombre2,
+                p.apellido1,
+                p.apellido2,
+                p.apellido_casada,
+                p.documento_unico,
+                p.genero,
+                p.subdivision,
+                null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
+                p.idPadre
+              );
+
+              if(f.genero=='F'){
+                mother=f;
+              }else{
+                father=f;
+              }
+            });
+
+            this.paciente_original = new Paciente(
+              response.nombre1, 
+              response.nombre2,
+              response.apellido1,
+              response.apellido2,
+              response.apellidoCasada,
+              response.documentoUnico,
+              response.diaNacimientoPaciente,
+              response.mesNacimientoPaciente,
+              response.anioNacimientoPaciente,
+              response.genero,
+              response.idSubdivision,
+              response.telFijo,
+              response.telMovil,
+              response.email,
+              null,
+              new Responsable(
+              response.nombre1, 
+              response.nombre2,
+              response.apellido1,
+              response.apellido2,
+              response.genero,
+              response.apellidoCasada,
+              response.documentoUnico,
+              response.idSubdivision,
+              response.telFijo,
+              response.telMovil,
+              response.idResponsable
+              ),
+              father,
+              mother,
+              null,
+              null,
+              response.idPaciente
+              );
+           this.paciente_modificado = this.paciente_original.clone();
+              
+        },
+        error=>{
+            if(error!=null) {
+                console.log("Error al enviar la peticion: "+error);
+            }
+        }
+    );
+
+     //this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
      
-  }
+  } 
+
+
+
     open(content) {
 
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      //this.paciente_modificado = this.paciente_original.full_clone();
-      this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+      this.paciente_modificado = this.paciente_original.clone();
+      //this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      //this.paciente_modificado = this.paciente_original.full_clone();
-      this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+      this.paciente_modificado = this.paciente_original.clone();
+     // this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
     });
 
     //this.rellenarPaises();
@@ -105,6 +183,8 @@ private getDismissReason(reason: any): string {
       return `with: ${reason}`;
     }
   }
+  
+ 
 
 onChangePaisPadre() {
     //obtenemos todos las regiones
@@ -301,9 +381,9 @@ onChangePaisResponsable() {
           this.paciente_modificado.usuario.id = response.username;
           this.paciente_modificado.usuario.password = response.password;
 
-          //this.pacientes[pos] = this.paciente_modificado.full_clone();
+          this.pacientes[pos] = this.paciente_modificado.clone();
           
-          this.pacientes[pos] = new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+         // this.pacientes[pos] = new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
           this.paciente_original = this.pacientes[pos];
           this.exito = true;
           this.mensaje = response.mensaje;
@@ -446,7 +526,7 @@ onChangePaisResponsable() {
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.subdivision.idDivision.idPais.idPais == pais.idPais) {
         this.selectedCountryPaciente = pais;
-        this.onChangePaisPaciente();
+       // this.onChangePaisPaciente();
       }
     });
 
@@ -454,7 +534,7 @@ onChangePaisResponsable() {
       this.regionesPaciente.forEach((region) => {
         if (this.paciente_modificado.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionPaciente = region;
-          this.onChangeRegionPaciente();
+         // this.onChangeRegionPaciente();
         }
       });
 
@@ -462,7 +542,7 @@ onChangePaisResponsable() {
         this.ciudadesPaciente.forEach((ciudad) => {
           if (this.paciente_modificado.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
             this.selectedCityPaciente = ciudad;
-            this.onChangeCiudadPaciente();
+           // this.onChangeCiudadPaciente();
           }
         });
       }, 1500);
@@ -475,7 +555,7 @@ onChangePaisResponsable() {
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.padre.subdivision.idDivision.idPais.idPais == pais.idPais) {
         this.selectedCountryPadre = pais;
-        this.onChangePaisPadre();
+     //   this.onChangePaisPadre();
       }
     });
 
@@ -483,7 +563,7 @@ onChangePaisResponsable() {
       this.regionesPaciente.forEach((region) => {
         if (this.paciente_modificado.padre.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionPadre = region;
-          this.onChangeRegionPadre();
+       //   this.onChangeRegionPadre();
         }
       });
 
@@ -491,7 +571,7 @@ onChangePaisResponsable() {
         this.ciudadesPaciente.forEach((ciudad) => {
           if (this.paciente_modificado.padre.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
             this.selectedCityPadre.padre = ciudad;
-            this.onChangeCiudadPadre();
+         //   this.onChangeCiudadPadre();
           }
         });
       }, 1500);
@@ -504,7 +584,7 @@ onChangePaisResponsable() {
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.madre.subdivision.idDivision.idPais.idPais == pais.idPais) {
         this.selectedCountryMadre = pais;
-        this.onChangePaisPaciente();
+        //this.onChangePaisPaciente();
       }
     });
 
@@ -512,7 +592,7 @@ onChangePaisResponsable() {
       this.regionesPaciente.forEach((region) => {
         if (this.paciente_modificado.madre.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionMadre = region;
-          this.onChangeRegionMadre();
+          //this.onChangeRegionMadre();
         }
       });
 
@@ -520,7 +600,7 @@ onChangePaisResponsable() {
         this.ciudadesPaciente.forEach((ciudad) => {
           if (this.paciente_modificado.madre.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
             this.selectedCityPaciente.madre = ciudad;
-            this.onChangeCiudadMadre();
+            //this.onChangeCiudadMadre();
           }
         });
       }, 1500);
@@ -533,7 +613,7 @@ onChangePaisResponsable() {
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.responsable.subdivision.idDivision.idPais.idPais == pais.idPais) {
         this.selectedCountryMadre = pais;
-        this.onChangePaisResponsable();
+        //this.onChangePaisResponsable();
       }
     });
 
@@ -541,7 +621,7 @@ onChangePaisResponsable() {
       this.regionesPaciente.forEach((region) => {
         if (this.paciente_modificado.responsable.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionMadre = region;
-          this.onChangeRegionResponsable();
+          //this.onChangeRegionResponsable();
         }
       });
 
@@ -549,7 +629,7 @@ onChangePaisResponsable() {
         this.ciudadesPaciente.forEach((ciudad) => {
           if (this.paciente_modificado.responsable.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
             this.selectedCityPaciente.responsable = ciudad;
-            this.onChangeCiudadResponsable();
+            //this.onChangeCiudadResponsable();
           }
         });
       }, 1500);

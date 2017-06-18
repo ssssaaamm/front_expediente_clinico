@@ -63,5 +63,13 @@ export class CirugiasService {
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
+detail(cirugia:any){
+  this.action = "/realizadas";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(cirugia);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+}
 
 }

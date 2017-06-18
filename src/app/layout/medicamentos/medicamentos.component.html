@@ -19,9 +19,6 @@
         <div class="col-md-4">
            <app-mod-add [medicamentos]="medicamentos" [tipos_medicamento]="tipos_medicamento"></app-mod-add>
         </div>
-        <div class="col-md-4">
-             <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-        </div>
 
      </div>
     <!--Tabla medicamentos-->
@@ -52,7 +49,9 @@
 
             <tfoot>
             
-                
+            <div class="col-md-6">
+             <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </div>
             </tfoot>
         </table>
     </div>

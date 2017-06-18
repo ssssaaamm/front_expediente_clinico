@@ -2,18 +2,16 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-mod-info',
-  templateUrl: './mod-info.component.html',
-  styleUrls: ['./mod-info.component.scss']
+  selector: 'app-detalle-examen',
+  templateUrl: './detalle-examen.component.html',
+  styleUrls: ['./detalle-examen.component.scss']
 })
-export class ModInfoComponent implements OnInit {
-@Input() asignacion_cirugia: any;
-public exito: boolean;
+export class DetalleExamenComponent implements OnInit {
+  @Input() asignacion_examen: any;
+  public exito: boolean;
   public mensaje: string;
   closeResult: string;
-
   constructor(private modalService: NgbModal) { }
-
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -34,11 +32,11 @@ public exito: boolean;
     }
   }
 
-
   ngOnInit() {
-  }
 
+  }
   private clearFields() {
 
   }
+
 }

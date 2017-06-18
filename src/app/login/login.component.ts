@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
                                     localStorage.setItem('token',JSON.stringify(response));
                                     localStorage.setItem( 'identity', JSON.stringify(this.identity) );
 
-                                    console.log(this.loginService.getIdentity());
+                                    console.log("INDENTIDAD GUARDADA ES: "+JSON.stringify(this.loginService.getIdentity()));
                                     console.log(this.loginService.getToken());
 
                                     this.router.navigate(['/dashboard']);

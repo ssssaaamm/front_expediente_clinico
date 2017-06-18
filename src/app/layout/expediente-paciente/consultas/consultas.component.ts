@@ -15,8 +15,11 @@ import { EspecialidadesService } from 'app/services/especialidades.service';
 })
 export class ConsultasComponent implements OnInit {
 
-  public consultas: Array<Consulta> = new Array<Consulta>();
-  public especialidades: Array<Especialidad> = new Array<Especialidad>();
+ public asignacion_consulta: Array<any>;
+
+  public exito: boolean;
+  public mensaje: string;
+  closeResult: string;
 
   constructor(
     private loginService: LoginService,
@@ -24,6 +27,21 @@ export class ConsultasComponent implements OnInit {
     private especialidadesService: EspecialidadesService) { }
 
   ngOnInit() {
+
+    let identidad = JSON.parse(localStorage.getItem("identity"));
+
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+     this.consultasService.detail(identidad).subscribe(
+            response=>{
+                console.log(response);
+               this.asignacion_consulta = response;
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
   }
 
 }
