@@ -19,7 +19,7 @@ export class ModAddComponent implements OnInit {
     public mensaje:string;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix: ''
     })
     public maskNames = [/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,];
 
@@ -36,7 +36,7 @@ export class ModAddComponent implements OnInit {
             this.examen.tipo=new TipoExamen("",0,0);            
             this.examen.codigo="";
             this.examen.nombre="";
-            this.examen.costo=0.0;
+            this.examen.costo=null;
             
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -44,7 +44,7 @@ export class ModAddComponent implements OnInit {
             this.examen.tipo=new TipoExamen("",0,0);                        
             this.examen.codigo="";
             this.examen.nombre="";
-            this.examen.costo=0.0;
+            this.examen.costo=null;
             
         });
     }
@@ -59,7 +59,7 @@ export class ModAddComponent implements OnInit {
   }
   ngOnInit() {
     /**muestra los campos vacios solo con el placeholder :)  */
-     this.examen=new Examen("","",new TipoExamen("",0,0),0.0,0);
+     this.examen=new Examen("","",new TipoExamen("",null,null),null,null);
   }
 
       onSubmit(){
@@ -93,7 +93,7 @@ export class ModAddComponent implements OnInit {
         this.examen.tipo=new TipoExamen("",0,0);                    
         this.examen.codigo="";
         this.examen.nombre="";
-        this.examen.costo=0.0;        
+        this.examen.costo=null;        
         this.exito=null;
     }
 

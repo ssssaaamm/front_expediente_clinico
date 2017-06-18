@@ -17,7 +17,7 @@ export class ModEditComponent implements OnInit {
     procedimiento_modificado: Procedimiento;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
 
     closeResult: string;

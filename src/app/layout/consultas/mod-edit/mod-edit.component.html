@@ -22,24 +22,24 @@
 
             <div class="form-group">
                 <label for="nombre">Codigo</label>
-                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.codigo" name="codigo" placeholder="Ingrese codigo">
+                <input type="text" [disabled]="true" class="form-control" [(ngModel)]="consulta_modificada.codigo" name="codigo" placeholder="Ingrese codigo">
             </div>
 
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
+                <input type="text" [disabled]="true" class="form-control" [(ngModel)]="consulta_modificada.nombre" name="nombre" placeholder="Ingrese nombre de la consulta">
             </div>
 
             <div class="form-group">
                 <label for="tipo">Especialidad</label>
-                <select class="form-control" [(ngModel)]="consulta_modificada.especialidad" name="especialidad">
+                <select [disabled]="true" class="form-control" [(ngModel)]="consulta_modificada.especialidad" name="especialidad">
                     <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="costo">Costo</label>
-                <input type="text" class="form-control" [(ngModel)]="consulta_modificada.costo" name="costo" placeholder="Ingrese costo de la consulta">
+                <label for="costo">Costo $</label>
+                <input type="text" class="form-control"  [textMask]="{'mask':costoMask}" [(ngModel)]="consulta_modificada.costo" name="costo" placeholder="Ingrese costo de la consulta">
             </div>
 
         </div>

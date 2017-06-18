@@ -16,7 +16,7 @@ export class ModAddComponent implements OnInit {
     public mensaje: string;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
     public maskNames = [/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,
     /^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/,/^[a-zA-Z]+$/];
@@ -30,13 +30,13 @@ export class ModAddComponent implements OnInit {
             this.exito = null;
             this.procedimiento.codigo="";
             this.procedimiento.nombre="";
-            this.procedimiento.costo=0.0;
+            this.procedimiento.costo=null;
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             this.exito = null;
             this.procedimiento.codigo="";
             this.procedimiento.nombre="";
-            this.procedimiento.costo=0.0;
+            this.procedimiento.costo=null;
 
 
         });
@@ -53,7 +53,7 @@ export class ModAddComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.procedimiento=new Procedimiento("","",0.0 );
+        this.procedimiento=new Procedimiento("","",null);
     }
 
     onSubmit(){
@@ -85,7 +85,7 @@ export class ModAddComponent implements OnInit {
     clear(){
         this.procedimiento.codigo="";
         this.procedimiento.nombre="";
-        this.procedimiento.costo=0.0;
+        this.procedimiento.costo=null;
         this.exito=null;
     }
 

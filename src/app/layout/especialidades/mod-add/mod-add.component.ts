@@ -20,7 +20,7 @@ export class ModAddComponent implements OnInit {
     ;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
     closeResult: string;
   

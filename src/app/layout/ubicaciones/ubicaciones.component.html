@@ -22,7 +22,7 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
+        <table class="table table-hover table-striped table-condensed" [mfData]="ubicaciones" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
                     <th>Codigo</th>
@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let ubicacion of ubicaciones">
+                <tr *ngFor="let ubicacion of mf.data">
                     <td>{{ubicacion.codigo}}</td>
                     <td>{{ubicacion.nombre}}</td>
                     <td>{{ubicacion.nivel}}</td> 
@@ -51,6 +51,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
  

@@ -21,7 +21,7 @@
     <!--Tabla roles-->
 
     <div class=" table-responsive">
-        <table class="table table-hover table-striped" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <table class="table table-hover table-striped" [mfData]="roles" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
                     <th><mfDefaultSorter by="">Id</mfDefaultSorter></th>
@@ -34,7 +34,7 @@
             </thead>
             <tbody>
 
-                <tr *ngFor="let rol of roles">
+                <tr *ngFor="let rol of mf.data">
                     <td>{{rol.id}}</td>
                     <td>{{rol.nombre}}</td>
                     <td>{{rol.descripcion}}</td>
@@ -47,7 +47,7 @@
             <tfoot>
                 <tr>
                     <td colspan="4">
-                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
                     </td>
                 </tr>
             </tfoot>

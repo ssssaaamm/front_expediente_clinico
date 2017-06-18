@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DataTableModule} from "angular2-datatable";
 
 
 import { UbicacionesRoutingModule } from './ubicaciones-routing.module';
@@ -17,6 +18,7 @@ import { ModDelComponent } from './mod-del/mod-del.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
+    DataTableModule
   ],
   declarations: [UbicacionesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })
