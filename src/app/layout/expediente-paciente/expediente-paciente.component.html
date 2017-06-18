@@ -1,7 +1,7 @@
 
 <div class="card-block">
     <ngb-tabset>
-        <ngb-tab title="Datos Generales">
+        <!--<ngb-tab title="Datos Generales">
             <ng-template ngbTabContent>
                 <app-datos></app-datos>
             </ng-template>
@@ -40,8 +40,17 @@
             <ng-template ngbTabContent>
                 <app-padecimientos></app-padecimientos>                
             </ng-template>
+        </ngb-tab>-->
+
+        
+
+        <ngb-tab title="Datos Generales">
+            <template ngbTabContent>
+                <app-datos></app-datos>
+            </template>
         </ngb-tab>
-            <!--       
+
+        <ngb-tab title="Citas">
             <template ngbTabContent>
                 <app-citas></app-citas>
             </template>
@@ -69,7 +78,12 @@
             <template ngbTabContent>
                 <app-padecimientos></app-padecimientos>                
             </template>
-        </ngb-tab>-->
+        </ngb-tab>
+        <ngb-tab title="Signos Vitales">
+            <template ngbTabContent>
+                <app-padecimientos></app-padecimientos>                
+            </template>
+        </ngb-tab>
         
         <!--<ngb-tab>
             <template ngbTabTitle><b>Fancy</b> title</template>
