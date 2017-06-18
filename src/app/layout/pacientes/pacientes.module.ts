@@ -22,7 +22,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     NgbModule.forRoot(),
     PacientesRoutingModule,
     TextMaskModule,
-    DataTableModule,
+    DataTableModule
   ],
   declarations: [PacientesComponent, ModAddComponent, ModEditComponent, ModDelComponent]
 })

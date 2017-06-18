@@ -29,7 +29,7 @@ export class LoginService {
   }
 
     getIdentity(){
-        let identity = JSON.parse(localStorage.getItem('identity'));
+        let identity = JSON.parse(localStorage.getItem("identity"));
         if(identity != "undefined"){
             this.identity = identity;
         }else{

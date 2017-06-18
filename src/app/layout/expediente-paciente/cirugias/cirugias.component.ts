@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { Cirugia } from '../../../models/cirugia';
+import { Especialidad } from '../../../models/especialidad';
+import { CirugiasService } from '../../../services/cirugias.service';
 
 @Component({
   selector: 'app-cirugias',
   templateUrl: './cirugias.component.html',
-  styleUrls: ['./cirugias.component.scss']
+  styleUrls: ['./cirugias.component.scss'],
+  providers:[CirugiasService]
 })
 export class CirugiasComponent implements OnInit {
+  public asignaciones_cirugias: Array<any>;
+  public exito: boolean;
+  public mensaje: string;
 
-  constructor() { }
+  constructor(private modalService: NgbModal, private cirugiasService: CirugiasService) { }
 
   ngOnInit() {
+     let identidad = JSON.parse(localStorage.getItem("identity"));
+
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+     this.cirugiasService.detail(identidad).subscribe(
+            response=>{
+                console.log(response);
+               this.asignaciones_cirugias = response;
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
   }
 
 }

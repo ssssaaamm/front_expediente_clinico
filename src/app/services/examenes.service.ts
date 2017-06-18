@@ -62,6 +62,14 @@ export class ExamenesService {
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
+detail(examen:any){
+  this.action = "/asignados";
+  let parametros="token="+this.token;
+  parametros = parametros + "&json="+JSON.stringify(examen);
+  return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+
+
+}
 
 
 }
