@@ -27,4 +27,10 @@ detail(cita:any){
 
 
 }
+listCitas(pacientej:any){
+  this.action = "/asignadas";
+  let parametros="token="+this.token;
+  parametros = parametros + "&json="+JSON.stringify(pacientej);
+  return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+}
 }
