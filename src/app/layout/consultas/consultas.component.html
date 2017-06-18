@@ -16,12 +16,12 @@
     </div>
 
     <!--Boton agregar con modal-->
-    <app-mod-add [consultas]="consultas" [especialidades]="especialidades"></app-mod-add>
+    <!--<app-mod-add [consultas]="consultas" [especialidades]="especialidades"></app-mod-add>-->
 
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-condensed" [mfData]="consultas" #mf="mfDataTable" [mfRowsOnPage]="1">
+        <table class="table table-hover table-striped table-condensed" [mfData]="consultas" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
                 <tr>
                     <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
@@ -29,7 +29,7 @@
                     <th><mfDefaultSorter by="especialidad">Especialidad</mfDefaultSorter></th>
                     <th><mfDefaultSorter by="costo">Costo</mfDefaultSorter></th>             
                     <th>Editar</th>
-                    <th>Eliminar</th>
+                    <!--<th>Eliminar</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -39,19 +39,19 @@
                     <td>{{consulta.especialidad.nombre}}</td>
                     <td>{{consulta.costo}}</td>                      
                     <td><app-mod-edit [consulta_original]="consulta" [consultas]="consultas" [especialidades]="especialidades"></app-mod-edit></td>
-                    <td>
+                    <!--<td>
                         <app-mod-del [consulta]="consulta" [consultas]="consultas">
                             <p>
                                 ¿Realmente Desea elimniar la consulta?
                             </p>
                         </app-mod-del>
-                    </td>
+                    </td>-->
                 </tr>
             </tbody>
              <tfoot>
                 <tr>
                     <td colspan="4">
-                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
                     </td>
                 </tr>
             </tfoot>

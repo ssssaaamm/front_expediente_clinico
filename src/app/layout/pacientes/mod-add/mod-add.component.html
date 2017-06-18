@@ -14,13 +14,16 @@
 
         <div class="modal-body">
             
-            <!--<div *ngIf="exito == false" class="alert alert-danger">
+            <div *ngIf="exito == false" class="alert alert-danger">
                <strong>Ooops!</strong> {{mensaje}}.
             </div>
 
             <div *ngIf="exito == true" class="alert alert-success">
                 <strong>Exito!</strong> {{mensaje}}
-            </div>-->
+                <p>Numero Expediente: {{paciente.expediente.numero_expediente}}</p>
+                <p>Usuario: {{paciente.usuario.username}}</p>
+                <p>Password: {{paciente.usuario.password}}</p>
+            </div>
 
 
             <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">

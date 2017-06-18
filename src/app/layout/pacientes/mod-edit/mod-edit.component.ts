@@ -83,6 +83,7 @@ export class ModEditComponent implements OnInit {
     this.paciente_modificado = this.paciente_original.full_clone();
     //console.log(">>>>>>>>>>>>>>>>"+JSON.stringify(this.paciente_modificado.id));
     this.rellenarApellidosCasada();
+    this.rellenarEnfermedades();    
   }
 
   open(content) {
@@ -95,8 +96,8 @@ export class ModEditComponent implements OnInit {
       this.paciente_modificado = this.paciente_original.full_clone();
     });
 
+    //this.rellenarEnfermedades();
     this.rellenarPaises();
-    this.rellenarEnfermedades();
     this.rellenarFechaNacimiento();
     console.log(JSON.stringify(this.paciente_modificado));
 
@@ -161,7 +162,7 @@ onChangePaisPadre() {
   }
 
   onChangeCiudadPadre() {
-    this.paciente_modificado.subdivision = this.selectedCityPadre;
+    this.paciente_modificado.padre.subdivision = this.selectedCityPadre;
     console.log(this.paciente_modificado.padre.subdivision.nombreSubdivision);
   }
 
@@ -190,7 +191,7 @@ onChangePaisPadre() {
   }
 
   onChangeCiudadMadre() {
-    this.paciente_modificado.subdivision = this.selectedCityMadre;
+    this.paciente_modificado.madre.subdivision = this.selectedCityMadre;
     console.log(this.paciente_modificado.madre.subdivision.nombreSubdivision);
   } 
 
@@ -250,7 +251,7 @@ onChangePaisResponsable() {
   }
 
   onChangeCiudadResponsable() {
-    this.paciente_modificado.subdivision = this.selectedCityResponsable;
+    this.paciente_modificado.responsable.subdivision = this.selectedCityResponsable;
     console.log(this.paciente_modificado.responsable.subdivision.nombreSubdivision);
   } 
 
@@ -322,16 +323,16 @@ onChangePaisResponsable() {
           // 7) Username del usuario 
           // 8) Password
 
-          this.paciente_modificado.padre.id = response.idpadre;
-          this.paciente_modificado.madre.id = response.idmadre;
-          this.paciente_modificado.responsable.id = response.idresponsable;
-          this.paciente_modificado.expediente.id = response.idexpediente;
-          this.paciente_modificado.expediente.numero_expediente = response.nexpediente;
-          this.paciente_modificado.usuario.id = response.idusuario;
-          this.paciente_modificado.usuario.id = response.username;
-          this.paciente_modificado.usuario.password = response.password;
+          // this.paciente_modificado.padre.id = response.idpadre;
+          // this.paciente_modificado.madre.id = response.idmadre;
+          // this.paciente_modificado.responsable.id = response.idresponsable;
+          // this.paciente_modificado.expediente.id = response.idexpediente;
+          // this.paciente_modificado.expediente.numero_expediente = response.nexpediente;
+          // this.paciente_modificado.usuario.id = response.idusuario;
+          // this.paciente_modificado.usuario.id = response.username;
+          // this.paciente_modificado.usuario.password = response.password;
 
-          this.pacientes[pos] = this.paciente_modificado.full_clone();
+          this.pacientes[pos] = this.paciente_modificado.clone();
           this.paciente_original = this.pacientes[pos];
           this.exito = true;
           this.mensaje = response.mensaje;
@@ -349,23 +350,90 @@ onChangePaisResponsable() {
     );
   }
 
+  private enfermedadesIguales(e1: Enfermedad, e2: any): boolean {
+    let returning = false;
+    if (e1.id == e2.idEnfermedad) {
+      returning = true;
+      console.log("son iguales");
+    } else {
+      console.log("no son iguales ;(");
+    }
+    return returning;
+  }
+
   private rellenarEnfermedades() {
 
-    //consultar padecimientos de paciente
-    let epaciente = [];
-    //console.log("EL ID DEL PACIENTE ES: "+this.paciente_modificado.id)
-    this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id})
-      .map((response: any) => {
-        let enfermedades = response.idEnfermedad;
-        let result: Array<Enfermedad> = new Array<Enfermedad>();
-        if (enfermedades) {
-          enfermedades.forEach((enfermedad) => {
-            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+    //rellenar padecimientos paciente
+    this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id}).subscribe(
+      (erecibidas) => {
+        this.enfermedades.forEach((enfermedad) => {
+          erecibidas.idEnfermedad.forEach((erecibida) => {
+            if (this.enfermedadesIguales(enfermedad, erecibida)) {
+              this.paciente_modificado.enfermedades.push(enfermedad);
+            }
           });
+        });
+      },
+      error => {
+        if (error != null) {
+          console.log("Error al enviar la peticion: " + error);
         }
-        return result;
-      })
-      .subscribe(res => epaciente = res);
+      }
+    );
+
+    //rellenar padecimientos padre
+    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id}).subscribe(
+      (erecibidas) => {
+        this.enfermedades.forEach((enfermedad) => {
+          erecibidas.idEnfermedad.forEach((erecibida) => {
+            if (this.enfermedadesIguales(enfermedad, erecibida)) {
+              this.paciente_modificado.padre.enfermedades.push(enfermedad);
+            }
+          });
+        });
+      },
+      error => {
+        if (error != null) {
+          console.log("Error al enviar la peticion: " + error);
+        }
+      }
+    );
+
+    //rellenar padecimientos padre
+    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id}).subscribe(
+      (erecibidas) => {
+        this.enfermedades.forEach((enfermedad) => {
+          erecibidas.idEnfermedad.forEach((erecibida) => {
+            if (this.enfermedadesIguales(enfermedad, erecibida)) {
+              this.paciente_modificado.madre.enfermedades.push(enfermedad);
+            }
+          });
+        });
+      },
+      error => {
+        if (error != null) {
+          console.log("Error al enviar la peticion: " + error);
+        }
+      }
+    );
+
+    // //consultar padecimientos de paciente
+    // let epaciente = [];
+    // //console.log("EL ID DEL PACIENTE ES: "+this.paciente_modificado.id)
+    // this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id})
+    //   .map((response: any) => {
+    //     let enfermedades = response.idEnfermedad;
+    //     let result: Array<Enfermedad> = new Array<Enfermedad>();
+    //     if (enfermedades) {
+    //     console.log("ENFERMEDADE jalasdas>>>>"+JSON.stringify(enfermedades));
+    //       enfermedades.forEach((enfermedad) => {
+    //         result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+    //       });
+    //     }
+    //     return result;
+    //   })
+    //   .subscribe(res => epaciente = res);
+    //   console.log("ENFERMEDADE DEL PACIENTE SON>>>>"+JSON.stringify(epaciente));
 
     //llenado de prueba
     // epaciente = [
@@ -376,30 +444,30 @@ onChangePaisResponsable() {
     // ];
 
     //seleccionamos los padecimientos del paciente
-    this.paciente_modificado.enfermedades = new Array<Enfermedad>();
-    epaciente.forEach((e) => {
-      let matched = this.matchEnfermedad(e.id);
-      if (matched != null) {
-        this.paciente_modificado.enfermedades.push(matched);
-      }
-    });
+    // this.paciente_modificado.enfermedades = new Array<Enfermedad>();
+    // epaciente.forEach((e) => {
+    //   let matched = this.matchEnfermedad(e.id);
+    //   if (matched != null) {
+    //     this.paciente_modificado.enfermedades.push(matched);
+    //   }
+    // });
 
 
 
     //consultar padecimientos de padre
-    let epadre = [];
-    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id})
-      .map((response: any) => {
-        let enfermedades = response.idEnfermedad;
-        let result: Array<Enfermedad> = new Array<Enfermedad>();
-        if (enfermedades) {
-          enfermedades.forEach((enfermedad) => {
-            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
-          });
-        }
-        return result;
-      })
-      .subscribe(res => epadre = res);
+    // let epadre = [];
+    // this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id})
+    //   .map((response: any) => {
+    //     let enfermedades = response.idEnfermedad;
+    //     let result: Array<Enfermedad> = new Array<Enfermedad>();
+    //     if (enfermedades) {
+    //       enfermedades.forEach((enfermedad) => {
+    //         result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+    //       });
+    //     }
+    //     return result;
+    //   })
+    //   .subscribe(res => epadre = res);
 
     //llenado de prueba
     // epadre = [
@@ -408,30 +476,30 @@ onChangePaisResponsable() {
     // ];
 
     //seleccionamos los padecimientos del padre
-    this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
-    epadre.forEach((e) => {
-      let matched = this.matchEnfermedad(e.id);
-      if (matched != null) {
-        this.paciente_modificado.padre.enfermedades.push(matched);
-      }
-    });
+    // this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
+    // epadre.forEach((e) => {
+    //   let matched = this.matchEnfermedad(e.id);
+    //   if (matched != null) {
+    //     this.paciente_modificado.padre.enfermedades.push(matched);
+    //   }
+    // });
 
 
 
     //consultar padecimientos de madre
-    let emadre = [];
-    this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id})
-      .map((response: any) => {
-        let enfermedades = response.idEnfermedad;
-        let result: Array<Enfermedad> = new Array<Enfermedad>();
-        if (enfermedades) {
-          enfermedades.forEach((enfermedad) => {
-            result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
-          });
-        }
-        return result;
-      })
-      .subscribe(res => emadre = res);
+    // let emadre = [];
+    // this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id})
+    //   .map((response: any) => {
+    //     let enfermedades = response.idEnfermedad;
+    //     let result: Array<Enfermedad> = new Array<Enfermedad>();
+    //     if (enfermedades) {
+    //       enfermedades.forEach((enfermedad) => {
+    //         result.push(new Enfermedad(enfermedad.codigoEnfermedad, enfermedad.nombreEnfermedad, enfermedad.idEnfermedad));
+    //       });
+    //     }
+    //     return result;
+    //   })
+    //   .subscribe(res => emadre = res);
 
     //llenado de prueba
     // emadre = [
@@ -440,36 +508,36 @@ onChangePaisResponsable() {
     // ];
 
     //seleccionamos los padecimientos del Padre
-    this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
-    epadre.forEach((e) => {
-      let matched = this.matchEnfermedad(e.id);
-      if (matched != null) {
-        this.paciente_modificado.padre.enfermedades.push(matched);
-      }
-    });
+    // this.paciente_modificado.padre.enfermedades = new Array<Enfermedad>();
+    // epadre.forEach((e) => {
+    //   let matched = this.matchEnfermedad(e.id);
+    //   if (matched != null) {
+    //     this.paciente_modificado.padre.enfermedades.push(matched);
+    //   }
+    // });
 
     //seleccionamos los padecimientos del madre
-    this.paciente_modificado.madre.enfermedades = new Array<Enfermedad>();
-    emadre.forEach((e) => {
-      let matched = this.matchEnfermedad(e.id);
-      if (matched != null) {
-        this.paciente_modificado.madre.enfermedades.push(matched);
-      }
-    });
+    // this.paciente_modificado.madre.enfermedades = new Array<Enfermedad>();
+    // emadre.forEach((e) => {
+    //   let matched = this.matchEnfermedad(e.id);
+    //   if (matched != null) {
+    //     this.paciente_modificado.madre.enfermedades.push(matched);
+    //   }
+    // });
 
   }
 
-  private matchEnfermedad(id: number): Enfermedad {
-    let returning: Enfermedad = null;
-    this.enfermedades.forEach((enfermedad) => {
-      if (enfermedad.id == id) {
-        returning = enfermedad;
-      }
-    });
-    return returning;
+  // private matchEnfermedad(id: number): Enfermedad {
+  //   let returning: Enfermedad = null;
+  //   this.enfermedades.forEach((enfermedad) => {
+  //     if (enfermedad.id == id) {
+  //       returning = enfermedad;
+  //     }
+  //   });
+  //   return returning;
 
-    //
-  }
+  //   //
+  // }
 
   private rellenarPaises() {
 
@@ -496,8 +564,8 @@ onChangePaisResponsable() {
             this.onChangeCiudadPaciente();
           }
         });
-      }, 1500);
-    }, 1500);
+      }, 800);
+    }, 800);
 
     
 
@@ -525,8 +593,8 @@ onChangePaisResponsable() {
             this.onChangeCiudadPadre();
           }
         });
-      }, 1500);
-    }, 1500);
+      }, 800);
+    }, 800);
   
 
 
@@ -554,8 +622,8 @@ onChangePaisResponsable() {
             this.onChangeCiudadMadre();
           }
         });
-      }, 1500);
-    }, 1500);
+      }, 800);
+    }, 800);
 
 
 

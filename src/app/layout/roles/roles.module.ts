@@ -9,7 +9,7 @@ import { ModAddComponent } from './mod-add/mod-add.component';
 import { ModDelComponent } from './mod-del/mod-del.component';
 import { ModEditComponent } from './mod-edit/mod-edit.component';
 import { PermisosComponent } from './permisos/permisos.component';
-import {DataTableModule} from "angular2-datatable"
+import {DataTableModule} from "angular2-datatable";
 @NgModule({
   imports: [
     CommonModule,

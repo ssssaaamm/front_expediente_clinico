@@ -20,7 +20,7 @@ export class ModEditComponent implements OnInit {
     ;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
     especialidad_modificada: Especialidad;
 

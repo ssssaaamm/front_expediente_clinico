@@ -80,7 +80,6 @@ export class EnfermedadesService {
     this.action = "/enfemedades";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(paciente);
-    console.log(parametros);
     //peticion
     return this.http.post(this.url+"/pacientes"+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
@@ -89,7 +88,6 @@ export class EnfermedadesService {
     this.action = "/enfemedadesPadre";
     let parametros="token="+this.token;
     parametros = parametros + "&json="+JSON.stringify(padre);
-    console.log(parametros);
 
     //peticion
     return this.http.post(this.url+"/pacientes"+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 

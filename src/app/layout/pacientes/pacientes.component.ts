@@ -228,9 +228,9 @@ export class PacientesComponent implements OnInit {
         let result: Array<Paciente> = new Array<Paciente>();
         if (pacientes) {
           pacientes.forEach((paciente) => {
-            console.log("INICIO PACIENTE");
-            console.log(JSON.stringify(paciente));
-            console.log("FIN PACIENTE");
+            // console.log("INICIO PACIENTE");
+            // console.log(JSON.stringify(paciente));
+            // console.log("FIN PACIENTE");
             let father:Padre;
             let mother:Padre;
             paciente.idPadre.forEach((p)=>{
@@ -243,13 +243,13 @@ export class PacientesComponent implements OnInit {
                 p.documentoUnico,
                 p.genero,
                 p.idSubdivision,
-                null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
+                new Array<Enfermedad>(),//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
                 p.idPadre
               );
 
-              console.log("PADREEEE "+JSON.stringify(p));
+              // console.log("PADREEEE "+JSON.stringify(p));
 
-              if(f.genero=='M'){
+              if(f.genero=='F'){
                 mother=f;
               }else{
                 father=f;
@@ -294,12 +294,12 @@ export class PacientesComponent implements OnInit {
                 paciente.idResponsable.documentoUnico,
                 paciente.idResponsable.idSubdivision,
                 paciente.idResponsable.telFijo,
-                paciente.idResponsable.telCel,
+                paciente.idResponsable.telMovil,
                 paciente.idResponsable.idResponsable
               ),
               father,
               mother,
-              null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del paciente despues :(
+              new Array<Enfermedad>(),//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del paciente despues :(
               new Usuario(
                 paciente.idUsuario.username, paciente.idUsuario.password, paciente.idUsuario.estado,null, paciente.idUsuario.idUsuario //<--no me interesa su rol
               ),
