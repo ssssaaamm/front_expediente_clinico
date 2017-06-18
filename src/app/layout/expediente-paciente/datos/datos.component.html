@@ -137,16 +137,6 @@
 
         </div>
 
-
-        <div class="row">
-          <div class="col-md-12">
-            <label for="name">Padecimientos</label>
-            <select multiple="true" [(ngModel)]="paciente_modificado.enfermedades" class="form-control">
-                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
-                            </select>
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -315,14 +305,6 @@
         </div>
         <!--fin row 3-->
 
-        <div class="row">
-          <div class="col-md-12">
-            <label for="name">Padecimientos</label>
-            <select multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
-                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
-                            </select>
-          </div>
-        </div>
         <!--fin row 4-->
 
       </div>
@@ -437,8 +419,8 @@
   <div class="modal-footer">
     <button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
     <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Personales</button>
-    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Madre</button>
-    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Padre</button>
+    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Padres</button>
+    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Responsable</button>
     <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-success" [hidden]="!paso3">Guardar</button>
     <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary"><i class="fa fa-repeat"></i></button>
   </div>

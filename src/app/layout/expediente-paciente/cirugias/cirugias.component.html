@@ -1,5 +1,3 @@
-    <br>
-
     <!--Tabla cirugias-->
    
     <div class="table-responsive">
@@ -7,22 +5,22 @@
             <thead>
                 <tr>
                     <th>Fecha de Cirugia</th>              
-                    <th>Hora</th>              
-                    <th>consultorio</th>              
+                    <th>Hora de Inicio</th>
+                    <th>Hora de Finalizacion</th>    
+                    <th>Nombre Consulta</th>                        
                     <th>Especialidad</th>
-                    <th>Medico</th>
-                    <th>Diagnostico</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>05/07/2017</td>
-                    <td>14:30</td>
-                    <td>consultorio 8 </td>
-                    <td>Pediatria</td>
-                    <td>Ruben Samayoa</td>
-                    <td><app-mod-detalle></app-mod-detalle></td>
-                </tr>
+                <tr *ngFor="let asignacion_cirugia of asignacion_cirugia">
+                    <td>{{asignacion_cirugia.diaRealizacionCirugia}}/{{asignacion_cirugia.mesRealizacionCirugia}}/{{asignacion_cirugia.anioRealizacionCirugia}}</td>
+                    <td>{{asignacion_cirugia.horaInicioRealizacionCirugia}}:{{asignacion_cirugia.minutoInicioCirugia}}</td>
+                    <td>{{asignacion_cirugia.horaFinRealizacionCirugia}}:{{asignacion_cirugia.minutoFinRealizacionCirugia}}</td>
+                    <td>{{asignacion_cirugia.idCita.idCirugia.nombreCirugia}}</td>
+                    <td>{{asignacion_cirugia.idCita.idCirugia.idEspecialidad.nombreEspecialidad}}</td>
+                    
+              
             </tbody>
         </table>
     </div>

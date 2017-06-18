@@ -18,19 +18,19 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="nombre1">Primer nombre</label>
-                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="empleado_modificado.nombre1" placeholder="Ingrese primer nombre">
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" [disabled]="true" class="form-control" name="nombre1" [(ngModel)]="empleado_modificado.nombre1" placeholder="Ingrese primer nombre">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="nombre">Segundo nombre</label>
-                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="empleado_modificado.nombre2" placeholder="Ingrese segundo nombre">
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="nombre2" [(ngModel)]="empleado_modificado.nombre2" placeholder="Ingrese segundo nombre">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="nombre">Primer Apellido</label>
-                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="empleado_modificado.apellido1" placeholder="Ingrese primer apellido">
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="apellido1" [(ngModel)]="empleado_modificado.apellido1" placeholder="Ingrese primer apellido">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="nombre">Segundo Apellido </label>
-                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="empleado_modificado.apellido2" placeholder="Ingrese segundo apellido">
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="apellido2" [(ngModel)]="empleado_modificado.apellido2" placeholder="Ingrese segundo apellido">
                     </div>
                     <div class="col-md-6">
                         <p>Genero</p>
@@ -53,24 +53,24 @@
 
                     <div class="form-group col-md-6">
                         <label for="dui">Documento identidad</label>
-                        <input type="text" class="form-control" name="dui" [(ngModel)]="empleado_modificado.documento_unico" placeholder="Ingrese doc. identidad">
+                        <input type="text" class="form-control" name="dui" [disabled]="true" [(ngModel)]="empleado_modificado.documento_unico" placeholder="Ingrese doc. identidad">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="nombre">Email</label>
-                        <input type="email" class="form-control" name="email" [(ngModel)]="empleado_modificado.email" placeholder="Ingrese segundo apellido">
+                        <input type="email" class="form-control"[disabled]="true" name="email" [(ngModel)]="empleado_modificado.email" placeholder="Ingrese segundo apellido">
                     </div>
 
                     <div class="form-group col-md-4">
                         <label>Pais</label>
-                        <select class="form-control" [(ngModel)]="selectedCountryEmpleado" name="pais" (change)="onChangePaisEmpleado()">
+                        <select class="form-control" [(ngModel)]="selectedCountryEmpleado" [disabled]="true" name="pais" (change)="onChangePaisEmpleado()">
                                     <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                                 </select>
                     </div>
 
                     <div class="form-group col-md-4">
                         <label>Region</label>
-                        <select class="form-control" [(ngModel)]="selectedRegionEmpleado" name="region" (change)="onChangeRegionEmpleado()">
+                        <select class="form-control" [(ngModel)]="selectedRegionEmpleado" [disabled]="true" name="region" (change)="onChangeRegionEmpleado()">
                                     <option *ngFor="let region of regionesEmpleado" [ngValue]="region" >{{ region.nombreDivision }}</option>
                                 </select>
                     </div>
@@ -176,8 +176,6 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
-            <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Paso 1</button>
-            <button *ngIf="esMedico" type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Paso 2</button>
             <button type="button" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
         </div>
     </div>

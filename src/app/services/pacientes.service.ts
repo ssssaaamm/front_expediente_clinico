@@ -64,4 +64,11 @@ export class PacientesService {
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
 
+datos(paciente:any){
+  this.action = "/datosGenerales";
+  let parametros="token="+this.token;
+  parametros = parametros + "&json="+JSON.stringify(paciente);
+  return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+}
+
 }

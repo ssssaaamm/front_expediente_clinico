@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'app-mod-detalle',
-  templateUrl: './mod-detalle.component.html',
-  styleUrls: ['./mod-detalle.component.scss']
+  selector: 'app-mod-info',
+  templateUrl: './mod-info.component.html',
+  styleUrls: ['./mod-info.component.scss']
 })
-export class ModDetalleComponent implements OnInit {
-
-  public exito: boolean;
+export class ModInfoComponent implements OnInit {
+@Input() asignacion_cirugia: any;
+public exito: boolean;
   public mensaje: string;
   closeResult: string;
 
@@ -41,6 +41,4 @@ export class ModDetalleComponent implements OnInit {
   private clearFields() {
 
   }
-
-
 }

@@ -1,39 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-
+import { Examen } from "app/models/examen";
+import { ExamenesService } from "app/services/examenes.service";
+import { TipoExamen } from 'app/models/tipo_examen';
 @Component({
   selector: 'app-examenes',
   templateUrl: './examenes.component.html',
-  styleUrls: ['./examenes.component.scss']
+  styleUrls: ['./examenes.component.scss'],
+  providers: [ExamenesService]
 })
-export class ExamenesComponent implements OnInit {
- public exito: boolean;
-  public mensaje: string;
-  closeResult: string;
-  constructor(private modalService: NgbModal) { }
-  
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      this.clearFields();
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      this.clearFields();
-    });
-  }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
+export class ExamenesComponent implements OnInit {
+  [name: string]: any;
+  @Input() public examenes: Array<Examen>;
+  @Input() public examen_original: Examen;
+  @Input() public tipos_examen: Array<TipoExamen>;
+
+  public asignaciones_examen: Array<any>;
+
+  public exito: boolean;
+  public mensaje: string;
+  examen_modificado: Examen;
+  closeResult: string;
+  constructor(private modalService: NgbModal, private examenesService: ExamenesService) { }
+
+
   ngOnInit() {
-  }
-   private clearFields() {
+    let identidad = JSON.parse(localStorage.getItem("identity"));
+
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+     this.examenesService.detail(identidad).subscribe(
+            response=>{
+                console.log(response);
+               this.asignaciones_examen = response;
+            },
+            error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+        );
+
 
   }
 }
