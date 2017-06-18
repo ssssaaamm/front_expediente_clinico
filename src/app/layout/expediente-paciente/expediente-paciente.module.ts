@@ -18,7 +18,10 @@ import { ModDelComponent } from './citas/mod-del/mod-del.component';
 import { ModInfComponent } from './citas/mod-inf/mod-inf.component';
 import { DatosComponent } from './datos/datos.component';
 import { ModDetalleComponent } from './consultas/mod-detalle/mod-detalle.component';
+
 import { DetalleExamenComponent } from './examenes/detalle-examen/detalle-examen.component';
+import { ModInfoComponent } from './cirugias/mod-info/mod-info.component';
+import { SignosComponent } from './signos/signos.component';
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { DetalleExamenComponent } from './examenes/detalle-examen/detalle-examen
     JsonpModule,
   ],
 
-  declarations: [ExpedientePacienteComponent, CitasComponent, ConsultasComponent, ExamenesComponent, CirugiasComponent, PadecimientosComponent, ModAddComponent, ModDelComponent, ModInfComponent, DatosComponent, ModDetalleComponent, DetalleExamenComponent]
+  declarations: [ExpedientePacienteComponent, CitasComponent, ConsultasComponent, ExamenesComponent, CirugiasComponent, PadecimientosComponent, ModAddComponent, ModDelComponent, ModInfComponent, DatosComponent, ModDetalleComponent, DetalleExamenComponent,ModInfoComponent,SignosComponent]
+
 
 })
 export class ExpedientePacienteModule { }

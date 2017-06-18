@@ -64,5 +64,16 @@ export class ConsultasService {
     //peticion
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
   }
+  
+  detail(consulta:any){
+     this.action = "/listToUser";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(consulta);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  
+
+  }
 
 }

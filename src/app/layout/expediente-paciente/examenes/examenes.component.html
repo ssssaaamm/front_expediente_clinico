@@ -14,14 +14,6 @@
             </tr>
         </thead>
         <tbody>
-          <!--<tr>
-            <td>Fisico</td>
-            <td>e489</td>
-            <td>Examen Garganta</td>
-            <td>8</td>
-            <td>25/04/2017</td>
-            <td><app-detalle-examen></app-detalle-examen></td>
-          </tr>-->
 
             <tr *ngFor="let asignacion_examen of asignaciones_examen">
                 <td>{{asignacion_examen.idExamen.idTipoExamen.nombreTipoExamen}}</td>                    

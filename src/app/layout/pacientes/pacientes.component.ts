@@ -239,13 +239,15 @@ export class PacientesComponent implements OnInit {
                 p.nombre2,
                 p.apellido1,
                 p.apellido2,
-                p.apellido_casada,
-                p.documento_unico,
+                p.apellidoCasada,
+                p.documentoUnico,
                 p.genero,
-                p.subdivision,
+                p.idSubdivision,
                 null,//<----- lista de enfermedades. no se si vendran incluidas debo consultar las enfermedades del padre :( despues
                 p.idPadre
               );
+
+              console.log("PADREEEE "+JSON.stringify(p));
 
               if(f.genero=='M'){
                 mother=f;
@@ -290,7 +292,7 @@ export class PacientesComponent implements OnInit {
                 paciente.idResponsable.genero,
                 paciente.idResponsable.apellidoCasada,
                 paciente.idResponsable.documentoUnico,
-                paciente.idResponsable.subdivision,
+                paciente.idResponsable.idSubdivision,
                 paciente.idResponsable.telFijo,
                 paciente.idResponsable.telCel,
                 paciente.idResponsable.idResponsable

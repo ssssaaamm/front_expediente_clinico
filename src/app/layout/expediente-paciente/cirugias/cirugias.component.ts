@@ -11,7 +11,7 @@ import { CirugiasService } from '../../../services/cirugias.service';
   providers:[CirugiasService]
 })
 export class CirugiasComponent implements OnInit {
-  public asignaciones_cirugias: Array<any>;
+  public asignacion_cirugia: Array<any>;
   public exito: boolean;
   public mensaje: string;
 
@@ -24,7 +24,7 @@ export class CirugiasComponent implements OnInit {
      this.cirugiasService.detail(identidad).subscribe(
             response=>{
                 console.log(response);
-               this.asignaciones_cirugias = response;
+               this.asignacion_cirugia = response;
             },
             error=>{
                 if(error!=null) {

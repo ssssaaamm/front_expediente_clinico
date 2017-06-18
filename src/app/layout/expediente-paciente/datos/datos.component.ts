@@ -185,7 +185,7 @@ private getDismissReason(reason: any): string {
   }
   
  
- /*
+
 onChangePaisPadre() {
     //obtenemos todos las regiones
     this.paisesService.listRegions2(this.selectedCountryPadre)
@@ -333,7 +333,7 @@ onChangePaisResponsable() {
         this.estaCasada=false;
         this.paciente_modificado.responsable.apellido_casada="";
       }
-    }*/
+    }
 
 
   switchPaso(paso: number) {

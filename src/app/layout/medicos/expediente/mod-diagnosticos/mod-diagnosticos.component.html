@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    
+    <!-- Page Heading -->
+<app-add-diagnostico></app-add-diagnostico>
+    <!--Boton agregar con modal-->
+
+
+    <!--Tabla medicamentos-->
+   
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-condensed" [mfData]="enfermedades" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>             
+                    <th>Detalle</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let enfermedad of mf.data">
+                    <td>{{enfermedad.codigo}}</td>
+                    <td>{{enfermedad.nombre}}</td>
+                    <td><button type="button" class="btn btn-success btn-sm" (click)="open(content)" ><i class="fa fa-eye center" aria-hidden="true"></i></button></td>                        
+                     
+                    <!--<td><app-mod-edit [enfermedad_original]="enfermedad" [enfermedades]="enfermedades"></app-mod-edit></td>-->
+                 <!--   <td>
+                        <app-mod-del [enfermedad]="enfermedad" [enfermedades]="enfermedades">
+                            <p>
+                                ¿Realmente Desea elimniar la enfermedad?
+                            </p>
+                        </app-mod-del>
+                    </td>-->
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+ 
+
+</div>

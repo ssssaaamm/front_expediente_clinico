@@ -1,0 +1,181 @@
+<h4 class="modal-title">Mi Perfil</h4>
+
+
+    <div class="modal-body">
+
+        <div *ngIf="exito == false" class="alert alert-danger">
+            <strong>Ooops!</strong> {{mensaje}}.
+        </div>
+
+        <div *ngIf="exito == true" class="alert alert-success">
+            <strong>Exito!</strong> {{mensaje}}
+        </div>
+
+
+        <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="nombre1">Primer nombre</label>
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" [disabled]="true" class="form-control" name="nombre1" [(ngModel)]="empleado_modificado.nombre1" placeholder="Ingrese primer nombre">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Segundo nombre</label>
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="nombre2" [(ngModel)]="empleado_modificado.nombre2" placeholder="Ingrese segundo nombre">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Primer Apellido</label>
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="apellido1" [(ngModel)]="empleado_modificado.apellido1" placeholder="Ingrese primer apellido">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Segundo Apellido </label>
+                        <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="true" name="apellido2" [(ngModel)]="empleado_modificado.apellido2" placeholder="Ingrese segundo apellido">
+                    </div>
+                    <div class="col-md-6">
+                        <p>Genero</p>
+                        <label class="checkbox-inline">
+                                      <input type="radio" name="genero" id="M" value="M" [(ngModel)]="empleado_modificado.genero" (change)="onChangeGenero()"> &nbsp; Masculino
+                                  </label>
+                        <label class="checkbox-inline">
+                                      <input type="radio" name="genero" #isFemenine id="F" value="F" [(ngModel)]="empleado_modificado.genero"> &nbsp; Femenenino &nbsp;
+                                  </label>
+                        <label class="checkbox-inline">
+                                      <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
+                                  </label>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Apellido casada</label>
+                        <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="empleado_modificado.apellido_casada"
+                            placeholder="Ingrese apellido casada">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="dui">Documento identidad</label>
+                        <input type="text" class="form-control" name="dui" [disabled]="true" [(ngModel)]="empleado_modificado.documento_unico" placeholder="Ingrese doc. identidad">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Email</label>
+                        <input type="email" class="form-control"[disabled]="true" name="email" [(ngModel)]="empleado_modificado.email" placeholder="Ingrese segundo apellido">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Pais</label>
+                        <select class="form-control" [(ngModel)]="selectedCountryEmpleado" [disabled]="true" name="pais" (change)="onChangePaisEmpleado()">
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                                </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Region</label>
+                        <select class="form-control" [(ngModel)]="selectedRegionEmpleado" [disabled]="true" name="region" (change)="onChangeRegionEmpleado()">
+                                    <option *ngFor="let region of regionesEmpleado" [ngValue]="region" >{{ region.nombreDivision }}</option>
+                                </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Ciudad</label>
+                        <select class="form-control" [(ngModel)]="selectedCityEmpleado" name="ciudad" (change)="onChangeCiudadEmpleado()">
+                                    <option *ngFor="let ciudad of ciudadesEmpleado" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
+                                </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Telefono fijo</label>
+                        <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_fijo" [(ngModel)]="empleado_modificado.tel_fijo" placeholder="Ingrese tel fijo">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Telefono movil</label>
+                        <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_movil" [(ngModel)]="empleado_modificado.tel_movil" placeholder="Ingrese tel movil">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="text-center">Especialidades</label>
+                        <select multiple="true" [(ngModel)]="empleado_modificado.medico.especialidades" class="form-control">
+                            <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                        </select>
+                  </div>
+                </div>  <!--div row-->
+                <div class="row">
+                    <hr>
+                    <h5 class="col-md-12 text-center modal-title ">Horario de atención</h5>
+            
+                    <div *ngFor="let jornada of empleado_modificado.medico.jornadas" class="col-sm-6">
+                        <div class="card mb-3">
+                            <div class="card-header card-default">
+                                <label class="form-control">
+                                    <input type="checkbox" [checked]="jornada.turnos.length != 0 ? true : false" #c (change)="addTurno(jornada,c);"> &nbsp; {{jornada.dia.nombre}} 
+                                </label>
+                            </div>
+                            <div class="card-block">
+
+                                <div *ngFor="let turno of jornada.turnos" class=row>
+
+                                    <div class="col-sm-6">
+                                        <label>Inicio</label>
+                                        <ngb-timepicker [(ngModel)]="turno.hora_inicio" name="hora_inicio"></ngb-timepicker>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Fin</label>
+                                        <ngb-timepicker [(ngModel)]="turno.hora_fin" name="hora_fin"></ngb-timepicker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div *ngIf="esMedico" class="form-group col-md-12">
+                        <label for="name" class="text-center">Especialidades</label>
+                        <select multiple="true" [(ngModel)]="empleado_modificado.medico.especialidades" class="form-control">
+                            <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad">{{ especialidad.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <h5 class="col-md-12 text-center modal-title ">Horario de atención</h5>
+                    <hr>
+                    <br>
+                    <div *ngFor="let jornada of empleado_modificado.medico.jornadas" class="col-sm-6">
+                        <div class="card mb-3">
+                            <div class="card-header card-default">
+                                <label class="form-control">
+                                    <input type="checkbox" [checked]="jornada.turnos.length != 0 ? true : false" #c (change)="addTurno(jornada,c);"> &nbsp; {{jornada.dia.nombre}} 
+                                </label>
+                            </div>
+                            <div class="card-block">
+
+                                <div *ngFor="let turno of jornada.turnos" class=row>
+
+                                    <div class="col-sm-6">
+                                        <label>Inicio</label>
+                                        <ngb-timepicker [(ngModel)]="turno.hora_inicio" name="hora_inicio"></ngb-timepicker>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Fin</label>
+                                        <ngb-timepicker [(ngModel)]="turno.hora_fin" name="hora_fin"></ngb-timepicker>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
+            <button type="button" (click)="onSubmit()" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>

@@ -18,7 +18,6 @@ const routes: Routes = [
             {path: 'administracion/especialidades', loadChildren:'./especialidades/especialidades.module#EspecialidadesModule' },
             {path: 'administracion/examenes', loadChildren:'./examenes/examenes.module#ExamenesModule' },
             {path: 'administracion/medicamentos', loadChildren:'./medicamentos/medicamentos.module#MedicamentosModule' },
-            //{path: 'administracion/medicos', loadChildren:'./medicos/medicos.module#MedicosModule' },
             {path: 'administracion/procedimientos', loadChildren:'./procedimientos/procedimientos.module#ProcedimientosModule' },
             {path: 'administracion/roles', loadChildren:'./roles/roles.module#RolesModule' },
             //{path: 'administracion/servicios', loadChildren:'./servicios/servicios.module#ServiciosModule' },
@@ -30,6 +29,7 @@ const routes: Routes = [
             //{path: 'administracion', loadChildren:'./administracion/administracion.module#AdministracionModule' }
             {path: 'administracion/empleados', loadChildren:'./empleados/empleados.module#EmpleadosModule' },
             {path: 'paciente/expediente', loadChildren:'./expediente-paciente/expediente-paciente.module#ExpedientePacienteModule' },
+            {path: 'medico/gestiones', loadChildren:'./medicos/medicos.module#MedicosModule' },
             
         ]
     }

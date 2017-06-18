@@ -57,7 +57,10 @@ export class ModEditComponent implements OnInit {
   public selectedCountryResponsable: any;
   public selectedRegionResponsable: any;
   public selectedCityResponsable: any;
-  public estaCasada: boolean = false;
+  public estaCasada:boolean=false;
+  public estaCasadaMadre:boolean=false;
+  public estaCasadaResponsable:boolean=false;
+  
   public fecha_nacimiento: any;
 
 
@@ -79,7 +82,7 @@ export class ModEditComponent implements OnInit {
     //obtenemos las enfermedades el paciente a editar en este modal y su padre y madre pero esto se haria al abrir el modal
     this.paciente_modificado = this.paciente_original.full_clone();
     //console.log(">>>>>>>>>>>>>>>>"+JSON.stringify(this.paciente_modificado.id));
-
+    this.rellenarApellidosCasada();
   }
 
   open(content) {
@@ -92,9 +95,10 @@ export class ModEditComponent implements OnInit {
       this.paciente_modificado = this.paciente_original.full_clone();
     });
 
-    //this.rellenarPaises();
+    this.rellenarPaises();
     this.rellenarEnfermedades();
     this.rellenarFechaNacimiento();
+    console.log(JSON.stringify(this.paciente_modificado));
 
   }
 
@@ -105,6 +109,30 @@ export class ModEditComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
+    }
+  }
+
+  rellenarApellidosCasada(){
+
+    //paciente
+    if(this.paciente_modificado.apellido_casada == null || this.paciente_modificado.apellido_casada == ''){
+      this.estaCasada=false;
+    }else{
+      this.estaCasada=true;
+    }
+    
+    //madre
+    if(this.paciente_modificado.madre.apellido_casada == null || this.paciente_modificado.madre.apellido_casada == ''){
+      this.estaCasadaMadre=false;
+    }else{
+      this.estaCasadaMadre=true;
+    }
+
+    //responsable
+    if(this.paciente_modificado.responsable.apellido_casada == null || this.paciente_modificado.responsable.apellido_casada == ''){
+      this.estaCasadaResponsable=false;
+    }else{
+      this.estaCasadaResponsable=true;
     }
   }
 
@@ -186,7 +214,7 @@ onChangePaisPaciente() {
       .map((cities: Array<any>) => {
         return cities;
       })
-      .subscribe(res => this.ciudadesMadre = res);
+      .subscribe(res => this.ciudadesPaciente = res);
 
     console.log(this.selectedRegionPaciente.nombreDivision);
   }
@@ -207,7 +235,7 @@ onChangePaisResponsable() {
 
     this.ciudadesResponsable = new Array<any>();
 
-    console.log(this.selectedCountryResponsable.responsable.nombrePais);
+    console.log(this.selectedCountryResponsable.nombrePais);
   }
 
   onChangeRegionResponsable() {
@@ -327,7 +355,8 @@ onChangePaisResponsable() {
     let epaciente = [];
     //console.log("EL ID DEL PACIENTE ES: "+this.paciente_modificado.id)
     this.enfermedadesService.getPadecimientosPaciente({"id":this.paciente_modificado.usuario.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {
@@ -360,7 +389,8 @@ onChangePaisResponsable() {
     //consultar padecimientos de padre
     let epadre = [];
     this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.padre.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {
@@ -391,7 +421,8 @@ onChangePaisResponsable() {
     //consultar padecimientos de madre
     let emadre = [];
     this.enfermedadesService.getPadecimientosPadre({"id":this.paciente_modificado.madre.id})
-      .map((enfermedades: Array<any>) => {
+      .map((response: any) => {
+        let enfermedades = response.idEnfermedad;
         let result: Array<Enfermedad> = new Array<Enfermedad>();
         if (enfermedades) {
           enfermedades.forEach((enfermedad) => {
@@ -460,7 +491,7 @@ onChangePaisResponsable() {
 
       setTimeout(() => {
         this.ciudadesPaciente.forEach((ciudad) => {
-          if (this.paciente_modificado.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
+          if (this.paciente_modificado.subdivision.idSubdivision == ciudad.idSubdivision) {
             this.selectedCityPaciente = ciudad;
             this.onChangeCiudadPaciente();
           }
@@ -480,7 +511,7 @@ onChangePaisResponsable() {
     });
 
     setTimeout(() => {
-      this.regionesPaciente.forEach((region) => {
+      this.regionesPadre.forEach((region) => {
         if (this.paciente_modificado.padre.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionPadre = region;
           this.onChangeRegionPadre();
@@ -488,9 +519,9 @@ onChangePaisResponsable() {
       });
 
       setTimeout(() => {
-        this.ciudadesPaciente.forEach((ciudad) => {
-          if (this.paciente_modificado.padre.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
-            this.selectedCityPadre.padre = ciudad;
+        this.ciudadesPadre.forEach((ciudad) => {
+          if (this.paciente_modificado.padre.subdivision.idSubdivision == ciudad.idSubdivision) {
+            this.selectedCityPadre = ciudad;
             this.onChangeCiudadPadre();
           }
         });
@@ -504,12 +535,12 @@ onChangePaisResponsable() {
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.madre.subdivision.idDivision.idPais.idPais == pais.idPais) {
         this.selectedCountryMadre = pais;
-        this.onChangePaisPaciente();
+        this.onChangePaisMadre();
       }
     });
 
     setTimeout(() => {
-      this.regionesPaciente.forEach((region) => {
+      this.regionesMadre.forEach((region) => {
         if (this.paciente_modificado.madre.subdivision.idDivision.idDivision == region.idDivision) {
           this.selectedRegionMadre = region;
           this.onChangeRegionMadre();
@@ -517,9 +548,9 @@ onChangePaisResponsable() {
       });
 
       setTimeout(() => {
-        this.ciudadesPaciente.forEach((ciudad) => {
-          if (this.paciente_modificado.madre.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
-            this.selectedCityPaciente.madre = ciudad;
+        this.ciudadesMadre.forEach((ciudad) => {
+          if (this.paciente_modificado.madre.subdivision.idSubdivision == ciudad.idSubdivision) {
+            this.selectedCityMadre = ciudad;
             this.onChangeCiudadMadre();
           }
         });
@@ -532,23 +563,23 @@ onChangePaisResponsable() {
      
     this.paises.forEach((pais) => {
       if (this.paciente_modificado.responsable.subdivision.idDivision.idPais.idPais == pais.idPais) {
-        this.selectedCountryMadre = pais;
+        this.selectedCountryResponsable = pais;
         this.onChangePaisResponsable();
       }
     });
 
     setTimeout(() => {
-      this.regionesPaciente.forEach((region) => {
+      this.regionesResponsable.forEach((region) => {
         if (this.paciente_modificado.responsable.subdivision.idDivision.idDivision == region.idDivision) {
-          this.selectedRegionMadre = region;
+          this.selectedRegionResponsable = region;
           this.onChangeRegionResponsable();
         }
       });
 
       setTimeout(() => {
-        this.ciudadesPaciente.forEach((ciudad) => {
-          if (this.paciente_modificado.responsable.subdivision.subdivision.idSubdivision == ciudad.idSubdivision) {
-            this.selectedCityPaciente.responsable = ciudad;
+        this.ciudadesResponsable.forEach((ciudad) => {
+          if (this.paciente_modificado.responsable.subdivision.idSubdivision == ciudad.idSubdivision) {
+            this.selectedCityResponsable = ciudad;
             this.onChangeCiudadResponsable();
           }
         });
