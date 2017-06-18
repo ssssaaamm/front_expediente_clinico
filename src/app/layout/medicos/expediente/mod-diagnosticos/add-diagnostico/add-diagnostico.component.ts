@@ -7,14 +7,16 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./add-diagnostico.component.scss']
 })
 export class AddDiagnosticoComponent implements OnInit {
-
+  public agregar: boolean; 
   public exito: boolean;
   public mensaje: string;
   closeResult: string;
+     show: boolean = true;
+  
   constructor(private modalService: NgbModal) { }
   
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalService.open(content,{ size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       this.clearFields();
     }, (reason) => {
@@ -22,6 +24,16 @@ export class AddDiagnosticoComponent implements OnInit {
       this.clearFields();
     });
   }
+  
+/*  
+  addTratamiento(){
+    if(){
+
+    }else{
+
+    }
+
+  }*/
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

@@ -29,23 +29,35 @@
   
 </div>
 
+
+   <hr>
+    <h3>Tratamiento</h3>
+    <br>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Medicamento <select type="text" class="form-control">
+                    <option> Acetaminofen</option>
+                    </select></th>
+                <th>Presentación <input disabled type="text" class="form-control" value="Oral"/></th>
+                <th>Dosis<input type="text" class="form-control" value="2"></th>
+                <th>Frecuencia <input type="text" class="form-control" value="6 horas"></th>
+                <th>Agregar <button type="button" class="btn btn-success btn-md" (click)="addTratamiento()"><i class="fa fa-plus" aria-hidden="true"></i></button></th>
+                                      
+                                       
+                <!--<th>Editar</th>
+                <th>Eliminar</th>-->
+            </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+    </table>
+</div>
   <div class="row">
-    <div class="form-group col-md-6">
-      <label>Tipo Medicamento</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="form-group col-md-6">
-      <label>Nombre Medicamento</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="form-group col-md-6">
-      <label>Dosis</label>
-      <input type="text" class="form-control">
-    </div>
-    <div class="form-group col-md-6">
-      <label>Frecuencia</label>
-      <input type="text" class="form-control">
-    </div>
+
     <div class="form-group col-md-12">
       <label>Recomendaciones</label>
       <textarea type="text" class="form-control"></textarea>
