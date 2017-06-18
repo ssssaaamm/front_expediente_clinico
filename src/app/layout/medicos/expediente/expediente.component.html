@@ -9,12 +9,12 @@
 
       <div class="form-group col-md-6">
         <label for="nombre1">Nombres</label>
-        <input type="text" disabled class="form-control" [(ngModel)]="paciente_modificado.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+        <input type="text" disabled class="form-control"  name="nombre1" placeholder="Ingrese primer nombre">
       </div>
 
       <div class="form-group col-md-6">
         <label for="apellido1">Apellidos</label>
-        <input type="text" disabled class="form-control" [(ngModel)]="paciente_modificado.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+        <input type="text" disabled class="form-control"  name="apellido1" placeholder="Ingrese primer apellido">
       </div>
       <div class="col-md-6">
         <p>Genero</p>
@@ -25,8 +25,6 @@
              <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.genero" value="F"> &nbsp; Femenenino &nbsp;
         </label>
       </div>
-
-
       <p></p>
       <div class="form-group col-md-6 ">
         <label for="dui">Numero Expedinete</label>

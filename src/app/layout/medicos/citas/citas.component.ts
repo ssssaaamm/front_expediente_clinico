@@ -5,6 +5,8 @@ import { Especialidad } from "app/models/especialidad";
 import { LoginService } from "app/services/login.service";
 import { ConsultasService } from "app/services/consultas.service";
 import { EspecialidadesService } from "app/services/especialidades.service";
+import {PacientesService} from "app/services/pacientes.service";
+import { CitasService } from "app/services/citas.service";
 
 
 @Component({
@@ -25,47 +27,38 @@ import { EspecialidadesService } from "app/services/especialidades.service";
   ],
   templateUrl: './citas.component.html',
   styleUrls: ['./citas.component.scss'],
-    providers: [ConsultasService, LoginService, EspecialidadesService]
+    providers: [CitasService]
 
 })
 export class CitasComponent implements OnInit {
-  modalService: any;
   closeResult: string;
   public exito: boolean;
   public mensaje: string;
+  public citas: Array<any>
 
 
 
  public consultas: Array<Consulta> = new Array<Consulta>();
   public especialidades: Array<Especialidad> = new Array<Especialidad>();
 
-  constructor(
-    private loginService: LoginService,
-    private consultasService: ConsultasService,
-    private especialidadesService: EspecialidadesService) { }
+  constructor(private modalService: NgbModal,
+    private citasService: CitasService) { }
  
-  open(content) {
-    this.modalService.open(content, { size: 'lg' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      this.clear();
-
-
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      this.clear();
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
   ngOnInit() {
+    let identidad = JSON.parse(localStorage.getItem("identity"));
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+    this.citasService.listCitas(identidad).subscribe(
+      response=>{
+        console.log(response);
+        this.citas=response;
+      },
+         error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+            }
+    );
+
   }
 
   clear(){

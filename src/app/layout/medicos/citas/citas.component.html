@@ -9,19 +9,16 @@
                 <tr>
                     <th>Fecha de Consulta</th>              
                     <th>Hora</th>              
-                    <th>consultorio</th>              
-                    <th>Especialidad</th>
-                    <th>Medico</th>
+                    <th>Paciente</th>
                     <th>Atender Cita</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>05/07/2017</td>
-                    <td>14:30</td>
-                    <td>consultorio 8 </td>
-                    <td>Pediatria</td>
-                    <td>Ruben Samayoa</td>
+                <tr *ngFor="let cita of citas">
+                    <td>{{cita.diaCita}}/{{cita.mesCita}}/{{cita.anioCita}}</td>
+                    <td>{{cita.horaCita}}:{{cita.minutoCita}}</td>
+                    <td>{{cita.idMedico.idEmpleado.apellido1}} {{cita.idMedico.idEmpleado.apellido2}}, {{cita.idMedico.idEmpleado.nombre1}} {{cita.idMedico.idEmpleado.nombre2}}</td>
+                   
                     <td><a routerLink="/medico/gestiones/atencion" [routerLinkActive]="['router-link-active']" class="btn btn-success btn-sm">
                         <i class="fa fa-check"></i>
                     </a></td>
