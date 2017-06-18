@@ -1,17 +1,17 @@
 import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
-import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Consulta } from "app/models/consulta";
 import { Especialidad } from "app/models/especialidad";
 import { LoginService } from "app/services/login.service";
 import { ConsultasService } from "app/services/consultas.service";
 import { EspecialidadesService } from "app/services/especialidades.service";
-import {PacientesService} from "app/services/pacientes.service";
+import { PacientesService } from "app/services/pacientes.service";
 import { CitasService } from "app/services/citas.service";
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-citas',
-    animations: [
+  animations: [
     trigger(
       'enterAnimation', [
         transition(':enter', [
@@ -27,41 +27,50 @@ import { CitasService } from "app/services/citas.service";
   ],
   templateUrl: './citas.component.html',
   styleUrls: ['./citas.component.scss'],
-    providers: [CitasService]
+  providers: [CitasService]
 
 })
 export class CitasComponent implements OnInit {
+
   closeResult: string;
   public exito: boolean;
   public mensaje: string;
+  returnUrl: string;
   public citas: Array<any>
 
-
-
- public consultas: Array<Consulta> = new Array<Consulta>();
+  public consultas: Array<Consulta> = new Array<Consulta>();
   public especialidades: Array<Especialidad> = new Array<Especialidad>();
 
-  constructor(private modalService: NgbModal,
+  constructor(private modalService: NgbModal, private route: ActivatedRoute,
+    private router: Router,
     private citasService: CitasService) { }
- 
+
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['/atencion'];
     let identidad = JSON.parse(localStorage.getItem("identity"));
     console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
     this.citasService.listCitas(identidad).subscribe(
-      response=>{
+      response => {
         console.log(response);
-        this.citas=response;
+        this.citas = response;
+        /* console.log(JSON.stringify(citas));*/
       },
-         error=>{
-                if(error!=null) {
-                    console.log("Error al enviar la peticion: "+error);
-                }
-            }
+      error => {
+        if (error != null) {
+          console.log("Error al enviar la peticion: " + error);
+        }
+      }
     );
 
   }
+  guardarCita(cita) {
+    localStorage.setItem('cita', JSON.stringify(cita));
+    console.log(JSON.stringify(cita));
+    console.log("Holis")
+    /*this.router.navigateByUrl(this.returnUrl);*/
+  }
 
-  clear(){
+  clear() {
 
   }
 

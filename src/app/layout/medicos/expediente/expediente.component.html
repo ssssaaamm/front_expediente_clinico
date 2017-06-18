@@ -9,12 +9,12 @@
 
       <div class="form-group col-md-6">
         <label for="nombre1">Nombres</label>
-        <input type="text" disabled class="form-control"  name="nombre1" placeholder="Ingrese primer nombre">
+        <input type="text" disabled class="form-control"  name="nombre1" [(ngModel)]="cita.paciente.nombre1">
       </div>
 
       <div class="form-group col-md-6">
         <label for="apellido1">Apellidos</label>
-        <input type="text" disabled class="form-control"  name="apellido1" placeholder="Ingrese primer apellido">
+        <input type="text" disabled class="form-control"  name="apellido1" [(ngModel)]="cita.paciente.apellido1">
       </div>
       <div class="col-md-6">
         <p>Genero</p>
@@ -28,8 +28,7 @@
       <p></p>
       <div class="form-group col-md-6 ">
         <label for="dui">Numero Expedinete</label>
-        <input disabled type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.numero_expediente"
-          placeholder="Ingrese doc. identidad">
+        <input disabled type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="cita.expediente.numero">
       </div>
     </div>
     <!--Fin row-->
@@ -39,7 +38,7 @@
 
 
     <div class="form-group col-md-12">
-      <textarea type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre"></textarea>
+      <textarea [(ngModel)]="consulta.sintomatologia" type="text" class="form-control" name="sinto"></textarea>
     </div>
 
     <div>

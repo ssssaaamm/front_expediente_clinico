@@ -1,28 +1,33 @@
- <!--Boton agregar con modal-->
-    <br>
+<!--Boton agregar con modal-->
+<br>
 
-    <!--Tabla citas-->
-   
-    <div [@enterAnimation]="paso1"class="table-responsive">
-        <table class="table table-hover table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th>Fecha de Consulta</th>              
-                    <th>Hora</th>              
-                    <th>Paciente</th>
-                    <th>Atender Cita</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let cita of citas">
-                    <td>{{cita.diaCita}}/{{cita.mesCita}}/{{cita.anioCita}}</td>
-                    <td>{{cita.horaCita}}:{{cita.minutoCita}}</td>
-                    <td>{{cita.idMedico.idEmpleado.apellido1}} {{cita.idMedico.idEmpleado.apellido2}}, {{cita.idMedico.idEmpleado.nombre1}} {{cita.idMedico.idEmpleado.nombre2}}</td>
-                   
-                    <td><a routerLink="/medico/gestiones/atencion" [routerLinkActive]="['router-link-active']" class="btn btn-success btn-sm">
-                        <i class="fa fa-check"></i>
-                    </a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!--Tabla citas-->
+
+<div [@enterAnimation]="paso1" class="table-responsive">
+    <table class="table table-hover table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Fecha de Consulta</th>
+                <th>Hora</th>
+                <th>Paciente</th>
+                <th>N° Expediente</th>
+                <th>Atender Cita</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--*ngFor="let cita of citas"-->
+            <tr *ngFor="let cita of citas">
+
+
+                <td>{{cita.diaCita}}/{{cita.mesCita}}/{{cita.anioCita}}</td>
+                <td>{{cita.horaCita}}:{{cita.minutoCita}}</td>
+                <td>{{cita.paciente.nombre1}} {{cita.paciente.nombre2}}, {{cita.paciente.apellido1}} {{cita.paciente.apellido2}}</td>
+                <td>{{cita.expediente.numero}}</td>
+                <!--<td><button class="btn btn-success btn-sm" (click)="guardarCita(cita)">
+                        <i class="fa fa-check"></i></button></td>-->
+                <td><button class="btn btn-success btn-sm" routerLink="/medico/gestiones/atencion" [routerLinkActive]="['router-link-active']" (click)="guardarCita(cita)">
+                        <i class="fa fa-check"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
