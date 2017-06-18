@@ -69,4 +69,6 @@ datos(paciente:any){
   return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
 }
 
+
+
 }
