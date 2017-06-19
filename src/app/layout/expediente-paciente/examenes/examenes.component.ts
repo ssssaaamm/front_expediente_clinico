@@ -11,10 +11,6 @@ import { TipoExamen } from 'app/models/tipo_examen';
 })
 
 export class ExamenesComponent implements OnInit {
-  [name: string]: any;
-  @Input() public examenes: Array<Examen>;
-  @Input() public examen_original: Examen;
-  @Input() public tipos_examen: Array<TipoExamen>;
 
   public asignaciones_examen: Array<any>;
 

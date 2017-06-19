@@ -9,21 +9,19 @@
             <thead>
                 <tr>
                     <th>Fecha de Consulta</th>              
-                    <th>Hora</th>              
-                    <th>consultorio</th>              
+                    <th>Hora</th>                       
                     <th>Especialidad</th>
                     <th>Medico</th>
                     <th>Diagnostico</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>05/07/2017</td>
-                    <td>14:30</td>
-                    <td>consultorio 8 </td>
-                    <td>Pediatria</td>
-                    <td>Ruben Samayoa</td>
-                    <td><app-mod-detalle></app-mod-detalle></td>
+                <tr *ngFor="let asignacion_consulta of asignacion_consulta">
+                    <td>{{asignacion_consulta.idCita.diaCita}}/{{asignacion_consulta.idCita.mesCita}}/{{asignacion_consulta.idCita.anioCita}}</td>
+                    <td>{{asignacion_consulta.idCita.horaCita}}:{{asignacion_consulta.idCita.minutoCita}}</td>
+                    <td>{{asignacion_consulta.idCita.idCirugia.idEspecialidad.nombreEspecialidad}}</td>
+                    <td>{{asignacion_consulta.idCita.idMedico.idEmpleado.nombre1}}</td>
+                    <td><app-mod-detalle [asignacion_consulta]="asignacion_consulta"></app-mod-detalle></td>
 
                 </tr>
             </tbody>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -8,7 +8,7 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 })
 export class ModDetalleComponent implements OnInit {
 
- 
+ @Input() asignacion_consulta: any;
   public exito: boolean;
   public mensaje: string;
   closeResult: string;
