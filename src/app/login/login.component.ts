@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
                                     console.log("INDENTIDAD GUARDADA ES: "+JSON.stringify(this.loginService.getIdentity()));
                                     console.log(this.loginService.getToken());
 
-                                    this.router.navigate(['/dashboard']);
+                                    this.router.navigate(['/']);
                                 }
                             }
 

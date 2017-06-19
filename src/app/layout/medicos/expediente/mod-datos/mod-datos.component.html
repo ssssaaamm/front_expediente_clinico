@@ -1,266 +1,439 @@
-<div>
+  <!--Formulario agregar nuevo paciente-->
 
+  <div class="modal-body">
 
-  <div *ngIf="exito == false" class="alert alert-danger">
-    <strong>Ooops!</strong> {{mensaje}}.
-  </div>
-
-  <!--  <div *ngIf="exito == true" class="alert alert-success">
-    <strong>Exito!</strong> {{mensaje}}
-    <p>Numero del expediente: {{expediente_paciente.expediente.numero_expediente}}</p>
-    <p>Numero del expediente: {{expediente_paciente.usuario.username}}</p>
-    <p>Numero del expediente: {{expediente_paciente.usuario.password}}</p>
-  </div>-->
-
-
-  <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
-
-    <div class="panel-body">
-      <!--DATOS DEL PADRE-->
-      <strong><p class="text-center">Datos personales</p></strong>
-      <hr>
-      <div class="row">
-
-
-        <div class="form-group col-md-6">
-          <label for="nombre1">Nombres</label>
-          <input type="text" disabled class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
-          
-          <!--<input type="text" disabled class="form-control"name="nombre1" ng-model="{{expediente_paciente.......nombre1}} {{expediente_paciente......nombre2}}">  -->
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="apellido1">Apellidos</label>
-          <input type="text" disabled class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
-        </div>
-        <div class="col-md-6">
-          <p>Genero</p>
-          <label class="checkbox-inline">
-             <input type="radio" name="genero" id="M"  value="M" (change)="onChangeGenero()"> &nbsp; Masculino
-          </label>
-          <label class="checkbox-inline">
-             <input type="radio" name="genero" #isFemenine id="F" value="F"> &nbsp; Femenenino &nbsp;
-          </label>
-          <label class="checkbox-inline">
-             <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
-          </label>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="nombre">Apellido casada</label>
-          <input type="text" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" placeholder="Ingrese apellido casada">
-        </div>
-
-
-        <p></p>
-        <div class="form-group col-md-6 ">
-          <label for="dui">Documento identidad</label>
-          <input disabled type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.dui"
-            placeholder="Ingrese doc. identidad">
-        </div>
-        <div class="form-group col-md-6">
-          <label>Fecha nacimiento</label>
-          <div class="input-group">
-            <input disabled class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="fecha_nacimiento" ngbDatepicker #d="ngbDatepicker">
-            <div class="input-group-addon" (click)="d.toggle()">
-              <span class="fa fa-calendar"></span>
+            <div *ngIf="exito == false" class="alert alert-danger">
+               <strong>Ooops!</strong> {{mensaje}}.
             </div>
+
+            <div *ngIf="exito == true" class="alert alert-success">
+                <strong>Exito!</strong> {{mensaje}}
+            </div>
+
+
+    <div *ngIf="paso1" [@enterAnimation]="paso1" class="panel panel-info">
+
+      <div class="panel-body">
+        <!--DATOS DEL PADRE-->
+        <strong><p class="text-center">Datos personales</p></strong>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="nombre1">Primer nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="apellido1">Primer Apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+            </div>
+
+            <p>Genero</p>
+            <label class="checkbox-inline">
+                                <input type="radio" name="genero" id="M" [(ngModel)]="paciente_modificado.genero" value="M" (change)="onChangeGenero()"> &nbsp; Masculino
+                            </label>
+            <label class="checkbox-inline">
+                                <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.genero" value="F"> &nbsp; Femenenino &nbsp;
+                            </label>
+            <label class="checkbox-inline">
+                                <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasada()" name="estaCasada"> &nbsp; Casada
+                            </label>
+
+            <p></p>
+            <div class="form-group">
+              <label for="dui">Documento identidad</label>
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.documento_unico" placeholder="Ingrese doc. identidad">
+            </div>
+
+            <div class="form-group">
+              <label>Pais</label>
+              <select class="form-control" [(ngModel)]="selectedCountryPaciente" name="selectedCountryPaciente" (change)="onChangePaisPaciente()">
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                                    <!--[attr.selected]="pais.nombrePais==paciente_modificado.pais ? true : false"-->
+                                </select>
+            </div>
+
+            <div class="form-group">
+              <label>Region</label>
+              <select class="form-control" [(ngModel)]="selectedRegionPaciente" name="selectedRegionPaciente" (change)="onChangeRegionPaciente()">
+                                    <option *ngFor="let region of regionesPaciente"  [ngValue]="region" >{{ region.nombreDivision }}</option>
+                                </select>
+            </div>
+
+            <div class="form-group">
+              <label>Ciudad</label>
+              <select class="form-control" [(ngModel)]="selectedCityPaciente" name="selectedCityPaciente" (change)="onChangeCiudadPaciente()">
+                                    <option *ngFor="let ciudad of ciudadesPaciente" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
+                                </select>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="nombre">Segundo nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente_modificado.nombre2" placeholder="Ingrese segundo nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Segundo apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente_modificado.apellido2" placeholder="Ingrese segundo apellido">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Apellido casada</label>
+              <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.apellido_casada"
+                placeholder="Ingrese apellido casada">
+            </div>
+
+            <!--<div class="form-group">
+              <label>Fecha nacimiento</label>
+              <div class="row">
+                <div class="col-md-3">
+                  <input type="text" class="form-control" name="dia_nacimiento" [(ngModel)]="paciente_modificado.dia_nacimiento" placeholder="Dia">
+                </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" name="mes_nacimiento" [(ngModel)]="paciente_modificado.mes_nacimiento" placeholder="Mes">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" name="anio_nacimiento" [(ngModel)]="paciente_modificado.anio_nacimiento" placeholder="Año">
+                </div>
+              </div>
+            </div>-->
+
+            <div class="form-group">
+                <label>Fecha nacimiento</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" [(ngModel)]="fecha_nacimiento" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-addon" (click)="d.toggle()">
+                        <span class="fa fa-calendar"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Telefono fijo</label>
+              <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_fijo" [(ngModel)]="paciente_modificado.tel_fijo" placeholder="Ingrese tel fijo">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Telefono movil</label>
+              <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" name="tel_movil" [(ngModel)]="paciente_modificado.tel_movil" placeholder="Ingrese tel movil">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Email</label>
+              <input type="text" class="form-control" name="email" [(ngModel)]="paciente_modificado.email" placeholder="Ingrese email">
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Padecimientos</label>
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
+                            </select>
           </div>
         </div>
 
-        <div class="form-group col-md-4">
-          <label>Pais</label>
-          <select class="form-control" disabled name="selectedCountryPaciente" (change)="onChangePaisPaciente()">
-               <option *ngFor="let pais of paises" [attr.selected]="pais.name==paciente_modificado.pais ? true : null" [ngValue]="pais">{{ paciente_modificado.subdivision.idDivision.idPais.nombrePais }}</option>
-                                <!--[attr.selected]="pais.name==paciente_modificado.pais ? true : false"-->
-               </select>
-        </div>
-
-        <div class="form-group col-md-4">
-          <label>Region</label>
-          <select class="form-control" disabled name="selectedRegionPaciente" (change)="onChangeRegionPaciente()">
-                <option *ngFor="let region of regionesPaciente" [attr.selected]="region.region==paciente_modificado.division ? true : null" [ngValue]="region" >{{ region.region }}</option>
-          </select>
-        </div>
-
-        <div class="form-group col-md-4">
-          <label>Ciudad</label>
-          <select disabled class="form-control" name="selectedCityPaciente" (change)="onChangeCiudadPaciente()">
-                <option *ngFor="let ciudad of ciudadesPaciente" [attr.selected]="ciudad.city==paciente_modificado.subdivision ? true : null" [ngValue]="ciudad">{{ ciudad.city }}</option>
-           </select>
-        </div>
-
-
-        <div class="form-group col-md-4">
-          <label for="nombre">Telefono fijo</label>
-          <input disabled type="text" class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="nombre">Telefono movil</label>
-          <input disabled type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="nombre">Email</label>
-          <input disabled type="text" class="form-control" name="email" placeholder="Ingrese email">
-        </div>
-
-
       </div>
-      <!--fin row paciente-->
-
-
-      <div class="row">
-        <div class="col-md-12">
-          <label for="name">Padecimientos</label>
-          <select disabled multiple="true" class="form-control">
-             <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
-          </select>
-        </div>
-      </div>
-
     </div>
-  </div>
 
 
-  <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
+    <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
 
-    <div class="panel-body">
-      <br>
-      <!--DATOS DEL PADRE-->
-      <strong><p class="text-center">Datos de Padre</p></strong>
-      <hr>
-      <div class="row">
+      <div class="panel-body">
+
+        <!--DATOS DEL PADRE-->
+        <strong><p class="text-center">Datos de Padre</p></strong>
+        <hr>
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="nombre1">Primer nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="paciente_modificado.padre.nombre1" placeholder="Ingrese primer nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="apellido1">Primer Apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="paciente_modificado.padre.apellido1" placeholder="Ingrese primer apellido">
+            </div>
 
 
+          </div>
+          <div class="col-md-6">
 
-        <div class="form-group col-md-6">
-          <label for="nombre1">Nombres</label>
-          <input type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
+            <div class="form-group">
+              <label for="nombre">Segundo nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente_modificado.padre.nombre2" placeholder="Ingrese segundo nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Segundo apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente_modificado.padre.apellido2" placeholder="Ingrese segundo apellido">
+            </div>
+
+          </div>
+
         </div>
+        <!--fin row 1-->
 
-        <div class="form-group col-md-6">
-          <label for="apellido1">Apellidos</label>
-          <input type="text" disabled class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="dui">Documento identidad</label>
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.padre.documento_unico" placeholder="Ingrese doc. identidad">
+            </div>
+          </div>
         </div>
-        <div class="col-md-12">
-          <label for="name">Padecimientos</label>
-          <select disabled multiple="true" [(ngModel)]="paciente_modificado.padre.enfermedades" class="form-control">
+        <!--fin row 2-->
+
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Pais</label>
+            <select class="form-control" [(ngModel)]="selectedCountryPadre" name="pais" (change)="onChangePaisPadre()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Region</label>
+            <select class="form-control" [(ngModel)]="selectedRegionPadre" name="region" (change)="onChangeRegionPadre()">
+                                <option *ngFor="let region of regionesPadre"  [ngValue]="region" >{{ region.nombreDivision }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Ciudad</label>
+            <select class="form-control" [(ngModel)]="selectedCityPadre" name="ciudad" (change)="onChangeCiudadPadre()">
+                                <option *ngFor="let ciudad of ciudadesPadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
+                            </select>
+          </div>
+        </div>
+        <!--fin row 3-->
+
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Padecimientos</label>
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.padre.enfermedades" class="form-control">
                                 <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
+          </div>
         </div>
-      </div>
-
-
-      <!--fin row padre-->
+        <!--fin row 4-->
 
 
 
+        <!--DATOS DE LA MADRE-->
+        <br>
+        <strong><p class="text-center">Datos de Madre</p></strong>
+        <hr>
+        <div class="row">
 
+          <div class="col-md-6">
 
-      <!--DATOS De MADRE-->
+            <div class="form-group">
+              <label for="nombre1">Primer nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre1" [(ngModel)]="paciente_modificado.madre.nombre1" placeholder="Ingrese primer nombre">
+            </div>
 
-      <br>
-      <strong><p class="text-center">Datos de la Madre</p></strong>
-      <br>
+            <div class="form-group">
+              <label for="apellido1">Primer Apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="paciente_modificado.madre.apellido1" placeholder="Ingrese primer apellido">
+            </div>
+            <label class="checkbox-inline">
+                 <input type="checkbox" #isCasadaM  [(ngModel)]="estaCasadaMadre" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada
+            </label>
+            <div class="form-group">
+              <label for="nombre">Apellido casada</label>
+              <input type="text"  class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.madre.apellido_casada"
+                placeholder="Ingrese apellido casada">
+            </div>
 
-      <hr>
+          </div>
+          <div class="col-md-6">
 
-      <div class="row">
-        <div class="form-group col-md-6">
-          <label for="apellido1">Nombres</label>
-          <input disabled type="text" class="form-control" name="nobres" value="kkkkk" placeholder="Ingrese primer apellido">
+            <div class="form-group">
+              <label for="nombre">Segundo nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="nombre2" [(ngModel)]="paciente_modificado.madre.nombre2" placeholder="Ingrese segundo nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Segundo apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido2" [(ngModel)]="paciente_modificado.madre.apellido2" placeholder="Ingrese segundo apellido">
+            </div>
+
+          </div>
+
         </div>
+        <!--fin row 1-->
 
-        <div class="form-group col-md-6">
-          <label for="apellido1">Apellidos</label>
-          <input disabled type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="dui">Documento identidad</label>
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.madre.documento_unico" placeholder="Ingrese doc. identidad">
+            </div>
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          <label class="checkbox-inline">
-              <label>Casada &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </label>
-          <input disabled type="checkbox" #isCasadaM [(ngModel)]="estaCasada" (change)="onChangeCasadaMadre()" name="estaCasada">
-          </label>
+        <!--fin row 2-->
+
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Pais</label>
+            <select class="form-control" [(ngModel)]="selectedCountryMadre" name="pais" (change)="onChangePaisMadre()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Region</label>
+            <select class="form-control" [(ngModel)]="selectedRegionMadre" name="region" (change)="onChangeRegionMadre()">
+                                <option *ngFor="let region of regionesMadre" [ngValue]="region" >{{ region.nombreDivision }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Ciudad</label>
+            <select class="form-control" [(ngModel)]="selectedCityMadre" name="ciudad" (change)="onChangeCiudadMadre()">
+                                <option *ngFor="let ciudad of ciudadesMadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
+                            </select>
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="nombre">Apellido casada</label>
-          <input disabled type="text" class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.madre.apellido_casada"
-            placeholder="Ingrese apellido casada">
-        </div>
-        <div class="col-md-12">
-          <label for="name">Padecimientos</label>
-          <select disabled multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
+        <!--fin row 3-->
+
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Padecimientos</label>
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
                                 <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
-            </select>
+                            </select>
+          </div>
         </div>
+        <!--fin row 4-->
 
       </div>
-
-
-
-      <!--fin row Madre-->
     </div>
-  </div>
 
 
-  <div *ngIf="paso3" [@enterAnimation]="paso3" class="panel panel-info">
+    <div *ngIf="paso3" [@enterAnimation]="paso3" class="panel panel-info">
 
-    <div class="panel-body">
+      <div class="panel-body">
 
-      <!--DATOS DEL RESPONSABLE-->
-      <strong><p class="text-center">Datos de Responsable</p></strong>
-      <hr>
-      <div class="row">
+        <!--DATOS DEL RESPONSABLE-->
+        <strong><p class="text-center">Datos de Responsable</p></strong>
+        <hr>
+        <div class="row">
 
-        <div class="form-group col-md-6">
-          <label for="nombre1">Nombres</label>
-          <input disabled type="text" class="form-control" name="nombre1" placeholder="Ingrese primer nombre">
-        </div>
+          <div class="col-md-6">
 
-        <div class="form-group col-md-6">
-          <label for="apellido1">Apellidos</label>
-          <input disabled type="text" class="form-control" name="apellido1" placeholder="Ingrese primer apellido">
-        </div>
-        <div class="form-group col-md-6">
-          <p>Genero</p>
-          <label class="checkbox-inline">
-                  <input disabled type="radio" name="genero" id="M" value="M" (change)="onChangeGeneroResponsable()"> &nbsp; Masculino
+            <div class="form-group">
+              <label for="nombre1">Primer nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.nombre1" name="nombre1" placeholder="Ingrese primer nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="apellido1">Primer Apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.apellido1" name="apellido1" placeholder="Ingrese primer apellido">
+            </div>
+            <p>Genero</p>
+            <label class="checkbox-inline">
+                  <input type="radio" name="genero" id="M" [(ngModel)]="paciente_modificado.responsable.genero" value="M" (change)="onChangeGeneroResponsable()"> &nbsp; Masculino
             </label>
-          <label class="checkbox-inline">
-                  <input disabled type="radio" name="genero" #isFemenine id="F"  value="F"> &nbsp; Femenenino &nbsp;
+            <label class="checkbox-inline">
+                  <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.responsable.genero" value="F"> &nbsp; Femenenino &nbsp;
             </label>
-          <label class="checkbox-inline">
-                  <input  type="checkbox" #isCasadaR [disabled]="!isFemenine.checked"  (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
+            <label class="checkbox-inline">
+                  <input type="checkbox" #isCasadaR [disabled]="!isFemenine.checked" [(ngModel)]="estaCasadaResponsable" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
             </label>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="nombre">Apellido casada</label>
-          <input type="text" class="form-control" [disabled]="!isCasadaR.checked" name="apellido_casada" placeholder="Ingrese apellido casada">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="nombre">Telefono fijo</label>
-          <input type="text" disabled class="form-control" name="tel_fijo" placeholder="Ingrese tel fijo">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="nombre">Telefono movil</label>
-          <input disabled type="text" class="form-control" name="tel_movil" placeholder="Ingrese tel movil">
-        </div>
 
+            <div class="form-group">
+              <label for="nombre">Telefono fijo</label>
+              <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.tel_fijo" name="tel_fijo" placeholder="Ingrese tel fijo">
+            </div>
 
+          </div>
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="nombre">Segundo nombre</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.nombre2" name="nombre2" placeholder="Ingrese segundo nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Segundo apellido</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.apellido2" name="apellido2" placeholder="Ingrese segundo apellido">
+            </div>
+            <div class="form-group">
+              <label for="nombre">Apellido casada</label>
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasadaR.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.responsable.apellido_casada"
+                placeholder="Ingrese apellido casada">
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Telefono movil</label>
+              <input type="text" [textMask]="{mask:maskPhone,guide:false}" class="form-control" [(ngModel)]="paciente_modificado.responsable.tel_movil" name="tel_movil" placeholder="Ingrese tel movil">
+            </div>
+
+          </div>
+
+        </div>
+        <!--fin row 1-->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="dui">Documento identidad</label>
+              <input type="text" class="form-control" maxlength="10" disabled [(ngModel)]="paciente_modificado.responsable.documento_unico" name="dui" placeholder="Ingrese doc. identidad">
+            </div>
+          </div>
+        </div>
+        <!--fin row 2-->
+
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Pais</label>
+            <select class="form-control" [(ngModel)]="selectedCountryResponsable" name="pais" (change)="onChangePaisResponsable()">
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Region</label>
+            <select class="form-control" [(ngModel)]="selectedRegionResponsable" name="region" (change)="onChangeRegionResponsable()">
+                                <option *ngFor="let region of regionesResponsable" [ngValue]="region" >{{ region.nombreDivision }}</option>
+                            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label>Ciudad</label>
+            <select class="form-control" [(ngModel)]="selectedCityResponsable" name="ciudad" (change)="onChangeCiudadResponsable()">
+                                <option *ngFor="let ciudad of ciudadesResponsable" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
+                            </select>
+          </div>
+        </div>
+        <!--fin row 3-->
 
       </div>
-      <!--fin row 1-->
-
     </div>
+
+
+
+
   </div>
-
-
-
-
-</div>
-<div class="modal-footer">
-  <!--<button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>-->
-  <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Personales</button>
-  <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Padres</button>
-  <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Responsable</button>
-</div>
+  <div class="modal-footer">
+    <!--<button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>-->
+    <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Datos de Paciente</button>
+    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Datos de Padres</button>
+    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Datos de Responsable</button>
+    <!--<button type="button" (click)="onSubmit()" class="btn btn-success" >Actualizar Datos</button>-->
+  </div>

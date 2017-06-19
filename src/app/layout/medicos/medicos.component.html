@@ -2,6 +2,20 @@
 <div class="card-block">
     <ngb-tabset>
         <ngb-tab title="Mi Perfil">
+            <template ngbTabContent>
+               <app-perfil></app-perfil>
+            </template>
+        </ngb-tab>
+
+        <ngb-tab title="Citas">
+            <template ngbTabContent>
+               <app-citas></app-citas>
+            </template>
+        </ngb-tab>
+
+
+
+        <!--<ngb-tab title="Mi Perfil">
             <ng-template ngbTabContent>
                <app-perfil></app-perfil>
             </ng-template>
@@ -11,6 +25,6 @@
             <ng-template ngbTabContent>
                <app-citas></app-citas>
             </ng-template>
-        </ngb-tab>
+        </ngb-tab>-->
     </ngb-tabset>
 </div>

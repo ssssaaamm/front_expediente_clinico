@@ -137,7 +137,7 @@
         <div class="row">
           <div class="col-md-12">
             <label for="name">Padecimientos</label>
-            <select multiple="true" [(ngModel)]="paciente_modificado.enfermedades" class="form-control">
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.enfermedades" class="form-control">
                                 <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
           </div>
@@ -224,7 +224,7 @@
         <div class="row">
           <div class="col-md-12">
             <label for="name">Padecimientos</label>
-            <select multiple="true" [(ngModel)]="paciente_modificado.padre.enfermedades" class="form-control">
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.padre.enfermedades" class="form-control">
                                 <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
           </div>
@@ -314,7 +314,7 @@
         <div class="row">
           <div class="col-md-12">
             <label for="name">Padecimientos</label>
-            <select multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
+            <select [disabled]="true" multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
                                 <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
                             </select>
           </div>

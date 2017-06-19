@@ -39,6 +39,8 @@ export class LayoutComponent implements OnInit {
             // this.router.navigate(['/dashboard']);
             //this.router.navigate(['/'+this.menu_rol.menu.url]);
             this.cargarMenu();
+            // this.router.navigate(['/'+this.menu_rol.menu.url]);
+            
         }
 
     }
