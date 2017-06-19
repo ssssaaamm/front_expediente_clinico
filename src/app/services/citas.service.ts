@@ -19,18 +19,44 @@ export class CitasService {
 
 }
 
-detail(cita:any){
+/*detail(cita:any){
   this.action = "/asignados";
   let parametros="token="+this.token;
   parametros = parametros + "&json="+JSON.stringify(cita);
   return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
 
 
-}
+}*/
 listCitas(pacientej:any){
   this.action = "/asignadas";
   let parametros="token="+this.token;
   parametros = parametros + "&json="+JSON.stringify(pacientej);
   return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
 }
+
+
+detail1(cita:any){
+  this.action = "/listToUser";
+  let parametros="token="+this.token;
+  parametros = parametros + "&json="+JSON.stringify(cita);
+  return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+}
+ del(cita:any){
+    this.action = "/del";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(cita);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
+  add(cita:any){
+    this.action = "/add";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(cita);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
 }
