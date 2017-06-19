@@ -37,6 +37,7 @@ export class CitasComponent implements OnInit {
   public mensaje: string;
   returnUrl: string;
   public citas: Array<any>
+  public paso1:boolean=true;
 
   public consultas: Array<Consulta> = new Array<Consulta>();
   public especialidades: Array<Especialidad> = new Array<Especialidad>();
@@ -65,8 +66,8 @@ export class CitasComponent implements OnInit {
   }
   guardarCita(cita) {
     localStorage.setItem('cita', JSON.stringify(cita));
-    console.log(JSON.stringify(cita));
-    console.log("Holis")
+    console.log("Guardando Cita"+JSON.stringify(cita));
+
     /*this.router.navigateByUrl(this.returnUrl);*/
   }
 

@@ -89,6 +89,7 @@ export class ExpedienteComponent implements OnInit {
     this.paciente_modificado = new Paciente('', '', '', '', '', '', null, null, null, 'M', '', '', '', '', null, new Responsable('', '', '', '', '', '', '', '', '', null), new Padre('', '', '', '', '', '', 'M', '', new Array<Enfermedad>()), new Padre('', '', '', '', '', '', 'F', '', new Array<Enfermedad>()), new Array<Enfermedad>(), null, null);
     this.obtenerCita();
     this.consulta.sintomatologia="";
+    
   }
 
   obtenerCita() {
@@ -156,7 +157,7 @@ export class ExpedienteComponent implements OnInit {
         console.log(response);
         this.consulta = response;
         localStorage.setItem('cita', JSON.stringify(this.consulta));
-        console.log(JSON.stringify(this.consulta));
+        console.log("Imprimiendo Consulta"+JSON.stringify(this.consulta));
       },
       error => {
         if (error != null) {
@@ -165,6 +166,12 @@ export class ExpedienteComponent implements OnInit {
       }
 
     );
+
+  }
+  finalizarConsulta(){
+    localStorage.removeItem(this.consulta);
+    console.log("Consulta Eliminada"+JSON.stringify(this.consulta));
+    
 
   }
 

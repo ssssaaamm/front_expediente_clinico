@@ -1,13 +1,13 @@
 ﻿<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
         
-        <!--<div *ngFor="let menu_rol of menus_rol">
+        <div *ngFor="let menu_rol of menus_rol">
             <a [routerLink]="[menu_rol.menu.url]" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i [ngClass]="[menu_rol.menu.icono]"></i>&nbsp;&nbsp;&nbsp;{{menu_rol.menu.titulo}}
             </a>
-        </div>-->
+        </div>
 
-        <a routerLink="/administracion/pacientes" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <!--<a routerLink="/administracion/pacientes" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-group"></i>&nbsp;Pacientes
         </a>
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -39,7 +39,7 @@
         
         <a routerLink="/administracion/medicamentos" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-medkit"></i>&nbsp;Medicamentos
-        </a>
+        </a>-->
          <!--<a routerLink="/administracion/medicamentos" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-medkit"></i>&nbsp;Medicamentos
         </a>
