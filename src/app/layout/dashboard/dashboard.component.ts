@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {PaisesService} from 'app/services/paises.service';
+import {Router,ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
     public ciudades: Array<string> = [];
     
 
-    constructor(private loginService:LoginService, private paisesService:PaisesService) {
+    constructor(private loginService:LoginService, private paisesService:PaisesService, private route:ActivatedRoute, private router:Router) {
         this.sliders.push({
             imagePath: 'assets/images/slider1.jpg',
             label: 'First slide label',
@@ -50,16 +51,19 @@ export class DashboardComponent implements OnInit {
     }
     ngOnInit() {
 
+        //esto deberia ir en todos los componentes en el onInit
         // let iden = this.loginService.getIdentity();
         // if(iden == null){
         //     //this.router.navigate(['/dashboard']);
         //     window.location.href = "/login"
         // }
-
-
+        
+        //console.log(JSON.stringify(localStorage.getItem('menus_rol')));
+        //this.router.navigate(['/administracion/pacientes']);
         //generacion de script sql para paises
         //obtenemos todos los paises
-        this.cargarPaises2();
+        //this.cargarPaises2();
+        //this.router.navigateByUrl(this.route.snapshot.queryParams['/administracion/procedimientos']);
     }
 
     public closeAlert(alert: any) {

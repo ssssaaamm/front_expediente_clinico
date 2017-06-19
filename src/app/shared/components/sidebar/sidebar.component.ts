@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit(): void {
         console.log('CARGANDO MENU');
-        //this.cargarMenu();
+        this.cargarMenu();
     }
 
     addExpandClass(element: any) {
@@ -74,10 +74,13 @@ export class SidebarComponent implements OnInit {
             })
             .subscribe(res => this.menus_rol = res);
 
-            //this.router.navigate([this.menus_rol[0].menu.url]);
 
 
             localStorage.setItem('menus_rol', JSON.stringify(this.menus_rol));
+            //console.log(JSON.stringify(localStorage.getItem('menus_rol')));
+
+            //this.router.navigate([this.menus_rol[0].menu.url]);
+            
 
     }
 }
