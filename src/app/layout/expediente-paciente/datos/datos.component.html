@@ -1,7 +1,6 @@
+  <!--Formulario agregar nuevo paciente-->
 
-  <h4 class="modal-title">Modificar Datos de Expediente </h4>
-  <div>
-
+  <div class="modal-body">
 
             <div *ngIf="exito == false" class="alert alert-danger">
                <strong>Ooops!</strong> {{mensaje}}.
@@ -9,9 +8,6 @@
 
             <div *ngIf="exito == true" class="alert alert-success">
                 <strong>Exito!</strong> {{mensaje}}
-                <p>Numero del expediente: {{paciente_modificado.expediente.numero_expediente}}</p>
-                <p>Numero del expediente: {{paciente_modificado.usuario.username}}</p>
-                <p>Numero del expediente: {{paciente_modificado.usuario.password}}</p>
             </div>
 
 
@@ -48,28 +44,28 @@
             <p></p>
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.documento_unico" placeholder="Ingrese doc. identidad">
             </div>
 
             <div class="form-group">
               <label>Pais</label>
               <select class="form-control" [(ngModel)]="selectedCountryPaciente" name="selectedCountryPaciente" (change)="onChangePaisPaciente()">
-                                    <option *ngFor="let pais of paises" [attr.selected]="pais.name==paciente_modificado.pais ? true : null" [ngValue]="pais">{{ paciente_modificado.subdivision.idDivision.idPais.nombrePais }}</option>
-                                    <!--[attr.selected]="pais.name==paciente_modificado.pais ? true : false"-->
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
+                                    <!--[attr.selected]="pais.nombrePais==paciente_modificado.pais ? true : false"-->
                                 </select>
             </div>
 
             <div class="form-group">
               <label>Region</label>
               <select class="form-control" [(ngModel)]="selectedRegionPaciente" name="selectedRegionPaciente" (change)="onChangeRegionPaciente()">
-                                    <option *ngFor="let region of regionesPaciente" [attr.selected]="region.region==paciente_modificado.division ? true : null" [ngValue]="region" >{{ region.region }}</option>
+                                    <option *ngFor="let region of regionesPaciente"  [ngValue]="region" >{{ region.nombreDivision }}</option>
                                 </select>
             </div>
 
             <div class="form-group">
               <label>Ciudad</label>
               <select class="form-control" [(ngModel)]="selectedCityPaciente" name="selectedCityPaciente" (change)="onChangeCiudadPaciente()">
-                                    <option *ngFor="let ciudad of ciudadesPaciente" [attr.selected]="ciudad.city==paciente_modificado.subdivision ? true : null" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                    <option *ngFor="let ciudad of ciudadesPaciente" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                                 </select>
             </div>
 
@@ -137,6 +133,16 @@
 
         </div>
 
+
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Padecimientos</label>
+            <select multiple="true" [(ngModel)]="paciente_modificado.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
+                            </select>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -185,7 +191,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.padre.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.padre.documento_unico" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>
@@ -195,21 +201,21 @@
           <div class="form-group col-md-4">
             <label>Pais</label>
             <select class="form-control" [(ngModel)]="selectedCountryPadre" name="pais" (change)="onChangePaisPadre()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Region</label>
             <select class="form-control" [(ngModel)]="selectedRegionPadre" name="region" (change)="onChangeRegionPadre()">
-                                <option *ngFor="let region of regionesPadre" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesPadre"  [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Ciudad</label>
             <select class="form-control" [(ngModel)]="selectedCityPadre" name="ciudad" (change)="onChangeCiudadPadre()">
-                                <option *ngFor="let ciudad of ciudadesPadre" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesPadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
           </div>
         </div>
@@ -245,11 +251,11 @@
               <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" name="apellido1" [(ngModel)]="paciente_modificado.madre.apellido1" placeholder="Ingrese primer apellido">
             </div>
             <label class="checkbox-inline">
-                 <input type="checkbox" #isCasada  [(ngModel)]="estaCasada" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada
+                 <input type="checkbox" #isCasadaM  [(ngModel)]="estaCasadaMadre" (change)="onChangeCasadaMadre()" name="estaCasada"> &nbsp; Casada
             </label>
             <div class="form-group">
               <label for="nombre">Apellido casada</label>
-              <input type="text"  class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.madre.apellido_casada"
+              <input type="text"  class="form-control" [disabled]="!isCasadaM.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.madre.apellido_casada"
                 placeholder="Ingrese apellido casada">
             </div>
 
@@ -275,7 +281,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.madre.dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" name="dui" maxlength="10" disabled [(ngModel)]="paciente_modificado.madre.documento_unico" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>
@@ -285,26 +291,34 @@
           <div class="form-group col-md-4">
             <label>Pais</label>
             <select class="form-control" [(ngModel)]="selectedCountryMadre" name="pais" (change)="onChangePaisMadre()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Region</label>
             <select class="form-control" [(ngModel)]="selectedRegionMadre" name="region" (change)="onChangeRegionMadre()">
-                                <option *ngFor="let region of regionesMadre" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesMadre" [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Ciudad</label>
             <select class="form-control" [(ngModel)]="selectedCityMadre" name="ciudad" (change)="onChangeCiudadMadre()">
-                                <option *ngFor="let ciudad of ciudadesMadre" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesMadre" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
           </div>
         </div>
         <!--fin row 3-->
 
+        <div class="row">
+          <div class="col-md-12">
+            <label for="name">Padecimientos</label>
+            <select multiple="true" [(ngModel)]="paciente_modificado.madre.enfermedades" class="form-control">
+                                <option *ngFor="let enfermedad of enfermedades" [ngValue]="enfermedad">{{ enfermedad.nombre }}</option>
+                            </select>
+          </div>
+        </div>
         <!--fin row 4-->
 
       </div>
@@ -339,7 +353,7 @@
                   <input type="radio" name="genero" #isFemenine id="F" [(ngModel)]="paciente_modificado.responsable.genero" value="F"> &nbsp; Femenenino &nbsp;
             </label>
             <label class="checkbox-inline">
-                  <input type="checkbox" #isCasada [disabled]="!isFemenine.checked" [(ngModel)]="estaCasada" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
+                  <input type="checkbox" #isCasadaR [disabled]="!isFemenine.checked" [(ngModel)]="estaCasadaResponsable" (change)="onChangeCasadaResponsable()" name="estaCasada"> &nbsp; Casada
             </label>
 
             <div class="form-group">
@@ -361,7 +375,7 @@
             </div>
             <div class="form-group">
               <label for="nombre">Apellido casada</label>
-              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasada.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.responsable.apellido_casada"
+              <input type="text" [textMask]="{mask:maskNames,guide:false}" class="form-control" [disabled]="!isCasadaR.checked" name="apellido_casada" [(ngModel)]="paciente_modificado.responsable.apellido_casada"
                 placeholder="Ingrese apellido casada">
             </div>
 
@@ -379,7 +393,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="dui">Documento identidad</label>
-              <input type="text" class="form-control" maxlength="10" disabled [(ngModel)]="paciente_modificado.responsable.dui" name="dui" placeholder="Ingrese doc. identidad">
+              <input type="text" class="form-control" maxlength="10" disabled [(ngModel)]="paciente_modificado.responsable.documento_unico" name="dui" placeholder="Ingrese doc. identidad">
             </div>
           </div>
         </div>
@@ -389,21 +403,21 @@
           <div class="form-group col-md-4">
             <label>Pais</label>
             <select class="form-control" [(ngModel)]="selectedCountryResponsable" name="pais" (change)="onChangePaisResponsable()">
-                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.name }}</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais">{{ pais.nombrePais }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Region</label>
             <select class="form-control" [(ngModel)]="selectedRegionResponsable" name="region" (change)="onChangeRegionResponsable()">
-                                <option *ngFor="let region of regionesResponsable" [ngValue]="region" >{{ region.region }}</option>
+                                <option *ngFor="let region of regionesResponsable" [ngValue]="region" >{{ region.nombreDivision }}</option>
                             </select>
           </div>
 
           <div class="form-group col-md-4">
             <label>Ciudad</label>
             <select class="form-control" [(ngModel)]="selectedCityResponsable" name="ciudad" (change)="onChangeCiudadResponsable()">
-                                <option *ngFor="let ciudad of ciudadesResponsable" [ngValue]="ciudad">{{ ciudad.city }}</option>
+                                <option *ngFor="let ciudad of ciudadesResponsable" [ngValue]="ciudad">{{ ciudad.nombreSubdivision }}</option>
                             </select>
           </div>
         </div>
@@ -417,10 +431,9 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>
-    <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Personales</button>
-    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Padres</button>
-    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Responsable</button>
-    <button type="button" *ngIf="exito != true" (click)="onSubmit()" class="btn btn-success" [hidden]="!paso3">Guardar</button>
-    <button type="button" *ngIf="exito == true" (click)="clear()" class="btn btn-primary"><i class="fa fa-repeat"></i></button>
+    <!--<button type="button" #closeBtn class="btn btn-secondary" (click)="c('Close click')">Cancelar</button>-->
+    <button type="button" (click)="switchPaso(1)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso1, 'btn-primary':paso1 }">Datos Personales</button>
+    <button type="button" (click)="switchPaso(2)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso2, 'btn-primary':paso2 }">Datos de Padres</button>
+    <button type="button" (click)="switchPaso(3)" class="btn btn-default" [ngClass]="{ 'btn-default':!paso3, 'btn-primary':paso3 }">Datos de Responsable</button>
+    <button type="button" (click)="onSubmit()" class="btn btn-success" >Actualizar Datos</button>
   </div>

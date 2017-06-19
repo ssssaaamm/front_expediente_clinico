@@ -28,16 +28,16 @@ export class ModAddComponent implements OnInit {
             this.exito = null;
             this.ubicacion.codigo="";
             this.ubicacion.nombre="";
-            this.ubicacion.nivel=0;
-            this.ubicacion.numero=0;
+            this.ubicacion.nivel=null;
+            this.ubicacion.numero=null;
             this.ubicacion.tipo= new TipoUbicacion("",0);
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             this.exito = null;
             this.ubicacion.codigo="";
             this.ubicacion.nombre="";
-            this.ubicacion.nivel=0;
-            this.ubicacion.numero=0;
+            this.ubicacion.nivel=null;
+            this.ubicacion.numero=null;
             this.ubicacion.tipo= new TipoUbicacion("",0);
         });
     }
@@ -87,8 +87,8 @@ export class ModAddComponent implements OnInit {
     clear(){
         this.ubicacion.codigo="";
         this.ubicacion.nombre="";
-        this.ubicacion.numero=0;
-        this.ubicacion.nivel=0;
+        this.ubicacion.numero=null;
+        this.ubicacion.nivel=null;
         this.ubicacion.tipo=new TipoUbicacion("",0);
         this.exito=null;
     }

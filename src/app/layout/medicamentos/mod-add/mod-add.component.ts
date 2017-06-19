@@ -19,7 +19,7 @@ export class ModAddComponent implements OnInit {
     closeResult: string;
      public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
   
   constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) { 
@@ -32,14 +32,14 @@ export class ModAddComponent implements OnInit {
             this.exito = null;
             this.medicamento.codigo="";
             this.medicamento.nombre="";
-            this.medicamento.costo=0.0;
+            this.medicamento.costo=null;
             
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             this.exito = null;
             this.medicamento.codigo="";
             this.medicamento.nombre="";
-            this.medicamento.costo=0.0;
+            this.medicamento.costo=null;
             
         });
     }
@@ -54,7 +54,7 @@ export class ModAddComponent implements OnInit {
   }
   ngOnInit() {
       /**muestra los campos vacios solo con el placeholder :)  */
-      this.medicamento=new Medicamento("","",new TipoMedicamento('',0),0.0);
+      this.medicamento=new Medicamento("","",new TipoMedicamento('',0),null,null);
   }
 
       onSubmit(){
@@ -86,7 +86,7 @@ export class ModAddComponent implements OnInit {
     clear(){
         this.medicamento.codigo="";
         this.medicamento.nombre="";
-        this.medicamento.costo=0.0;        
+        this.medicamento.costo=null;        
         this.exito=null;
     }
 

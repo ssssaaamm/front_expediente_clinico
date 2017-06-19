@@ -23,7 +23,7 @@ export class ModEditComponent implements OnInit {
     closeResult: string;
      public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
 
     constructor(private modalService: NgbModal, private medicamentosService: MedicamentosService) {

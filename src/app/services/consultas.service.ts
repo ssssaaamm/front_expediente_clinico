@@ -76,4 +76,20 @@ export class ConsultasService {
 
   }
 
+  listServices(){
+    this.action = "/services";
+    let parametros="token="+this.token;
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
+
+  editServices(consulta:Consulta){
+    this.action = "/editService";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(consulta);
+
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ; 
+  }
 }

@@ -36,6 +36,7 @@ export class ConsultasComponent implements OnInit {
                     new Especialidad(
                         especialidad.codigoEspecialidad,
                         especialidad.nombreEspecialidad,
+                        especialidad.honorarios,
                         especialidad.idEspecialidad
                 ));
             });
@@ -44,7 +45,7 @@ export class ConsultasComponent implements OnInit {
     })
     .subscribe( res => this.especialidades = res);
 
-    this.consultasService.list()
+    this.consultasService.listServices()
     .map((consultas: Array<any>)=>{
       let result: Array<Consulta> = new Array<Consulta>();
       if(consultas){
@@ -67,7 +68,7 @@ export class ConsultasComponent implements OnInit {
              */
             let tipindx:number = this.indexOfEspecialidad(
                 new Especialidad(
-                    consulta.idEspecialidad.codigoEspecialidad, consulta.idEspecialidad.nombreEspecialidad, consulta.idEspecialidad.idEspecialidad
+                    consulta.idEspecialidad.codigoEspecialidad, consulta.idEspecialidad.nombreEspecialidad, consulta.idEspecialidad.honorarios, consulta.idEspecialidad.idEspecialidad
                 ), this.especialidades);
             result.push(
                 new Consulta(
@@ -75,7 +76,8 @@ export class ConsultasComponent implements OnInit {
                     consulta.nombreConsulta,
                     consulta.costoConsulta,
                     this.especialidades[tipindx],
-                    consulta.idConsulta));
+                    consulta.idConsulta)
+                );
         });
       }
       return result;
@@ -86,9 +88,7 @@ export class ConsultasComponent implements OnInit {
   private indexOfEspecialidad(especialidad:Especialidad,especialidades):number{
     let index = -1, i = 0, tam = especialidades.length;
     for(i; i<tam; i++){
-        if( especialidad.id == especialidades[i].id
-            && especialidad.codigo == especialidades[i].codigo
-            && especialidad.nombre == especialidades[i].nombre) {
+        if( especialidad.id == especialidades[i].id) {
             index = i;
         }
     }

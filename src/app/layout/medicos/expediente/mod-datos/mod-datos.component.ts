@@ -7,6 +7,8 @@ import { Paciente } from "app/models/paciente";
 import { Enfermedad } from "app/models/enfermedad";
 import { Padre } from "app/models/padre";
 import { Responsable } from "app/models/responsable";
+import {LoginService} from "app/services/login.service";
+
 
 
 @Component({
@@ -23,7 +25,7 @@ import { Responsable } from "app/models/responsable";
   ],
   templateUrl: './mod-datos.component.html',
   styleUrls: ['./mod-datos.component.scss'],
-  providers: [PacientesService, PaisesService, EnfermedadesService, NgbModal]
+  providers: [PacientesService, PaisesService, EnfermedadesService, NgbModal,LoginService]
 })
 export class ModDatosComponent implements OnInit {
     paciente: Paciente;
@@ -33,6 +35,8 @@ export class ModDatosComponent implements OnInit {
   @Input() public pacientes: Array<any>;//<--- todos los paises
   @Input() public paciente_original: Paciente; //<--- paciente original.
   @Input() public paciente_modificado: Paciente; //<--- paciente original.
+
+  public expediente_paciente: Array<any>;
 
   //todas las regiones de los paises
   public regionesPadre: Array<any> = new Array<any>();//<--sera pasado al componente add y edit
@@ -74,10 +78,14 @@ export class ModDatosComponent implements OnInit {
   constructor(private modalService: NgbModal, private paisesService: PaisesService, private pacientesService: PacientesService, private enfermedadesService: EnfermedadesService) { }
 
   ngOnInit() {
+      let identidad = JSON.parse(localStorage.getItem("identity"));
+      console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
      //this.paciente_modificado = this.paciente_original.full_clone();
      this.paciente_modificado=new Paciente('','','','','','',null,null,null,'M','','','','',null,new Responsable('','','','','','','','','',null),new Padre('','','','','','','M','',new Array<Enfermedad>()),new Padre('','','','','','','F','',new Array<Enfermedad>()),new Array<Enfermedad>(),null,null);
+    /* this.pacientesService.*/
+
      
-  }
+}
     open(content) {
 
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {

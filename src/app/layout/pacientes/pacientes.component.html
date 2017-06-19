@@ -21,7 +21,8 @@
     <!--Tabla medicamentos-->
    
     <div class="table-responsive">
-        <table class="table table-hover table-striped" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <table class="table table-hover table-striped table-condensed" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <!--<table class="table table-hover table-striped table-condensed" [mfData]="pacientes" #mf="mfDataTable" [mfRowsOnPage]="5">-->
             <thead>
                 <tr>
                     <th><mfDefaultSorter by="nombres">Nombres</mfDefaultSorter></th>
@@ -36,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let paciente of pacientes">
+                <tr *ngFor="let paciente of mf.data">
                     <td>{{paciente.nombre1}} {{paciente.nombre2}}</td>
                     <td>{{paciente.apellido1}} {{paciente.apellido2}}</td>                      
                     <td>{{paciente.dia_nacimiento}}/{{paciente.mes_nacimiento}}/{{paciente.anio_nacimiento}}</td>                      
@@ -58,7 +59,7 @@
             <tfoot>
                 <tr>
                     <td colspan="4">
-                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                        <mfBootstrapPaginator></mfBootstrapPaginator>
                     </td>
                 </tr>
             </tfoot>

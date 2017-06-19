@@ -175,7 +175,7 @@ export class ModAddComponent implements OnInit {
  //obtenemos todos las regiones de la madre
   onChangePaisMadre() {
     //obtenemos todos las regiones
-    this.paisesService.listRegions2(this.selectedCountryPadre)
+    this.paisesService.listRegions2(this.selectedCountryMadre)
       .map((regions: Array<any>) => {
         return regions;
       })

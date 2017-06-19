@@ -15,6 +15,7 @@ export class ModEditComponent implements OnInit {
   @Input() public ubicacion_original: Ubicacion;
    @Input() public tipos_ubicacion: Array<TipoUbicacion>;
   public exito: boolean;
+  public mensaje:string;
   ubicacion_modificada: Ubicacion;
 
   closeResult: string;
@@ -66,8 +67,10 @@ export class ModEditComponent implements OnInit {
                     this.ubicaciones[pos].tipo=this.ubicacion_modificada.tipo;
                     this.ubicacion_original=this.ubicaciones[pos];
                     this.exito=true;
+                    this.mensaje=response.mensaje;
                 }else{
                     this.exito=false;
+                    this.mensaje=response.mensaje;
                 }
             },
             error=>{

@@ -3,6 +3,8 @@ import { NgbModal,ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Consulta } from '../../../models/consulta';
 import { Especialidad } from '../../../models/especialidad';
 import { ConsultasService } from '../../../services/consultas.service';
+import  createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 
 @Component({
   selector: 'app-mod-edit',
@@ -21,6 +23,11 @@ export class ModEditComponent implements OnInit {
   consulta_modificada: Consulta;
 
   closeResult: string;
+
+  public costoMask = createNumberMask({
+        prefix: '', // This will put the dollar sign at the end, with a space.
+        allowDecimal: true
+    }); 
 
   constructor(private modalService: NgbModal, private consultasService: ConsultasService) { }
 
@@ -51,7 +58,7 @@ export class ModEditComponent implements OnInit {
   }
 
   onSubmit(){
-    this.consultasService.edit(this.consulta_modificada.clone()).subscribe(
+    this.consultasService.editServices(this.consulta_modificada.clone()).subscribe(
         response=> {
             console.log(response);
             if(response.status == "exito") {

@@ -14,6 +14,6 @@ export class Ubicacion {
 
 // Esnecesario. algo de refeencias!!!
     public clone():Ubicacion{
-        return new Ubicacion(this.codigo,this.nombre,this.nivel,this.numero,this.tipo.clone(),this.id);
+        return new Ubicacion(this.codigo,this.nombre,this.nivel,this.numero,this.tipo,this.id);
     }
 }

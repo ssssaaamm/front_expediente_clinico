@@ -20,7 +20,7 @@ export class ModEditComponent implements OnInit {
     public mensaje : string;
     public costoMask = createNumberMask({
         allowDecimal: true,
-        prefix:false
+        prefix:''
     })
     examen_modificado: Examen;
 

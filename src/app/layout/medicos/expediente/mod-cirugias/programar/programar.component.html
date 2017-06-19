@@ -41,10 +41,18 @@
                 <label for="costo">Costo ($)</label>
                 <input type="text" class="form-control" [textMask]="{mask:costoMask}"  name="costo"   placeholder="Ingrese costo de la cirugia">
             </div>
-            <div class="form-group">
-                <label for="fecha">Fecha</label>
-                <input type="text" class="form-control" [textMask]="{mask:costoMask}"  name="costo"   placeholder="Ingrese costo de la cirugia">
-            </div>
+                       <div class="form-group">
+                                <label>Fecha Cirugia</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd"
+                                        name="dp" [minDate]="{year: 1900, month: 1, day: 1}"
+                                        [maxDate]="{year: 2017, month: 6, day: 19}" ngbDatepicker #d="ngbDatepicker">
+                                    <div class="input-group-addon" (click)="d.toggle()">
+                                        <span class="fa fa-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+
         </div>
 
         <div class="modal-footer">
