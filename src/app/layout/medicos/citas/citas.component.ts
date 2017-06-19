@@ -65,8 +65,8 @@ export class CitasComponent implements OnInit {
   }
   guardarCita(cita) {
     localStorage.setItem('cita', JSON.stringify(cita));
-    console.log(JSON.stringify(cita));
-    console.log("Holis")
+    console.log("Guardando Cita"+JSON.stringify(cita));
+
     /*this.router.navigateByUrl(this.returnUrl);*/
   }
 

@@ -41,15 +41,21 @@
       <textarea [(ngModel)]="consulta.sintomatologia" type="text" class="form-control" name="sinto"></textarea>
     </div>
 
-    <div>
+<div class="row">
+    <div class="col-md-2">
       <button type="button" class="btn btn-success btn-md" (click)="onChangePaso(2)">Proseguir</button>
     </div>
-  </div>
+    <div class="col-md-2">
+      <button routerLink="/medico/gestiones" [routerLinkActive]="['router-link-active']"  class="btn btn-danger" type="button" ><i class="fa fa-reply" aria-hidden="true"></i>Citas</button>
+    </div>
+</div>
+  
+</div>
   <!--fin paso 2-->
 
   <div *ngIf="paso2" [@enterAnimation]="paso2" class="panel panel-info">
     <div class="card-block">
-      <a routerLink="/medico/gestiones" [routerLinkActive]="['router-link-active']" class="btn btn-danger pull-right">
+      <a routerLink="/medico/gestiones" [routerLinkActive]="['router-link-active']" (click)="finalizarConsulta()" class="btn btn-danger pull-right">
         <i class="fa fa-hourglass-end" aria-hidden="true"></i>&nbsp;Finalizar Consulta
     </a>
       <ngb-tabset type="pills">
