@@ -12,20 +12,20 @@
             <thead>
                 <tr>
                     <th><mfDefaultSorter by="codigo">Codigo</mfDefaultSorter></th>
-                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
-                    <th><mfDefaultSorter by="especialidades">Especialidad</mfDefaultSorter></th>
-                    <th><mfDefaultSorter by="costo">Resultado/ observacacines/tratamiento</mfDefaultSorter></th>              
-                    <th>Fecha</th>
+                    <th><mfDefaultSorter by="nombre">Fecha</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="especialidades">Inicio</mfDefaultSorter></th>
+                    <th><mfDefaultSorter by="costo">Fin</mfDefaultSorter></th>              
+                    
                     <th>Detalle</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let cirugia of cirugias">
-                    <td>{{cirugia.codigo}}</td>
-                    <td>{{cirugia.nombre}}</td>
-                    <td>{{cirugia.especialidad.nombre}}</td>  
-                    <td>{{cirugia.costo}}</td>  
-                    <td>25/10/16</td>
+                <tr *ngFor="let cirugia of cirugiasHechas">
+                    <td>{{cirugia.idRealizacionCirugia}}</td>
+                    <td>{{cirugia.diaRealizacionCirugia}}/{{cirugia.mesRealizacionCirugia}}/{{cirugia.anioRealizacionCirugia}}</td>
+                    <td>{{cirugia.horaInicioRealizacionCirugia}}:{{cirugia.minutoInicioCirugia}}</td>  
+                    <td>{{cirugia.horaFinRealizacionCirugia}}:{{minutoFinRealizacionCirugia}}</td>  
+                   
                     <td><button type="button" class="btn btn-success btn-sm" (click)="open(content)" ><i class="fa fa-eye center" aria-hidden="true"></i></button></td>                        
   
 

@@ -67,8 +67,18 @@ detail(examen:any){
   let parametros="token="+this.token;
   parametros = parametros + "&json="+JSON.stringify(examen);
   return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+}
 
+examenPaciente(exPaciente:any){
+  this.action = "/as_examenes/listExpediente";
+  let parametros="token="+this.token;
+  parametros = parametros + "&json="+JSON.stringify(exPaciente);
+  return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
 
+}
+asignarExamen(exPac:any){
+
+  
 }
 
 

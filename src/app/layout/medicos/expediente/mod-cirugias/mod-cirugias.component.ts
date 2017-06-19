@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Cirugia } from "app/models/cirugia";
 import { Especialidad } from "app/models/especialidad";
@@ -13,6 +13,8 @@ import { EspecialidadesService } from "app/services/especialidades.service";
     providers: [CirugiasService, LoginService, EspecialidadesService]
 })
 export class ModCirugiasComponent implements OnInit {
+@Input() cita: any;
+public cirugiasHechas : Array<any>;
    public cirugias: Array<Cirugia>=new Array<Cirugia>();
   public especialidades: Array<Especialidad>=new Array<Especialidad>();
 
@@ -21,6 +23,22 @@ export class ModCirugiasComponent implements OnInit {
   }
 
   ngOnInit() {
+     let identidad = JSON.parse(localStorage.getItem("identity"));
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+    console.log("IDExpediente-----"+ JSON.stringify(this.cita.expediente.id));
+    this.cirugiasService.listExpediente({"id":this.cita.expediente.id}).subscribe(
+        response=>{
+            console.log(response);
+            this.cirugiasHechas=response;
+
+        }, 
+        error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+        }
+    );
+
     //obtenemos las especialidades
     this.especialidadesService.list()
     .map((especialidades: Array<any>)=>{

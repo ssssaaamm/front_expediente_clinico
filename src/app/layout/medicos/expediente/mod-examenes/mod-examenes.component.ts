@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Examen } from "app/models/examen";
 import { ExamenesService } from "app/services/examenes.service";
@@ -14,17 +14,35 @@ import { TipoExamen } from "app/models/tipo_examen";
 
 })
 export class ModExamenesComponent implements OnInit {
+@Input() cita: any;
+public examenesHechos : Array<any>;
+
+
 public examenes : Array<Examen>;
-  public tipos_examen : Array<TipoExamen>;
-
-
+public tipos_examen : Array<TipoExamen>;
 
   constructor(private LoginService: LoginService, private examenesService: ExamenesService, private tiposExamenService: TiposExamenService) { }
 
-  
-
   ngOnInit() {
+    let identidad = JSON.parse(localStorage.getItem("identity"));
+    console.log("ENVIANDO IDENTIDAD: " + JSON.stringify(identidad));
+    console.log("IDExpediente-----"+ JSON.stringify(this.cita.expediente.id));
 
+    this.examenesService.examenPaciente({"id":this.cita.expediente.id}).subscribe(
+        response=>{
+            console.log(response);
+            this.examenesHechos=response;
+
+        }, 
+        error=>{
+                if(error!=null) {
+                    console.log("Error al enviar la peticion: "+error);
+                }
+        }
+    );
+
+
+    
     //obtiene los tipos de examenes
     this.tiposExamenService.list()
     .map((tipos: Array<any>)=>{

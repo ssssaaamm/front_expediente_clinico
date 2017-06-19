@@ -14,7 +14,7 @@ import { ExamenesService } from "app/services/examenes.service";
 })
 export class AsignarComponent implements OnInit {
 
-   @Input() public examenes: Array<Examen>;
+    @Input() public examenes: Array<Examen>;
     @Input() public tipos_examen: Array<TipoExamen>;
     public examen: Examen;
     public exito: boolean;

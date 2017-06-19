@@ -72,4 +72,13 @@ detail(cirugia:any){
     return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
 }
 
+listExpediente(expe:any){
+  this.action = "/listExpediente";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(expe);
+    //peticion
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers}).map(res=>res.json()) ;
+
+}
+
 }
