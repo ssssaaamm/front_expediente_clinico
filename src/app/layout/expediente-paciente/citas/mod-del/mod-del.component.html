@@ -1,4 +1,4 @@
-<button class="btn btn-danger btn-sm" (click)="open(content)"><i class="fa fa-trash "></i></button>
+<button [disabled]="asignacion_cita.estadoCita == 1 ? true : falase" class="btn btn-danger btn-sm" (click)="open(content)"><i class="fa fa-trash "></i></button>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Eliminar cita</h4>

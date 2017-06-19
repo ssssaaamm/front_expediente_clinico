@@ -34,7 +34,20 @@ export class PeticionesService {
       (res) => { 
         return res.json(); 
     });
+  }
 
+  medicosEspecialidad(especialidad:any){
+    this.action = "/medicosEspecialidad";
+    let parametros="token="+this.token;
+    parametros = parametros + "&json="+JSON.stringify(especialidad);
+
+    console.log(parametros);
+
+    return this.http.post(this.url+this.resource+this.action,parametros,{headers:this.headers})
+    .map(
+      (res) => { 
+        return res.json(); 
+    });
   }
 
 }
