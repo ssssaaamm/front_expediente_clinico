@@ -37,6 +37,7 @@ export class CitasComponent implements OnInit {
   public mensaje: string;
   returnUrl: string;
   public citas: Array<any>
+  public paso1:boolean=true;
 
   public consultas: Array<Consulta> = new Array<Consulta>();
   public especialidades: Array<Especialidad> = new Array<Especialidad>();
